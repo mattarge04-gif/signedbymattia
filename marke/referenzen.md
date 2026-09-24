@@ -30,7 +30,7 @@ Screenshots mit Playwright ablegen unter `marke/referenzen/`.
 ## Bereits gesammelt [F]
 
 - Code-Grundlagen samt Lizenzen für Probewebsites:
-  `agency-automation-os/templates/probewebsite/REFERENZEN.md`.
+  `agency-automation-os/projects/probewebsite/template/REFERENZEN.md`.
 - Konkurrenzseiten: `grundlagen/konkurrenz.md`.
 - Vorbild Marketing-Dashboard: KI-Marketing-System für Kanzleien (Vault-Inbox
   24.09.2026), übertragen in `agency-marketing/docs/MARKETING-SYSTEM.md`.

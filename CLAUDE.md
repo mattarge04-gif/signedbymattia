@@ -12,12 +12,12 @@ kopieren nichts. So wird eine Grundlage nur an einer Stelle geändert.
 | `signedbymattia` (dieses) | Grundlagen, Marke, Vorlagen, Abläufe | – |
 | `signedbymattia-website` | die eigene Website | alles unter `grundlagen/`, `marke/`, `website/`, `recht/` |
 | `agency-marketing` | Marketing-System (Research, LinkedIn, Google Ads, Orchestrator) | `grundlagen/`, `marke/` |
-| `agency-automation-os` | Lead Bot, Budgets (`config/budgets.yaml`) | `grundlagen/zielkunden.md`, `grundlagen/angebote-preise.md` |
+| `agency-automation-os` | Lead Bot (`projects/lead-engine/`), Probewebsite-Vorlage, Kundenphase (`projects/website-delivery/`), Budgets | `grundlagen/zielkunden.md`, `grundlagen/angebote-preise.md` |
 | `kunde-<name>` | je Kundenwebsite ein Repo | `vorlagen/`, `marke/ui-regeln.md`, `prozesse/` |
 | `obsidian-vault` | persönliches Wissen, Entscheide, Zielplan | verweist hierher |
 | `life-os` | persönliches Betriebssystem | – |
 
-Budgets und Kostenfreigaben bleiben in `agency-automation-os/config/budgets.yaml`.
+Budgets und Kostenfreigaben bleiben in `agency-automation-os/projects/lead-engine/config/budgets.yaml`.
 
 ## Regeln
 
