@@ -14,7 +14,7 @@ Pfade zeigen [A]. Ein Umzug hierher wird einzeln entschieden.
 | Visuelle Prüfung | `agency-automation-os/projects/probewebsite/docs/VISUAL-QA.md` | Abnahme |
 | Wartung | `agency-automation-os/projects/website-delivery/docs/MAINTENANCE.md` | Care-Pakete |
 | Kundenphase: Hosting/Domain, Formular, Rechtstexte, Go-Live, Wartung | `agency-automation-os/projects/website-delivery/` | Prompts von der Zusage bis zur Wartung |
-| Automationsvorschlag | `agency-automation-os/projects/lead-engine/` (`automation-proposal.md`) | dritter Entwurf des Lead Bots |
+| Automationsvorschlag | `agency-automation-os/projects/lead-engine/n8n/prompts/automation-proposal.md` | dritter Entwurf des Lead Bots |
 
 ## Geplant [?]
 
