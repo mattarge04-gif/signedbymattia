@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="de-CH">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Identität Edition v2 · signedbymattia</title>
+<style>
+  body{margin:0;background:#f4f3f7;color:#231B3A;font-family:"Host Grotesk",system-ui,sans-serif;padding:32px 16px 64px}
+  .wrap{max-width:1360px;margin:0 auto}
+  h2{font-size:28px;margin:0 0 6px;letter-spacing:-.02em}
+  .subtitle{color:#6A5F80;margin:0 0 22px;max-width:90ch}
+</style>
+</head>
+<body>
+<div class="wrap">
+<link href="https://fonts.googleapis.com/css2?family=Host+Grotesk:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root{--creme:#FBF3EA;--flieder:#D9CCF5;--pfirsich:#FFD6C2;--himmel:#CFE3F7;--tinte:#231B3A;--grau:#6A5F80;--pink:#FF9DC8;--gold:#E3C58A;--nacht:#15122A}
+  .bk *{box-sizing:border-box}
+  .bk{font-family:"Host Grotesk",sans-serif;color:var(--tinte)}
+  .s{font-family:"Host Grotesk",sans-serif;font-weight:600;letter-spacing:-.035em}
+  .i{font-family:"Instrument Serif",serif;font-style:italic;font-weight:400;letter-spacing:-.01em}
+  .board{background:#1b1826;padding:14px;border-radius:14px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+  .p{border-radius:8px;overflow:hidden;position:relative;min-height:300px;padding:22px;display:flex;flex-direction:column;justify-content:space-between}
+  .pn{font-size:10px;letter-spacing:.14em;text-transform:uppercase;opacity:.55;display:flex;justify-content:space-between}
+  /* 1 Logo */
+  .p1{background:var(--creme)}
+  .p1 .lock{font-size:62px;line-height:.9}
+  .p1 .ed{display:flex;justify-content:space-between;border-top:1.5px solid var(--tinte);padding-top:9px;font-size:13px}
+  /* 2 Konstruktion */
+  .p2{background:var(--flieder)}
+  .p2 .rule{display:grid;grid-template-columns:auto 1fr;gap:10px 14px;align-items:baseline;font-size:13px}
+  .p2 .big{font-size:40px;line-height:1}
+  .p2 .anat{display:flex;gap:6px;flex-wrap:wrap;font-size:11px}
+  .p2 .anat span{border:1px dashed var(--tinte);padding:3px 7px;border-radius:4px}
+  /* 3 Browser */
+  .p3{background:var(--himmel);padding:18px}
+  .br{border-radius:8px;overflow:hidden;background:var(--creme);box-shadow:0 18px 40px -22px rgba(35,27,58,.55);flex:1;display:flex;flex-direction:column}
+  .br .bar{display:flex;gap:5px;align-items:center;padding:7px 10px;font-size:10px;background:#fff;color:var(--grau)}
+  .br .bar i{width:7px;height:7px;border-radius:50%;background:var(--flieder)}
+  .br .bar span{margin-left:8px;background:var(--creme);padding:2px 10px;border-radius:99px}
+  .br .hero{position:relative;flex:1;min-height:210px;padding:16px;display:flex;flex-direction:column;justify-content:flex-end;background:url(art-barock.jpg) 50% 25%/cover}
+  .br .hero::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(207,227,247,.25),rgba(251,243,234,.95) 78%)}
+  .br .hero > *{position:relative}
+  .br h5{margin:0;font-size:28px;line-height:.95;max-width:11ch}
+  .br .cta{box-shadow:inset 0 0 0 1.5px var(--tinte);margin-top:10px;align-self:flex-start;background:var(--pink);color:var(--tinte);font-weight:700;font-size:11px;padding:7px 12px;border-radius:99px}
+  .br .float{position:absolute;right:14px;top:14px;width:84px;height:58px;background:#fff;border-radius:6px;box-shadow:0 10px 20px -10px rgba(0,0,0,.4);transform:rotate(8deg);padding:6px}
+  .br .float b{display:block;height:6px;border-radius:3px;background:var(--flieder);margin-bottom:5px}
+  .br .float b:nth-child(2){width:60%;background:var(--pfirsich)}
+  .br .float b:nth-child(3){width:35%;height:10px;background:var(--pink)}
+  /* 4 Essenz */
+  .p4{background:var(--pink)}
+  .p4 .tag{font-size:50px;line-height:.95}
+  /* 5 Farben */
+  .p5{background:var(--creme);gap:8px}
+  .sw{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
+  .sw div{border-radius:6px;height:74px;padding:6px;font-size:9.5px;display:flex;flex-direction:column;justify-content:flex-end;line-height:1.25}
+  .sw div b{font-size:11px}
+  .sw .w{grid-column:span 2}
+  /* 6 Typo */
+  .p6{background:var(--pfirsich)}
+  .p6 .aa{display:flex;gap:18px;align-items:flex-end;font-size:96px;line-height:.8}
+  .p6 .spec{font-size:12px;display:grid;grid-template-columns:1fr 1fr;gap:8px}
+  /* 7 Zertifikat */
+  .p7{background:var(--nacht);color:var(--creme);align-items:center;justify-content:center}
+  .cert{background:var(--creme);color:var(--tinte);width:82%;aspect-ratio:1.45;border-radius:4px;padding:14px 16px;display:flex;flex-direction:column;justify-content:space-between;transform:rotate(-4deg);box-shadow:0 20px 40px -16px rgba(0,0,0,.7);position:relative}
+  .cert::after{content:"";position:absolute;inset:6px;border:1px solid var(--gold);border-radius:2px;pointer-events:none}
+  .cert .t{font-size:10px;letter-spacing:.14em;text-transform:uppercase}
+  .cert .n{font-size:34px;line-height:.9}
+  .cert .f{display:flex;justify-content:space-between;font-size:9.5px;align-items:end}
+  .cert .sig{font-size:22px;color:var(--pink)}
+  .p7 .pn{position:absolute;top:22px;left:22px;right:22px}
+  /* 8 Bildwelt */
+  .p8{padding:0;background:url(art-barock.jpg) 30% 40%/220%}
+  .p8::before{content:"";position:absolute;inset:0;background:linear-gradient(160deg,rgba(217,204,245,.35),rgba(255,214,194,.35))}
+  .p8 .cursor{position:absolute;left:52%;top:38%;width:0;height:0;border-left:16px solid transparent;border-right:16px solid transparent;border-bottom:44px solid #fff;transform:rotate(-28deg);filter:drop-shadow(0 6px 10px rgba(0,0,0,.35))}
+  .p8 .win{position:absolute;left:14%;top:18%;width:40%;aspect-ratio:1.5;background:var(--creme);border-radius:6px;transform:rotate(-9deg);box-shadow:0 14px 28px -12px rgba(0,0,0,.5);padding:8px}
+  .p8 .win i{display:block;height:7px;width:40%;border-radius:4px;background:var(--pink)}
+  .p8 .win em{display:block;margin-top:8px;height:60%;border-radius:4px;background:linear-gradient(135deg,var(--himmel),var(--flieder))}
+  .p8 .cap{position:absolute;left:22px;right:22px;bottom:18px;color:var(--creme);font-size:12px;text-shadow:0 1px 8px rgba(0,0,0,.6)}
+  .p8 .pn{position:absolute;top:22px;left:22px;right:22px;color:#fff;opacity:.8}
+  /* 9 System */
+  .p9{background:var(--creme)}
+  .p9 ol{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:3px}
+  .p9 li{display:flex;justify-content:space-between;align-items:baseline;font-size:19px;border-bottom:1px solid rgba(35,27,58,.12);padding-bottom:3px}
+  .p9 li .i{font-size:16px;color:var(--grau)}
+  .chips{display:flex;gap:6px;flex-wrap:wrap}
+  .chips span{font-size:11px;padding:4px 9px;border-radius:99px;background:var(--flieder)}
+  .chips span.on{background:var(--pink);box-shadow:inset 0 0 0 1.2px var(--tinte)}
+  /* unten */
+  .row2{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:22px}
+  .box{background:#fff;border:1px solid #e3e0ea;border-radius:10px;padding:18px;font-size:14px;line-height:1.5}
+  .box h3{margin:0 0 8px;font-size:17px}
+  .box ul{margin:6px 0 0;padding-left:18px}
+  .box small{color:var(--grau)}
+  @media (max-width:900px){.board,.row2{grid-template-columns:1fr}}
+</style>
+
+<div class="bk">
+<h2>Identität „Edition“ · v2</h2>
+<p class="subtitle">Entschieden am 24.09.2026 nach Interview mit Bildbeispielen. Werte in <code>marke/DESIGN.md</code>. Barock-Bild ist Platzhalter: Tiepolo, Allegory of the Planets and Continents, 1752, Met Museum Open Access (CC0).</p>
+
+<div class="board">
+  <div class="p p1">
+    <div class="pn"><span>01 · Logo</span><span>signedbymattia</span></div>
+    <div class="lock"><span class="s">signed</span><br><span class="i">by</span> <span class="s">mattia</span></div>
+    <div></div>
+  </div>
+
+  <div class="p p2">
+    <div class="pn"><span>02 · Logik</span><span>System + Hand</span></div>
+    <div class="rule">
+      <span class="s big">Aa</span><span><b>System.</b> Host Grotesk. Alles Digitale: Navigation, Text, Zahlen.</span>
+      <span class="i big">Aa</span><span><b>Hand.</b> Instrument Serif kursiv. Genau ein Wort pro Headline: das, was du signierst.</span>
+    </div>
+    <div class="anat"><span>Edition</span><span class="i">No.</span><span>Laufnummer 001</span><span>Ort</span><span>Jahr römisch</span></div>
+  </div>
+
+  <div class="p p3">
+    <div class="br">
+      <div class="bar"><i></i><i></i><i></i><span>signedbymattia.ch</span></div>
+      <div class="hero"><div class="float"><b></b><b></b><b></b></div>
+        <h5><span class="s">Gemalt in</span> <span class="i">Code.</span></h5>
+        <span class="cta">Edition anfragen</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="p p4">
+    <div class="pn"><span>04 · Essenz</span><span>Tagline</span></div>
+    <div class="tag"><span class="s">Kein Template.</span><br><span class="s">Ein</span> <span class="i">Werk.</span></div>
+    <div class="pn" style="opacity:.75"><span>Nie Massenware</span><span>signiert</span></div>
+  </div>
+
+  <div class="p p5">
+    <div class="pn"><span>05 · Farben</span><span>Pastell-Himmel + Signal</span></div>
+    <div class="sw">
+      <div style="background:var(--creme);border:1px solid #e8dccb"><b>Creme</b>#FBF3EA · Grund</div>
+      <div style="background:var(--flieder)"><b>Flieder</b>#D9CCF5 · Kapitel</div>
+      <div style="background:var(--himmel)"><b>Himmel</b>#CFE3F7 · Kapitel</div>
+      <div style="background:var(--pfirsich)"><b>Pfirsich</b>#FFD6C2 · Kapitel</div>
+      <div class="w" style="background:var(--tinte);color:var(--creme)"><b>Tinte</b>#231B3A · Text, 14.8:1</div>
+      <div style="background:var(--pink)"><b>Signal</b>#FF9DC8 · CTA</div>
+      <div style="background:var(--gold)"><b>Blattgold</b>#E3C58A · Detail</div>
+    </div>
+  </div>
+
+  <div class="p p6">
+    <div class="pn"><span>06 · Typografie</span><span>Google Fonts, frei</span></div>
+    <div class="aa"><span class="s">Ag</span><span class="i">Ag</span></div>
+    <div class="spec"><span><b>Host Grotesk</b><br>500 / 600 / 700 · Headline, Liste</span><span><b>Instrument Serif</b><br>gerade: Unterzeile · kursiv: Hand-Wort, I II III</span></div>
+  </div>
+
+  <div class="p p7">
+    <div class="pn"><span>07 · Übergabe</span><span>Zertifikat</span></div>
+    <div class="cert">
+      <div class="t">Echtheitszertifikat</div>
+      <div class="n"><span class="s">Edition</span> <span class="i">No.</span> <span class="s">014</span></div>
+      <div class="f"><span>Café Beispiel, Ebikon<br>live seit 03.MMXXVI</span><span class="i sig">Mattia</span></div>
+    </div>
+  </div>
+
+  <div class="p p8">
+    <div class="pn"><span>08 · Bildwelt</span><span>Collage</span></div>
+    <div class="win"><i></i><em></em></div>
+    <div class="cursor"></div>
+    <div class="cap">Barock-Himmel + Web-Dinge. Ehrfurcht, Witz nur im Detail (Engel hält den Mauszeiger).</div>
+  </div>
+
+  <div class="p p9">
+    <div class="pn"><span>09 · System</span><span>Kapitel römisch</span></div>
+    <ol>
+      <li><span class="s">Website Core</span><span class="i">I</span></li>
+      <li><span class="s">Automation Core</span><span class="i">II</span></li>
+      <li><span class="s">SEO + GEO</span><span class="i">III</span></li>
+      <li><span class="s">Google-Profil</span><span class="i">IV</span></li>
+      <li><span class="s">Texte + Branding</span><span class="i">V</span></li>
+    </ol>
+    <div class="chips"><span class="on">No. 001</span><span>Akt I · Himmel</span><span>Akt II · Galerie</span></div>
+  </div>
+</div>
+
+<div class="row2">
+  <div class="box">
+    <h3>Wow: zwei Akte</h3>
+    <b>Akt I, Himmel:</b> Scroll-Flug durch pastellige Wolkenebenen, Engel und Browserfenster ziehen vorbei.<br>
+    <b>Akt II, Galerie:</b> Man landet in einem barocken 3D-Saal. Deine Editionen hängen als Gemälde an der Wand.
+    <br><small>Hell (Himmel) → dunkel (Galerie, Nacht #15122A): der geplante Hell-dunkel-Rhythmus aus den UI-Regeln.</small>
+  </div>
+  <div class="box">
+    <h3>Das eigene Barock-Bild</h3>
+    Basis sind echte Werke (Tiepolo-Himmel, Met CC0). KI ergänzt nur, was fehlt: den Putto mit der Feder, Engel mit Browserfenster.
+    <ul><li>Die Signatur-Szene wird das Titelbild</li><li>Einzelne Engel und Objekte freigestellt → Bausteine für LinkedIn, Offerte, Web</li></ul>
+  </div>
+  <div class="box">
+    <h3>Werkzeuge dafür (Tool Box)</h3>
+    <ul>
+      <li><b>scroll-world</b>: Scroll-Flug durch eine Welt, generiert mit Higgsfield → Akt I</li>
+      <li><b>Higgsfield</b>: fehlende Barock-Teile</li>
+      <li><b>img2threejs / Three.js</b>: 3D-Galerie → Akt II</li>
+      <li><b>oil-motion</b>: weiche Übergänge</li>
+      <li><b>design.md</b> + <b>impeccable</b>/<b>taste-skill</b>: Werte festhalten und prüfen</li>
+    </ul>
+  </div>
+</div>
+</div>
+</div>
+</body>
+</html>
