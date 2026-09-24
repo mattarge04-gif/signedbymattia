@@ -59,6 +59,11 @@ Neue Schrift nur mit Begruendung und Freigabe — nicht einfach installieren.
 
 ## Bewegung
 
+> **Ausnahme seit 24.09.2026:** Pro Website darf es **einen** freigegebenen
+> Wow-Moment geben (siehe `referenzen.md`), auch mit schwerer Animationstechnik,
+> solange `prefers-reduced-motion`, Lesbarkeit ohne JavaScript und die mobile
+> Ladezeit eingehalten werden.
+
 - Keine Animation nur zur Dekoration
 - Kein Scroll-Hijacking, keine dauerpulsierenden Elemente
 - Keine schwere Animationsbibliothek ohne Freigabe

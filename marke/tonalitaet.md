@@ -30,7 +30,9 @@ gilt für Website, Anzeigen, LinkedIn, Offerten, E-Mails
 4. ~~Drei Wörter~~ entschieden 24.09.2026 [F]: **innovativ, kreativ, farbenfroh.**
 5. ~~Unwörter~~ entschieden 24.09.2026 [F]: **0815, Massenware, Standard**
    beschreiben signedbymattia nie. Gilt auch für Synonyme („von der Stange“,
-   „Schema F“).
+   „Schema F“). **Verneint abgrenzen ist erlaubt**, z. B. Positionierungssatz 5
+   „Keine Baukasten-Massenware“ (von Mattia bestätigt: „ich mache keine
+   Massenware“).
 
 ## Beispiele [?]
 
