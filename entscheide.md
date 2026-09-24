@@ -25,4 +25,4 @@ stehen im Vault (`40_Entscheide/`) oder im jeweiligen Repo.
 | 24.09.2026 | Markenwörter innovativ, kreativ, farbenfroh; nie 0815, Massenware, Standard | `marke/tonalitaet.md` |
 | 24.09.2026 | Domain signedbymattia.ch | `recht/pflichtangaben.md` |
 | 24.09.2026 | Kein festes Mindestbudget, Kompromisse für wertvolle Kontakte | `grundlagen/ausschluesse.md` |
-| 24.09.2026 | Ein Wow-Moment pro Website freigegeben (Ausnahme zu den UI-Regeln, mit Bedingungen) | `marke/referenzen.md`, `marke/ui-regeln.md` |
+| 24.09.2026 | Wow so viel wie möglich; jeder Effekt: Vorschlag → Quelle nennen → Prototyp → Mattias Änderungen → Abschluss | `marke/referenzen.md`, `marke/ui-regeln.md` |

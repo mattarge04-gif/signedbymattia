@@ -11,12 +11,17 @@ die dir gefallen, und je drei Sätze warum“)
 | [emotion-agency.com](https://emotion-agency.com/) | „einfach wow, fühlt sich fast unreal an“ | ein grosser Wow-Moment statt vieler kleiner Effekte |
 | [shopify.com/editions/winter2026](https://www.shopify.com/editions/winter2026) | perfekte Grafiken und Bilder, schönes und farbenfrohes UI, „so stell ich mir eine perfekte Seite vor“ | eigene Grafiken und Farbe als Träger der Marke |
 
-**Wow-Moment freigegeben (Entscheid 24.09.2026) [F]:** Die UI-Regeln bleiben.
-Für die eigene Website ist **ein** bewusster Wow-Moment im Stil der Vorbilder
-freigegeben (z. B. im Startbereich), auch mit einer schwereren
-Animationstechnik. Bedingungen: `prefers-reduced-motion` schaltet ihn ab, der
-Inhalt bleibt ohne JavaScript lesbar, und die Ladezeit am Handy wird vorher und
-nachher gemessen (`ui-regeln.md`, Abschnitt Bewegung).
+**Wow so viel wie möglich (Entscheid 24.09.2026) [F]:** wie bei den drei
+Vorbildern, ohne Mengenlimit. Jeder Wow-Effekt durchläuft den festen Ablauf:
+
+1. **Vorschlag:** Der Agent schlägt den Effekt vor und beschreibt ihn.
+2. **Quelle nennen:** woher der Effekt kommt, also Bibliothek, Tool, Codebeispiel
+   oder Website, auf der er zu sehen ist, mit Link und Lizenz.
+3. **Prototyp:** eine lauffähige Version zum Anschauen.
+4. **Mattias Änderungen:** Er sagt, was anders werden soll; der Agent passt an.
+5. **Abschluss:** erst nach Mattias Freigabe fest eingebaut.
+
+Details: `ui-regeln.md`, Abschnitt Bewegung.
 
 Hilfsmittel aus der AI Tool Box: `JCodesMore/ai-website-cloner-template` bzw.
 `site-clone` **nur zum Studieren** eines Layouts, nicht zum Veröffentlichen.

@@ -59,10 +59,22 @@ Neue Schrift nur mit Begruendung und Freigabe — nicht einfach installieren.
 
 ## Bewegung
 
-> **Ausnahme seit 24.09.2026:** Pro Website darf es **einen** freigegebenen
-> Wow-Moment geben (siehe `referenzen.md`), auch mit schwerer Animationstechnik,
-> solange `prefers-reduced-motion`, Lesbarkeit ohne JavaScript und die mobile
-> Ladezeit eingehalten werden.
+> **Entscheid 24.09.2026: Wow ist erwünscht, so viel wie möglich** (Vorbilder in
+> `referenzen.md`). Es gibt kein Limit, sondern einen festen Ablauf für jeden
+> Wow-Effekt:
+>
+> 1. **Vorschlag:** Der Agent schlägt den Effekt vor und beschreibt ihn.
+> 2. **Quelle nennen:** woher der Effekt kommt, also Bibliothek, Tool, Codebeispiel
+>    oder Website, auf der er zu sehen ist, mit Link und Lizenz.
+> 3. **Prototyp:** eine lauffähige Version zum Anschauen.
+> 4. **Mattias Änderungen:** Er sagt, was anders werden soll; der Agent passt an.
+> 5. **Abschluss:** erst nach Mattias Freigabe fest eingebaut.
+>
+> Beim Abschluss wird zusätzlich geprüft [A, Empfehlung]: `prefers-reduced-motion`
+> bietet eine ruhige Variante, und die Ladezeit am Handy ist gemessen. Die Regeln
+> unten („keine Animation nur zur Dekoration“, „keine schwere Bibliothek ohne
+> Freigabe“) gelten für Wow-Effekte als erfüllt, sobald der Ablauf oben
+> durchlaufen ist.
 
 - Keine Animation nur zur Dekoration
 - Kein Scroll-Hijacking, keine dauerpulsierenden Elemente
