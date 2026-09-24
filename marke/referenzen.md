@@ -3,7 +3,7 @@
 Stand: 24.09.2026 · Status: **gesammelt** · Zielplan KW 39 („Drei Seiten sammeln,
 die dir gefallen, und je drei Sätze warum“)
 
-## Deine drei Lieblingsseiten [?]
+## Die drei Lieblingsseiten [F]
 
 | Seite | Was Mattia daran gefällt (24.09.2026) | Prinzip für signedbymattia (Entwurf [A]) |
 | --- | --- | --- |
