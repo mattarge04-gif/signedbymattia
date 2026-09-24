@@ -11,6 +11,10 @@ Bei Abweichung gilt dieses Dokument, und `icp.yaml` wird angepasst.
 **Region:** Root LU mit 15 km Radius (Rontal und Umgebung). Pro Kampagne
 einstellbar, keine Ausweitung auf andere Kantone ohne neuen Entscheid.
 
+**Verhältnis zur Positionierung (24.09.2026):** Nach aussen „kreative Projekte
+und kleine Betriebe“. Die Reihenfolge unten gilt für Lead Bot und Anzeigen und
+wird in der Positionierung nicht hervorgehoben.
+
 **Reihenfolge der Branchen:**
 
 1. **HLKS-Ingenieur- und Planungsbüros**

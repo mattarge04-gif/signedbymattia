@@ -43,12 +43,9 @@ allgemeine lokale Webagentur, „lokal mit HLKS als Spitze“.
 
 **Auftritt:** in der Ich-Form als Mattia (`marke/tonalitaet.md`).
 
-## Folgefrage [?]
-
-Der Lead Bot, `zielkunden.md` und die geplante Anzeigengruppe „HLKS“ setzen
-noch **HLKS-Betriebe zuerst**. Soll das so bleiben (HLKS als Branche, die der
-Lead Bot sucht, ohne dass die Positionierung sie hervorhebt), oder werden die
-Zielkunden an die neue Richtung angepasst?
+**HLKS bleibt als Branche** (Entscheid 24.09.2026): Der Lead Bot sucht weiter
+HLKS-Betriebe zuerst, die Anzeigengruppe HLKS bleibt. Nach aussen wird HLKS
+nicht hervorgehoben; die Marke bleibt „kreative Projekte und kleine Betriebe“.
 
 ## Die fünf Sätze — Entwurf zum Korrigieren [A]
 

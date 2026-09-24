@@ -12,7 +12,7 @@ dieses Dokument.
 | Paket | Preis | Inhalt |
 | --- | --- | --- |
 | **Starter-Onepager** | ab CHF 900 | eine auf Anfragen ausgerichtete Seite, responsive, Kontaktweg, lokale SEO-Grundlagen, 1 Feedbackrunde |
-| **Website Core** | CHF 1'200–1'800 (Basis 1'200) | bis 5 Seiten, responsive, Struktur für Anfragen, lokale SEO-Grundlagen, Kontakt- oder Buchungsweg, 1 Feedbackrunde, Aufschaltung |
+| **Website Core** | **CHF 1'600 Testpreis** (Rahmen 1'200–1'800) | bis 5 Seiten, responsive, Struktur für Anfragen, lokale SEO-Grundlagen, Kontakt- oder Buchungsweg, 1 Feedbackrunde, Aufschaltung |
 | **Landingpage-Optimierung** | CHF 700 | Conversion-Prüfung, CTA und Struktur, 1 optimierte Landingpage, 1 Feedbackrunde |
 | **Performance-Paket** | CHF 500 | Ausgangsmessung, Bild- und Asset-Optimierung, Frontend-Verbesserungen, Resultatmessung |
 | **Automation Core** | ab CHF 500 | ein klar begrenzter Ablauf, bis 2 Integrationen, Fehlerpfad, Freigabe wo nötig, Übergabe |
@@ -42,9 +42,11 @@ CHF 2'750 Umsatz → bei CHF 1'200 rund 2,3 Projekte pro Monat.
 1. ~~Welche zwei Pakete stehen vorn~~ entschieden 24.09.2026 [F]: **Website
    Core und Automation Core.** Dazu ein Katalog von **Zusatzleistungen** wie bei
    einer vollen Digitalagentur (siehe unten). Onepager nur als Einstieg.
-2. **Welche verschwinden** oder werden nur auf Nachfrage angeboten?
-   (Landingpage-Optimierung, Performance-Paket?)
-3. **Website Core:** bei 1'200 bleiben oder 1'600–1'800 testen?
+2. ~~Welche verschwinden~~ entschieden 24.09.2026 [F]: **Starter-Onepager,
+   Landingpage-Optimierung und Performance-Paket nur auf Nachfrage**, nicht auf
+   der Website und nicht in Anzeigen, in Offerten möglich.
+3. ~~Preis Website Core~~ entschieden 24.09.2026 [F]: **CHF 1'600 testen.**
+   Zielplan: 1,7 statt 2,3 Projekte pro Monat für CHF 2'750 Umsatz.
 4. **Mehrwertsteuer:** Preise inkl. oder ohne? Hängt vom Steuerstatus ab
    (`recht/pflichtangaben.md`).
 5. **Branchenpakete** (z. B. „Website für HLKS-Betriebe“) mit festem Umfang?
@@ -54,6 +56,9 @@ CHF 2'750 Umsatz → bei CHF 1'200 rund 2,3 Projekte pro Monat.
 Die zwei Hauptpakete bleiben der Einstieg; alles unten wird **zusätzlich**
 angeboten. **Preise und Umfang sind offen [?]** und werden nicht geraten. Wo es
 Marktwerte aus der Recherche gibt, stehen sie als Anhaltspunkt [A].
+
+**Zuerst auf der Website (Entscheid 24.09.2026) [F]:** SEO-Grundpaket mit GEO,
+Google-Unternehmensprofil, Texte und Branding. Die übrigen folgen später.
 
 | Zusatzleistung | Inhalt (Entwurf) | Marktwert [A] | Preis | Kapazität geprüft |
 | --- | --- | --- | --- | --- |
