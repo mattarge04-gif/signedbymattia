@@ -20,11 +20,10 @@ gilt für Website, Anzeigen, LinkedIn, Offerten, E-Mails
 
 ## Offen [?]
 
-1. **Anrede:** „Sie“ oder „du“? Getrennt nach Kanal möglich (z. B. Website
-   „Sie“, LinkedIn „du“).
-2. **Ich oder wir?** Einzelperson mit Namen („ich, Mattia“) wirkt persönlicher;
-   „wir“ grösser. Vorschlag [A]: „ich“, weil Nähe und Persönlichkeit der
-   Unterschied zu Agenturen sind.
+1. ~~Anrede~~ entschieden 24.09.2026 [F]: **Website, Offerten, E-Mails „Sie“;
+   LinkedIn „du“.**
+2. ~~Ich oder wir~~ entschieden 24.09.2026 [F]: **„ich“, als Mattia.** Kein „wir“,
+   solange signedbymattia eine Person ist.
 3. **Stil der LinkedIn-Beiträge:** kommt aus deinen Beispielvideos und Skills
    (`agency-marketing/docs/LINKEDIN-BLOG-CONTENT.md`); daraus entsteht
    `agency-marketing/prompts/stil.md`, die Grundregeln oben gelten trotzdem.

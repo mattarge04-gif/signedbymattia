@@ -27,12 +27,12 @@ flowchart TB
 
 | Ordner | Dokument | Stand | Zielplan |
 | --- | --- | --- | --- |
-| `grundlagen/` | [Positionierung](grundlagen/positionierung.md) | Entwurf, Fragen offen | KW 39 |
+| `grundlagen/` | [Positionierung](grundlagen/positionierung.md) | Richtung entschieden, 5 Sätze Entwurf | KW 39 |
 | | [Zielkunden](grundlagen/zielkunden.md) | teilweise entschieden | KW 39 |
-| | [Angebote und Preise](grundlagen/angebote-preise.md) | Preise stehen, Fokus offen | KW 40 |
+| | [Angebote und Preise](grundlagen/angebote-preise.md) | Fokus entschieden, Zusatzpreise offen | KW 40 |
 | | [Was wir nicht machen](grundlagen/ausschluesse.md) | teilweise | KW 40 |
 | | [Konkurrenz](grundlagen/konkurrenz.md) | Recherche 23./24.09.2026 | – |
-| `marke/` | [Tonalität](marke/tonalitaet.md) | Regeln stehen, Anrede offen | KW 41 |
+| `marke/` | [Tonalität](marke/tonalitaet.md) | Anrede und Ich-Form entschieden | KW 41 |
 | | [DESIGN.md](marke/DESIGN.md) | Gerüst, Werte offen | KW 43 |
 | | [UI-Regeln](marke/ui-regeln.md) | entschieden | – |
 | | [Referenzen und Lieblingsseiten](marke/referenzen.md) | offen | KW 39 |

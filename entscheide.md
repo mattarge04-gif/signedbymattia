@@ -12,3 +12,6 @@ stehen im Vault (`40_Entscheide/`) oder im jeweiligen Repo.
 | 24.09.2026 | Marketing-System in eigenem Repo; Claude-API bis CHF 10/Monat; LinkedIn-Unternehmensseite | `agency-marketing/docs/MASTERPLAN.md` |
 | 24.09.2026 | Google-Test-Vorschlag CHF 150 statt 600 (nicht freigegeben) | `agency-automation-os/config/budgets.yaml` |
 | 24.09.2026 | Repo-Ordnung: `signedbymattia` zentral, Website in `signedbymattia-website`, Marketing, Lead Bot (`agency-automation-os` bleibt so), je Kunde ein Repo | dieses Repo, `CLAUDE.md` |
+| 24.09.2026 | Positionierung: kreative Projekte und kleine Betriebe, Gestaltung im Vordergrund | `grundlagen/positionierung.md` |
+| 24.09.2026 | Anrede: Website/Offerten „Sie“, LinkedIn „du“; Auftritt als „ich, Mattia“ | `marke/tonalitaet.md` |
+| 24.09.2026 | Vorn: Website Core + Automation Core, dazu Zusatzleistungen wie eine Digitalagentur (SEO, GEO, Ads …), Preise offen | `grundlagen/angebote-preise.md` |

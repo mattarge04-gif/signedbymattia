@@ -1,6 +1,6 @@
 # Positionierung
 
-Stand: 24.09.2026 · Status: **Entwurf, Mattia entscheidet** · Zielplan KW 39
+Stand: 24.09.2026 · Status: **Richtung entschieden, fünf Sätze im Entwurf** · Zielplan KW 39
 („Positionierung in fünf Sätzen: welches Problem du löst, für wen, warum du“)
 
 ## Was schon feststeht [F]
@@ -34,24 +34,35 @@ Ablaufentscheidungen bis zu Umfang, Preis und ehrlichem Resultat
 Webagentur. Die Suche „Website Sanitär/Heizung“ zeigte am 24.09.2026 nur
 deutsche Anbieter, keine Schweizer.
 
-## Widerspruch, den du auflösen musst [?]
+## Entschieden am 24.09.2026 [F]
 
-Die Projektnotiz nennt „kleine, eigenständige Betriebe und **kreative
-Projekte**“. Der Agency-Masterplan setzt **HLKS-Betriebe zuerst**, danach
-Restaurants und lokale KMU. Beides zusammen ist breit.
+**Richtung: kreative Projekte und kleine Betriebe.** signedbymattia tritt nach
+aussen für eigenständige Betriebe, Selbstständige und kreative Projekte auf;
+die **Gestaltung steht im Vordergrund**. Verworfen: reiner HLKS-Spezialist,
+allgemeine lokale Webagentur, „lokal mit HLKS als Spitze“.
 
-- Variante A: **HLKS-Spezialist** mit Gastro und lokalen KMU als Zweitmarkt.
-- Variante B: **Lokale Webagentur für kleine Betriebe**, HLKS als eine
-  Branche unter mehreren.
-- Variante C: eigene Formulierung.
+**Auftritt:** in der Ich-Form als Mattia (`marke/tonalitaet.md`).
 
-## Deine fünf Sätze [?]
+## Folgefrage [?]
 
-1. **Problem:** …
-2. **Für wen:** …
-3. **Was danach anders ist:** …
-4. **Warum ich / warum signedbymattia:** …
-5. **Was ich bewusst nicht mache:** …
+Der Lead Bot, `zielkunden.md` und die geplante Anzeigengruppe „HLKS“ setzen
+noch **HLKS-Betriebe zuerst**. Soll das so bleiben (HLKS als Branche, die der
+Lead Bot sucht, ohne dass die Positionierung sie hervorhebt), oder werden die
+Zielkunden an die neue Richtung angepasst?
+
+## Die fünf Sätze — Entwurf zum Korrigieren [A]
+
+1. **Problem:** Viele kleine Betriebe und kreative Projekte machen gute Arbeit,
+   aber ihre Website zeigt das nicht, und der Weg zur Anfrage ist umständlich.
+2. **Für wen:** Für eigenständige Betriebe, Selbstständige und kreative
+   Projekte in Luzern und im Rontal.
+3. **Was danach anders ist:** Ihre Arbeit wirkt online so gut wie in echt, und
+   Interessierte finden in wenigen Sekunden den nächsten Schritt.
+4. **Warum ich:** Ich gestalte jede Seite von Grund auf, begründe jede
+   Entscheidung und verbinde sie dort, wo es sich lohnt, mit einer kleinen
+   Automation, die Ihnen Arbeit abnimmt.
+5. **Was ich bewusst nicht mache:** Keine Baukasten-Massenware und keine
+   Versprechen zu Rankings oder Umsatz, die ich nicht belegen kann.
 
 ## Prüfen, bevor es gilt
 

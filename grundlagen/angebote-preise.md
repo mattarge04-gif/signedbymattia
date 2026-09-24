@@ -1,6 +1,6 @@
 # Angebote und Preise
 
-Stand: 24.09.2026 · Status: **Preise übernommen, Fokus offen** · Zielplan KW 40
+Stand: 24.09.2026 · Status: **Fokus entschieden, Zusatzleistungen ohne Preise** · Zielplan KW 40
 („Angebot schärfen: welche zwei der fünf Pakete stehen vorn“ und „Preise gegen
 offers.yaml prüfen“)
 
@@ -39,12 +39,42 @@ CHF 2'750 Umsatz → bei CHF 1'200 rund 2,3 Projekte pro Monat.
 
 ## Deine Entscheide [?]
 
-1. **Welche zwei Pakete stehen vorn** auf Website und in Anzeigen? Vorschlag
-   [A]: Website Core und Automation Core; Onepager nur als Einstieg, weil die
-   Konkurrenz dort über den Preis gewinnt.
+1. ~~Welche zwei Pakete stehen vorn~~ entschieden 24.09.2026 [F]: **Website
+   Core und Automation Core.** Dazu ein Katalog von **Zusatzleistungen** wie bei
+   einer vollen Digitalagentur (siehe unten). Onepager nur als Einstieg.
 2. **Welche verschwinden** oder werden nur auf Nachfrage angeboten?
    (Landingpage-Optimierung, Performance-Paket?)
 3. **Website Core:** bei 1'200 bleiben oder 1'600–1'800 testen?
 4. **Mehrwertsteuer:** Preise inkl. oder ohne? Hängt vom Steuerstatus ab
    (`recht/pflichtangaben.md`).
 5. **Branchenpakete** (z. B. „Website für HLKS-Betriebe“) mit festem Umfang?
+
+## Zusatzleistungen (Entscheid 24.09.2026: „alles, was eine Digitalagentur hat“)
+
+Die zwei Hauptpakete bleiben der Einstieg; alles unten wird **zusätzlich**
+angeboten. **Preise und Umfang sind offen [?]** und werden nicht geraten. Wo es
+Marktwerte aus der Recherche gibt, stehen sie als Anhaltspunkt [A].
+
+| Zusatzleistung | Inhalt (Entwurf) | Marktwert [A] | Preis | Kapazität geprüft |
+| --- | --- | --- | --- | --- |
+| **SEO-Grundpaket** | Keyword-Recherche, Seitentitel, Struktur, Search Console, lokale Einträge | – | `?` | `?` |
+| **SEO laufend** | monatliche Auswertung, eine Optimierung pro Monat | – | `?` /Monat | `?` |
+| **GEO / KI-Suche** | Inhalte und strukturierte Daten so, dass KI-Suchen (Google AI, ChatGPT) sie lesen können; keine Erwähnungsgarantie | – | `?` | `?` |
+| **Google-Unternehmensprofil** | Einrichtung, nur wenn der Betrieb berechtigt ist | – | `?` | `?` |
+| **Google-Ads-Einrichtung** | Konto, Tracking, erste Kampagne | CHF 1'500–5'000 einmalig (Agenturen CH) | `?` | `?` |
+| **Google-Ads-Betreuung** | monatliche Pflege | CHF 800–2'500/Monat (Agenturen CH) | `?` | `?` |
+| **Tracking und Auswertung** | Besucherstatistik, Anfrage-Messung, Monatsbericht | – | `?` | `?` |
+| **Texte schreiben** | Webtexte nach Briefing | – | `?` | `?` |
+| **Branding / Logo** | Logo, Farben, Schriften (`DESIGN.md` des Kunden) | – | `?` | `?` |
+| **Fotografie / Bildauswahl** | eigene Fotos oder Bildrecherche mit Rechten | – | `?` | `?` |
+| **Social-Media-Einrichtung** | LinkedIn-/Instagram-Profil, Vorlagen | – | `?` | `?` |
+| **Mehrsprachigkeit** | zweite Sprache | – | `?` | `?` |
+| **Barrierefreiheit-Check** | Prüfung und Korrekturen | – | `?` | `?` |
+| **Landingpage-Optimierung** | besteht | – | CHF 700 | – |
+| **Performance-Paket** | besteht | – | CHF 500 | – |
+| **Website Care / Automation Care** | bestehen | – | CHF 69 / 50 pro Monat | – |
+
+**Warnung zur Kapazität [A]:** Laufende Leistungen (SEO, Ads-Betreuung) binden
+jeden Monat Stunden. Bei 10 h/Woche für die ganze Agency pro Zusatzleistung
+Stunden schätzen, bevor sie auf die Website kommt. Lieber drei gut gemachte
+Zusätze als zwölf halbe.
