@@ -8,7 +8,7 @@ gilt für Website, Anzeigen, LinkedIn, Offerten, E-Mails
 - **Einfaches Deutsch für die Deutschschweiz**, Schweizer Hochdeutsch, kein
   Eszett.
 - Muster für Texte: **Problem → Nutzen → Beleg → klare nächste Handlung**
-  (`agency-automation-os/docs/CONTENT.md`).
+  (`agency-automation-os/projects/probewebsite/docs/CONTENT.md`).
 - **Keine technische Fachsprache** gegenüber Kunden, keine pauschale Abwertung
   bestehender Websites, keine erfundenen Erfolgsaussagen.
 - **Konkret statt generisch:** keine Sätze wie „Innovation neu gedacht“.

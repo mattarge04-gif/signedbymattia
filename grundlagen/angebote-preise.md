@@ -4,7 +4,7 @@ Stand: 24.09.2026 · Status: **Fokus entschieden, Zusatzleistungen ohne Preise**
 („Angebot schärfen: welche zwei der fünf Pakete stehen vorn“ und „Preise gegen
 offers.yaml prüfen“)
 
-Maschinenlesbar: `agency-automation-os/config/offers.yaml`. Bei Abweichung gilt
+Maschinenlesbar: `agency-automation-os/projects/lead-engine/config/offers.yaml`. Bei Abweichung gilt
 dieses Dokument.
 
 ## Aktuelle Pakete [F]

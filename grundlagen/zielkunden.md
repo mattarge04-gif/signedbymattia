@@ -3,7 +3,7 @@
 Stand: 24.09.2026 · Status: **entschieden** · Zielplan
 KW 39 („Wunschkunde beschreiben, Filter aus icp.yaml als Raster“)
 
-Maschinenlesbare Fassung für den Lead Bot: `agency-automation-os/config/icp.yaml`.
+Maschinenlesbare Fassung für den Lead Bot: `agency-automation-os/projects/lead-engine/config/icp.yaml`.
 Bei Abweichung gilt dieses Dokument, und `icp.yaml` wird angepasst.
 
 ## Entschieden [F]
