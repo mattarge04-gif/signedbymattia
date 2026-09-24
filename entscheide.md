@@ -20,3 +20,8 @@ stehen im Vault (`40_Entscheide/`) oder im jeweiligen Repo.
 | 24.09.2026 | Zuerst sichtbare Zusatzleistungen: SEO + GEO, Google-Unternehmensprofil, Texte + Branding; Onepager, Landingpage- und Performance-Paket nur auf Nachfrage | `grundlagen/angebote-preise.md` |
 | 24.09.2026 | Ausschlüsse: kein eigenes Fotografieren, kein eigenes Hosting, keine laufende Social-Media-Betreuung für Kunden | `grundlagen/ausschluesse.md` |
 | 24.09.2026 | Stand Recht: noch nichts angemeldet; Domain gesichert; Nebenerwerb laut Arbeitsvertrag erlaubt | `recht/pflichtangaben.md` |
+| 24.09.2026 | Fünf Positionierungssätze bestätigt | `grundlagen/positionierung.md` |
+| 24.09.2026 | Wunschkunde: Startups ohne UI, Künstler, Artists, Brands; offene, innovative Menschen; Budget CHF 1'500–2'500 | `grundlagen/zielkunden.md` |
+| 24.09.2026 | Markenwörter innovativ, kreativ, farbenfroh; nie 0815, Massenware, Standard | `marke/tonalitaet.md` |
+| 24.09.2026 | Domain signedbymattia.ch | `recht/pflichtangaben.md` |
+| 24.09.2026 | Kein festes Mindestbudget, Kompromisse für wertvolle Kontakte | `grundlagen/ausschluesse.md` |

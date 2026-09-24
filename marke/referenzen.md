@@ -1,15 +1,22 @@
 # Referenzen und Lieblingsseiten
 
-Stand: 24.09.2026 · Status: **offen** · Zielplan KW 39 („Drei Seiten sammeln,
+Stand: 24.09.2026 · Status: **gesammelt** · Zielplan KW 39 („Drei Seiten sammeln,
 die dir gefallen, und je drei Sätze warum“)
 
 ## Deine drei Lieblingsseiten [?]
 
-| Seite | Satz 1: was fällt zuerst auf | Satz 2: was funktioniert | Satz 3: was übernehme ich (Prinzip, nicht Kopie) |
-| --- | --- | --- | --- |
-| … | … | … | … |
-| … | … | … | … |
-| … | … | … | … |
+| Seite | Was Mattia daran gefällt (24.09.2026) | Prinzip für signedbymattia (Entwurf [A]) |
+| --- | --- | --- |
+| [sofihealth.com](https://www.sofihealth.com/) | angenehme Mischung aus schlicht und Animationen, überragendes UI | ruhige Grundfläche, Bewegung gezielt an wenigen Stellen |
+| [emotion-agency.com](https://emotion-agency.com/) | „einfach wow, fühlt sich fast unreal an“ | ein grosser Wow-Moment statt vieler kleiner Effekte |
+| [shopify.com/editions/winter2026](https://www.shopify.com/editions/winter2026) | perfekte Grafiken und Bilder, schönes und farbenfrohes UI, „so stell ich mir eine perfekte Seite vor“ | eigene Grafiken und Farbe als Träger der Marke |
+
+**Spannung zu den UI-Regeln [?]:** Die Vorbilder leben von starken Animationen
+und teils schweren 3D-/WebGL-Effekten. `ui-regeln.md` verlangt: keine Deko-
+Animation, keine schwere Animationsbibliothek ohne Freigabe, Mobile und
+Performance dürfen nicht leiden, Inhalt ohne JavaScript lesbar. Vorschlag: Die
+Regeln bleiben, und für die eigene Website wird **ein** bewusster Wow-Moment
+freigegeben (z. B. Startbereich), gemessen an Ladezeit und `prefers-reduced-motion`.
 
 Hilfsmittel aus der AI Tool Box: `JCodesMore/ai-website-cloner-template` bzw.
 `site-clone` **nur zum Studieren** eines Layouts, nicht zum Veröffentlichen.

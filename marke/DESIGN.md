@@ -13,9 +13,11 @@ nur als Anregung, nicht übernehmen. Grundregeln: [`ui-regeln.md`](ui-regeln.md)
 
 Alle Werte mit `?` sind offen. Kein Agent setzt sie ohne Mattias Entscheid.
 
-## 1. Charakter [?]
+## 1. Charakter
 
-Drei Adjektive, die die Marke visuell trägt: `?`, `?`, `?`
+Drei Adjektive, die die Marke visuell trägt [F]: **innovativ, kreativ,
+farbenfroh.** Vorbilder: `referenzen.md` (Sofi Health, Emotion Agency, Shopify
+Editions Winter 2026).
 Wirkung, die vermieden wird: generische Agentur, Tech-Startup-Lila, Stock-Look.
 
 ## 2. Farben (jede Farbe hat eine Rolle)

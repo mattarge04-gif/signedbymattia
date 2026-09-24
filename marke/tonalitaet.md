@@ -27,9 +27,10 @@ gilt für Website, Anzeigen, LinkedIn, Offerten, E-Mails
 3. **Stil der LinkedIn-Beiträge:** kommt aus deinen Beispielvideos und Skills
    (`agency-marketing/docs/LINKEDIN-BLOG-CONTENT.md`); daraus entsteht
    `agency-marketing/prompts/stil.md`, die Grundregeln oben gelten trotzdem.
-4. **Drei Wörter, die signedbymattia beschreiben sollen** (z. B. klar, ehrlich,
-   handwerklich): …
-5. **Wörter, die nie vorkommen sollen:** …
+4. ~~Drei Wörter~~ entschieden 24.09.2026 [F]: **innovativ, kreativ, farbenfroh.**
+5. ~~Unwörter~~ entschieden 24.09.2026 [F]: **0815, Massenware, Standard**
+   beschreiben signedbymattia nie. Gilt auch für Synonyme („von der Stange“,
+   „Schema F“).
 
 ## Beispiele [?]
 

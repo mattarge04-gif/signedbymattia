@@ -40,5 +40,8 @@ je Ausschluss“)
 
 ## Noch offen [?]
 
-- Mindestbudget, unter dem ich kein Projekt annehme: CHF `?`
+- ~~Mindestbudget~~ entschieden 24.09.2026 [F]: **kein festes Mindestbudget.**
+  Mattia macht Kompromisse, wenn ein Projekt Kontakt zu guten oder klugen
+  Menschen bringt. Schutz der 10 h/Woche [A, Vorschlag]: höchstens ein solches
+  Kompromiss-Projekt gleichzeitig.
 - Wartung ohne Care-Vertrag?

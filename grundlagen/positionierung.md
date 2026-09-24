@@ -1,6 +1,6 @@
 # Positionierung
 
-Stand: 24.09.2026 · Status: **Richtung entschieden, fünf Sätze im Entwurf** · Zielplan KW 39
+Stand: 24.09.2026 · Status: **entschieden** · Zielplan KW 39
 („Positionierung in fünf Sätzen: welches Problem du löst, für wen, warum du“)
 
 ## Was schon feststeht [F]
@@ -47,7 +47,7 @@ allgemeine lokale Webagentur, „lokal mit HLKS als Spitze“.
 HLKS-Betriebe zuerst, die Anzeigengruppe HLKS bleibt. Nach aussen wird HLKS
 nicht hervorgehoben; die Marke bleibt „kreative Projekte und kleine Betriebe“.
 
-## Die fünf Sätze — Entwurf zum Korrigieren [A]
+## Die fünf Sätze [F] (von Mattia bestätigt am 24.09.2026)
 
 1. **Problem:** Viele kleine Betriebe und kreative Projekte machen gute Arbeit,
    aber ihre Website zeigt das nicht, und der Weg zur Anfrage ist umständlich.

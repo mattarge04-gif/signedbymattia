@@ -15,7 +15,7 @@ LinkedIn-Unternehmensseite:
 | Geschäftliche E-Mail-Adresse | `?` | Formular, LinkedIn-App, Anzeigen |
 | Telefon (ja/nein) | `?` | Impressum, Anzeigen |
 | Mehrwertsteuer-Status | `?` | Preisangaben |
-| Domain | **gesichert** (24.09.2026) [F]; Name hier eintragen: `?` | – |
+| Domain | **signedbymattia.ch**, gesichert (24.09.2026) [F] | – |
 | Hosting-Anbieter und Serverstandort | `?` | Datenschutzerklärung |
 | Nebenerwerb und Arbeitsvertrag Streamline geprüft | **ja, erlaubt** (Mattia, 24.09.2026) [F] | – |
 

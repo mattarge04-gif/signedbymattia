@@ -1,6 +1,6 @@
 # Zielkunden
 
-Stand: 24.09.2026 · Status: **Kern entschieden, Wunschkunde offen** · Zielplan
+Stand: 24.09.2026 · Status: **entschieden** · Zielplan
 KW 39 („Wunschkunde beschreiben, Filter aus icp.yaml als Raster“)
 
 Maschinenlesbare Fassung für den Lead Bot: `agency-automation-os/config/icp.yaml`.
@@ -44,21 +44,24 @@ wiederkehrende Kundenadministration.
 „Einfache Kunden“ heisst **einfacher Leistungsumfang**, keine Annahme über
 Personen.
 
-## Dein Wunschkunde [?]
+## Der Wunschkunde [F] (Mattia, 24.09.2026)
 
-Beschreib **einen** konkreten, erfundenen Wunschkunden, damit Texte, Anzeigen
-und Beiträge eine Person vor Augen haben:
+Für ihn werden Website-Texte, LinkedIn-Beiträge und die Gestaltung geschrieben.
+Der Lead Bot sucht daneben weiter HLKS-Betriebe (siehe oben).
 
 | Frage | Antwort |
 | --- | --- |
-| Branche und Grösse | … |
-| Wer entscheidet (Rolle, Alter, Zeitbudget) | … |
-| Wie kommen heute Aufträge rein | … |
-| Was nervt an der heutigen Website/Anfrage | … |
-| Was würde ihn überzeugen | … |
-| Was macht ihn misstrauisch | … |
-| Wie viel will/kann er ausgeben | … |
-| Wo sucht er (Google, LinkedIn, Empfehlung, Verband) | … |
+| Wer | **Startups ohne eigenes UI, Künstlerinnen und Künstler, Artists, Brands**, Leute, die wirklich spannende Sachen machen |
+| Haltung | offen, mit eigenen Ideen, gern innovativ; das Alter spielt keine Rolle |
+| Wie heute Aufträge reinkommen | **Mund zu Mund**, fast keine Online-Präsenz oder kein klares Schema |
+| Was an der heutigen Website stört | veraltet, sieht schlecht aus, **hat kein Leben** |
+| Was überzeugt | meine Ideen und Visionen; Offenheit für Neues |
+| Budget | **CHF 1'500–2'500** (passt zum Testpreis Website Core CHF 1'600) |
+| Was ich davon habe | neben dem Auftrag **Verbindungen zu spannenden Menschen** |
+
+Offen [?]: Was macht diesen Kunden misstrauisch? Wo sucht er (Instagram,
+LinkedIn, Empfehlung, Google)? Beides wird beim ersten echten Gespräch
+nachgetragen.
 
 ## Wo sie sich aufhalten [A] (Recherche 24.09.2026)
 
