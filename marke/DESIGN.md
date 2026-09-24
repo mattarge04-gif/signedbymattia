@@ -11,8 +11,13 @@ Die früheren drei Richtungen (`entwuerfe/markenrichtungen.html`, A Signatur,
 B Editionen, C Nachtlicht) sind damit abgelöst und bleiben nur als Verlauf.
 
 **Reihenfolge Identität:** ~~Richtung wählen~~ → ~~Werte hier eintragen~~ →
+Persönlichkeit und Sprache (`tonalitaet.md`) → Grafik- und Video-Stil →
 eigenes Barock-Bild → Logo/Wortmarke (SVG, PNG) → Vorlagen (Offerte, Rechnung,
 E-Mail-Signatur, LinkedIn-Grafik, Präsentation, Zertifikat) → Website.
+
+**Mit der Website, nicht vorher [F, Mattia 24.09.2026]:** Raum-Tokens,
+Logo-Dateien, eigenes Barock-Bild und die Prototypen der Wow-Akte. Bis dahin
+bleiben diese Punkte hier mit `?` dokumentiert.
 
 Diese Datei beschreibt die visuelle Identität so, dass ein Agent sie ohne
 Rückfrage anwenden kann: Website, LinkedIn-Grafiken, Videos, Dashboard,
