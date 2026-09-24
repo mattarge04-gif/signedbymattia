@@ -10,7 +10,7 @@ LinkedIn-Unternehmensseite:
 
 | Punkt | Status | Blockiert |
 | --- | --- | --- |
-| Rechtsform und Handelsregistereintrag | **noch nichts angemeldet** (24.09.2026) [F]; Richtung: Einzelunternehmen im Nebenerwerb, ohne HR-Eintrag, keine GmbH [A, siehe unten]; **Prio 1** | Impressum, LinkedIn-Seite, Offerten |
+| Rechtsform und Handelsregistereintrag | **noch nichts angemeldet** (24.09.2026) [F]; Richtung: Einzelunternehmen im Nebenerwerb, ohne HR-Eintrag, keine GmbH [A, siehe unten] | Impressum, LinkedIn-Seite, Offerten |
 | Geschäftliche Adresse für das Impressum | `?` | Website, Anzeigen |
 | Geschäftliche E-Mail-Adresse | `?` | Formular, LinkedIn-App, Anzeigen |
 | Telefon (ja/nein) | `?` | Impressum, Anzeigen |
@@ -22,7 +22,7 @@ LinkedIn-Unternehmensseite:
 ## Anmeldung: Richtung vom 24.09.2026 [A]
 
 Von Mattia recherchiert (Quellen: KMU-Portal, AHV-IV, ESTV). Richtung, noch
-nicht umgesetzt; im Vault als Pendenz **⭐ Prio 1**, Frist 18.10.2026.
+nicht umgesetzt; im Vault als Pendenz, Frist 18.10.2026.
 
 - **Streamline = Haupterwerb, Agency = selbstständiger Nebenerwerb.** Ein
   Einzelunternehmen entsteht mit der dauerhaften selbstständigen Tätigkeit;
