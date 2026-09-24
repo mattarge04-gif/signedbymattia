@@ -1,0 +1,450 @@
+<title>Markenrichtungen signedbymattia</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400&family=Manrope:wght@400;500;700&family=Mrs+Saint+Delafield&family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&family=Unbounded:wght@500;700&family=Figtree:wght@400;500;700&display=swap">
+<style>
+:root{
+  --bg:#F3F4F7; --surface:#FFFFFF; --ink:#16181F; --muted:#5C6070; --line:#DADCE3; --focus:#2436D9;
+  --sans:"Manrope",system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){ --bg:#101218; --surface:#181B23; --ink:#ECEDF2; --muted:#A2A6B5; --line:#2A2E3A; --focus:#8EA0FF; color-scheme:dark; }
+}
+:root[data-theme="dark"]{ --bg:#101218; --surface:#181B23; --ink:#ECEDF2; --muted:#A2A6B5; --line:#2A2E3A; --focus:#8EA0FF; color-scheme:dark; }
+
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.55;padding-inline:16px;padding-block:32px 64px}
+.wrap{max-width:1180px;margin-inline:auto;display:flex;flex-direction:column;gap:56px}
+h1,h2,h3{text-wrap:balance;margin:0}
+p{margin:0}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--focus);outline-offset:3px}
+
+/* Kopf */
+.intro{display:grid;gap:20px;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);align-items:end}
+.intro h1{font-size:clamp(30px,4.2vw,48px);line-height:1.08;font-weight:700;letter-spacing:-.02em}
+.intro .lead{color:var(--muted);max-width:62ch}
+.status{display:flex;flex-direction:column;gap:8px;font-size:13px;color:var(--muted);border-left:1px solid var(--line);padding-left:16px}
+.status b{color:var(--ink);font-weight:600}
+.steps{display:flex;gap:6px;flex-wrap:wrap}
+.steps span{border:1px solid var(--line);border-radius:999px;padding:3px 10px;font-size:12px}
+.steps span.on{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.jump{display:flex;gap:10px;flex-wrap:wrap}
+.jump a{text-decoration:none;border:1px solid var(--line);background:var(--surface);border-radius:10px;padding:10px 14px;font-weight:600;font-size:14px;display:flex;gap:10px;align-items:center}
+.jump i{width:14px;height:14px;border-radius:4px;display:inline-block}
+
+/* Richtung */
+.dir{border-radius:22px;overflow:hidden;display:flex;flex-direction:column;gap:0;background:var(--d-bg);color:var(--d-ink);scroll-margin-top:16px}
+.dir-head{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:20px;align-items:start;padding:28px 28px 8px}
+.dir-letter{font-family:var(--d-display);font-size:64px;line-height:.85;color:var(--d-primary)}
+.dir-head h2{font-family:var(--d-display);font-size:clamp(24px,3vw,34px);line-height:1.1;font-weight:var(--d-hw,600)}
+.dir-head p{color:var(--d-muted);max-width:60ch;margin-top:8px;font-family:var(--d-body)}
+.vorbild{font-size:12px;color:var(--d-muted);text-align:right;font-family:var(--d-body);max-width:22ch}
+.grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:16px;padding:20px 28px 28px}
+.tile{background:var(--d-tile);border-radius:14px;padding:18px;display:flex;flex-direction:column;gap:12px;font-family:var(--d-body);min-width:0}
+.label{font-size:11px;letter-spacing:.09em;text-transform:uppercase;color:var(--d-muted);font-weight:600;font-family:var(--d-body)}
+.span-12{grid-column:span 12}.span-7{grid-column:span 7}.span-5{grid-column:span 5}.span-4{grid-column:span 4}.span-8{grid-column:span 8}.span-6{grid-column:span 6}
+
+/* Browser-Mock */
+.browser{border-radius:14px;overflow:hidden;background:var(--d-page);color:var(--d-page-ink);box-shadow:0 18px 50px -24px rgba(0,0,0,.35)}
+.bar{display:flex;gap:6px;align-items:center;padding:10px 14px;background:var(--d-bar);font-size:11px;color:var(--d-muted);font-family:var(--d-body)}
+.bar i{width:9px;height:9px;border-radius:50%;background:currentColor;opacity:.35}
+.bar span{margin-left:10px}
+.site{position:relative;padding:22px clamp(18px,4vw,44px) 40px;display:flex;flex-direction:column;gap:28px;overflow:hidden}
+.nav{display:flex;justify-content:space-between;align-items:center;gap:12px;font-family:var(--d-body);font-size:13px}
+.nav ul{display:flex;gap:18px;list-style:none;margin:0;padding:0}
+.hero-h{font-family:var(--d-display);font-size:clamp(34px,6vw,76px);line-height:.98;letter-spacing:-.02em;max-width:14ch}
+.hero-p{font-family:var(--d-body);max-width:46ch;font-size:16px}
+.cta-row{display:flex;gap:12px;flex-wrap:wrap;align-items:center;font-family:var(--d-body)}
+.btn{border:0;cursor:pointer;font:inherit;font-weight:700;font-size:14px;padding:13px 20px;border-radius:var(--d-radius);background:var(--d-cta);color:var(--d-cta-ink);transition:transform .2s ease, box-shadow .2s ease}
+.btn:hover{transform:translateY(-2px);box-shadow:0 10px 24px -12px var(--d-cta)}
+.btn.ghost{background:transparent;color:inherit;box-shadow:inset 0 0 0 1.5px currentColor}
+.preis{font-size:13px;opacity:.8}
+
+/* Palette */
+.swatches{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:10px}
+.sw{border-radius:12px;overflow:hidden;border:1px solid rgba(127,127,127,.18);display:flex;flex-direction:column}
+.sw .c{height:64px}
+.sw .t{padding:8px 10px;font-size:12px;display:flex;flex-direction:column;gap:2px}
+.sw .t b{font-size:13px}
+.sw .t code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12px}
+.sw .t small{color:var(--d-muted);font-variant-numeric:tabular-nums}
+
+/* Typo */
+.spec-d{font-family:var(--d-display);font-size:clamp(36px,5vw,56px);line-height:1;font-weight:var(--d-hw,600)}
+.spec-b{font-size:15px;max-width:52ch}
+.fontline{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-size:12px;color:var(--d-muted);border-top:1px solid rgba(127,127,127,.25);padding-top:10px}
+
+/* Offerte */
+.a4{background:#fff;color:#1a1a1a;aspect-ratio:210/115;border-radius:6px;padding:7% 8%;display:flex;flex-direction:column;gap:6%;font-size:clamp(9px,1.1vw,12px);box-shadow:0 12px 30px -18px rgba(0,0,0,.4);max-width:100%}
+.a4-top{display:flex;justify-content:space-between;align-items:flex-start;gap:8px}
+.a4 h4{margin:0;font-family:var(--d-display);font-size:2.1em;line-height:1;font-weight:var(--d-hw,600);color:var(--d-doc-accent)}
+.a4 table{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums}
+.a4 td{padding:.5em 0;border-bottom:1px solid #e3e3e3}
+.a4 td:last-child{text-align:right}
+.a4 tr.sum td{border-bottom:0;font-weight:700;border-top:2px solid var(--d-doc-accent)}
+.a4 .meta{color:#666;line-height:1.5}
+.a4 .ph{background:#fff3c4;padding:0 .3em;border-radius:3px}
+
+/* LinkedIn */
+.li{aspect-ratio:4/5;border-radius:10px;padding:9%;display:flex;flex-direction:column;justify-content:space-between;overflow:hidden;position:relative;max-width:100%}
+.li .big{font-family:var(--d-display);font-size:clamp(26px,3.4vw,40px);line-height:1;font-weight:var(--d-hw,600);letter-spacing:-.01em}
+.li .foot{display:flex;justify-content:space-between;align-items:end;font-size:12px}
+
+/* Wow */
+.wow{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px}
+.wow dl{margin:0;display:grid;grid-template-columns:auto minmax(0,1fr);gap:6px 14px;font-size:14px}
+.wow dt{color:var(--d-muted);font-size:12px;text-transform:uppercase;letter-spacing:.08em;padding-top:2px}
+.wow dd{margin:0}
+.replay{align-self:start;justify-self:start;font:inherit;font-size:13px;cursor:pointer;background:transparent;color:inherit;border:1px solid currentColor;border-radius:999px;padding:6px 14px;opacity:.8}
+
+/* ---------- Richtung A: Signatur ---------- */
+#a{--d-bg:#E9ECF6;--d-ink:#141A3A;--d-muted:#5A6285;--d-tile:#F4F6FB;--d-primary:#2436D9;
+   --d-page:#F4F6FB;--d-page-ink:#141A3A;--d-bar:#E2E6F2;--d-cta:#FF5A3C;--d-cta-ink:#141A3A;--d-radius:999px;
+   --d-display:"Fraunces",Georgia,serif;--d-body:"Manrope",system-ui,sans-serif;--d-hw:600;--d-doc-accent:#2436D9}
+#a .hero-h em{font-style:italic;font-weight:400;color:#2436D9}
+.sig{font-family:"Mrs Saint Delafield","Brush Script MT",cursive;font-size:44px;line-height:1;color:#2436D9;display:inline-block;padding-right:8px}
+.sig.draw{animation:draw 1.8s cubic-bezier(.6,.1,.3,1) both}
+@keyframes draw{from{clip-path:inset(0 100% 0 0)}to{clip-path:inset(0 0 0 0)}}
+#a .blob{position:absolute;right:-60px;top:-40px;width:320px;height:320px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#DDE2FF,#F4F6FB 70%);z-index:0}
+#a .site > :not(.blob){position:relative;z-index:1}
+#a .li{background:#2436D9;color:#fff}
+#a .li .big em{font-style:italic;font-weight:400;color:#FFC2B5}
+
+/* ---------- Richtung B: Editionen ---------- */
+#b{--d-bg:#FFFFFF;--d-ink:#16110E;--d-muted:#6B625C;--d-tile:#F6F5F2;--d-primary:#1E3DFF;
+   --d-page:#FFB21A;--d-page-ink:#16110E;--d-bar:#F0EEEA;--d-cta:#16110E;--d-cta-ink:#FFFFFF;--d-radius:6px;
+   --d-display:"Bricolage Grotesque","Arial Narrow",sans-serif;--d-body:"DM Sans",system-ui,sans-serif;--d-hw:800;--d-doc-accent:#1E3DFF;
+   border:1px solid var(--line)}
+#b .hero-h{letter-spacing:-.035em}
+#b .chapters{display:flex;height:10px;border-radius:999px;overflow:hidden}
+#b .chapters i{flex:1}
+#b .stick{position:absolute;right:clamp(12px,5vw,48px);bottom:28px;width:clamp(90px,16vw,150px);aspect-ratio:1;border-radius:50%;background:#FF3E8A;color:#16110E;display:grid;place-items:center;text-align:center;font-family:var(--d-display);font-weight:800;font-size:clamp(12px,1.6vw,16px);line-height:1.05;transform:rotate(-12deg);padding:10px}
+#b .li{background:#0F7B5F;color:#fff}
+#b .li .big span{background:#FFB21A;color:#16110E;padding:0 .12em;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+#b .site.cycle{transition:background-color .6s ease}
+
+/* ---------- Richtung C: Nachtlicht ---------- */
+#c{--d-bg:#0B0D14;--d-ink:#ECEEF6;--d-muted:#9AA0B8;--d-tile:#141827;--d-primary:#7B96FF;
+   --d-page:#0B0D14;--d-page-ink:#ECEEF6;--d-bar:#141827;--d-cta:#FF7A1A;--d-cta-ink:#0B0D14;--d-radius:12px;
+   --d-display:"Unbounded","Arial Black",sans-serif;--d-body:"Figtree",system-ui,sans-serif;--d-hw:700;--d-doc-accent:#3A4FD0;color-scheme:dark}
+#c .hero-h{font-size:clamp(28px,5vw,64px);letter-spacing:-.03em;line-height:1.02}
+#c .site{--x:70%;--y:30%;background:radial-gradient(420px circle at var(--x) var(--y),rgba(123,150,255,.28),transparent 60%),radial-gradient(600px circle at 10% 110%,rgba(63,224,208,.12),transparent 60%),#0B0D14;cursor:crosshair}
+#c .hero-h .glow{background:linear-gradient(90deg,#7B96FF,#C9D4FF);-webkit-background-clip:text;background-clip:text;color:transparent}
+#c .sw{border-color:rgba(255,255,255,.1)}
+#c .li{background:radial-gradient(circle at 80% 15%,#2B3A8F,#0B0D14 65%);color:#ECEEF6;border:1px solid rgba(255,255,255,.08)}
+#c .li .big b{color:#3FE0D0;font-weight:700}
+
+/* Schluss */
+.next{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:24px;background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:28px}
+.next h2{font-size:24px;letter-spacing:-.01em}
+.next ol{margin:12px 0 0;padding-left:20px;display:flex;flex-direction:column;gap:10px}
+.next li::marker{color:var(--muted);font-variant-numeric:tabular-nums}
+.next .q{color:var(--muted);font-size:14px}
+.foot-note{color:var(--muted);font-size:13px;max-width:80ch}
+
+@media (max-width:860px){
+  .intro,.next,.wow{grid-template-columns:minmax(0,1fr)}
+  .status{border-left:0;padding-left:0;border-top:1px solid var(--line);padding-top:12px}
+  .span-7,.span-5,.span-4,.span-8,.span-6{grid-column:span 12}
+  .dir-head{grid-template-columns:auto minmax(0,1fr);padding:22px 18px 4px}
+  .vorbild{grid-column:1/-1;text-align:left;max-width:none}
+  .grid{padding:16px 18px 20px}
+  .nav ul{display:none}
+  #b .stick{position:static;transform:rotate(-6deg);align-self:flex-start}
+}
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+}
+</style>
+
+<div class="wrap">
+
+  <header class="intro">
+    <div>
+      <h1>Drei Richtungen für die Marke signedbymattia</h1>
+      <p class="lead" style="margin-top:14px">Jede Richtung zeigt dieselben fünf Dinge: Website-Einstieg, Farben mit Rolle, Schriftpaar, Offerte und LinkedIn-Grafik. Dazu kommt ein Wow-Effekt mit Quelle. Wähl eine Richtung, oder nimm Teile aus mehreren. Daraus wird <code>marke/DESIGN.md</code>.</p>
+    </div>
+    <div class="status">
+      <span><b>Stand</b> 24.09.2026 · Vorschlag, nichts entschieden</span>
+      <span><b>Grundlage</b> Positionierung, Tonalität, drei Lieblingsseiten</span>
+      <span><b>Wow-Ablauf</b></span>
+      <div class="steps" aria-label="Wow-Ablauf, Schritte 1 und 2 aktiv">
+        <span class="on">Vorschlag</span><span class="on">Quelle</span><span>Prototyp</span><span>Deine Änderungen</span><span>Abschluss</span>
+      </div>
+    </div>
+  </header>
+
+  <nav class="jump" aria-label="Zu den Richtungen">
+    <a href="#a"><i style="background:#2436D9"></i>A · Signatur</a>
+    <a href="#b"><i style="background:#FFB21A"></i>B · Editionen</a>
+    <a href="#c"><i style="background:#0B0D14;outline:1px solid #7B96FF"></i>C · Nachtlicht</a>
+  </nav>
+
+  <!-- ================= A ================= -->
+  <section class="dir" id="a" aria-labelledby="a-h">
+    <div class="dir-head">
+      <div class="dir-letter">A</div>
+      <div>
+        <h2 id="a-h">Signatur: ruhig, hell, mit echter Unterschrift</h2>
+        <p>Der Name wird wörtlich genommen: Jede Seite trägt deine Unterschrift. Kühles Papierweiss, ein tiefes Ultramarin als Marke und Koralle nur dort, wo gehandelt wird. Viel Ruhe, wenige präzise Bewegungen.</p>
+      </div>
+      <div class="vorbild">Nähe zu Sofi Health: schlicht mit gezielter Animation</div>
+    </div>
+    <div class="grid">
+      <div class="span-12">
+        <div class="browser">
+          <div class="bar"><i></i><i></i><i></i><span>signedbymattia.ch</span></div>
+          <div class="site">
+            <div class="blob" aria-hidden="true"></div>
+            <div class="nav"><span class="sig draw" id="sigA">signed by Mattia</span><ul><li>Websites</li><li>Automationen</li><li>Konzepte</li><li>Blog</li></ul></div>
+            <h3 class="hero-h">Ihre Arbeit, online so gut <em>wie in echt.</em></h3>
+            <p class="hero-p">Ich gestalte Websites für eigenständige Betriebe und kreative Projekte in Luzern und im Rontal. Von Grund auf, mit Begründung für jede Entscheidung.</p>
+            <div class="cta-row"><button class="btn" type="button">Projekt anfragen</button><button class="btn ghost" type="button">So arbeite ich</button><span class="preis">Website Core ab CHF 1'600</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="tile span-7">
+        <span class="label">Farben mit Rolle · Kontrast auf Papierweiss</span>
+        <div class="swatches">
+          <div class="sw"><div class="c" style="background:#2436D9"></div><div class="t"><b>Marke</b><code>#2436D9</code><small>7.5 : 1</small></div></div>
+          <div class="sw"><div class="c" style="background:#1FA487"></div><div class="t"><b>Status</b><code>#1FA487</code><small>2.9 : 1, nur Flächen</small></div></div>
+          <div class="sw"><div class="c" style="background:#FF5A3C"></div><div class="t"><b>Handlung</b><code>#FF5A3C</code><small>dunkle Schrift 5.5 : 1</small></div></div>
+          <div class="sw"><div class="c" style="background:#F4F6FB;border-bottom:1px solid #dde"></div><div class="t"><b>Grund</b><code>#F4F6FB</code><small>Papierweiss</small></div></div>
+          <div class="sw"><div class="c" style="background:#141A3A"></div><div class="t"><b>Text</b><code>#141A3A</code><small>15.7 : 1</small></div></div>
+        </div>
+      </div>
+      <div class="tile span-5">
+        <span class="label">Schriftpaar</span>
+        <div class="spec-d">Gestaltet, <em style="font-weight:400">begründet.</em></div>
+        <p class="spec-b">Manrope trägt den Fliesstext: klar, freundlich, gut lesbar am Handy. Fraunces bringt Wärme in Titel und grosse Zahlen.</p>
+        <div class="fontline"><span>Fraunces · Titel</span><span>Manrope · Text</span><span>beide SIL OFL, gratis</span></div>
+      </div>
+      <div class="tile span-6">
+        <span class="label">Offerte, A4-Kopf</span>
+        <div class="a4">
+          <div class="a4-top"><h4>Offerte</h4><span class="sig" style="font-size:2.6em">signed by Mattia</span></div>
+          <div class="meta">Nr. 2026-001 · für <span class="ph">[Kunde]</span> · gültig 30 Tage<br>Absender: <span class="ph">[Adresse offen]</span></div>
+          <table><tr><td>Website Core, bis 5 Seiten, 1 Feedbackrunde</td><td>CHF 1'600.–</td></tr><tr><td>Website Care, pro Monat</td><td>CHF 69.–</td></tr><tr class="sum"><td>Einmalig</td><td>CHF 1'600.–</td></tr></table>
+        </div>
+      </div>
+      <div class="tile span-6">
+        <span class="label">LinkedIn-Grafik 1080 × 1350</span>
+        <div class="li" style="max-width:300px">
+          <div class="big">Eine Seite. <em>Ein Ziel.</em></div>
+          <div class="foot"><span>Warum jede Seite nur eine Aufgabe hat</span><span class="sig" style="color:#fff;font-size:30px">Mattia</span></div>
+        </div>
+      </div>
+      <div class="tile span-12">
+        <span class="label">Wow-Effekt, Schritte 1 und 2</span>
+        <div class="wow">
+          <dl>
+            <dt>Vorschlag</dt><dd>Beim ersten Laden schreibt sich die Unterschrift oben links von selbst, wie mit einem Stift. Danach bleibt sie ruhig stehen.</dd>
+            <dt>Quelle</dt><dd>SVG-Technik <code>stroke-dasharray</code> / <code>stroke-dashoffset</code> (<a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/stroke-dashoffset">MDN</a>). Braucht keine Bibliothek, nur CSS.</dd>
+            <dt>Vorlage</dt><dd>Deine echte Unterschrift, auf Papier gezeichnet und als SVG nachgezogen. Hier steht vorläufig die Schrift Mrs Saint Delafield.</dd>
+          </dl>
+          <button class="replay" type="button" data-replay="sigA">Unterschrift nochmals zeichnen</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= B ================= -->
+  <section class="dir" id="b" aria-labelledby="b-h">
+    <div class="dir-head">
+      <div class="dir-letter">B</div>
+      <div>
+        <h2 id="b-h">Editionen: laut, farbig, in Kapiteln</h2>
+        <p>Jeder Abschnitt der Website ist ein Kapitel mit eigener Vollfarbe: Safran, Grün, Pink, Blau. Grosse, dichte Titel, Sticker und Etiketten wie auf einem Magazin. Bunt, aber jede Farbe hat ihren Platz.</p>
+      </div>
+      <div class="vorbild">Nähe zu Shopify Editions Winter 2026: Farbe und Grafik tragen die Marke</div>
+    </div>
+    <div class="grid">
+      <div class="span-12">
+        <div class="browser">
+          <div class="bar"><i></i><i></i><i></i><span>signedbymattia.ch</span></div>
+          <div class="site" id="siteB">
+            <div class="nav"><strong style="font-family:var(--d-display);font-size:18px;font-weight:800">signedbymattia®</strong><ul><li>Websites</li><li>Automationen</li><li>Konzepte</li><li>Blog</li></ul></div>
+            <h3 class="hero-h">Websites mit Farbe, Haltung und Unterschrift.</h3>
+            <p class="hero-p">Für eigenständige Betriebe und kreative Projekte in Luzern. Keine Baukasten-Massenware, jede Seite von Grund auf gestaltet.</p>
+            <div class="cta-row"><button class="btn" type="button">Projekt anfragen</button><span class="preis">Website Core ab CHF 1'600</span></div>
+            <div class="stick" aria-hidden="true">von Grund auf gestaltet</div>
+          </div>
+        </div>
+      </div>
+      <div class="tile span-7">
+        <span class="label">Kapitelfarben · Kontrast auf Weiss</span>
+        <div class="swatches">
+          <div class="sw"><div class="c" style="background:#1E3DFF"></div><div class="t"><b>Marke</b><code>#1E3DFF</code><small>6.6 : 1</small></div></div>
+          <div class="sw"><div class="c" style="background:#0F7B5F"></div><div class="t"><b>Status</b><code>#0F7B5F</code><small>5.2 : 1</small></div></div>
+          <div class="sw"><div class="c" style="background:#FF3E8A"></div><div class="t"><b>Handlung</b><code>#FF3E8A</code><small>dunkle Schrift 5.6 : 1</small></div></div>
+          <div class="sw"><div class="c" style="background:#FFB21A"></div><div class="t"><b>Kapitel</b><code>#FFB21A</code><small>dunkle Schrift 10.4 : 1</small></div></div>
+          <div class="sw"><div class="c" style="background:#16110E"></div><div class="t"><b>Text</b><code>#16110E</code><small>18.7 : 1</small></div></div>
+        </div>
+        <div class="chapters" aria-hidden="true"><i style="background:#FFB21A"></i><i style="background:#0F7B5F"></i><i style="background:#FF3E8A"></i><i style="background:#1E3DFF"></i><i style="background:#16110E"></i></div>
+      </div>
+      <div class="tile span-5">
+        <span class="label">Schriftpaar</span>
+        <div class="spec-d" style="letter-spacing:-.035em">Farbe mit Rolle.</div>
+        <p class="spec-b">Bricolage Grotesque ist eigenwillig und dicht, gebaut für grosse Titel. DM Sans bleibt im Text neutral und ruhig.</p>
+        <div class="fontline"><span>Bricolage Grotesque · Titel</span><span>DM Sans · Text</span><span>beide SIL OFL, gratis</span></div>
+      </div>
+      <div class="tile span-6">
+        <span class="label">Offerte, A4-Kopf</span>
+        <div class="a4" style="border-top:10px solid #FFB21A">
+          <div class="a4-top"><h4>Offerte</h4><strong style="font-family:var(--d-display);font-weight:800">signedbymattia®</strong></div>
+          <div class="meta">Nr. 2026-001 · für <span class="ph">[Kunde]</span> · gültig 30 Tage<br>Absender: <span class="ph">[Adresse offen]</span></div>
+          <table><tr><td>Website Core, bis 5 Seiten, 1 Feedbackrunde</td><td>CHF 1'600.–</td></tr><tr><td>Website Care, pro Monat</td><td>CHF 69.–</td></tr><tr class="sum"><td>Einmalig</td><td>CHF 1'600.–</td></tr></table>
+        </div>
+      </div>
+      <div class="tile span-6">
+        <span class="label">LinkedIn-Grafik 1080 × 1350</span>
+        <div class="li" style="max-width:300px">
+          <div class="big"><span>Eine Seite.</span><br>Ein Ziel.</div>
+          <div class="foot"><span>Warum jede Seite nur eine Aufgabe hat</span><strong style="font-family:var(--d-display)">sbm®</strong></div>
+        </div>
+      </div>
+      <div class="tile span-12">
+        <span class="label">Wow-Effekt, Schritte 1 und 2</span>
+        <div class="wow">
+          <dl>
+            <dt>Vorschlag</dt><dd>Beim Scrollen wechselt der ganze Hintergrund weich von Kapitel zu Kapitel: Safran, Grün, Pink, Blau. Man spürt, dass ein neues Thema beginnt.</dd>
+            <dt>Quelle</dt><dd>Gesehen bei <a href="https://www.shopify.com/editions/winter2026">Shopify Editions Winter 2026</a>. Umsetzung mit CSS und einem kleinen IntersectionObserver, ohne Bibliothek. Alternative: <a href="https://gsap.com/docs/v3/Plugins/ScrollTrigger/">GSAP ScrollTrigger</a>, seit 2025 kostenlos [A: Lizenz vor Einsatz prüfen].</dd>
+            <dt>Hinweis</dt><dd>Kein Scroll-Hijacking: Die Seite scrollt normal, nur die Farbe folgt.</dd>
+          </dl>
+          <button class="replay" type="button" id="cycleB">Kapitelwechsel abspielen</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= C ================= -->
+  <section class="dir" id="c" aria-labelledby="c-h">
+    <div class="dir-head">
+      <div class="dir-letter">C</div>
+      <div>
+        <h2 id="c-h">Nachtlicht: dunkel, räumlich, fast unwirklich</h2>
+        <p>Dunkler Grund, auf dem Licht der Maus folgt. Breite, technische Titel, Orange nur für die Handlung. Die Seite fühlt sich wie ein Raum an, nicht wie ein Dokument.</p>
+      </div>
+      <div class="vorbild">Nähe zu Emotion Agency: „fühlt sich fast unreal an“</div>
+    </div>
+    <div class="grid">
+      <div class="span-12">
+        <div class="browser">
+          <div class="bar"><i></i><i></i><i></i><span>signedbymattia.ch · Maus über die Fläche bewegen</span></div>
+          <div class="site" id="siteC">
+            <div class="nav"><strong style="font-family:var(--d-display);font-size:14px;letter-spacing:.04em">SIGNEDBYMATTIA</strong><ul><li>Websites</li><li>Automationen</li><li>Konzepte</li><li>Blog</li></ul></div>
+            <h3 class="hero-h">Gute Arbeit verdient einen <span class="glow">Auftritt.</span></h3>
+            <p class="hero-p" style="color:#9AA0B8">Websites und kleine Automationen für Betriebe und kreative Projekte in Luzern. Gestaltet von Grund auf, begründet bis ins Detail.</p>
+            <div class="cta-row"><button class="btn" type="button">Projekt anfragen</button><span class="preis">Website Core ab CHF 1'600</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="tile span-7">
+        <span class="label">Farben mit Rolle · Kontrast auf Nachtgrund</span>
+        <div class="swatches">
+          <div class="sw"><div class="c" style="background:#7B96FF"></div><div class="t"><b>Marke</b><code>#7B96FF</code><small>7.1 : 1</small></div></div>
+          <div class="sw"><div class="c" style="background:#3FE0D0"></div><div class="t"><b>Status</b><code>#3FE0D0</code><small>11.8 : 1</small></div></div>
+          <div class="sw"><div class="c" style="background:#FF7A1A"></div><div class="t"><b>Handlung</b><code>#FF7A1A</code><small>7.4 : 1</small></div></div>
+          <div class="sw"><div class="c" style="background:#0B0D14"></div><div class="t"><b>Grund</b><code>#0B0D14</code><small>Nachtgrund</small></div></div>
+          <div class="sw"><div class="c" style="background:#ECEEF6"></div><div class="t"><b>Text</b><code>#ECEEF6</code><small>16.8 : 1</small></div></div>
+        </div>
+      </div>
+      <div class="tile span-5">
+        <span class="label">Schriftpaar</span>
+        <div class="spec-d" style="font-size:clamp(28px,3.6vw,42px);letter-spacing:-.03em">Licht auf das Wesentliche.</div>
+        <p class="spec-b">Unbounded ist breit und technisch, nur für kurze Titel. Figtree hält den Text offen und lesbar, auch klein auf dunklem Grund.</p>
+        <div class="fontline"><span>Unbounded · Titel</span><span>Figtree · Text</span><span>beide SIL OFL, gratis</span></div>
+      </div>
+      <div class="tile span-6">
+        <span class="label">Offerte, A4-Kopf (Dokumente bleiben hell)</span>
+        <div class="a4">
+          <div class="a4-top"><h4 style="font-size:1.6em">Offerte</h4><strong style="font-family:var(--d-display);font-size:.9em;letter-spacing:.04em">SIGNEDBYMATTIA</strong></div>
+          <div class="meta">Nr. 2026-001 · für <span class="ph">[Kunde]</span> · gültig 30 Tage<br>Absender: <span class="ph">[Adresse offen]</span></div>
+          <table><tr><td>Website Core, bis 5 Seiten, 1 Feedbackrunde</td><td>CHF 1'600.–</td></tr><tr><td>Website Care, pro Monat</td><td>CHF 69.–</td></tr><tr class="sum"><td>Einmalig</td><td>CHF 1'600.–</td></tr></table>
+        </div>
+      </div>
+      <div class="tile span-6">
+        <span class="label">LinkedIn-Grafik 1080 × 1350</span>
+        <div class="li" style="max-width:300px">
+          <div class="big" style="font-size:clamp(22px,2.8vw,32px)">Eine Seite.<br><b>Ein Ziel.</b></div>
+          <div class="foot"><span style="color:#9AA0B8">Warum jede Seite nur eine Aufgabe hat</span><strong style="font-family:var(--d-display);font-size:10px;letter-spacing:.06em">SBM</strong></div>
+        </div>
+      </div>
+      <div class="tile span-12">
+        <span class="label">Wow-Effekt, Schritte 1 und 2</span>
+        <div class="wow">
+          <dl>
+            <dt>Vorschlag</dt><dd>Ein weicher Lichtkegel folgt der Maus über die dunkle Fläche. Am Handy wandert er langsam von selbst. Im Endausbau kommt dahinter ein bewegter Farbverlauf in 3D.</dd>
+            <dt>Quelle</dt><dd>Gesehen bei <a href="https://emotion-agency.com/">emotion-agency.com</a>. Lichtkegel: CSS <code>radial-gradient</code> mit Mausposition, keine Bibliothek. 3D-Verlauf: <a href="https://threejs.org/">three.js</a>, MIT-Lizenz.</dd>
+            <dt>Preis</dt><dd>Der 3D-Teil ist schwer fürs Handy. Er muss beim Abschluss die Ladezeit-Messung bestehen.</dd>
+          </dl>
+          <p style="font-size:13px;color:var(--d-muted)">Der Lichtkegel ist oben im Browserfenster schon eingebaut. Bewege die Maus darüber.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="next" aria-labelledby="n-h">
+    <div>
+      <h2 id="n-h">Was ich von dir brauche</h2>
+      <ol>
+        <li><b>Richtung wählen.</b> A, B oder C, oder eine Mischung, z. B. „A als Grund, die Kapitelfarben von B“.</li>
+        <li><b>Was gefällt, was nicht.</b> Pro Richtung ein Satz reicht.</li>
+        <li><b>Gibt es schon etwas?</b> Ein Logo, eine Farbe oder eine Schrift, die du bereits nutzt?</li>
+        <li><b>Unterschrift.</b> Soll deine echte Unterschrift das Logo werden? Wenn ja, schreib sie fünfmal mit schwarzem Filzstift auf weisses Papier und fotografier sie.</li>
+      </ol>
+    </div>
+    <div>
+      <h2>So geht es danach weiter</h2>
+      <ol>
+        <li>Prototyp der gewählten Richtung, mit echtem Wow-Effekt.</li>
+        <li>Deine Änderungen, dann Freigabe.</li>
+        <li><code>marke/DESIGN.md</code> mit allen Werten füllen.</li>
+        <li>Logo und Wortmarke als Dateien (SVG, PNG).</li>
+        <li>Vorlagen: Offerte, Rechnung, E-Mail-Signatur, LinkedIn-Grafik, Präsentation.</li>
+        <li>Erst dann die Website.</li>
+      </ol>
+      <p class="q" style="margin-top:14px">Alle Schriften sind SIL OFL (kostenlos, auch für Kunden). Kontrastwerte nach WCAG gerechnet; unter 4.5 : 1 nur für Flächen oder mit dunkler Schrift.</p>
+    </div>
+  </section>
+
+  <p class="foot-note">Die Namen, Preise und Texte stammen aus <code>signedbymattia/grundlagen/</code>. Platzhalter in Gelb sind offene Punkte (Adresse, Kunde) und werden nicht erfunden.</p>
+</div>
+
+<script>
+(function(){
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // A: Unterschrift neu zeichnen
+  document.querySelectorAll('[data-replay]').forEach(function(b){
+    b.addEventListener('click', function(){
+      var el = document.getElementById(b.getAttribute('data-replay'));
+      el.classList.remove('draw'); void el.offsetWidth; el.classList.add('draw');
+    });
+  });
+
+  // B: Kapitelfarben durchlaufen
+  var siteB = document.getElementById('siteB');
+  var colors = ['#FFB21A','#0F7B5F','#FF3E8A','#1E3DFF','#FFB21A'];
+  var inks   = ['#16110E','#FFFFFF','#16110E','#FFFFFF','#16110E'];
+  document.getElementById('cycleB').addEventListener('click', function(){
+    siteB.classList.add('cycle');
+    colors.forEach(function(c,i){
+      setTimeout(function(){ siteB.style.backgroundColor = c; siteB.style.color = inks[i]; }, reduce ? 0 : i*900);
+    });
+  });
+
+  // C: Lichtkegel folgt der Maus
+  var siteC = document.getElementById('siteC');
+  siteC.addEventListener('pointermove', function(e){
+    var r = siteC.getBoundingClientRect();
+    siteC.style.setProperty('--x', ((e.clientX - r.left) / r.width * 100) + '%');
+    siteC.style.setProperty('--y', ((e.clientY - r.top) / r.height * 100) + '%');
+  });
+  if (!reduce && window.matchMedia('(hover: none)').matches) {
+    var t = 0;
+    setInterval(function(){ t += .02; siteC.style.setProperty('--x', (50 + 35*Math.cos(t)) + '%'); siteC.style.setProperty('--y', (40 + 25*Math.sin(t*1.3)) + '%'); }, 50);
+  }
+})();
+</script>

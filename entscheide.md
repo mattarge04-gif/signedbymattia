@@ -26,3 +26,6 @@ stehen im Vault (`40_Entscheide/`) oder im jeweiligen Repo.
 | 24.09.2026 | Domain signedbymattia.ch | `recht/pflichtangaben.md` |
 | 24.09.2026 | Kein festes Mindestbudget, Kompromisse für wertvolle Kontakte | `grundlagen/ausschluesse.md` |
 | 24.09.2026 | Wow so viel wie möglich; jeder Effekt: Vorschlag → Quelle nennen → Prototyp → Mattias Änderungen → Abschluss | `marke/referenzen.md`, `marke/ui-regeln.md` |
+| 24.09.2026 | Identität vor Website: Farben, Typografie, Logo und Dokumentvorlagen werden zuerst festgelegt, daraus entsteht die Website (Zielplan-Gestaltung aus KW 43 vorgezogen) | `marke/DESIGN.md`, `marke/entwuerfe/markenrichtungen.html` |
+| 24.09.2026 | Anmeldung: Einzelunternehmen im Nebenerwerb ohne HR-Eintrag, AHV-Anerkennung beantragen, keine GmbH (Richtung, noch nicht umgesetzt) | `recht/pflichtangaben.md` |
+| 24.09.2026 | ⭐ Prio 1 ist die Marken-Identität (Farben, Typo, Logo, Dokumentvorlagen), vor Website und Anmeldung | `marke/DESIGN.md` |

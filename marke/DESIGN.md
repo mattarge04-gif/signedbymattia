@@ -1,7 +1,17 @@
 # DESIGN.md — signedbymattia
 
 Stand: 24.09.2026 · Status: **Gerüst, Werte offen** · Zielplan KW 43
-(„Gestaltungsrichtung festlegen: Typografie, Farben, Bildsprache“)
+(„Gestaltungsrichtung festlegen: Typografie, Farben, Bildsprache“), **vorgezogen**:
+Identität vor Website (Entscheid 24.09.2026)
+
+**Aktueller Schritt:** drei Richtungen zur Wahl in
+[`entwuerfe/markenrichtungen.html`](entwuerfe/markenrichtungen.html)
+(A Signatur, B Editionen, C Nachtlicht). Wow-Ablauf Schritte 1 und 2
+(Vorschlag, Quelle). Nichts davon ist entschieden [?].
+
+**Reihenfolge Identität:** Richtung wählen → Prototyp → Mattias Änderungen →
+Werte hier eintragen → Logo/Wortmarke (SVG, PNG) → Vorlagen (Offerte, Rechnung,
+E-Mail-Signatur, LinkedIn-Grafik, Präsentation) → Website.
 
 Diese Datei beschreibt die visuelle Identität so, dass ein Agent sie ohne
 Rückfrage anwenden kann: Website, LinkedIn-Grafiken, Videos, Dashboard,
