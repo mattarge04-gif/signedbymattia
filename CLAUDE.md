@@ -35,3 +35,32 @@ Budgets und Kostenfreigaben bleiben in `agency-automation-os/projects/lead-engin
    `entscheide.md`.
 7. Werkzeuge aus der AI Tool Box (`agency-marketing/docs/AI-TOOL-BOX.md`);
    für Marke und UI vor allem impeccable, taste-skill, design.md.
+
+## Aktueller Stand und nächste Schritte
+
+Stand: 24.09.2026, Ende der Sitzung.
+
+**Erledigt [F]:**
+
+- Identität „Edition“ festgelegt: `marke/DESIGN.md`, Markenübersicht
+  `marke/entwuerfe/identitaet-edition-v2.html` (PR #8).
+- Persönlichkeit und Stimme festgelegt: `marke/tonalitaet.md` (PR #9).
+
+**Nächste Schritte, in dieser Reihenfolge:**
+
+1. **Grafik- und Video-Stil** → neue Datei `marke/grafik-system.md`. Zuerst
+   kleine Grafik-Ideen sammeln (LinkedIn-Grafik, Videos, Karussell), dann
+   Formate, Aufbau, Bewegung und UI-Elemente festlegen. Die Datei ist die
+   Grundlage für den Grafik- und Video-Skill. Vorgehen wie bei der Identität:
+   Interview mit **echten Beispielen** (Screenshots), dann Vorschlag.
+2. `agency-marketing/docs/LINKEDIN-BLOG-CONTENT.md` anpassen: Der Satz
+   „keine Stilregeln erfinden“ ist überholt, die Grundlage steht jetzt in
+   `marke/tonalitaet.md` und bald in `marke/grafik-system.md`.
+3. Bestätigen [?]: In `tonalitaet.md` ist die Antwort zum Weltgeschehen als
+   Annahme markiert („Politik nur im Text, nicht in den Bildern“).
+4. [?] Mattia hat zwei Anki-Screenshots (Karte „Syllogismus“) ohne Text
+   geschickt. Fragen, wofür sie gedacht sind.
+
+**Kommt erst mit der Website** (bis dahin nur dokumentiert in `DESIGN.md`):
+Raum-Tokens, Logo-Dateien (SVG, PNG), eigenes Barock-Bild, Prototypen der
+Wow-Akte (Himmelsflug, 3D-Galerie).
