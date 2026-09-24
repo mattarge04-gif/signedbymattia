@@ -29,11 +29,16 @@ je Ausschluss“)
 - Onlineshops (E-Commerce).
 - Mitgliederbereiche und Portale.
 
-## Deine Ergänzungen [?]
+## Ergänzt am 24.09.2026 [F]
 
-Ein Satz je Punkt, z. B. Logo-Design? Texte schreiben? Fotografie? Hosting
-selbst betreiben? Wartung ohne Care-Vertrag? Sehr kleine Budgets unter
-CHF …?
+- **Ich fotografiere nicht selbst.** Fotos liefert der Kunde oder ein
+  Fotograf; ich wähle aus und bearbeite für das Web.
+- **Ich betreibe kein Hosting selbst.** Kundenseiten laufen bei einem
+  Hosting-Anbieter, nicht auf meinem Server.
+- **Ich betreue keine Social-Media-Kanäle von Kunden.** Einrichtung ja,
+  laufende Betreuung nein.
 
-- …
-- …
+## Noch offen [?]
+
+- Mindestbudget, unter dem ich kein Projekt annehme: CHF `?`
+- Wartung ohne Care-Vertrag?

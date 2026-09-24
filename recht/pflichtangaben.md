@@ -1,6 +1,6 @@
 # Pflichtangaben und Recht
 
-Stand: 24.09.2026 · Status: **grösstenteils offen** · Zielplan KW 42 · **Keine
+Stand: 24.09.2026 · Status: **teilweise geklärt** · Zielplan KW 42 · **Keine
 Rechtsberatung.** Im Zweifel eine Fachperson fragen.
 
 ## Offen und blockierend [?]
@@ -10,14 +10,23 @@ LinkedIn-Unternehmensseite:
 
 | Punkt | Status | Blockiert |
 | --- | --- | --- |
-| Rechtsform (Einzelfirma?) und Handelsregistereintrag | `?` | Impressum, LinkedIn-Seite, Offerten |
+| Rechtsform und Handelsregistereintrag | **noch nichts angemeldet** (24.09.2026) [F]; Form `?` | Impressum, LinkedIn-Seite, Offerten |
 | Geschäftliche Adresse für das Impressum | `?` | Website, Anzeigen |
 | Geschäftliche E-Mail-Adresse | `?` | Formular, LinkedIn-App, Anzeigen |
 | Telefon (ja/nein) | `?` | Impressum, Anzeigen |
 | Mehrwertsteuer-Status | `?` | Preisangaben |
-| Domain | `?` | alles Online |
+| Domain | **gesichert** (24.09.2026) [F]; Name hier eintragen: `?` | – |
 | Hosting-Anbieter und Serverstandort | `?` | Datenschutzerklärung |
-| Nebenerwerb und Arbeitsvertrag Streamline geprüft | `?` | Start überhaupt |
+| Nebenerwerb und Arbeitsvertrag Streamline geprüft | **ja, erlaubt** (Mattia, 24.09.2026) [F] | – |
+
+## Nächster Schritt [A]
+
+Solange nichts angemeldet ist, fehlen Impressum-Angaben, eine
+Unternehmens-Identität für die LinkedIn-Seite und ein sauberer Rahmen für
+Rechnungen. Vor dem Website-Livegang (Zielplan 22.11.2026) klären: Anmeldung
+als Einzelfirma (Handelsregister erst ab CHF 100'000 Umsatz Pflicht [A]),
+AHV-Anmeldung als Selbstständigerwerbende im Nebenerwerb [A], geschäftliche
+E-Mail auf der eigenen Domain.
 
 ## Bekannte Fakten [F] (Life OS, Abschnitt 5)
 

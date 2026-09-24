@@ -18,3 +18,5 @@ stehen im Vault (`40_Entscheide/`) oder im jeweiligen Repo.
 | 24.09.2026 | HLKS bleibt Branche für Lead Bot und Anzeigen, wird nach aussen nicht hervorgehoben | `grundlagen/positionierung.md` |
 | 24.09.2026 | Website Core: CHF 1'600 testen (vorher 1'200) | `grundlagen/angebote-preise.md`, `agency-automation-os/config/offers.yaml` |
 | 24.09.2026 | Zuerst sichtbare Zusatzleistungen: SEO + GEO, Google-Unternehmensprofil, Texte + Branding; Onepager, Landingpage- und Performance-Paket nur auf Nachfrage | `grundlagen/angebote-preise.md` |
+| 24.09.2026 | Ausschlüsse: kein eigenes Fotografieren, kein eigenes Hosting, keine laufende Social-Media-Betreuung für Kunden | `grundlagen/ausschluesse.md` |
+| 24.09.2026 | Stand Recht: noch nichts angemeldet; Domain gesichert; Nebenerwerb laut Arbeitsvertrag erlaubt | `recht/pflichtangaben.md` |
