@@ -1,20 +1,46 @@
-# signedbymattia — Website-Start
+# signedbymattia — Agency-Handbuch
 
-Dieses Repository ist der Einstieg für die eigene Agency-Website. **Vor dem Bauen die vier Arbeitsaufträge lesen:**
+Das zentrale Repo der Agency **signedbymattia**. Hier stehen die Grundlagen, die
+jedes andere Repo braucht. Regeln für Agenten: [`CLAUDE.md`](CLAUDE.md).
 
-1. [Suchintention, Kaufseiten und Kontaktweg](https://github.com/mattarge04-gif/signedbymattia/issues/1)
-2. [Visuelles Fallarchiv mit ehrlicher Kennzeichnung](https://github.com/mattarge04-gif/signedbymattia/issues/2)
-3. [Blog: tiefe Inspirationsrecherche und lesenswerter erster Beitrag](https://github.com/mattarge04-gif/signedbymattia/issues/3)
-4. [Search Console, AI-Suche und redaktionelle Links](https://github.com/mattarge04-gif/signedbymattia/issues/4)
+> Die Website wird ab 24.09.2026 im Repo
+> [signedbymattia-website](https://github.com/mattarge04-gif/signedbymattia-website)
+> gebaut. Die früheren Website-Issues #1–#4 sind dorthin verschoben.
 
-## Leitidee
+```mermaid
+flowchart TB
+    CORE[signedbymattia<br/>Grundlagen · Marke · Vorlagen · Abläufe]
+    WEB[signedbymattia-website]
+    MKT[agency-marketing]
+    LEAD[agency-automation-os<br/>Lead Bot · Budgets]
+    K[kunde-&lt;name&gt;<br/>je Kunde]
+    V[(obsidian-vault)]
+    CORE --> WEB
+    CORE --> MKT
+    CORE --> LEAD
+    CORE --> K
+    LEAD -. budgets.yaml .-> MKT
+    V -. Verweise .-> CORE
+```
 
-Eine kleine Anzahl besonders guter Seiten zeigt, **welches konkrete Problem** Mattia erkennt, **welche Gestaltungs- oder Ablaufentscheidung** er trifft und **wie der nächste Kontakt funktioniert**. Startseite, je eine klar abgegrenzte Seite für Websites und kleine Automationen sowie ein visuelles Fallbeispiel kommen vor einem grossen Blog. Demoarbeiten werden sichtbar als Konzepte bezeichnet; Resultate nur mit Beleg und Freigabe gezeigt.
+## Inhalt
 
-Der Blog ist ein redaktionelles Produkt: Vor dem ersten Artikel werden echte Leserfragen, starke Texte und visuelle Erzählformen gründlich untersucht. Jeder Beitrag braucht eine eigene Beobachtung, nützliche Antwort und passende Bilder oder Beispiele. Qualität und Lesewert gehen vor Veröffentlichungsfrequenz.
+| Ordner | Dokument | Stand | Zielplan |
+| --- | --- | --- | --- |
+| `grundlagen/` | [Positionierung](grundlagen/positionierung.md) | Entwurf, Fragen offen | KW 39 |
+| | [Zielkunden](grundlagen/zielkunden.md) | teilweise entschieden | KW 39 |
+| | [Angebote und Preise](grundlagen/angebote-preise.md) | Preise stehen, Fokus offen | KW 40 |
+| | [Was wir nicht machen](grundlagen/ausschluesse.md) | teilweise | KW 40 |
+| | [Konkurrenz](grundlagen/konkurrenz.md) | Recherche 23./24.09.2026 | – |
+| `marke/` | [Tonalität](marke/tonalitaet.md) | Regeln stehen, Anrede offen | KW 41 |
+| | [DESIGN.md](marke/DESIGN.md) | Gerüst, Werte offen | KW 43 |
+| | [UI-Regeln](marke/ui-regeln.md) | entschieden | – |
+| | [Referenzen und Lieblingsseiten](marke/referenzen.md) | offen | KW 39 |
+| `website/` | [Seitenstruktur eigene Website](website/seitenstruktur.md) | Entwurf | KW 41 |
+| `recht/` | [Pflichtangaben und Recht](recht/pflichtangaben.md) | offen | KW 42 |
+| `vorlagen/` | [Vorlagen-Index](vorlagen/README.md) | Index | – |
+| `prozesse/` | [Neues Kundenrepo anlegen](prozesse/kunden-repo.md) | Entwurf | – |
+| | [Entscheide](entscheide.md) | laufend | – |
 
-Suchmaschinen-Grundlagen, lokale Relevanz und crawlbare Inhalte gehören von Anfang an dazu. AI-Suche erhält dieselbe saubere, nützliche Grundlage. Links sollen aus guten Fällen und Ressourcen entstehen; gekaufte Links, künstliche Ortsseiten und generische KI-Artikel gehören nicht zur Strategie.
-
-**Anzeigen und LinkedIn (Entscheid 24.09.2026):** Nach dem Livegang führen Google-Suchanzeigen auf die Website-Kaufseite. Sie muss darum als Anzeigen-Zielseite taugen: Überschrift passend zur Suche, sichtbarer Preisrahmen, kurzes Formular mit Branchen- und Budgetauswahl und eine eigene Danke-Seite für das Conversion-Tracking. Blog und LinkedIn bilden ein Inhaltssystem: Jeder Blogartikel wird auch auf LinkedIn verwertet. Anleitung und Regeln liegen in `agency-marketing/docs/GOOGLE-ADS-FUNNEL.md` und `agency-marketing/docs/LINKEDIN-BLOG-CONTENT.md`.
-
-Die **private** Gesamtstrategie samt Gewinn-/Zeitrechnung, Konkurrenzrecherche und offenen Annahmen liegt im Obsidian-Vault unter `20_Projekte/signedbymattia — Website, SEO und Anfragen.md`. Diese Datei enthält absichtlich keine internen Finanz- oder Kundendaten.
+Die Spalte „Zielplan“ zeigt, in welcher Woche des Zielplans (Vault) die
+Aufgabe dazu steht.
