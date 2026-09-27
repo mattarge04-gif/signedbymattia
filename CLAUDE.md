@@ -38,29 +38,31 @@ Budgets und Kostenfreigaben bleiben in `agency-automation-os/projects/lead-engin
 
 ## Aktueller Stand und nächste Schritte
 
-Stand: 24.09.2026, Ende der Sitzung.
+Stand: 27.09.2026. Zeitplan: Vault `Zielplan.md`. Aktuelle Phase
+**Fundament** (KW 39–42, bis 18.10.2026).
 
 **Erledigt [F]:**
 
-- Identität „Edition“ festgelegt: `marke/DESIGN.md`, Markenübersicht
+- Identität „Edition“: `marke/DESIGN.md`, Markenübersicht
   `marke/entwuerfe/identitaet-edition-v2.html` (PR #8).
-- Persönlichkeit und Stimme festgelegt: `marke/tonalitaet.md` (PR #9).
+- Persönlichkeit und Stimme: `marke/tonalitaet.md` (PR #9).
+- Grafik- und Video-System: `marke/grafik-system.md`, Prototyp
+  `marke/entwuerfe/grafik-system-v1.html` (27.09.2026).
 
 **Nächste Schritte, in dieser Reihenfolge:**
 
-1. **Grafik- und Video-Stil** → neue Datei `marke/grafik-system.md`. Zuerst
-   kleine Grafik-Ideen sammeln (LinkedIn-Grafik, Videos, Karussell), dann
-   Formate, Aufbau, Bewegung und UI-Elemente festlegen. Die Datei ist die
-   Grundlage für den Grafik- und Video-Skill. Vorgehen wie bei der Identität:
-   Interview mit **echten Beispielen** (Screenshots), dann Vorschlag.
-2. `agency-marketing/docs/LINKEDIN-BLOG-CONTENT.md` anpassen: Der Satz
-   „keine Stilregeln erfinden“ ist überholt, die Grundlage steht jetzt in
-   `marke/tonalitaet.md` und bald in `marke/grafik-system.md`.
+1. `agency-marketing/docs/LINKEDIN-BLOG-CONTENT.md` anpassen: Der Satz
+   „keine Stilregeln erfinden“ ist überholt. Grundlage sind jetzt
+   `marke/tonalitaet.md` und `marke/grafik-system.md`.
+2. [?] Kosten der KI-Stimme für lange Videos prüfen (`grafik-system.md` §5),
+   Ziel ist „kostenfrei“.
 3. Bestätigen [?]: In `tonalitaet.md` ist die Antwort zum Weltgeschehen als
    Annahme markiert („Politik nur im Text, nicht in den Bildern“).
 4. [?] Mattia hat zwei Anki-Screenshots (Karte „Syllogismus“) ohne Text
    geschickt. Fragen, wofür sie gedacht sind.
+5. Zielplan KW 41–42: Seitenstruktur, Text der Startseite, übrige Texte,
+   Keywords, Hosting, Belege. Meilenstein 18.10.: alle Texte stehen.
 
 **Kommt erst mit der Website** (bis dahin nur dokumentiert in `DESIGN.md`):
-Raum-Tokens, Logo-Dateien (SVG, PNG), eigenes Barock-Bild, Prototypen der
-Wow-Akte (Himmelsflug, 3D-Galerie).
+Raum-Tokens, Logo-Dateien (SVG, PNG), eigenes Barock-Bild, Freisteller für
+Collagen, Prototypen der Wow-Akte (Himmelsflug, 3D-Galerie).
