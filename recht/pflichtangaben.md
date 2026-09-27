@@ -24,6 +24,14 @@ LinkedIn-Unternehmensseite:
 Von Mattia recherchiert (Quellen: KMU-Portal, AHV-IV, ESTV). Richtung, noch
 nicht umgesetzt; im Vault als Pendenz, Frist 18.10.2026.
 
+**Nachtrag 27.09.2026 [F]:** Die Frist 18.10. ist nicht umsetzbar. WAS Luzern
+beurteilt die Selbstständigkeit erst nach dem Start und verlangt Belege wie
+Verträge oder Kundenrechnungen (was-luzern.ch/selbstaendige). Anmeldung darum
+**mit dem ersten Auftrag**, online über selbststaendig-erwerbend.ch. Im
+Nebenberuf werden Beiträge bis CHF 2'500 Jahreseinkommen nur auf Verlangen
+erhoben. Details: `website/vertrauen-und-sichtbarkeit.md` Nr. 1. Die
+Vault-Pendenz muss angepasst werden.
+
 - **Streamline = Haupterwerb, Agency = selbstständiger Nebenerwerb.** Ein
   Einzelunternehmen entsteht mit der dauerhaften selbstständigen Tätigkeit;
   keine GmbH nötig.

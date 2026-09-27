@@ -66,12 +66,18 @@ Stand: 27.09.2026. Zeitplan: Vault `Zielplan.md`. Aktuelle Phase
 1. ~~Blog-Themen und Keywords~~: erledigt 27.09.2026, `website/keywords.md`
    (geclustert mit claude-seo), Anzeigen-Nachtrag in agency-marketing PR #15.
    Offen: Volumen im Google Keyword-Planer prüfen.
-2. **Anmeldung** bei der Ausgleichskasse Luzern, **Frist 18.10.**
-   (`website/vertrauen-und-sichtbarkeit.md` Nr. 1).
-3. Texte bis 18.10.: Startseite (Mattia), 3 Kaufseiten (Entwurf nach
-   `marke/stil.md`), Editionen, 3 Blogartikel, Belege, Hosting.
-4. Gewerbe Rontal beitreten (CHF 225/Jahr), Gewerbeverein Ebikon und
-   IG Kultur Luzern anfragen.
+2. **SEO-Basis mit claude-seo, umfangreich** (Wunsch Mattia 27.09.2026):
+   zuerst Konkurrenz ansehen, dann Keywords (Volumen), SEO je Seite, GEO,
+   strukturierte Daten, geschäftliches Google-Konto und Unternehmensprofil.
+   Aufgaben in `website/checkliste-vorbereitung.md` §5.
+3. **Texte gemeinsam** im Interview (noch nichts entwerfen, bevor Mattia es
+   sagt): Startseite (Mattia schreibt), 3 Kaufseiten, Editionen, 3 Blogartikel.
+   Was Mattia dafür liefern muss: `website/checkliste-vorbereitung.md` §1.
+4. Netzwerk Stadt Luzern: Netzwerk Neubad, *zünder, Wirtschaftsverband
+   Stadt Luzern (`website/vertrauen-und-sichtbarkeit.md` §3a).
+- **Anmeldung Ausgleichskasse:** nicht mehr bis 18.10., sondern **mit dem
+  ersten Auftrag** (WAS Luzern verlangt Belege). Vorher Offerte-, Vertrags-
+  und Rechnungsvorlage bereit haben.
 5. [?] Kosten der KI-Stimme prüfen (`marke/grafik-system.md` §5), Budget Higgsfield.
 6. Später: Barock-Bibliothek `marke/assets/` (KW 43), Grafik- und Video-Skill (vor KW 01).
 
