@@ -57,10 +57,8 @@ Stand: 27.09.2026. Zeitplan: Vault `Zielplan.md`. Aktuelle Phase
    `claude/linkedin-marketing-funnel-x68u2g`, nicht `main` [?].
 2. [?] Kosten der KI-Stimme für lange Videos prüfen (`grafik-system.md` §5),
    Ziel ist „kostenfrei“.
-3. Bestätigen [?]: In `tonalitaet.md` ist die Antwort zum Weltgeschehen als
-   Annahme markiert („Politik nur im Text, nicht in den Bildern“).
-4. [?] Mattia hat zwei Anki-Screenshots (Karte „Syllogismus“) ohne Text
-   geschickt. Fragen, wofür sie gedacht sind.
+3. ~~Weltgeschehen bestätigen~~: erledigt 27.09.2026, auch in Bildern erlaubt.
+4. ~~Anki-Screenshots klären~~: erledigt, waren aus Versehen.
 5. Zielplan KW 41–42: Seitenstruktur, Text der Startseite, übrige Texte,
    Keywords, Hosting, Belege. Meilenstein 18.10.: alle Texte stehen.
 

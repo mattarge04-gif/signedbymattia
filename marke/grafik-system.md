@@ -81,8 +81,8 @@ Screenshots von Websites.
   (±2–8°).
 - Quelle: gemeinfreie Werke (Met Open Access, CC0), später Freisteller aus dem
   eigenen Barock-Bild (`DESIGN.md` §6). Jede Quelle mit Lizenz festhalten.
-- Witz nur im Detail (Ton „Ehrfurcht mit Augenzwinkern“). Keine religiösen oder
-  politischen Aussagen in Bildern [A, siehe `tonalitaet.md`].
+- Witz nur im Detail (Ton „Ehrfurcht mit Augenzwinkern“). Weltgeschehen darf
+  auch in Bildern vorkommen [F, 27.09.2026, siehe `tonalitaet.md`].
 - **Keine Nacktheit im Anschnitt** [A: Vorsichtsregel für LinkedIn].
   Barock-Figuren so zuschneiden, dass sie im Feed nicht anecken.
 

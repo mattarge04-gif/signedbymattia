@@ -1,6 +1,6 @@
 # Tonalität
 
-Stand: 24.09.2026 · Status: **Regeln und Persönlichkeit stehen** ·
+Stand: 27.09.2026 · Status: **Regeln und Persönlichkeit stehen** ·
 gilt für Website, Anzeigen, LinkedIn, Offerten, E-Mails
 
 ## Entschieden [F]
@@ -67,9 +67,9 @@ Web-Begriffe sind erlaubt (Template, Backlog, Launch).
 
 **Weltgeschehen erlaubt, dosiert:** Aktuelle Ereignisse und Trends dürfen ab
 und zu als schneller Aufhänger für ein Statement dienen, wenn es der Marke
-hilft. [A: Mattias Antwort war „ohne die Bilder war versehen“. Gelesen als:
-Politik und Religion nicht in den Barock-Bildern verarbeiten, nur im Text. Beim
-nächsten Mal bestätigen.] Nicht gewählt und damit nicht verboten: Hustle- und
+hilft. **Auch in Bildern erlaubt** [F, bestätigt 27.09.2026], z. B. ein Engel
+mit einem Symbol zum Thema. Die Regeln oben gelten trotzdem: nie Konkurrenz
+schlechtmachen, keine erfundenen Fakten. Nicht gewählt und damit nicht verboten: Hustle- und
 Guru-Ton. [A: Empfehlung bleibt, ihn zu meiden, weil er dem Kurator
 widerspricht.]
 
