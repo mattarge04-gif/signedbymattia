@@ -12,14 +12,14 @@ Kosten mit Quelle sind am 27.09.2026 nachgeschlagen [F]. Alles ohne Zahl ist
 
 | Nr. | Was | Wo | Kosten | Wann | Blockiert |
 | --- | --- | --- | --- | --- | --- |
-| 1 | Anerkennung als Selbstständigerwerbender | Ausgleichskasse Luzern | [?] | **bis 18.10.** | Impressum, alles unten |
+| 1 | Anerkennung als Selbstständigerwerbender | Ausgleichskasse Luzern (WAS) | Nebenberuf bis CHF 2'500/Jahr: Beiträge nur auf Verlangen | **mit dem ersten Auftrag** (Nachtrag 27.09.) | UID im Impressum |
 | 2 | Geschäftliche E-Mail (z. B. hallo@signedbymattia.ch) | beim Hosting-/Mail-Anbieter | im Hosting [?] | KW 42 | Formular, Einträge |
 | 3 | Impressum-Adresse festlegen | – | – | KW 42 | Google-Profil, Einträge |
 | 4 | Google-Unternehmensprofil | business.google.com | gratis | KW 46 | lokale Suche |
 | 5 | Bing Places | bingplaces.com | gratis | KW 46 | – |
 | 6 | Apple Business Connect | businessconnect.apple.com | gratis [A] | KW 46 | – |
 | 7 | local.ch / search.ch Grundeintrag | local.ch | gratis | KW 46 | – |
-| 8 | **Gewerbe Rontal** beitreten | gewerberontal.ch | **CHF 225/Jahr** | KW 42 | – |
+| 8 | **Top 3 Stadt Luzern** (siehe §3a): Wirtschaftsverband Stadt Luzern, Netzwerk Neubad, *zünder | je Verein | CHF 360/Jahr WVL, Rest [?] | KW 42 | – |
 | 9 | Google Ads Search-Zertifikat | Skillshop | gratis | KW 45 | – |
 | 10 | Sortlist-Profil | sortlist.com | gratis | nach Livegang | – |
 | 11 | Awwwards-Einreichung | awwwards.com | **65 €** | nach Livegang | – |
@@ -27,7 +27,18 @@ Kosten mit Quelle sind am 27.09.2026 nachgeschlagen [F]. Alles ohne Zahl ist
 ## 1. Voraussetzungen (blockierend)
 
 1. **AHV-Anerkennung als Selbstständigerwerbender** bei der Ausgleichskasse
-   Luzern (Richtung in `recht/pflichtangaben.md`, Frist 18.10.2026).
+   Luzern (WAS Luzern, Langsägestrasse 13, 6010 Kriens, Tel. 041 209 00 53).
+   - **Nachtrag 27.09.2026 [F]:** WAS Luzern schreibt: „Wir können Ihre
+     Tätigkeit erst beurteilen, wenn Sie schon damit gestartet haben.“ Anmelden
+     erst mit konkreten Belegen wie **Verträgen oder Kundenrechnungen**. Die
+     bisherige Frist 18.10.2026 entfällt; Anmeldung **mit dem ersten Auftrag**.
+   - Weg: online über selbststaendig-erwerbend.ch (Code kommt per Post) oder
+     PDF-Formular `AK_Anmeldung_SE` per Post.
+   - Beiträge: unter CHF 10'100 Jahreseinkommen Mindestbeitrag CHF 530.
+     **Im Nebenberuf bis CHF 2'500 pro Jahr nur auf Verlangen.** Wer
+     zusätzlich angestellt ist, kann den tiefsten Satz (5,371 %) erhalten
+     (was-luzern.ch/selbstaendige).
+   - Vorbereiten: Offerte-Vorlage, Auftragsbestätigung, Rechnungsvorlage.
    - Die **UID-Nummer** beantragt man nicht selbst. Sie entsteht automatisch,
      sobald eine Behörde das Unternehmen registriert, bei Einzelunternehmen
      ohne HR-Eintrag meist über die Ausgleichskasse (gryps.ch, BFS-FAQ).
@@ -68,9 +79,24 @@ Kosten mit Quelle sind am 27.09.2026 nachgeschlagen [F]. Alles ohne Zahl ist
 | Swiss Design Association (SDA) | Berufsverband Design, Mitglied von Suisseculture | CHF 450/Jahr regulär (verlangt anerkannte Designausbildung), **Partnermitglied CHF 160/Jahr** | swiss-design-association.ch |
 | Industrie- und Handelskammer Zentralschweiz (IHZ) | über 700 Firmen, eher Industrie und Export | [?] anfragen, **später** | ihz.ch/mitglied-werden |
 
-**Empfehlung [A]:** Zum Start nur **Gewerbe Rontal** (günstig, lokal, gibt
-Logo, Backlink und die KGL-Beratung für die Anmeldung). IG Kultur Luzern und
-SDA-Partnerschaft anfragen und nach dem ersten Kunden entscheiden.
+~~Empfehlung: Zum Start nur Gewerbe Rontal.~~ Ersetzt am 27.09.2026 durch
+§3a: Mattia will Netzwerk in der **Stadt Luzern**, mit kreativen Leuten und
+SEO-Nutzen, nicht zwingend im Rontal.
+
+## 3a. Top 3 Stadt Luzern (Wahl 27.09.2026)
+
+| Nr. | Netzwerk | Warum | Kosten | Nächster Schritt |
+| --- | --- | --- | --- | --- |
+| 1 | **Netzwerk Neubad** (Verein, Bireggstrasse 36) | Kreativ-Szene der Stadt: rund 1'000 Mitglieder aus Kreativwirtschaft, Bildung, Soziales; über 300 Anlässe pro Jahr, Ateliers, Co-Working. Genau der Wunschkunde (Künstler, kreative Projekte, Startups) | [?] Beitrag nicht publiziert; Unterstützer erscheinen mit eigener Seite auf neubad.org (Backlink [A]) | Mitgliedschaft und Sponsoring anfragen: 041 360 60 66 |
+| 2 | ***zünder community** (Gründerszene Zentralschweiz) | „offen für alle, die sich aktiv in die Gründerszene Zentralschweiz einbringen möchten“; Startup Day im Verkehrshaus. Wunschkunde „Startups ohne UI“ | [?] vermutlich gratis | zuender.ch, an einem Anlass teilnehmen |
+| 3 | **Wirtschaftsverband Stadt Luzern (WVL)** | knapp 500 Mitglieder aus Luzern und Agglomeration, Mitgliederverzeichnis (lokaler Backlink, NAP), Logo für die Website; über KGL 30 Min. Gratisberatung pro Jahr | **CHF 360/Jahr** (CHF 265 + CHF 95 KGL) | Online-Formular wvl.ch/registration |
+
+**Weitere gute Optionen:** Junge Wirtschaftskammer Luzern (JCI, junge
+Führungskräfte), Luzern Entrepreneurship Meetup (Hochschule Luzern, Smart-up,
+gratis), IG Kultur Luzern (Kulturschaffende), Gewerbe Rontal (Heimatort,
+CHF 225/Jahr). Quellen: neubad.org, zuender.ch, wvl.ch/registration,
+luzern-business.ch/de/wie-wir-unterstuetzen/gruenden/unternehmer-community
+(alle abgerufen 27.09.2026).
 
 ## 4. Zertifikate und Abzeichen
 
