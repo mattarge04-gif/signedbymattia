@@ -53,14 +53,16 @@ Stand: 27.09.2026. Zeitplan: Vault `Zielplan.md`. Aktuelle Phase
 
 1. ~~`agency-marketing/docs/LINKEDIN-BLOG-CONTENT.md` anpassen~~: erledigt
    27.09.2026 (agency-marketing PR #14), verweist jetzt auf `marke/`.
-   Hinweis: Standard-Branch von agency-marketing auf GitHub ist
-   `claude/linkedin-marketing-funnel-x68u2g`, nicht `main` [?].
+   Standard-Branch von agency-marketing am 27.09.2026 auf `main` umgestellt.
 2. [?] Kosten der KI-Stimme für lange Videos prüfen (`grafik-system.md` §5),
    Ziel ist „kostenfrei“.
 3. ~~Weltgeschehen bestätigen~~: erledigt 27.09.2026, auch in Bildern erlaubt.
 4. ~~Anki-Screenshots klären~~: erledigt, waren aus Versehen.
-5. Zielplan KW 41–42: Seitenstruktur, Text der Startseite, übrige Texte,
-   Keywords, Hosting, Belege. Meilenstein 18.10.: alle Texte stehen.
+5. Zielplan KW 41–42, Meilenstein 18.10.: alle Texte stehen.
+   - ~~Seitenstruktur~~: erledigt 27.09.2026, `website/seitenstruktur.md`.
+   - Offen: Keywords, Text der Startseite (schreibt Mattia), 3 Kaufseiten,
+     Editionen (welche Konzept-Betriebe?), 3 Blogartikel (Themen?), Hosting,
+     Belege.
 
 **Kommt erst mit der Website** (bis dahin nur dokumentiert in `DESIGN.md`):
 Raum-Tokens, Logo-Dateien (SVG, PNG), eigenes Barock-Bild, Freisteller für
