@@ -1,0 +1,48 @@
+{
+  "schema_version": 2,
+  "diagram_type": "workflow",
+  "meta": {
+    "title": "signedbymattia · Stand und Weg bis live",
+    "quality_profile": "showcase"
+  },
+  "lanes": [
+    { "id": "weg", "label": "Projektweg" },
+    { "id": "inhalt", "label": "Mattia · Inhalte und Entscheide" },
+    { "id": "zugaenge", "label": "Mattia · Konten und Zugänge" }
+  ],
+  "phases": [
+    { "id": "jetzt", "label": "28.09. · heute", "fromCol": 0, "toCol": 0, "variant": "emphasis" },
+    { "id": "fundament", "label": "bis 18.10. · Fundament", "fromCol": 1, "toCol": 2 },
+    { "id": "website", "label": "bis 22.11. · Website", "fromCol": 3, "toCol": 4 },
+    { "id": "danach", "label": "danach · Kunden", "fromCol": 5, "toCol": 5 }
+  ],
+  "mainPath": ["basis", "seo", "inhalte", "bau", "live", "kunden"],
+  "nodes": [
+    { "id": "basis", "lane": "weg", "col": 0, "type": "database", "label": "Grundlagen stehen", "sublabel": "Marke, Struktur, Keywords", "width": 154 },
+    { "id": "seo", "lane": "weg", "col": 1, "type": "backend", "label": "SEO-Basis", "sublabel": "Analyse, Metadaten, GEO", "width": 150 },
+    { "id": "inhalte", "lane": "weg", "col": 2, "type": "backend", "label": "Texte + Editionen", "sublabel": "gemeinsames Interview", "width": 158 },
+    { "id": "bau", "lane": "weg", "col": 3, "type": "frontend", "label": "Website bauen", "sublabel": "Seiten, Formular, Bilder", "width": 150 },
+    { "id": "live", "lane": "weg", "col": 4, "type": "cloud", "label": "Test + live", "sublabel": "Ziel 22.11.2026", "width": 146 },
+    { "id": "kunden", "lane": "weg", "col": 5, "type": "external", "label": "Erste Kunden", "sublabel": "Ziel 07.02.2027", "width": 146 },
+    { "id": "konto", "lane": "zugaenge", "col": 1, "type": "security", "label": "Google-Konto", "sublabel": "Ads + Keyword-Planer", "width": 150 },
+    { "id": "entscheide", "lane": "inhalt", "col": 2, "type": "security", "label": "Angebot klären", "sublabel": "Preise, Umfang, Fristen", "width": 150 },
+    { "id": "belege", "lane": "inhalt", "col": 3, "type": "external", "label": "Inhalte liefern", "sublabel": "Foto, Bio, Rechte", "width": 150 },
+    { "id": "zugang", "lane": "zugaenge", "col": 4, "type": "security", "label": "Live-Zugänge", "sublabel": "Hosting, DNS, Kontakt", "width": 150 }
+  ],
+  "edges": [
+    { "from": "basis", "to": "seo", "variant": "emphasis" },
+    { "from": "seo", "to": "inhalte", "variant": "emphasis" },
+    { "from": "inhalte", "to": "bau" },
+    { "from": "bau", "to": "live" },
+    { "from": "live", "to": "kunden" },
+    { "from": "seo", "to": "konto", "role": "branch", "variant": "dashed" },
+    { "from": "inhalte", "to": "entscheide", "role": "branch", "variant": "dashed" },
+    { "from": "bau", "to": "belege", "role": "branch", "variant": "dashed" },
+    { "from": "live", "to": "zugang", "role": "branch", "variant": "dashed" }
+  ],
+  "cards": [
+    { "dot": "emerald", "title": "Erledigt", "items": ["Positionierung, Marke, Grafiksystem und Seitenstruktur dokumentiert", "Keyword-Cluster und drei Startthemen festgelegt", "Keine offenen Git-Änderungen nach Claude-Abbruch"] },
+    { "dot": "amber", "title": "Nächste gemeinsame Arbeit", "items": ["Zuerst SEO-Basis und Keyword-Volumen prüfen", "Dann Texte im Interview und Konzept-Editionen abschliessen", "Website-Bau ab KW 43; Livegang ist ein Ziel, keine Zusage"] },
+    { "dot": "violet", "title": "Mattias Entscheidungen", "items": ["Angebotsumfang und offene Preise", "Foto, Bio, Beispiele und Veröffentlichungsrechte", "Google-Konto, Hosting, Domain-Zugang und Impressum-Daten"] }
+  ]
+}

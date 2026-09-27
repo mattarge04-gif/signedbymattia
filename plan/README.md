@@ -1,28 +1,31 @@
 # Plan und Stand
 
-Stand: 27.09.2026. Übersicht zum Öffnen im Browser: [`uebersicht.html`](uebersicht.html).
+Stand: 28.09.2026. Aktuelle Übersicht: [`uebersicht.html`](uebersicht.html).
+Sitzungsabschluss mit Aufgaben und Quellen: [`stand-2026-09-28.md`](stand-2026-09-28.md).
 
 | Datei | Inhalt |
 | --- | --- |
-| `uebersicht.html` | Zeitstrahl, Zeitaufwand, was Mattia liefern muss, was gebaut wird |
-| `plan.workflow.json` → `plan-archify.html` | der ganze Plan (6 Phasen) als Archify-Grafik |
-| `bis-live.workflow.json` → `bis-live-archify.html` | Stunden pro Block bis zum Livegang |
+| `uebersicht.html` | aktuelle Kurzansicht und Eigenaufwand |
+| `stand-2026-09-28.workflow.json` → `stand-2026-09-28.html` | aktueller Weg bis live als Archify-Grafik |
+| `plan.workflow.json` → `plan-archify.html` | älterer Gesamtplan, Status teils überholt |
+| `bis-live.workflow.json` → `bis-live-archify.html` | ältere Stundenannahmen, nicht aktuelle Restschätzung |
 
-Quelle der Termine: Vault `Zielplan.md`. Stunden sind Schätzungen [A].
+Quelle der Termine: Vault `Zielplan.md`. Alte Stunden sind Schätzungen [A]
+und wegen der erweiterten SEO-Arbeit und geänderten AHV-Reihenfolge neu zu
+prüfen. Das aktuelle Diagramm verwendet deshalb keine Reststunden oder
+Prozentzahl.
 
 ## Neu erzeugen (Stand-Routine)
 
 Am Ende jeder Sitzung, nach `/stand`:
 
-1. In den beiden `*.workflow.json` Status und Stunden nachführen.
-2. Grafiken erzeugen und prüfen:
+1. Stand und Aufgaben in `stand-2026-09-28.md` und der aktuellen
+   `*.workflow.json` nachführen. Stunden erst mit neuer Schätzung ergänzen.
+2. Aktuelle Grafik erzeugen und prüfen:
 
    ```bash
-   A=~/.claude/skills/archify/bin/archify.mjs
-   node $A deliver workflow plan.workflow.json plan-archify.html --quality showcase --json
-   node $A deliver workflow bis-live.workflow.json bis-live-archify.html --quality showcase --json
-   node $A visual-check plan-archify.html --json
-   node $A visual-check bis-live-archify.html --json
+   node <archify>/bin/archify.mjs deliver workflow stand-2026-09-28.workflow.json stand-2026-09-28.html --quality showcase --json
+   node <archify>/bin/archify.mjs visual-check stand-2026-09-28.html --json
    ```
 
-3. In `uebersicht.html` Datum, Zahlen und Meilensteine anpassen.
+3. In `uebersicht.html` Datum, Aufgaben und Meilensteine anpassen.

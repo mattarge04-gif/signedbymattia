@@ -45,8 +45,15 @@ Budgets und Kostenfreigaben bleiben in `agency-automation-os/projects/lead-engin
 
 ## Aktueller Stand und nächste Schritte
 
-Stand: 27.09.2026. Zeitplan: Vault `Zielplan.md`. Aktuelle Phase
+Stand: 28.09.2026. Zeitplan: Vault `Zielplan.md`. Aktuelle Phase
 **Fundament** (KW 39–42, bis 18.10.2026).
+
+**Sitzungsabschluss 28.09.:** Claude erreichte am 27.09. um 23:59 das
+Sitzungslimit. Git und lokale Sitzungsdateien sind vorhanden; kein belegter
+Verlust von Projektdateien. Aktueller Stand, Eigenaufwand und Planrisiken:
+`plan/stand-2026-09-28.md`; Diagramm: `plan/stand-2026-09-28.html`.
+Die bisherige Stundenrechnung in `plan/bis-live.workflow.json` ist wegen
+erweiterter SEO-Basis und verschobener AHV-Anmeldung nicht mehr aktuell.
 
 **Erledigt [F]:**
 

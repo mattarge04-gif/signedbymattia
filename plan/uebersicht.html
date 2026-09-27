@@ -1,187 +1,46 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="de-CH">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Plan und Stand · signedbymattia</title>
-<link href="https://fonts.googleapis.com/css2?family=Host+Grotesk:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
-<style>
-  :root{--creme:#FBF3EA;--flieder:#D9CCF5;--himmel:#CFE3F7;--pfirsich:#FFD6C2;--tinte:#231B3A;--grau:#6A5F80;--pink:#FF9DC8;--gold:#E3C58A;--mint:#CDEFD9;--rot:#E5484D}
-  *{box-sizing:border-box}
-  body{margin:0;background:var(--creme);color:var(--tinte);font-family:"Host Grotesk",system-ui,sans-serif;padding:36px 16px 60px}
-  .wrap{max-width:1360px;margin:0 auto}
-  .it{font-family:"Instrument Serif",serif;font-style:italic;font-weight:400}
-  h1{font-size:clamp(34px,5vw,58px);line-height:.95;letter-spacing:-.035em;margin:0 0 10px;font-weight:600}
-  .lead{color:var(--grau);max-width:74ch;margin:0 0 20px;font-size:16px}
-  h2{font-size:26px;letter-spacing:-.02em;margin:40px 0 14px;font-weight:600}
-  code{font-size:.9em;background:rgba(35,27,58,.06);padding:1px 5px;border-radius:4px}
-  .verdict{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
-  .v{border-radius:12px;padding:16px 18px;box-shadow:inset 0 0 0 1.5px var(--tinte)}
-  .v b{display:block;font-size:13px;text-transform:uppercase;letter-spacing:.08em;margin-bottom:6px}
-  .v span{font-size:30px;font-weight:600;letter-spacing:-.03em;line-height:1}
-  .v p{margin:6px 0 0;font-size:13.5px;color:var(--grau)}
-  .tl{position:relative;background:#fff;border:1px solid #eadfcf;border-radius:14px;padding:22px 22px 26px;overflow-x:auto}
-  .tl-inner{position:relative;min-width:1100px}
-  .phases{display:grid;grid-template-columns:4fr 5fr 6fr 5fr 3fr 3fr;gap:4px;margin-bottom:10px}
-  .ph{border-radius:8px;padding:9px 10px;font-size:13px;font-weight:600;line-height:1.15}
-  .ph small{display:block;font-weight:400;color:var(--grau);font-size:11.5px;margin-top:3px}
-  .ph.now{box-shadow:inset 0 0 0 2px var(--tinte)}
-  .weeks{display:grid;grid-template-columns:repeat(26,1fr);border-top:1.5px solid var(--tinte);padding-top:6px;font-size:10.5px;color:var(--grau)}
-  .track{position:relative;height:260px;margin-top:6px}
-  .ms{position:absolute;z-index:2;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;width:130px;text-align:center}
-  .ms.l{transform:translateX(-7px);align-items:flex-start;text-align:left}
-  .ms .dot{width:14px;height:14px;border-radius:50%;background:#fff;border:2px solid var(--tinte)}
-  .ms.done .dot{background:var(--tinte)}
-  .ms.next .dot{background:var(--pink)}
-  .ms.big .dot{width:20px;height:20px;background:var(--gold)}
-  .ms.warn .dot{background:var(--rot);border-color:var(--rot)}
-  .ms b,.ms small{background:rgba(255,255,255,.92);padding:0 3px}
-  .ms b{font-size:12.5px;line-height:1.15;margin-top:5px}
-  .ms small{font-size:11px;color:var(--grau)}
-  .today{position:absolute;top:0;bottom:0;width:2px;background:var(--pink);box-shadow:0 0 0 1px var(--tinte)}
-  .today span{position:absolute;bottom:0;left:6px;background:var(--pink);font-size:11.5px;font-weight:700;padding:3px 8px;border-radius:99px;white-space:nowrap;box-shadow:inset 0 0 0 1.2px var(--tinte)}
-  .legend{display:flex;gap:18px;flex-wrap:wrap;font-size:12px;color:var(--grau);margin-top:12px}
-  .legend i{display:inline-block;width:11px;height:11px;border-radius:50%;border:2px solid var(--tinte);vertical-align:-1px;margin-right:5px}
-  .cap{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
-  .cb{background:#fff;border:1px solid #eadfcf;border-radius:12px;padding:16px 18px}
-  .cb h3{margin:0 0 4px;font-size:18px}
-  .bar{height:26px;border-radius:99px;background:#f1ebf6;position:relative;overflow:hidden;margin:10px 0 12px;box-shadow:inset 0 0 0 1.2px rgba(35,27,58,.25)}
-  .bar i{position:absolute;left:0;top:0;bottom:0;border-radius:99px}
-  .bar span{position:absolute;right:10px;top:4px;font-size:12.5px;font-weight:700}
-  table{width:100%;border-collapse:collapse;font-size:13.5px}
-  td{padding:6px 0;border-bottom:1px solid #efe7da;vertical-align:top}
-  td:last-child{text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums;padding-left:10px}
-  tr.sum td{font-weight:700;border-bottom:0;border-top:1.5px solid var(--tinte)}
-  .note{font-size:12.5px;color:var(--grau);margin-top:8px}
-  .grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
-  .box{background:#fff;border:1px solid #eadfcf;border-radius:12px;padding:16px 18px;font-size:14px;line-height:1.5}
-  .box h3{margin:0 0 8px;font-size:18px}
-  .box ol{margin:0;padding-left:20px}
-  .box li{margin-bottom:6px}
-  .when{display:inline-block;font-size:11px;font-weight:700;padding:1px 7px;border-radius:99px;background:var(--flieder);margin-right:6px}
-  .when.hot{background:var(--pink);box-shadow:inset 0 0 0 1.2px var(--tinte)}
-  iframe{width:100%;height:940px;border:1px solid #eadfcf;border-radius:14px;background:#fff}
-  .src{font-size:12px;color:var(--grau);margin-top:10px}
-  @media (max-width:900px){.verdict,.cap,.grid2{grid-template-columns:1fr}}
-</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Stand und Eigenaufwand · signedbymattia</title>
+  <style>
+    :root{color-scheme:light;--ink:#231b3a;--muted:#625a73;--paper:#fbf3ea;--line:#decfe5;--pink:#ff9dc8;--mint:#cdefd9;--blue:#cfe3f7}
+    *{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.5 system-ui,sans-serif}main{max-width:1180px;margin:auto;padding:40px 24px 72px}
+    h1{font-size:clamp(2.5rem,6vw,4.8rem);letter-spacing:-.055em;line-height:1.02;margin:0 0 12px}h2{font-size:1.55rem;letter-spacing:-.03em;margin:44px 0 14px}h3{margin:0 0 8px;font-size:1.05rem}p{margin:0 0 16px}.lead{max-width:72ch;color:var(--muted)}
+    a{color:var(--ink);text-decoration-thickness:1.5px;text-underline-offset:3px}.eyebrow{font-size:.78rem;font-weight:750;text-transform:uppercase;letter-spacing:.13em;margin:0 0 13px}
+    .stats,.cols{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:20px}.card strong{display:block;font-size:1.55rem;line-height:1.15;margin:6px 0}.card p{font-size:.9rem;color:var(--muted);margin:0}.card:nth-child(1){border-top:6px solid var(--mint)}.card:nth-child(2){border-top:6px solid var(--pink)}.card:nth-child(3){border-top:6px solid var(--blue)}
+    .notice{background:#fff7d9;border:1px solid #e8d992;border-radius:12px;padding:14px 18px;margin:22px 0}.diagram{display:block;width:100%;height:800px;border:1px solid var(--line);border-radius:16px;background:white}.link{display:inline-block;padding:10px 16px;background:var(--ink);color:white;border-radius:9px;text-decoration:none;font-weight:700;margin-bottom:14px}
+    ol{padding-left:22px;margin:6px 0 0}li{margin:0 0 9px}ul{padding-left:20px;margin:6px 0 0}.tag{display:inline-block;background:#ede4f1;border-radius:100px;padding:2px 8px;font-size:.75rem;font-weight:700;margin-bottom:8px}.foot{font-size:.85rem;color:var(--muted);margin-top:34px}
+    @media(max-width:800px){.stats,.cols{grid-template-columns:1fr}.diagram{height:650px}main{padding:28px 16px 56px}}
+  </style>
 </head>
 <body>
-<div class="wrap">
-  <h1>Zeitplan,<br><span class="it">Stand</span> 27.09.2026.</h1>
-  <p class="lead">Ende KW 39. Wir liegen <b>vor dem Plan</b>: Teile von KW 40 und 41 sowie die Gestaltung aus KW 43 sind schon erledigt. Das Fundament hat Luft, die Phase „Eigene Seite“ ist wegen der Wow-Akte knapp. Alle Stunden sind <b>deine</b> Stunden (ich baue und entwerfe, du entscheidest, schreibst und prüfst) und Schätzungen [A].</p>
+<main>
+  <p class="eyebrow">Projektstand · 28.09.2026</p>
+  <h1>Was steht. Was fehlt.<br>Was du beitragen musst.</h1>
+  <p class="lead">Das Fundament ist dokumentiert: Positionierung, Marke, Seitenstruktur und Keyword-Cluster. Als Nächstes kommen die vertiefte SEO-Basis und die Texte im gemeinsamen Interview. Die Website soll am 22.11.2026 live gehen.</p>
+  <section class="stats" aria-label="Meilensteine">
+    <div class="card"><h3>Erledigt</h3><strong>Grundlagen + Marke</strong><p>Seitenstruktur und Keyword-Cluster stehen ebenfalls.</p></div>
+    <div class="card"><h3>Bis alle Texte stehen</h3><strong>20 Kalendertage</strong><p>Ziel 18.10.2026; Texte und Editionen sind noch offen.</p></div>
+    <div class="card"><h3>Bis zum geplanten Livegang</h3><strong>55 Kalendertage</strong><p>Ziel 22.11.2026; Umsetzung ab KW 43 vorgesehen.</p></div>
+  </section>
+  <div class="notice"><strong>Planungshinweis:</strong> Die frühere Stundenrechnung ist überholt: SEO wurde erweitert und die AHV-Anmeldung auf den ersten Auftrag verschoben. Die verbleibenden Stunden und der Puffer müssen neu geschätzt werden. Die Tage oben zeigen Termine, keinen Fertigstellungsgrad.</div>
 
-  <div class="verdict">
-    <div class="v" style="background:var(--mint)"><b>Fundament · bis 18.10.</b><span>22 h von 30 h</span><p>Im Plan, 8 h Puffer.</p></div>
-    <div class="v" style="background:var(--pfirsich)"><b>Eigene Seite · bis 22.11.</b><span>48 h von 50 h</span><p>Knapp, 2 h Puffer. Risiko: Wow-Akte.</p></div>
-    <div class="v" style="background:var(--himmel)"><b>Ziel · 15.03.2027</b><span>CHF 2'500 / Mt.</span><p>Unverändert. Hängt an 15 h pro Projekt (Messung KW 49).</p></div>
+  <h2>Der Weg bis live</h2>
+  <a class="link" href="stand-2026-09-28.html">Archify-Diagramm gross öffnen</a>
+  <iframe class="diagram" src="stand-2026-09-28.html" title="Archify-Diagramm: Stand und Weg bis live" loading="lazy"></iframe>
+
+  <h2>Dein Eigenaufwand</h2>
+  <div class="cols">
+    <div class="card"><span class="tag">Jetzt</span><h3>SEO ermöglichen</h3><ol><li>Geschäftliches Google-Konto und Ads-Konto anlegen.</li><li>Keyword-Volumen im Planer prüfen.</li><li>Offene Preise, Leistungsumfang und Antwortfrist festlegen.</li></ol></div>
+    <div class="card"><span class="tag">Bis 18.10.</span><h3>Inhalte liefern</h3><ol><li>Startseitentext nach gemeinsamem Gerüst schreiben.</li><li>Bio, eigene Beispiele und Beobachtungen beisteuern.</li><li>Tams, Keller-Scroll und Sofi Health abschliessen; Rechte und Freigaben klären.</li></ol></div>
+    <div class="card"><span class="tag">Vor dem Livegang</span><h3>Veröffentlichung ermöglichen</h3><ol><li>Porträtfoto und verwendbare Belege liefern.</li><li>Hosting, DNS-Zugang, geschäftliche E-Mail und Impressum-Daten klären.</li><li>Bildbudget und 2D-/3D-Plan für Akt II entscheiden.</li></ol></div>
   </div>
 
-  <h2>I · Zeitstrahl</h2>
-  <div class="tl"><div class="tl-inner">
-    <div class="phases">
-      <div class="ph now" style="background:var(--mint)">Fundament<small>bis 18.10. · KW 39–42</small></div>
-      <div class="ph" style="background:var(--himmel)">Eigene Seite<small>bis 22.11. · KW 43–47</small></div>
-      <div class="ph" style="background:var(--flieder)">Vorlagen + Produktion<small>bis 03.01. · KW 48–53</small></div>
-      <div class="ph" style="background:var(--pfirsich)">Erste Gespräche<small>bis 07.02. · KW 01–05</small></div>
-      <div class="ph" style="background:#F9E6EE">Liefern<small>bis 28.02.</small></div>
-      <div class="ph" style="background:#F6EBD5">Verdichten<small>bis 15.03.</small></div>
-    </div>
-    <div class="weeks"><span>39</span><span>40</span><span>41</span><span>42</span><span>43</span><span>44</span><span>45</span><span>46</span><span>47</span><span>48</span><span>49</span><span>50</span><span>51</span><span>52</span><span>53</span><span>01</span><span>02</span><span>03</span><span>04</span><span>05</span><span>06</span><span>07</span><span>08</span><span>09</span><span>10</span><span>11</span></div>
-    <div class="track">
-      <div class="today" style="left:3.85%"><span>heute · 27.09.</span></div>
-      <div class="ms done l" style="left:0;top:8px"><div class="dot"></div><b>✓ Grundlagen</b><small>Position, Preise</small></div>
-      <div class="ms done l" style="left:0;top:78px"><div class="dot"></div><b>✓ Marke</b><small>Identität, Stimme, Grafik</small></div>
-      <div class="ms done l" style="left:0;top:148px"><div class="dot"></div><b>✓ Seitenstruktur</b><small>27.09. (Plan: KW 41)</small></div>
-      <div class="ms next l" style="left:7.7%;top:8px"><div class="dot"></div><b>▶ Keywords, Kaufseiten</b><small>KW 40–41</small></div>
-      <div class="ms warn l" style="left:15.4%;top:100px"><div class="dot"></div><b>Alle Texte + Anmeldung</b><small>Frist 18.10.</small></div>
-      <div class="ms l" style="left:23%;top:185px"><div class="dot"></div><b>Barock-Bild, Editionen</b><small>KW 43–44</small></div>
-      <div class="ms l" style="left:30.8%;top:8px"><div class="dot"></div><b>Wow-Akte</b><small>KW 45–46 · Risiko</small></div>
-      <div class="ms big" style="left:34.6%;top:110px"><div class="dot"></div><b>Eigene Seite live</b><small>22.11.</small></div>
-      <div class="ms" style="left:42.3%;top:185px"><div class="dot"></div><b>1. gemessene Bauzeit</b><small>KW 49</small></div>
-      <div class="ms" style="left:50%;top:8px"><div class="dot"></div><b>Engpass</b><small>KW 48–51: Vorlagen + Ads + LinkedIn</small></div>
-      <div class="ms" style="left:57.7%;top:110px"><div class="dot"></div><b>Aufwand pro Projekt bekannt</b><small>03.01.</small></div>
-      <div class="ms" style="left:61.5%;top:185px"><div class="dot"></div><b>Ads + LinkedIn laufen</b><small>KW 01</small></div>
-      <div class="ms big" style="left:76.9%;top:8px"><div class="dot"></div><b>Erster zahlender Kunde</b><small>07.02.</small></div>
-      <div class="ms" style="left:84.6%;top:110px"><div class="dot"></div><b>1. Projekt übergeben</b><small>KW 07</small></div>
-      <div class="ms" style="left:92.3%;top:185px"><div class="dot"></div><b>Zweiter Kunde</b><small>KW 09</small></div>
-      <div class="ms big" style="left:96.5%;top:8px"><div class="dot"></div><b>CHF 2'500</b><small>15.03.</small></div>
-    </div>
-    <div class="legend"><span><i style="background:var(--tinte)"></i>erledigt</span><span><i style="background:var(--pink)"></i>als Nächstes</span><span><i style="background:var(--rot);border-color:var(--rot)"></i>harte Frist</span><span><i></i>Meilenstein</span><span><i style="background:var(--gold)"></i>grosser Meilenstein</span></div>
-  </div></div>
-
-  <h2>II · Neuer Zeitaufwand</h2>
-  <div class="cap">
-    <div class="cb">
-      <h3>Fundament · KW 40–42</h3>
-      <div class="bar"><i style="width:73%;background:var(--mint)"></i><span>22 / 30 h</span></div>
-      <table>
-        <tr><td>Keywords (ich recherchiere, du wählst)</td><td>1.5 h</td></tr>
-        <tr><td>Startseitentext (schreibst du selbst)</td><td>3 h</td></tr>
-        <tr><td>3 Kaufseiten (mein Entwurf, du überarbeitest)</td><td>4.5 h</td></tr>
-        <tr><td>3 Blogartikel à 2.5 h</td><td>7.5 h</td></tr>
-        <tr><td>Editionen-Texte, Belege sammeln</td><td>2 h</td></tr>
-        <tr><td>Betriebe + Themen wählen, Hosting klären</td><td>1.5 h</td></tr>
-        <tr><td><b>Anmeldung Einzelunternehmen / AHV (Frist 18.10.)</b></td><td>2 h</td></tr>
-        <tr class="sum"><td>Total</td><td>22 h</td></tr>
-      </table>
-      <p class="note">Puffer 8 h. Der Termin 18.10. hält.</p>
-    </div>
-    <div class="cb">
-      <h3>Eigene Seite · KW 43–47</h3>
-      <div class="bar"><i style="width:96%;background:var(--pfirsich)"></i><span>48 / 50 h</span></div>
-      <table>
-        <tr><td>Seiten bauen: Start, 3 Kaufseiten, Editionen, Blog, Recht</td><td>12 h</td></tr>
-        <tr><td>Formular + Tracking, SEO, Ladezeit, Ads-Konto, Skillshop-Kurs</td><td>11 h</td></tr>
-        <tr><td>Barock-Bild (Collage + KI), Logo-Dateien</td><td>5 h</td></tr>
-        <tr><td>2 Konzept-Editionen (aus der Probewebsite-Vorlage)</td><td>5 h</td></tr>
-        <tr><td><b>Akt I Himmelsflug + Akt II 3D-Galerie</b> (Wow-Ablauf mit Runden)</td><td>12 h</td></tr>
-        <tr><td>Handy-Test, fremde Augen, live</td><td>3 h</td></tr>
-        <tr class="sum"><td>Total</td><td>48 h</td></tr>
-      </table>
-      <p class="note"><b>Plan B, falls es eng wird:</b> Akt II zuerst als 2D-Galerie-Wand (−5 h), 3D kommt nach dem Livegang. Der Blog darf bis 22.11. rutschen. Der Livegang am 22.11. bleibt.</p>
-    </div>
-  </div>
-  <p class="note">Später: Die Vorlagen-Phase KW 48–53 hat 60 h, der Engpass laut Zielplan liegt in KW 48–51 (Vorlagen, Ads-Start, LinkedIn gleichzeitig). Dafür muss der Grafik-Skill vor KW 01 stehen, siehe V.</p>
-
-  <h2>III · Bis zum Livegang <span class="it">(Archify)</span></h2>
-  <iframe src="bis-live-archify.html" title="Zeitplan bis Livegang"></iframe>
-
-  <h2>IV · Was ich von dir brauche</h2>
-  <div class="grid2">
-    <div class="box"><h3>Bald, sonst stockt es</h3><ol>
-      <li><span class="when hot">KW 40</span><b>2–3 Betriebe</b> für die Konzept-Editionen, oder „Lead Bot schlägt vor“.</li>
-      <li><span class="when hot">KW 40</span><b>3 Blog-Themen</b>, ich mache dir Vorschläge zum Ankreuzen.</li>
-      <li><span class="when hot">KW 40</span><b>Keywords</b> aus meiner Liste auswählen.</li>
-      <li><span class="when">KW 41</span><b>Startseitentext</b>, schreibst du selbst (Zielplan). Ich liefere dir das Gerüst.</li>
-      <li><span class="when hot">bis 18.10.</span><b>Anmeldung</b> bei der Ausgleichskasse Luzern, sie blockiert das Impressum.</li>
-    </ol></div>
-    <div class="box"><h3>Bis zum Bauen (KW 42–43)</h3><ol>
-      <li><span class="when">KW 42</span><b>Impressum-Daten:</b> Adresse, geschäftliche E-Mail, Telefon ja/nein, MWST-Status.</li>
-      <li><span class="when">KW 42</span><b>Hosting-Anbieter</b> wählen und Kosten freigeben, ich vergleiche 2–3 Optionen.</li>
-      <li><span class="when">KW 42</span><b>Belege:</b> was du zeigen darfst (z. B. Streamline-Hintergrund, Zitate).</li>
-      <li><span class="when">KW 43</span><b>Porträtfoto</b> für „Wer dahinter steht“ [?].</li>
-      <li><span class="when">KW 43</span><b>Budget</b> für Higgsfield (Barock-Bild) und KI-Stimme freigeben [?], Werkzeugbudget CHF 250/Mt.</li>
-      <li><span class="when">KW 46</span><b>Zugänge:</b> Google-Konto für Ads und Unternehmensprofil, DNS der Domain.</li>
-    </ol></div>
-  </div>
-
-  <h2>V · Was wir bauen sollten, damit ich besser arbeite</h2>
-  <div class="grid2">
-    <div class="box"><h3>Jetzt, klein, grosser Effekt</h3><ol>
-      <li><b>Stil-Prompt <code>stil.md</code></b> aus <code>tonalitaet.md</code>: Satzlänge, Hook- und CTA-Muster, je ein gutes und ein schlechtes Beispiel. Meine Entwürfe für Kaufseiten und Blog treffen dann beim ersten Mal. <span class="when">vor KW 41</span></li>
-      <li><b>Archify und Playwright fest installieren</b> statt im Temp-Ordner. Dann gehen Pläne, Screenshots echter Beispiele und Grafik-Renderings jederzeit. <span class="when">10 min</span></li>
-      <li><b>Stand-Routine:</b> am Ende jeder Sitzung <code>/stand</code>, dazu diese Übersicht neu erzeugen. So stimmt der Plan immer. <span class="when">ab jetzt</span></li>
-    </ol></div>
-    <div class="box"><h3>Vor dem Bauen / vor LinkedIn</h3><ol>
-      <li><b>Design-Tokens</b> <code>marke/tokens.css</code> aus <code>DESIGN.md</code>: Website und Grafiken nutzen exakt dieselben Werte. <span class="when">vor KW 43</span></li>
-      <li><b>Barock-Bibliothek</b> <code>marke/assets/</code>: freigestellte Figuren (PNG) mit Lizenzliste, plus Freistell-Skript (lokal, gratis [A]). Grundlage für Website, Grafiken und Videos. <span class="when">KW 43</span></li>
-      <li><b>Grafik- und Video-Skill</b> aus <code>grafik-system.md</code>: HTML-Vorlagen der 3 Formate, Rendern per Playwright. <span class="when">vor KW 01</span></li>
-    </ol></div>
-  </div>
-
-  <h2>VI · Der ganze Plan als Ablauf <span class="it">(Archify)</span></h2>
-  <iframe src="plan-archify.html" title="Plan als Ablauf"></iframe>
-  <p class="src">Quellen: Vault <code>Zielplan.md</code> (Stand 24.09.2026), Repo <code>signedbymattia</code> (<code>CLAUDE.md</code>, <code>website/seitenstruktur.md</code>, <code>recht/pflichtangaben.md</code>). Stunden sind Schätzungen [A]. Archify: beide Grafiken 9/9 Checks, Browser-Check bestanden; die Bedienelemente sind englisch.</p>
-</div>
+  <h2>Was wir als Nächstes gemeinsam machen</h2>
+  <ol><li>SEO-Basis: Konkurrenz, Volumen, Metadaten, strukturierte Daten und GEO.</li><li>Textinterview: Startseite, drei Kaufseiten, FAQ, Editionen und drei Blogartikel.</li><li>Ab KW 43 Website bauen, testen und für den Livegang vorbereiten.</li></ol>
+  <p class="foot">Vollständiger <a href="stand-2026-09-28.md">Sitzungsabschluss mit Quellen und Status</a> · <a href="../website/checkliste-vorbereitung.md">abhakbare Vorbereitungsliste</a>. Die Ausgleichskasse wird gemäss dokumentiertem Entscheid mit dem ersten Auftrag angegangen; Vorlagen vorher vorbereiten. Archify-Bedienelemente sind englisch.</p>
+</main>
 </body>
 </html>
