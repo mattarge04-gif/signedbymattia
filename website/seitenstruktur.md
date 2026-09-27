@@ -71,7 +71,12 @@ Sektionsfrage).
 
 - Menüpunkt heisst **„Editionen“**.
 - Zum Start hängen **2–3 Konzept-Editionen**: Probewebsites für echte Betriebe,
-  **klar als „Konzept“ markiert** (`marke/tonalitaet.md`). Nummerierung
+  **klar als „Konzept“ markiert** (`marke/tonalitaet.md`).
+- **In Arbeit (Mattia, 27.09.2026) [F]:** Tams (Repo `makeupbytams-website`),
+  die Keller-Scroll-Website und Sofi Health. Mattia schliesst sie selbst ab.
+  [?] Sofi Health ist eine bestehende Marke (sofihealth.com). Vor dem Zeigen
+  klären, ob es ein eigenes Konzept ist und kein Nachbau ihrer Seite. Ein
+  Nachbau wäre kein eigenes Werk und rechtlich heikel. Nummerierung
   z. B. „Edition *No.* 001 · Konzept“ [A: ob Konzepte eigene Nummern
   bekommen oder die Zählung erst mit dem ersten Kunden beginnt, noch offen].
 - Jede Edition: Screenshot im Goldrahmen, Betrieb, Aufgabe, was entschieden
@@ -102,5 +107,5 @@ belassen.
 
 - Domain und Hosting (Zielplan KW 42). Domain ist gesichert (`recht/pflichtangaben.md`).
 - Startseitentext (KW 41) schreibt Mattia selbst, ganz, nicht stichwortartig.
-- Welche Betriebe die 2–3 Konzept-Editionen zeigen.
+- ~~Welche Betriebe die Konzept-Editionen zeigen~~: Tams, Keller-Scroll, Sofi Health (siehe oben).
 - Themen der 3 Blogartikel.
