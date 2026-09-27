@@ -24,14 +24,16 @@ flowchart LR
 | Nr. | Seite | Ein Ziel | Beantwortet die Frage | Suchabsicht |
 | --- | --- | --- | --- | --- |
 | 1 | **Startseite** | zur passenden Kaufseite führen | „Bin ich hier richtig?“ | Marke |
-| 2 | Kaufseite **I Website Core** (CHF 1'600, Ziel der Google-Anzeigen) | Anfrage | „Was kostet es, wie läuft es, kann er das?“ | „webdesign luzern“, „website erstellen lassen“ |
-| 3 | Kaufseite **II Automation Core** | Anfrage | „Welcher Ablauf, was bringt es?“ | kleine Automationen |
-| 4 | Kaufseite **III + IV Sichtbarkeit** (SEO + GEO + Google-Profil) | Anfrage | „Wie werde ich gefunden?“ | lokale Sichtbarkeit |
+| 2 | Kaufseite **I Website Core** (CHF 1'600, Ziel der Google-Anzeigen) | Anfrage | „Was kostet es, wie läuft es, kann er das?“ | „webdesign luzern“ (Haupt-Keyword) |
+| 3 | Kaufseite **II Automation Core** | Anfrage | „Welcher Ablauf, was bringt es?“ | „prozesse automatisieren kmu“ |
+| 4 | Kaufseite **III + IV Sichtbarkeit** (SEO + GEO + Google-Profil) | Anfrage | „Wie werde ich gefunden?“ | „seo luzern“ |
 | 5 | **Editionen** (Galerie) | Vertrauen → Kaufseite | „Wie denkt er, was kann er?“ | – |
 | 6 | **Blog** mit 3 Artikeln zum Start | Vertrauen, SEO, LinkedIn | echte Fragen kleiner Betriebe | Informationssuche |
 | 7 | Danke-Seite | Tracking, nächster Schritt | „Was passiert jetzt?“ | – |
 | Pflicht | Impressum, Datenschutz | Recht | – | – |
 | später | Branchenseite HLKS | Anfrage | „Kennt er meine Branche?“ | „website sanitär/heizung“ (Lücke) |
+
+**Keywords je Seite und Blog-Themen:** `website/keywords.md` (27.09.2026).
 
 - **SEO + GEO und Google-Profil auf einer Seite** [A]: weniger Text bis zum
   18.10., und die Themen gehören zusammen. Zwei Seiten, falls die
@@ -108,4 +110,4 @@ belassen.
 - Domain und Hosting (Zielplan KW 42). Domain ist gesichert (`recht/pflichtangaben.md`).
 - Startseitentext (KW 41) schreibt Mattia selbst, ganz, nicht stichwortartig.
 - ~~Welche Betriebe die Konzept-Editionen zeigen~~: Tams, Keller-Scroll, Sofi Health (siehe oben).
-- Themen der 3 Blogartikel.
+- ~~Themen der 3 Blogartikel~~: GEO, Google-Profil, Automation (`website/keywords.md`).
