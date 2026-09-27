@@ -63,9 +63,9 @@ Stand: 27.09.2026. Zeitplan: Vault `Zielplan.md`. Aktuelle Phase
 
 **Nächste Schritte, in dieser Reihenfolge:**
 
-1. Blog-Themen (3) und Keywords auswählen. Auswahlseite mit Empfehlung war
-   am 27.09.2026 im Browser offen. Danach Keywords in
-   `agency-marketing/docs/GOOGLE-ADS-KEYWORDS.md` nachführen.
+1. ~~Blog-Themen und Keywords~~: erledigt 27.09.2026, `website/keywords.md`
+   (geclustert mit claude-seo), Anzeigen-Nachtrag in agency-marketing PR #15.
+   Offen: Volumen im Google Keyword-Planer prüfen.
 2. **Anmeldung** bei der Ausgleichskasse Luzern, **Frist 18.10.**
    (`website/vertrauen-und-sichtbarkeit.md` Nr. 1).
 3. Texte bis 18.10.: Startseite (Mattia), 3 Kaufseiten (Entwurf nach
