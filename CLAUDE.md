@@ -51,9 +51,10 @@ Stand: 27.09.2026. Zeitplan: Vault `Zielplan.md`. Aktuelle Phase
 
 **Nächste Schritte, in dieser Reihenfolge:**
 
-1. `agency-marketing/docs/LINKEDIN-BLOG-CONTENT.md` anpassen: Der Satz
-   „keine Stilregeln erfinden“ ist überholt. Grundlage sind jetzt
-   `marke/tonalitaet.md` und `marke/grafik-system.md`.
+1. ~~`agency-marketing/docs/LINKEDIN-BLOG-CONTENT.md` anpassen~~: erledigt
+   27.09.2026 (agency-marketing PR #14), verweist jetzt auf `marke/`.
+   Hinweis: Standard-Branch von agency-marketing auf GitHub ist
+   `claude/linkedin-marketing-funnel-x68u2g`, nicht `main` [?].
 2. [?] Kosten der KI-Stimme für lange Videos prüfen (`grafik-system.md` §5),
    Ziel ist „kostenfrei“.
 3. Bestätigen [?]: In `tonalitaet.md` ist die Antwort zum Weltgeschehen als
