@@ -1,0 +1,56 @@
+/*
+ * signedbymattia · Design-Tokens
+ * Stand: 27.09.2026 · Quelle der Wahrheit: marke/DESIGN.md (Identität „Edition“)
+ * Website, Grafiken und Videos binden diese Datei ein, statt Werte zu kopieren.
+ * Nur entschiedene Werte. Offene Werte (Abstände, Schatten, Breiten) kommen
+ * mit der Website, siehe DESIGN.md §5; bis dahin nicht erfinden.
+ */
+
+@import url("https://fonts.googleapis.com/css2?family=Host+Grotesk:wght@400;500;600;700;800&family=Instrument+Serif:ital@0;1&display=swap");
+
+:root {
+  /* Farben (DESIGN.md §2) */
+  --color-bg: #FBF3EA;          /* Creme, Grund überall */
+  --color-chapter-1: #D9CCF5;   /* Flieder */
+  --color-chapter-2: #CFE3F7;   /* Himmel */
+  --color-chapter-3: #FFD6C2;   /* Pfirsich */
+  --color-text: #231B3A;        /* Tinte, auf Creme 14.8:1 */
+  --color-text-muted: #6A5F80;  /* auf Creme 5.4:1 */
+  --color-accent: #FF9DC8;      /* Pastell-Pink, nur Knöpfe und Links; Text darauf immer Tinte */
+  --color-gold: #E3C58A;        /* Pastell-Blattgold, nur Details und Rahmen */
+  --color-bg-dark: #15122A;     /* Nacht, Akt II Galerie */
+
+  /* Schriften (DESIGN.md §3) */
+  --font-system: "Host Grotesk", system-ui, sans-serif;     /* Headlines, Listen, Text, UI */
+  --font-hand: "Instrument Serif", Georgia, serif;          /* gerade: Unterzeile; kursiv: das Hand-Wort */
+  --tracking-headline: -0.035em;
+  --tracking-hand: -0.01em;
+
+  /* Form */
+  --radius-button: 999px;       /* Pille, DESIGN.md §5 [A] */
+  --outline-button: inset 0 0 0 1.5px var(--color-text);   /* Pflicht: Pastell-Pink braucht Kontur */
+  --frame-gold: 0 0 0 2px var(--color-gold);                /* Goldrahmen, grafik-system.md §3 */
+
+  /* Grafik (grafik-system.md §1) */
+  --canvas-social-width: 1080px;
+  --canvas-social-height: 1350px;
+}
+
+/* Hand-Wort: genau ein Wort pro Headline */
+.hand {
+  font-family: var(--font-hand);
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: var(--tracking-hand);
+}
+
+/* Knopf nach DESIGN.md: Pink, Tinte, Kontur */
+.button-edition {
+  background: var(--color-accent);
+  color: var(--color-text);
+  border: 0;
+  border-radius: var(--radius-button);
+  box-shadow: var(--outline-button);
+  font-family: var(--font-system);
+  font-weight: 700;
+}

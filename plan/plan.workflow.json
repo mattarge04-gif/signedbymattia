@@ -1,0 +1,238 @@
+{
+  "schema_version": 2,
+  "diagram_type": "workflow",
+  "meta": {
+    "title": "signedbymattia · Plan bis CHF 2'500 im Monat",
+    "quality_profile": "showcase",
+    "legend": {
+      "mode": "hidden"
+    }
+  },
+  "lanes": [
+    {
+      "id": "plan",
+      "label": "Zielplan · 6 Phasen"
+    },
+    {
+      "id": "later",
+      "label": "Später"
+    },
+    {
+      "id": "detail",
+      "label": "Fundament im Detail · hier stehen wir"
+    }
+  ],
+  "mainPath": [
+    "fundament",
+    "eigene_seite",
+    "vorlagen",
+    "gespraeche",
+    "liefern",
+    "verdichten"
+  ],
+  "nodes": [
+    {
+      "id": "fundament",
+      "lane": "plan",
+      "col": 0,
+      "type": "backend",
+      "label": "▶ Fundament",
+      "sublabel": "bis 18.10.",
+      "width": 132
+    },
+    {
+      "id": "eigene_seite",
+      "lane": "plan",
+      "col": 1,
+      "type": "frontend",
+      "label": "Eigene Seite",
+      "sublabel": "live 22.11.",
+      "width": 132
+    },
+    {
+      "id": "vorlagen",
+      "lane": "plan",
+      "col": 2,
+      "type": "frontend",
+      "label": "Vorlagen",
+      "sublabel": "bis 03.01.",
+      "width": 132
+    },
+    {
+      "id": "gespraeche",
+      "lane": "plan",
+      "col": 3,
+      "type": "frontend",
+      "label": "Gespräche",
+      "sublabel": "1. Kunde 07.02.",
+      "width": 132
+    },
+    {
+      "id": "liefern",
+      "lane": "plan",
+      "col": 4,
+      "type": "frontend",
+      "label": "Liefern",
+      "sublabel": "CHF 950 / Mt.",
+      "width": 132
+    },
+    {
+      "id": "verdichten",
+      "lane": "plan",
+      "col": 5,
+      "type": "cloud",
+      "label": "Ziel 15.03.",
+      "sublabel": "CHF 2'500 / Mt.",
+      "width": 132
+    },
+    {
+      "id": "extras",
+      "lane": "later",
+      "col": 1,
+      "type": "external",
+      "label": "Website-Extras",
+      "sublabel": "in KW 43–46",
+      "width": 132
+    },
+    {
+      "id": "ads",
+      "lane": "later",
+      "col": 3,
+      "type": "external",
+      "label": "Ads + LinkedIn",
+      "sublabel": "ab KW 01",
+      "width": 132
+    },
+    {
+      "id": "grundlagen",
+      "lane": "detail",
+      "col": 0,
+      "type": "database",
+      "label": "✓ Grundlagen",
+      "sublabel": "Position, Preise",
+      "width": 132
+    },
+    {
+      "id": "identitaet",
+      "lane": "detail",
+      "col": 1,
+      "type": "database",
+      "label": "✓ Marke",
+      "sublabel": "Identität bis Grafik",
+      "width": 132
+    },
+    {
+      "id": "grafik",
+      "lane": "detail",
+      "col": 2,
+      "type": "messagebus",
+      "label": "✓ Seitenstruktur",
+      "sublabel": "27.09.",
+      "width": 132
+    },
+    {
+      "id": "texte",
+      "lane": "detail",
+      "col": 3,
+      "type": "backend",
+      "label": "▶ Texte",
+      "sublabel": "KW 40–42, 20 h",
+      "width": 132
+    }
+  ],
+  "edges": [
+    {
+      "id": "e1",
+      "from": "fundament",
+      "to": "eigene_seite",
+      "variant": "emphasis"
+    },
+    {
+      "id": "e2",
+      "from": "eigene_seite",
+      "to": "vorlagen"
+    },
+    {
+      "id": "e3",
+      "from": "vorlagen",
+      "to": "gespraeche"
+    },
+    {
+      "id": "e4",
+      "from": "gespraeche",
+      "to": "liefern"
+    },
+    {
+      "id": "e5",
+      "from": "liefern",
+      "to": "verdichten"
+    },
+    {
+      "id": "b1",
+      "from": "fundament",
+      "to": "grundlagen",
+      "variant": "dashed",
+      "role": "branch"
+    },
+    {
+      "id": "d1",
+      "from": "grundlagen",
+      "to": "identitaet"
+    },
+    {
+      "id": "d2",
+      "from": "identitaet",
+      "to": "grafik",
+      "variant": "emphasis"
+    },
+    {
+      "id": "d3",
+      "from": "grafik",
+      "to": "texte",
+      "variant": "dashed"
+    },
+    {
+      "id": "b2",
+      "from": "eigene_seite",
+      "to": "extras",
+      "variant": "dashed",
+      "role": "branch"
+    },
+    {
+      "id": "b3",
+      "from": "gespraeche",
+      "to": "ads",
+      "variant": "dashed",
+      "role": "branch"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "Wo wir stehen",
+      "items": [
+        "Ende KW 39, Phase Fundament",
+        "Grundlagen, Marke, Grafik-System, Seitenstruktur fertig",
+        "Vorsprung: KW 40, 41 (Teil) und 43 (Gestaltung) schon erledigt"
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "Als Nächstes",
+      "items": [
+        "Keywords, dann Startseite und Kaufseiten",
+        "Blog und Editionen bis 18.10.",
+        "Eigene Seite: 48 h von 50 h, knapp"
+      ]
+    },
+    {
+      "dot": "emerald",
+      "title": "Ziel",
+      "items": [
+        "CHF 2'500 Gewinn im Monat bis 15.03.2027",
+        "1.7 Projekte pro Monat à CHF 1'600",
+        "Annahme: 15 h pro Projekt, Messung KW 49"
+      ]
+    }
+  ]
+}
