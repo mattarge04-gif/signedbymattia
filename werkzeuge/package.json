@@ -1,0 +1,13 @@
+{
+  "name": "signedbymattia-werkzeuge",
+  "private": true,
+  "description": "Kleine Werkzeuge: Screenshots echter Seiten, Kontaktbogen, gemeinfreie Bilder aus dem Met Museum",
+  "scripts": {
+    "screenshot": "node screenshot.cjs",
+    "kontaktbogen": "node kontaktbogen.cjs",
+    "met": "node met-cc0.cjs"
+  },
+  "dependencies": {
+    "playwright": "1.63.0"
+  }
+}

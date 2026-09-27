@@ -1,0 +1,220 @@
+{
+  "schema_version": 2,
+  "diagram_type": "workflow",
+  "meta": {
+    "title": "Bis zum Livegang 22.11. · deine Stunden pro Block",
+    "quality_profile": "showcase",
+    "legend": {
+      "mode": "hidden"
+    }
+  },
+  "lanes": [
+    {
+      "id": "texte",
+      "label": "Texte · Fundament"
+    },
+    {
+      "id": "bauen",
+      "label": "Seite bauen"
+    },
+    {
+      "id": "wow",
+      "label": "Marke + Wow",
+      "variant": "exception"
+    }
+  ],
+  "phases": [
+    {
+      "id": "p40",
+      "label": "KW 40",
+      "fromCol": 0,
+      "toCol": 0
+    },
+    {
+      "id": "p41",
+      "label": "KW 41",
+      "fromCol": 1,
+      "toCol": 1
+    },
+    {
+      "id": "p42",
+      "label": "KW 42 · Texte fertig",
+      "fromCol": 2,
+      "toCol": 2,
+      "variant": "emphasis"
+    },
+    {
+      "id": "p43",
+      "label": "KW 43–44",
+      "fromCol": 3,
+      "toCol": 3
+    },
+    {
+      "id": "p45",
+      "label": "KW 45–46",
+      "fromCol": 4,
+      "toCol": 4
+    },
+    {
+      "id": "p47",
+      "label": "KW 47 · live",
+      "fromCol": 5,
+      "toCol": 5,
+      "variant": "emphasis"
+    }
+  ],
+  "mainPath": [
+    "keywords",
+    "kaufseiten",
+    "blog",
+    "rohbau",
+    "technik",
+    "live"
+  ],
+  "nodes": [
+    {
+      "id": "keywords",
+      "lane": "texte",
+      "col": 0,
+      "type": "backend",
+      "label": "Keywords",
+      "sublabel": "1.5 h",
+      "width": 132
+    },
+    {
+      "id": "kaufseiten",
+      "lane": "texte",
+      "col": 1,
+      "type": "backend",
+      "label": "Start + Kaufseiten",
+      "sublabel": "7.5 h",
+      "width": 132
+    },
+    {
+      "id": "blog",
+      "lane": "texte",
+      "col": 2,
+      "type": "backend",
+      "label": "Blog + Editionen",
+      "sublabel": "9.5 h",
+      "width": 132
+    },
+    {
+      "id": "rohbau",
+      "lane": "bauen",
+      "col": 3,
+      "type": "frontend",
+      "label": "Seiten bauen",
+      "sublabel": "12 h",
+      "width": 132
+    },
+    {
+      "id": "technik",
+      "lane": "bauen",
+      "col": 4,
+      "type": "frontend",
+      "label": "Formular, SEO, Ads",
+      "sublabel": "11 h",
+      "width": 132
+    },
+    {
+      "id": "live",
+      "lane": "bauen",
+      "col": 5,
+      "type": "cloud",
+      "label": "Test + live",
+      "sublabel": "3 h",
+      "width": 132
+    },
+    {
+      "id": "bild",
+      "lane": "wow",
+      "col": 3,
+      "type": "messagebus",
+      "label": "Bild, Logo, Editionen",
+      "sublabel": "10 h",
+      "width": 160
+    },
+    {
+      "id": "akte",
+      "lane": "wow",
+      "col": 4,
+      "type": "messagebus",
+      "label": "Akt I + Akt II",
+      "sublabel": "12 h · Risiko",
+      "width": 132
+    }
+  ],
+  "edges": [
+    {
+      "id": "m1",
+      "from": "keywords",
+      "to": "kaufseiten",
+      "variant": "emphasis"
+    },
+    {
+      "id": "m2",
+      "from": "kaufseiten",
+      "to": "blog",
+      "variant": "emphasis"
+    },
+    {
+      "id": "m3",
+      "from": "blog",
+      "to": "rohbau",
+      "variant": "emphasis"
+    },
+    {
+      "id": "m4",
+      "from": "rohbau",
+      "to": "technik"
+    },
+    {
+      "id": "m5",
+      "from": "technik",
+      "to": "live"
+    },
+    {
+      "id": "w1",
+      "from": "bild",
+      "to": "akte",
+      "variant": "dashed"
+    },
+    {
+      "id": "w2",
+      "from": "akte",
+      "to": "live",
+      "variant": "security",
+      "role": "error"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "emerald",
+      "title": "Fundament KW 40–42",
+      "items": [
+        "22 h Arbeit von 30 h (inkl. Anmeldung)",
+        "Puffer 8 h",
+        "Im Plan"
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "Eigene Seite KW 43–47",
+      "items": [
+        "48 h Arbeit von 50 h",
+        "Puffer nur 2 h",
+        "Wow-Akte sind das Risiko"
+      ]
+    },
+    {
+      "dot": "rose",
+      "title": "Falls es eng wird",
+      "items": [
+        "Akt II zuerst als 2D-Wand, 3D nach dem Livegang",
+        "Blog bis 22.11. statt 18.10.",
+        "Livegang 22.11. bleibt"
+      ]
+    }
+  ]
+}

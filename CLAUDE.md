@@ -34,7 +34,14 @@ Budgets und Kostenfreigaben bleiben in `agency-automation-os/projects/lead-engin
    `Stand:`-Datum und, wenn es ein Entscheid ist, einen Eintrag in
    `entscheide.md`.
 7. Werkzeuge aus der AI Tool Box (`agency-marketing/docs/AI-TOOL-BOX.md`);
-   für Marke und UI vor allem impeccable, taste-skill, design.md.
+   für Marke und UI vor allem impeccable, taste-skill, design.md. Eigene
+   Werkzeuge in `werkzeuge/` (Screenshots, Kontaktbogen, Met-CC0-Bilder),
+   Diagramme mit dem Skill **archify**.
+8. **Texte** entstehen nach `marke/stil.md`, Werte für Website und Grafiken
+   kommen aus `marke/tokens.css`, nie kopiert.
+9. **Stand-Routine** am Ende jeder Sitzung: `/stand`, dann den Abschnitt
+   unten nachführen und die Übersicht in `plan/` neu erzeugen
+   (`plan/README.md`).
 
 ## Aktueller Stand und nächste Schritte
 
@@ -46,23 +53,27 @@ Stand: 27.09.2026. Zeitplan: Vault `Zielplan.md`. Aktuelle Phase
 - Identität „Edition“: `marke/DESIGN.md`, Markenübersicht
   `marke/entwuerfe/identitaet-edition-v2.html` (PR #8).
 - Persönlichkeit und Stimme: `marke/tonalitaet.md` (PR #9).
-- Grafik- und Video-System: `marke/grafik-system.md`, Prototyp
-  `marke/entwuerfe/grafik-system-v1.html` (27.09.2026).
+- Grafik- und Video-System: `marke/grafik-system.md` (PR #10).
+- Seitenstruktur: `website/seitenstruktur.md` (PR #11).
+- Anfrage-Liste Vertrauen und SEO: `website/vertrauen-und-sichtbarkeit.md` (PR #12).
+- Werkzeuge (27.09.2026): Stil-Vorlage `marke/stil.md` [Mattia bestätigt ?],
+  Design-Tokens `marke/tokens.css`, `werkzeuge/` mit Playwright-Skripten,
+  archify fest installiert, Plan-Übersicht `plan/`.
+- Konzept-Editionen in Arbeit bei Mattia: Tams, Keller-Scroll, Sofi Health.
 
 **Nächste Schritte, in dieser Reihenfolge:**
 
-1. ~~`agency-marketing/docs/LINKEDIN-BLOG-CONTENT.md` anpassen~~: erledigt
-   27.09.2026 (agency-marketing PR #14), verweist jetzt auf `marke/`.
-   Standard-Branch von agency-marketing am 27.09.2026 auf `main` umgestellt.
-2. [?] Kosten der KI-Stimme für lange Videos prüfen (`grafik-system.md` §5),
-   Ziel ist „kostenfrei“.
-3. ~~Weltgeschehen bestätigen~~: erledigt 27.09.2026, auch in Bildern erlaubt.
-4. ~~Anki-Screenshots klären~~: erledigt, waren aus Versehen.
-5. Zielplan KW 41–42, Meilenstein 18.10.: alle Texte stehen.
-   - ~~Seitenstruktur~~: erledigt 27.09.2026, `website/seitenstruktur.md`.
-   - Offen: Keywords, Text der Startseite (schreibt Mattia), 3 Kaufseiten,
-     Editionen (welche Konzept-Betriebe?), 3 Blogartikel (Themen?), Hosting,
-     Belege.
+1. Blog-Themen (3) und Keywords auswählen. Auswahlseite mit Empfehlung war
+   am 27.09.2026 im Browser offen. Danach Keywords in
+   `agency-marketing/docs/GOOGLE-ADS-KEYWORDS.md` nachführen.
+2. **Anmeldung** bei der Ausgleichskasse Luzern, **Frist 18.10.**
+   (`website/vertrauen-und-sichtbarkeit.md` Nr. 1).
+3. Texte bis 18.10.: Startseite (Mattia), 3 Kaufseiten (Entwurf nach
+   `marke/stil.md`), Editionen, 3 Blogartikel, Belege, Hosting.
+4. Gewerbe Rontal beitreten (CHF 225/Jahr), Gewerbeverein Ebikon und
+   IG Kultur Luzern anfragen.
+5. [?] Kosten der KI-Stimme prüfen (`marke/grafik-system.md` §5), Budget Higgsfield.
+6. Später: Barock-Bibliothek `marke/assets/` (KW 43), Grafik- und Video-Skill (vor KW 01).
 
 **Kommt erst mit der Website** (bis dahin nur dokumentiert in `DESIGN.md`):
 Raum-Tokens, Logo-Dateien (SVG, PNG), eigenes Barock-Bild, Freisteller für
