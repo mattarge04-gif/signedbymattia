@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="de-CH">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Grafik-System v1 · signedbymattia</title>
+<style>
+  body{margin:0;background:#f4f3f7;color:#231B3A;font-family:"Host Grotesk",system-ui,sans-serif;padding:32px 16px 64px}
+  .wrap{max-width:1360px;margin:0 auto}
+  h2{font-size:28px;margin:0 0 6px;letter-spacing:-.02em}
+  .subtitle{color:#6A5F80;margin:0 0 22px;max-width:90ch}
+</style>
+</head>
+<body>
+<div class="wrap">
+<link href="https://fonts.googleapis.com/css2?family=Host+Grotesk:wght@400;500;600;700;800&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root{--creme:#FBF3EA;--flieder:#D9CCF5;--himmel:#CFE3F7;--pfirsich:#FFD6C2;--tinte:#231B3A;--grau:#6A5F80;--pink:#FF9DC8;--gold:#E3C58A;--nacht:#15122A}
+  .gx *{box-sizing:border-box}
+  .gx{font-family:"Host Grotesk",sans-serif;color:var(--tinte)}
+  .s{font-weight:700;letter-spacing:-.04em}
+  .i{font-family:"Instrument Serif",serif;font-style:italic;font-weight:400;letter-spacing:-.01em}
+  .r{font-family:"Instrument Serif",serif;font-weight:400}
+  .row{display:flex;gap:16px;flex-wrap:wrap;align-items:flex-start;margin:6px 0 8px}
+  .cap{font-size:13px;color:var(--grau);margin:4px 0 26px;max-width:90ch}
+  h3.f{font-size:19px;margin:26px 0 6px}
+  /* Leinwand 4:5 */
+  .cv{width:300px;aspect-ratio:4/5;position:relative;overflow:hidden;border-radius:6px;box-shadow:0 14px 30px -18px rgba(35,27,58,.55);flex:none}
+  .foot{position:absolute;left:16px;right:16px;bottom:12px;display:flex;justify-content:space-between;align-items:baseline;font-size:11px;z-index:5}
+  .foot .lg{font-weight:600;letter-spacing:-.03em;font-size:12px}
+  .foot .lg .i{font-size:13px}
+  /* Papier-Ausschnitt */
+  .torn{position:absolute;background-size:cover;filter:drop-shadow(0 8px 10px rgba(35,27,58,.35));
+    clip-path:polygon(3% 6%,12% 2%,22% 5%,31% 1%,43% 4%,55% 0%,66% 4%,78% 1%,89% 5%,98% 2%,96% 14%,99% 27%,95% 40%,99% 53%,96% 66%,99% 80%,95% 92%,97% 99%,85% 96%,73% 99%,61% 95%,49% 99%,37% 96%,25% 99%,13% 95%,2% 98%,4% 85%,0% 72%,4% 59%,1% 46%,5% 33%,1% 20%)}
+  .paper{position:absolute;background:#f4ead8;filter:drop-shadow(0 6px 8px rgba(35,27,58,.25))}
+  .cursor{position:absolute;width:30px;height:38px;z-index:6;filter:drop-shadow(0 4px 6px rgba(0,0,0,.35))}
+  .gold{border:2px solid var(--gold);box-shadow:0 0 0 5px rgba(227,197,138,.25)}
+  /* Statement */
+  .st{background:var(--flieder)}
+  .st .top{position:absolute;left:16px;top:16px;font-size:22px;line-height:1;z-index:3}
+  .st .big{position:absolute;left:10px;bottom:34px;font-size:100px;line-height:.8;font-weight:800;letter-spacing:-.06em;z-index:1}
+  .st .torn{width:190px;height:230px;right:-6px;top:44px;background-image:url(art-cupid.jpg);background-size:340%;background-position:78% 55%;z-index:2;transform:rotate(4deg)}
+  /* Karussell */
+  .k1{background:var(--pfirsich)}
+  .k1 .torn.a{width:230px;height:170px;left:-10px;top:-8px;background-image:url(art-barock.jpg);background-size:230%;background-position:40% 30%;transform:rotate(-3deg)}
+  .k1 .torn.b{width:130px;height:150px;right:-8px;top:118px;background-image:url(art-cupid.jpg);background-size:420%;background-position:80% 50%;transform:rotate(7deg);z-index:3}
+  .k1 .paper{left:14px;top:150px;width:170px;height:26px;transform:rotate(-4deg);display:flex;align-items:center;padding:0 10px;font-size:12px;font-weight:600;z-index:4}
+  .k1 .t{position:absolute;left:16px;bottom:38px;font-size:40px;line-height:.92;z-index:4;max-width:8ch}
+  .k2{background:var(--creme)}
+  .k2 .num{position:absolute;left:18px;top:14px;font-size:64px;line-height:1}
+  .k2 .t{position:absolute;left:18px;top:110px;right:18px;font-size:27px;line-height:1.02}
+  .k2 .sub{position:absolute;left:18px;top:215px;right:40px;font-size:12.5px;line-height:1.4;color:var(--grau)}
+  .k2 .torn{width:62px;height:70px;right:16px;bottom:40px;background-image:url(art-cupid.jpg);background-size:650%;background-position:78% 42%;transform:rotate(8deg)}
+  .k3{background:var(--pink)}
+  .k3 .torn{width:200px;height:150px;right:-14px;top:-6px;background-image:url(art-barock.jpg);background-size:260%;background-position:70% 20%;transform:rotate(5deg)}
+  .k3 .t{position:absolute;left:16px;top:160px;font-size:40px;line-height:.92}
+  .k3 .cta{position:absolute;left:16px;bottom:44px;background:var(--creme);box-shadow:inset 0 0 0 1.5px var(--tinte);border-radius:99px;padding:8px 14px;font-size:12px;font-weight:700}
+  /* Edition */
+  .ed{background:var(--himmel)}
+  .ed .torn.a{width:320px;height:190px;left:-10px;top:-12px;background-image:url(art-barock.jpg);background-size:200%;background-position:30% 40%;transform:rotate(-2deg)}
+  .ed .site{position:absolute;left:34px;top:74px;width:232px;height:170px;background:var(--creme);border-radius:4px;z-index:3;overflow:hidden}
+  .ed .site .bar{height:14px;background:#fff;display:flex;gap:3px;align-items:center;padding:0 6px}
+  .ed .site .bar i{width:5px;height:5px;border-radius:50%;background:var(--flieder)}
+  .ed .site .h{padding:12px 12px 0;font-size:21px;line-height:.95}
+  .ed .site .img{margin:10px 12px;height:66px;border-radius:3px;background:linear-gradient(135deg,var(--pfirsich),var(--flieder))}
+  .ed .lab{position:absolute;left:16px;top:262px;z-index:4;font-size:30px;line-height:.95}
+  .ed .who{position:absolute;left:16px;top:300px;font-size:12px;color:var(--grau);z-index:4}
+  /* Video */
+  .vid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+  .vb{background:#fff;border:1px solid #e6e0ee;border-radius:10px;padding:12px;font-size:13px;line-height:1.4}
+  .vb b{display:block;font-size:14px;margin-bottom:4px}
+  .strip{display:flex;gap:4px;margin:8px 0}
+  .strip span{flex:1;aspect-ratio:9/16;border-radius:4px;background-size:cover;background-position:center;position:relative}
+  .strip span em{position:absolute;left:4px;bottom:4px;font-size:9px;font-style:normal;background:rgba(251,243,234,.9);padding:1px 4px;border-radius:3px}
+  @media (max-width:900px){.vid{grid-template-columns:1fr 1fr}}
+</style>
+
+<div class="gx">
+<h2>Grafik-System · Prototyp v1</h2>
+<p class="subtitle">Entschieden am 27.09.2026, Regeln in <code>marke/grafik-system.md</code>. Format 4:5 (LinkedIn 1080×1350). Collage-Stücke sind Platzhalter: Tiepolo, Allegory of the Planets and Continents, 1752, und Batoni, Diana and Cupid, beide Met Museum Open Access (CC0).</p>
+
+<h3 class="f">I · Statement-Karte (Aufbau 1: Riesen-Schrift + Figur)</h3>
+<div class="row">
+  <div class="cv st">
+    <div class="top"><span class="s">Kein Template.</span><br><span class="s">Ein</span></div>
+    <div class="big s">WERK<span class="i" style="font-size:100px;letter-spacing:-.02em">.</span></div>
+    <div class="torn"></div>
+    <svg class="cursor" style="left:150px;top:190px" viewBox="0 0 24 30"><path d="M2 2 L2 24 L8 18 L12 28 L16 26 L12 17 L20 17 Z" fill="#fff" stroke="#231B3A" stroke-width="1.6" stroke-linejoin="round"/></svg>
+    <div class="foot"><span class="lg">signed<span class="i">by</span>mattia</span><span class="r">Statement</span></div>
+  </div>
+  <div class="cv st" style="background:var(--himmel)">
+    <div class="top" style="font-size:20px"><span class="s">Die Welt redet über KI.</span><br><span class="s">Ich über</span></div>
+    <div class="big s" style="font-size:96px">HAND<span class="i" style="font-size:96px">.</span></div>
+    <div class="torn" style="background-position:72% 30%;transform:rotate(-5deg)"></div>
+    <svg class="cursor" style="left:120px;top:170px" viewBox="0 0 24 30"><path d="M2 2 L2 24 L8 18 L12 28 L16 26 L12 17 L20 17 Z" fill="#fff" stroke="#231B3A" stroke-width="1.6" stroke-linejoin="round"/></svg>
+    <div class="foot"><span class="lg">signed<span class="i">by</span>mattia</span><span class="r">Statement</span></div>
+  </div>
+</div>
+<p class="cap">Riesen-Wort unten, ein Collage-Stück überlappt es, oben ein kurzer Satz, das Hand-Wort steckt im Punkt. Rechts ein Beispiel für „Weltgeschehen als Aufhänger“.</p>
+
+<h3 class="f">II · Tipp-Karussell (Cover laut, innen ruhig)</h3>
+<div class="row">
+  <div class="cv k1">
+    <div class="torn a"></div><div class="torn b"></div>
+    <div class="paper">Tipps für Kreative · I–V</div>
+    <div class="t"><span class="s">5 Dinge, die deine Website</span> <span class="i">verrät.</span></div>
+    <svg class="cursor" style="left:222px;top:250px" viewBox="0 0 24 30"><path d="M2 2 L2 24 L8 18 L12 28 L16 26 L12 17 L20 17 Z" fill="#fff" stroke="#231B3A" stroke-width="1.6" stroke-linejoin="round"/></svg>
+    <div class="foot"><span class="lg">signed<span class="i">by</span>mattia</span><span class="r">I / VII</span></div>
+  </div>
+  <div class="cv k2">
+    <div class="num i">II</div>
+    <div class="t"><span class="s">Der Knopf ist zu leise.</span></div>
+    <div class="sub">Wer nicht in 3 Sekunden sieht, wie er dich erreicht, geht. Ein Knopf, eine Farbe, ganz oben.</div>
+    <div class="torn"></div>
+    <div class="foot"><span class="lg">signed<span class="i">by</span>mattia</span><span class="r">II / VII</span></div>
+  </div>
+  <div class="cv k3">
+    <div class="torn"></div>
+    <div class="t"><span class="s">Kein Template.</span><br><span class="s">Ein</span> <span class="i">Werk.</span></div>
+    <div class="cta">Edition anfragen → signedbymattia.ch</div>
+    <div class="foot"><span class="lg">signed<span class="i">by</span>mattia</span><span class="r">VII / VII</span></div>
+  </div>
+</div>
+<p class="cap">Seite 1 und die letzte Seite: Collage + grosse Schrift. Seiten 2–6: Creme oder ein Pastell-Kapitel, römische Nummer kursiv, ein Satz, ein kleiner Collage-Sticker als Wiedererkennung.</p>
+
+<h3 class="f">III · Editions-Vorstellung (Aufbau 4: Collage + Goldrahmen)</h3>
+<div class="row">
+  <div class="cv ed">
+    <div class="torn a"></div>
+    <div class="site gold"><div class="bar"><i></i><i></i><i></i></div><div class="h"><span class="s">Atelier Beispiel</span><br><span class="i">Keramik, Root</span></div><div class="img"></div></div>
+    <svg class="cursor" style="left:210px;top:190px" viewBox="0 0 24 30"><path d="M2 2 L2 24 L8 18 L12 28 L16 26 L12 17 L20 17 Z" fill="#fff" stroke="#231B3A" stroke-width="1.6" stroke-linejoin="round"/></svg>
+    <div class="lab"><span class="s">Edition</span> <span class="i">No.</span> <span class="s">001</span></div>
+    <div class="who">Konzept · Beispielkunde · live MMXXVI</div>
+    <div class="foot"><span class="lg">signed<span class="i">by</span>mattia</span><span class="r">No. 001</span></div>
+  </div>
+</div>
+<p class="cap">Die Website sitzt im Goldrahmen vor einem Barock-Himmel, der Mauszeiger „zeigt“ darauf. Nur echte Kundenarbeiten mit Freigabe, sonst als Konzept markiert (Regel aus tonalitaet.md).</p>
+
+<h3 class="f">IV · Video: vier Bewegungen, zwei Längen</h3>
+<div class="vid">
+  <div class="vb"><b>Scherenschnitt</b>Figuren ploppen rein, Arme klappen. Für Statements und Pointen.<div class="strip"><span style="background-image:url(art-cupid.jpg);background-position:80% 40%"><em>1</em></span><span style="background-image:url(art-cupid.jpg);background-position:70% 50%"><em>2</em></span><span style="background:var(--flieder)"><em>3 WERK.</em></span></div></div>
+  <div class="vb"><b>Kamerafahrt</b>Langsamer Flug durch Ebenen eines Barock-Bildes. Für Editions-Intros, edel.<div class="strip"><span style="background-image:url(art-barock.jpg);background-size:300%"><em>1</em></span><span style="background-image:url(art-barock.jpg);background-size:500%"><em>2</em></span><span style="background-image:url(art-barock.jpg);background-size:800%"><em>3</em></span></div></div>
+  <div class="vb"><b>Kinetische Typo</b>Worte im Takt, das Hand-Wort kommt kursiv. Für Tipps, schnell produziert.<div class="strip"><span style="background:var(--creme)"><em>Kein</em></span><span style="background:var(--creme)"><em>Template.</em></span><span style="background:var(--pink)"><em>Werk.</em></span></div></div>
+  <div class="vb"><b>Website im Rahmen</b>Edition scrollt im Goldrahmen, der Mauszeiger klickt. Für Editions-Vorstellungen.<div class="strip"><span style="background:var(--himmel)"><em>Rahmen</em></span><span style="background:var(--creme)"><em>Scroll</em></span><span style="background:var(--himmel)"><em>No. 001</em></span></div></div>
+</div>
+<p class="cap"><b>Kurz (6–15 s):</b> Musik, Text im Bild, läuft auch stumm. <b>Lang (20–45 s):</b> KI-Stimme + eingebrannte Untertitel. Kosten der KI-Stimme noch offen [?].</p>
+</div>
+</div></body></html>

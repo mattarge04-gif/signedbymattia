@@ -11,7 +11,7 @@ Die früheren drei Richtungen (`entwuerfe/markenrichtungen.html`, A Signatur,
 B Editionen, C Nachtlicht) sind damit abgelöst und bleiben nur als Verlauf.
 
 **Reihenfolge Identität:** ~~Richtung wählen~~ → ~~Werte hier eintragen~~ →
-Persönlichkeit und Sprache (`tonalitaet.md`) → Grafik- und Video-Stil →
+~~Persönlichkeit und Sprache~~ (`tonalitaet.md`) → ~~Grafik- und Video-Stil~~ (`grafik-system.md`) →
 eigenes Barock-Bild → Logo/Wortmarke (SVG, PNG) → Vorlagen (Offerte, Rechnung,
 E-Mail-Signatur, LinkedIn-Grafik, Präsentation, Zertifikat) → Website.
 
