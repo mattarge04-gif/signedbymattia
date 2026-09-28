@@ -55,6 +55,12 @@ Verlust von Projektdateien. Aktueller Stand, Eigenaufwand und Planrisiken:
 Die bisherige Stundenrechnung in `plan/bis-live.workflow.json` ist wegen
 erweiterter SEO-Basis und verschobener AHV-Anmeldung nicht mehr aktuell.
 
+**Sitzungsabschluss 28.09. abends:** SEO-Basis weitgehend erledigt (PR #16,
+Merge `5c6b1ad`), Nachtrag in `plan/stand-2026-09-28.md`. Andere Bereiche:
+`signedbymattia-website` existiert noch nicht (Bau ab KW 43, 19.10., live
+22.11.2026); `agency-marketing` nur Plan, nichts gebaut; Lead Engine in
+`agency-automation-os` DEV-Stand 08.09., nichts live.
+
 **Erledigt [F]:**
 
 - Identität „Edition“: `marke/DESIGN.md`, Markenübersicht
@@ -67,19 +73,37 @@ erweiterter SEO-Basis und verschobener AHV-Anmeldung nicht mehr aktuell.
   Design-Tokens `marke/tokens.css`, `werkzeuge/` mit Playwright-Skripten,
   archify fest installiert, Plan-Übersicht `plan/`.
 - Konzept-Editionen in Arbeit bei Mattia: Tams, Keller-Scroll, Sofi Health.
+- SEO-Basis (28.09.2026, PR #16, alle Entscheide in `entscheide.md`):
+  Konkurrenz google.ch `website/konkurrenz-seo.md`; Titel und Beschreibungen
+  aller Seiten `website/seo-titel.md`; JSON-LD-Vorlagen ohne FAQPage
+  `website/strukturierte-daten.md`; GEO mit robots.txt (Such-Crawler ja,
+  KI-Training gesperrt) und llms.txt-Entwurf `website/geo.md`; Google-Profil
+  vorbereitet `website/google-profil.md` (Adresse verborgen, nicht im Repo).
+- Preise sind Endpreise, kein MWST-Hinweis (`grundlagen/angebote-preise.md`
+  Entscheid 4). Preismatrix: SEO + GEO CHF 690, Google-Profil CHF 290, beide
+  CHF 890, Automation CHF 500 + CHF 400 je weiterer Ablauf.
+- Keyword Kaufseite II neu „automatisierung kmu luzern“; „prozesse
+  automatisieren kmu“ geht an einen Blogartikel (`website/keywords.md`,
+  `website/seitenstruktur.md`). Volumen ungeprüft [A].
+- Atelier `/preise` (Tiepolo-Leinwand, Tarot-Karten I–IV, Echtheitszertifikat
+  mit vorausgefülltem Formular): `website/preisrechner.md`, Prototyp
+  `marke/entwuerfe/atelier-prototyp.html` von Mattia abgenommen.
 
 **Nächste Schritte, in dieser Reihenfolge:**
 
 1. ~~Blog-Themen und Keywords~~: erledigt 27.09.2026, `website/keywords.md`
    (geclustert mit claude-seo), Anzeigen-Nachtrag in agency-marketing PR #15.
    Offen: Volumen im Google Keyword-Planer prüfen.
-2. **SEO-Basis mit claude-seo, umfangreich** (Wunsch Mattia 27.09.2026):
-   zuerst Konkurrenz ansehen, dann Keywords (Volumen), SEO je Seite, GEO,
-   strukturierte Daten, geschäftliches Google-Konto und Unternehmensprofil.
-   Aufgaben in `website/checkliste-vorbereitung.md` §5.
+2. ~~SEO-Basis mit claude-seo~~: weitgehend erledigt 28.09.2026 (siehe oben),
+   `website/checkliste-vorbereitung.md` §5: 4 von 7 abgehakt. Offen:
+   Keyword-Planer (Mattia), Google-Profil anlegen (sobald Logo und Porträt
+   da sind), technischer Check nach dem Bau.
 3. **Texte gemeinsam** im Interview (noch nichts entwerfen, bevor Mattia es
-   sagt): Startseite (Mattia schreibt), 3 Kaufseiten, Editionen, 3 Blogartikel.
-   Was Mattia dafür liefern muss: `website/checkliste-vorbereitung.md` §1.
+   sagt; Meilenstein 18.10.): Startseite (Mattia schreibt), 3 Kaufseiten,
+   Editionen, 3 Blogartikel. Was Mattia dafür liefern muss:
+   `website/checkliste-vorbereitung.md` §1. Danach Zugänge §3 (geschäftliches
+   Google-Konto, E-Mail, Hosting, DNS), dann Keyword-Planer, dann Logo und
+   Porträt, dann Google-Profil anlegen.
 4. Netzwerk Stadt Luzern: Netzwerk Neubad, *zünder, Wirtschaftsverband
    Stadt Luzern (`website/vertrauen-und-sichtbarkeit.md` §3a).
 - **Anmeldung Ausgleichskasse:** nicht mehr bis 18.10., sondern **mit dem
