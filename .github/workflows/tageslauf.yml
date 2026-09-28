@@ -1,0 +1,73 @@
+# Tageslauf: Claude arbeitet den Auftrag des Tages ab, während Mattia arbeitet.
+# Ablauf und Regeln: plan/auftraege/README.md
+# Kosten: eigener API-Schlüssel mit Ausgabenlimit CHF 20/Monat in der Anthropic Console
+# (Entscheid 28.09.2026, agency-automation-os budgets.yaml › claude_tageslauf_api).
+
+name: Tageslauf
+
+on:
+  schedule:
+    # Mo–Fr 06:30 UTC = 08:30 Sommerzeit / 07:30 Winterzeit (Zürich)
+    - cron: "30 6 * * 1-5"
+  workflow_dispatch: {}
+
+concurrency:
+  group: tageslauf
+  cancel-in-progress: false
+
+jobs:
+  tageslauf:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    permissions:
+      contents: write
+      pull-requests: write
+      issues: write
+      id-token: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Auftrag des Tages suchen
+        id: auftrag
+        run: |
+          TAG=$(TZ=Europe/Zurich date +%F)
+          DATEI="plan/auftraege/$TAG.md"
+          echo "tag=$TAG" >> "$GITHUB_OUTPUT"
+          if [ -f "$DATEI" ] && grep -q "^Status: freigegeben" "$DATEI"; then
+            echo "datei=$DATEI" >> "$GITHUB_OUTPUT"
+            echo "vorhanden=ja" >> "$GITHUB_OUTPUT"
+          else
+            echo "Kein freigegebener Auftrag für $TAG. Kein Lauf, keine Kosten."
+            echo "vorhanden=nein" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Claude arbeitet den Auftrag ab
+        if: steps.auftrag.outputs.vorhanden == 'ja'
+        uses: anthropics/claude-code-action@v1
+        with:
+          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          prompt: |
+            REPO: ${{ github.repository }}
+            TAG: ${{ steps.auftrag.outputs.tag }}
+            AUFTRAG: ${{ steps.auftrag.outputs.datei }}
+
+            Du bist der Tageslauf von signedbymattia. Lies zuerst CLAUDE.md,
+            dann plan/auftraege/README.md (Regeln), dann den AUFTRAG.
+
+            1. Erstelle den Branch `tageslauf/${{ steps.auftrag.outputs.tag }}` von main.
+            2. Arbeite die Aufgaben der Reihe nach ab. Pro Aufgabe ein Commit.
+            3. Halte dich an „Grenzen" jeder Aufgabe. Triffst du auf einen offenen
+               Entscheid [?], rate nicht: Aufgabe als blockiert markieren, Frage notieren,
+               zur nächsten Aufgabe.
+            4. Schreibe am Ende den Bericht in den AUFTRAG (Abschnitt „Bericht") und
+               committe ihn.
+            5. Pushe den Branch und öffne einen Pull Request gegen main mit dem Titel
+               „Tageslauf ${{ steps.auftrag.outputs.tag }}" und dem Bericht als Beschreibung.
+            Nie auf main pushen, nie mergen, nichts veröffentlichen, keine Geheimnisse.
+          claude_args: |
+            --model claude-sonnet-5-5
+            --max-turns 60
+            --allowedTools "Read,Write,Edit,Glob,Grep,WebSearch,WebFetch,Bash(git:*),Bash(gh pr:*),Bash(node:*),Bash(npm:*),Bash(npx:*),Bash(python3:*),Bash(ls:*),Bash(mkdir:*)"
