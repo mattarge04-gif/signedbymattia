@@ -64,8 +64,8 @@ Abhaken, sobald erledigt. Reihenfolge = was zuerst blockiert.
 - [ ] **Du:** Keyword-Volumen im Google Keyword-Planer prüfen (braucht das Google-Ads-Konto aus 3.)
 - [x] **Ich:** Seitentitel und Beschreibungen je Seite: entschieden 28.09.2026, `website/seo-titel.md`. Überschriften im Textinterview
 - [x] **Ich:** Strukturierte Daten: Vorlage 28.09.2026 in `website/strukturierte-daten.md`, Platzhalter (Name, Adresse, E-Mail) offen
-- [x] **Ich:** GEO: Plan 28.09.2026 in `website/geo.md` (offen: KI-Training erlauben oder sperren)
-- [ ] **Wir:** Google-Unternehmensprofil: vorbereitet 28.09.2026 in `website/google-profil.md`, wartet auf 3 Entscheide (Termine vor Ort, Zeiten, Adresse)
+- [x] **Ich:** GEO: Plan 28.09.2026 in `website/geo.md`, KI-Training gesperrt
+- [ ] **Wir:** Google-Unternehmensprofil: vorbereitet und entschieden 28.09.2026, `website/google-profil.md`; anlegen, sobald Logo und Porträt da sind
 - [ ] **Ich:** Nach dem Bau: technischer Check und Audit (`seo-technical`, `seo-audit`)
 
 ## 6. Netzwerk und Vertrauen (parallel, siehe `website/vertrauen-und-sichtbarkeit.md`)

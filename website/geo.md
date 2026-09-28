@@ -1,6 +1,6 @@
 # GEO: Für KI-Suchen lesbar
 
-Stand: 28.09.2026 · Status: **Plan [F], ein Entscheid offen [?]** · Erstellt mit
+Stand: 28.09.2026 · Status: **Plan [F]** · Erstellt mit
 claude-seo `seo-geo` · Umsetzung beim Bau in `signedbymattia-website`
 
 **Grundsatz [F]:** Google sagt selbst, dass Optimieren für KI-Suche **SEO
@@ -35,12 +35,21 @@ werden will, braucht `OAI-SearchBot`, nicht `GPTBot`.
 | Claude-SearchBot | Zitate in Claudes Suche | erlauben [F] |
 | PerplexityBot | Perplexity-Suche | erlauben [F] |
 | Applebot | Siri, Spotlight, Safari | erlauben [F] |
-| GPTBot, ClaudeBot, Google-Extended, CCBot, Applebot-Extended | **nur Training** von KI-Modellen | **[?] Mattia:** erlauben (Marke steckt im Modellwissen) oder sperren (Texte nicht fürs Training) |
+| GPTBot, ClaudeBot, Google-Extended, CCBot, Applebot-Extended | **nur Training** von KI-Modellen | **sperren [F]** (Mattia 28.09.2026: „nur zum Finden“) |
 
-Entwurf, Training vorerst erlaubt, bis zum Entscheid:
+robots.txt: Suchen erlaubt, Training gesperrt:
 
 ```
-# signedbymattia.ch
+# signedbymattia.ch · Finden ja, KI-Training nein (Entscheid 28.09.2026)
+User-agent: GPTBot
+User-agent: ClaudeBot
+User-agent: Google-Extended
+User-agent: CCBot
+User-agent: Applebot-Extended
+User-agent: Bytespider
+User-agent: cohere-ai
+Disallow: /
+
 User-agent: *
 Allow: /
 Disallow: /danke/
@@ -48,8 +57,10 @@ Disallow: /danke/
 Sitemap: https://signedbymattia.ch/sitemap.xml
 ```
 
-Wird Training gesperrt, kommen dazu je ein Block `User-agent: GPTBot` usw. mit
-`Disallow: /`. Die Such-Crawler bleiben offen.
+`Google-Extended` sperrt nur Gemini-Training, **nicht** die Google-Suche und
+die KI-Übersicht. `OAI-SearchBot`, `Claude-SearchBot` und `PerplexityBot`
+fallen unter `*` und bleiben offen. Eine robots.txt ist eine Bitte, kein
+Schloss [A]: seriöse Anbieter halten sich daran.
 
 In der Google Search Console bleibt die Einstellung „Search generative AI“
 auf **einschliessen** (Standard).

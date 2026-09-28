@@ -1,6 +1,6 @@
 # Google-Unternehmensprofil vorbereiten
 
-Stand: 28.09.2026 · Status: **Vorbereitung [F], drei Entscheide offen [?]** ·
+Stand: 28.09.2026 · Status: **vorbereitet, Entscheide getroffen [F]** ·
 Erstellt mit claude-seo `seo-local` · Grundlage: `website/konkurrenz-seo.md` §1
 
 **Warum zuerst:** Bei „webdesign luzern“ zeigt Google ganz oben drei Profile
@@ -20,14 +20,16 @@ ausgeschlossen ([Google-Hilfe: Eignung](https://support.google.com/business/answ
 - **Nicht** eine Coworking- oder Briefkastenadresse als Laden ausgeben: Das
   verstösst gegen die Richtlinien und führt zu Sperren.
 
-**Offen [?]:**
+**Entschieden (Mattia, 28.09.2026) [F]:**
 
-1. **Kundentermine vor Ort:** Bietet Mattia Treffen beim Kunden an (z. B.
-   Erstgespräch im Betrieb)? Ohne das kein Profil.
-2. **Zeiten:** Zu welchen Zeiten ist Kontakt möglich? Im Nebenerwerb z. B.
-   Abende und Samstag. Ehrliche Zeiten angeben, sie beeinflussen die Anzeige.
-3. **Adresse zur Bestätigung:** Welche Adresse bekommt Google (wird nicht
-   angezeigt)? Hängt mit `recht/pflichtangaben.md` zusammen.
+1. **Kundentermine vor Ort:** ja, **nach Terminabsprache**. Damit ist
+   signedbymattia berechtigt.
+2. **Zeiten:** keine festen Öffnungszeiten, nur nach Vereinbarung. Im Profil
+   „keine Öffnungszeiten“ wählen und in der Beschreibung „Termine nach
+   Vereinbarung“ nennen. [A: Profile, die zur Suchzeit „geöffnet“ sind,
+   werden laut Studien etwas bevorzugt; ehrlich bleibt wichtiger.]
+3. **Adresse zur Bestätigung:** Mattias **Wohnadresse, im Profil verborgen**.
+   Die Adresse selbst steht nicht in diesem Repo (Regel 4, `CLAUDE.md`).
 
 ## 2 · Eintrag
 
@@ -51,7 +53,7 @@ ausgeschlossen ([Google-Hilfe: Eignung](https://support.google.com/business/answ
 > Karte und in KI-Suchen wie ChatGPT gefunden werden können. Website Core mit
 > bis zu fünf Seiten kostet CHF 1'600, SEO und GEO CHF 690, ein
 > Google-Profil CHF 290. Das Erstgespräch führe ich gerne bei Ihnen im
-> Betrieb. Kein Template. Ein Werk.
+> Betrieb, Termine nach Vereinbarung. Kein Template. Ein Werk.
 
 ## 4 · Leistungen im Profil
 
@@ -99,7 +101,7 @@ Name, Ort und Website überall gleich schreiben.
 
 ## Reihenfolge
 
-1. Mattia entscheidet die drei offenen Punkte in §1.
+1. ~~Entscheide in §1~~: getroffen 28.09.2026.
 2. Profil anlegen und bestätigen lassen (Bestätigung dauert Tage bis Wochen [A]).
 3. Fotos und Leistungen ergänzen, sobald Logo und Porträt da sind.
 4. Zum Livegang: Bing Places, Apple, local.ch/search.ch.
