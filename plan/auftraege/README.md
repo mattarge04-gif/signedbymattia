@@ -45,7 +45,7 @@ selbstständig ab (Mo–Fr, Start 08:30).
 - Eigener API-Schlüssel, **Ausgabenlimit CHF 20/Monat** in der Anthropic Console
   (harte Grenze). Budget: `agency-automation-os` `budgets.yaml` ›
   `claude_tageslauf_api`.
-- Pro Lauf höchstens 60 Schritte (`--max-turns`), 90 Minuten, **Modell Opus** (Wunsch Mattia 28.09.2026;
+- Pro Lauf höchstens 120 Schritte (`--max-turns`), 150 Minuten, **Modell Opus** (Wunsch Mattia 28.09.2026;
   teurer als Sonnet, darum eher 2–4 Aufgaben pro Tag [A]).
 - **Kostenzähler:** Nach jedem Lauf werden die Kosten aus Claudes Ausgabe in den Branch `kosten`
   (`kosten.csv`) geschrieben. Telegram-Nachricht, sobald im Monat **25, 50 und 75 %** von USD 20
