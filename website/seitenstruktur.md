@@ -1,6 +1,6 @@
 # Seitenstruktur der eigenen Website
 
-Stand: 27.09.2026 · Status: **entschieden [F]** (Interview 27.09.2026, baut auf
+Stand: 28.09.2026 · Status: **entschieden [F]** (Interview 27.09.2026, baut auf
 der Identität „Edition“ auf) · Zielplan KW 41 („Seitenstruktur festlegen: welche
 Seiten, in welcher Reihenfolge, ein Ziel pro Seite“) · gebaut wird in
 `signedbymattia-website`
@@ -25,7 +25,7 @@ flowchart LR
 | --- | --- | --- | --- | --- |
 | 1 | **Startseite** | zur passenden Kaufseite führen | „Bin ich hier richtig?“ | Marke |
 | 2 | Kaufseite **I Website Core** (CHF 1'600, Ziel der Google-Anzeigen) | Anfrage | „Was kostet es, wie läuft es, kann er das?“ | „webdesign luzern“ (Haupt-Keyword) |
-| 3 | Kaufseite **II Automation Core** | Anfrage | „Welcher Ablauf, was bringt es?“ | „prozesse automatisieren kmu“ |
+| 3 | Kaufseite **II Automation Core** | Anfrage | „Welcher Ablauf, was bringt es?“ | „automatisierung kmu luzern“ (Ratgeber-Keyword „prozesse automatisieren kmu“ im Blog) |
 | 4 | Kaufseite **III + IV Sichtbarkeit** (SEO + GEO + Google-Profil) | Anfrage | „Wie werde ich gefunden?“ | „seo luzern“ |
 | 5 | **Editionen** (Galerie) | Vertrauen → Kaufseite | „Wie denkt er, was kann er?“ | – |
 | 6 | **Blog** mit 3 Artikeln zum Start | Vertrauen, SEO, LinkedIn | echte Fragen kleiner Betriebe | Informationssuche |

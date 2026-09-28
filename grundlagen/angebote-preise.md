@@ -1,6 +1,6 @@
 # Angebote und Preise
 
-Stand: 24.09.2026 · Status: **Fokus entschieden, Zusatzleistungen ohne Preise** · Zielplan KW 40
+Stand: 28.09.2026 · Status: **Fokus entschieden, Preise für SEO + GEO und Google-Profil entschieden** · Zielplan KW 40
 („Angebot schärfen: welche zwei der fünf Pakete stehen vorn“ und „Preise gegen
 offers.yaml prüfen“)
 
@@ -47,8 +47,12 @@ CHF 2'750 Umsatz → bei CHF 1'200 rund 2,3 Projekte pro Monat.
    der Website und nicht in Anzeigen, in Offerten möglich.
 3. ~~Preis Website Core~~ entschieden 24.09.2026 [F]: **CHF 1'600 testen.**
    Zielplan: 1,7 statt 2,3 Projekte pro Monat für CHF 2'750 Umsatz.
-4. **Mehrwertsteuer:** Preise inkl. oder ohne? Hängt vom Steuerstatus ab
-   (`recht/pflichtangaben.md`).
+4. ~~Mehrwertsteuer~~ entschieden 28.09.2026 [F]: **Alle Preise sind
+   Endpreise („inkl.“), es kommt nichts dazu.** Solange signedbymattia unter
+   CHF 100'000 Umsatz nicht MWST-pflichtig ist, steht kein MWST-Hinweis und
+   keine MWST auf Rechnungen (`recht/pflichtangaben.md`). Bei späterer Pflicht
+   bleiben die Preise gleich und enthalten die MWST. [A: ob ein Hinweis „nicht
+   MWST-pflichtig“ nötig ist, vor dem Livegang prüfen]
 5. **Branchenpakete** (z. B. „Website für HLKS-Betriebe“) mit festem Umfang?
 
 ## Zusatzleistungen (Entscheid 24.09.2026: „alles, was eine Digitalagentur hat“)
@@ -62,10 +66,10 @@ Google-Unternehmensprofil, Texte und Branding. Die übrigen folgen später.
 
 | Zusatzleistung | Inhalt (Entwurf) | Marktwert [A] | Preis | Kapazität geprüft |
 | --- | --- | --- | --- | --- |
-| **SEO-Grundpaket** | Keyword-Recherche, Seitentitel, Struktur, Search Console, lokale Einträge | – | `?` | `?` |
+| **SEO-Grundpaket** (zusammen mit GEO) | Keyword-Recherche, Seitentitel, Struktur, Search Console, lokale Einträge | einmaliges Onpage-SEO ab ca. CHF 1'500 | **CHF 690 mit GEO** [F] 28.09.2026 | ca. 7 h [A] |
 | **SEO laufend** | monatliche Auswertung, eine Optimierung pro Monat | – | `?` /Monat | `?` |
-| **GEO / KI-Suche** | Inhalte und strukturierte Daten so, dass KI-Suchen (Google AI, ChatGPT) sie lesen können; keine Erwähnungsgarantie | – | `?` | `?` |
-| **Google-Unternehmensprofil** | Einrichtung, nur wenn der Betrieb berechtigt ist | – | `?` | `?` |
+| **GEO / KI-Suche** | Inhalte und strukturierte Daten so, dass KI-Suchen (Google AI, ChatGPT) sie lesen können; keine Erwähnungsgarantie | – | im SEO-Grundpaket | – |
+| **Google-Unternehmensprofil** | Einrichtung, nur wenn der Betrieb berechtigt ist | CHF 290 (wuk.ch) bis 2'500 (Velixar) | **CHF 290** [F] 28.09.2026; mit SEO + GEO zusammen **CHF 890** | ca. 3 h [A] |
 | **Google-Ads-Einrichtung** | Konto, Tracking, erste Kampagne | CHF 1'500–5'000 einmalig (Agenturen CH) | `?` | `?` |
 | **Google-Ads-Betreuung** | monatliche Pflege | CHF 800–2'500/Monat (Agenturen CH) | `?` | `?` |
 | **Tracking und Auswertung** | Besucherstatistik, Anfrage-Messung, Monatsbericht | – | `?` | `?` |

@@ -1,6 +1,6 @@
 # Checkliste: Was Mattia vorbereiten muss, damit die Website gebaut werden kann
 
-Stand: 27.09.2026 · Livegang geplant 22.11.2026 (Vault `Zielplan.md`) · Bauen
+Stand: 28.09.2026 · Livegang geplant 22.11.2026 (Vault `Zielplan.md`) · Bauen
 ab KW 43 (19.10.2026). **Du** = Mattia liefert, **ich** = Claude erledigt, **wir** =
 gemeinsam im Interview.
 
@@ -10,7 +10,7 @@ Abhaken, sobald erledigt. Reihenfolge = was zuerst blockiert.
 
 - [ ] **Du:** Porträtfoto(s) für „Wer dahinter steht“ (hell, echt, kein Stock). [?] selbst oder Fotograf
 - [ ] **Du:** Kurzbio in Stichworten: Werdegang, warum Websites, was du vorher gemacht hast (Streamline ja/nein zeigen?)
-- [ ] **Du:** Preise festlegen, wo noch offen: Automation Core, Sichtbarkeit (SEO + GEO + Google-Profil), Texte + Branding (`grundlagen/angebote-preise.md`)
+- [ ] **Du:** Preise festlegen, wo noch offen: ~~Automation Core, Sichtbarkeit~~ entschieden 28.09.2026 (`website/preisrechner.md`); offen nur noch Texte + Branding (nicht im Atelier)
 - [ ] **Du:** Was ist in Website Core (CHF 1'600) drin und was nicht (Seitenzahl, Runden, Texte, Bilder)
 - [ ] **Du:** Lieferzeit und Antwortfrist nach Anfrage („innert X Arbeitstagen“)
 - [ ] **Wir:** Ablauf in 3 Schritten (Kaufseiten-Pflichtelement)
@@ -60,12 +60,12 @@ Abhaken, sobald erledigt. Reihenfolge = was zuerst blockiert.
 
 ## 5. SEO-Basis (nächste Sitzung, mit claude-seo)
 
-- [ ] **Ich:** Konkurrenz-Analyse der Luzerner Webagenturen (`seo-competitor-pages`)
+- [x] **Ich:** Konkurrenz-Analyse der Luzerner Webagenturen: erledigt 28.09.2026, `website/konkurrenz-seo.md`
 - [ ] **Du:** Keyword-Volumen im Google Keyword-Planer prüfen (braucht das Google-Ads-Konto aus 3.)
-- [ ] **Ich:** Seitentitel, Beschreibungen, Überschriften je Seite (`seo-page`, `seo-content-brief`)
-- [ ] **Ich:** Strukturierte Daten: LocalBusiness, FAQ, Person (`seo-schema`)
-- [ ] **Ich:** GEO: für KI-Suchen lesbar machen, z. B. llms.txt (`seo-geo`)
-- [ ] **Wir:** Google-Unternehmensprofil vorbereiten: Kategorie, Beschreibung, Fotos (`seo-local`)
+- [x] **Ich:** Seitentitel und Beschreibungen je Seite: entschieden 28.09.2026, `website/seo-titel.md`. Überschriften im Textinterview
+- [x] **Ich:** Strukturierte Daten: Vorlage 28.09.2026 in `website/strukturierte-daten.md`, Platzhalter (Name, Adresse, E-Mail) offen
+- [x] **Ich:** GEO: Plan 28.09.2026 in `website/geo.md`, KI-Training gesperrt
+- [ ] **Wir:** Google-Unternehmensprofil: vorbereitet und entschieden 28.09.2026, `website/google-profil.md`; anlegen, sobald Logo und Porträt da sind
 - [ ] **Ich:** Nach dem Bau: technischer Check und Audit (`seo-technical`, `seo-audit`)
 
 ## 6. Netzwerk und Vertrauen (parallel, siehe `website/vertrauen-und-sichtbarkeit.md`)
