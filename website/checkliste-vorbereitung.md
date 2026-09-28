@@ -10,7 +10,7 @@ Abhaken, sobald erledigt. Reihenfolge = was zuerst blockiert.
 
 - [ ] **Du:** Porträtfoto(s) für „Wer dahinter steht“ (hell, echt, kein Stock). [?] selbst oder Fotograf
 - [ ] **Du:** Kurzbio in Stichworten: Werdegang, warum Websites, was du vorher gemacht hast (Streamline ja/nein zeigen?)
-- [ ] **Du:** Preise festlegen, wo noch offen: Automation Core, Sichtbarkeit (SEO + GEO + Google-Profil), Texte + Branding (`grundlagen/angebote-preise.md`)
+- [ ] **Du:** Preise festlegen, wo noch offen: ~~Automation Core, Sichtbarkeit~~ entschieden 28.09.2026 (`website/preisrechner.md`); offen nur noch Texte + Branding (nicht im Atelier)
 - [ ] **Du:** Was ist in Website Core (CHF 1'600) drin und was nicht (Seitenzahl, Runden, Texte, Bilder)
 - [ ] **Du:** Lieferzeit und Antwortfrist nach Anfrage („innert X Arbeitstagen“)
 - [ ] **Wir:** Ablauf in 3 Schritten (Kaufseiten-Pflichtelement)
