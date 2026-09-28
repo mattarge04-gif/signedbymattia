@@ -45,7 +45,11 @@ selbstständig ab (Mo–Fr, Start 08:30).
 - Eigener API-Schlüssel, **Ausgabenlimit CHF 20/Monat** in der Anthropic Console
   (harte Grenze). Budget: `agency-automation-os` `budgets.yaml` ›
   `claude_tageslauf_api`.
-- Pro Lauf höchstens 60 Schritte (`--max-turns`), 90 Minuten, Modell Sonnet.
+- Pro Lauf höchstens 60 Schritte (`--max-turns`), 90 Minuten, **Modell Opus** (Wunsch Mattia 28.09.2026;
+  teurer als Sonnet, darum eher 2–4 Aufgaben pro Tag [A]).
+- **Kostenzähler:** Nach jedem Lauf werden die Kosten aus Claudes Ausgabe in den Branch `kosten`
+  (`kosten.csv`) geschrieben. Telegram-Nachricht, sobald im Monat **25, 50 und 75 %** von USD 20
+  erreicht sind. Die harte Grenze bleibt das Limit in der Console.
 - Höchstens 3–6 Aufgaben pro Auftrag.
 - Nach einer Woche Kosten pro Lauf in der Console ablesen und hier eintragen [A].
 
@@ -55,5 +59,10 @@ selbstständig ab (Mo–Fr, Start 08:30).
 2. Dort unter Limits das monatliche Ausgabenlimit auf den Betrag für CHF 20 setzen.
 3. GitHub › Repo signedbymattia › Settings › Secrets and variables › Actions ›
    New repository secret: Name `ANTHROPIC_API_KEY`, Wert = Schlüssel.
-4. Test: GitHub › Actions › Tageslauf › „Run workflow" (läuft nur mit freigegebenem
-   Auftrag für heute).
+4. Telegram: Dem eigenen Bot in Telegram einmal `/start` schreiben. Dann im Browser
+   `https://api.telegram.org/bot<TOKEN>/getUpdates` öffnen und bei `"chat":{"id": …}` die Zahl
+   ablesen. Zwei Secrets anlegen wie oben: `TELEGRAM_BOT_TOKEN` (Token von BotFather) und
+   `TELEGRAM_CHAT_ID` (die Zahl). Token nie in Chat oder Dateien.
+5. Test Telegram: GitHub › Actions › Tageslauf › „Run workflow" › Haken bei
+   „Nur Telegram testen" › Run. Keine Kosten.
+6. Test Lauf: gleich, ohne Haken (läuft nur mit freigegebenem Auftrag für heute).

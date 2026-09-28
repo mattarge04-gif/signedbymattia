@@ -2,6 +2,10 @@
 # Ablauf und Regeln: plan/auftraege/README.md
 # Kosten: eigener API-Schlüssel mit Ausgabenlimit CHF 20/Monat in der Anthropic Console
 # (Entscheid 28.09.2026, agency-automation-os budgets.yaml › claude_tageslauf_api).
+# Kostenzähler: Branch `kosten`, Datei kosten.csv. Telegram bei 25/50/75 % des Budgets.
+
+env:
+  BUDGET_USD: "20"   # Console rechnet in USD; ~ CHF 20 [A]
 
 name: Tageslauf
 
@@ -9,14 +13,32 @@ on:
   schedule:
     # Mo–Fr 06:30 UTC = 08:30 Sommerzeit / 07:30 Winterzeit (Zürich)
     - cron: "30 6 * * 1-5"
-  workflow_dispatch: {}
+  workflow_dispatch:
+    inputs:
+      telegram_test:
+        description: "Nur Telegram testen (kein Claude-Lauf, keine Kosten)"
+        type: boolean
+        default: false
 
 concurrency:
   group: tageslauf
   cancel-in-progress: false
 
 jobs:
+  telegram-test:
+    if: github.event_name == 'workflow_dispatch' && inputs.telegram_test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Testnachricht senden
+        env:
+          TG_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TG_CHAT: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: |
+          ANTWORT=$(curl -s "https://api.telegram.org/bot${TG_TOKEN}/sendMessage" --data-urlencode "chat_id=${TG_CHAT}" --data-urlencode "text=Tageslauf signedbymattia: Telegram funktioniert.")
+          echo "$ANTWORT" | grep -q '"ok":true' && echo "Gesendet." || { echo "Fehler: $ANTWORT" | sed 's/bot[0-9]*:[A-Za-z0-9_-]*/bot***/g'; exit 1; }
+
   tageslauf:
+    if: github.event_name != 'workflow_dispatch' || !inputs.telegram_test
     runs-on: ubuntu-latest
     timeout-minutes: 90
     permissions:
@@ -44,7 +66,9 @@ jobs:
           fi
 
       - name: Claude arbeitet den Auftrag ab
+        id: claude
         if: steps.auftrag.outputs.vorhanden == 'ja'
+        continue-on-error: true
         uses: anthropics/claude-code-action@v1
         with:
           anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
@@ -68,6 +92,65 @@ jobs:
                „Tageslauf ${{ steps.auftrag.outputs.tag }}" und dem Bericht als Beschreibung.
             Nie auf main pushen, nie mergen, nichts veröffentlichen, keine Geheimnisse.
           claude_args: |
-            --model claude-sonnet-5-5
+            --model claude-opus-5-5
             --max-turns 60
             --allowedTools "Read,Write,Edit,Glob,Grep,WebSearch,WebFetch,Bash(git:*),Bash(gh pr:*),Bash(node:*),Bash(npm:*),Bash(npx:*),Bash(python3:*),Bash(ls:*),Bash(mkdir:*)"
+
+      - name: Kosten erfassen und bei 25/50/75 % melden
+        if: always() && steps.auftrag.outputs.vorhanden == 'ja'
+        env:
+          EXEC_FILE: ${{ steps.claude.outputs.execution_file }}
+          ERGEBNIS: ${{ steps.claude.outcome }}
+          TG_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TG_CHAT: ${{ secrets.TELEGRAM_CHAT_ID }}
+          TAG: ${{ steps.auftrag.outputs.tag }}
+        run: |
+          set -e
+          KOSTEN=$(python3 - <<'PY'
+          import json, os
+          f = os.environ.get("EXEC_FILE") or ""
+          kosten = 0.0
+          try:
+              txt = open(f, encoding="utf-8").read()
+              try:
+                  daten = json.loads(txt)
+                  daten = daten if isinstance(daten, list) else [daten]
+              except Exception:
+                  daten = [json.loads(z) for z in txt.splitlines() if z.strip().startswith("{")]
+              for d in daten:
+                  if isinstance(d, dict) and d.get("type") == "result" and "total_cost_usd" in d:
+                      kosten = float(d["total_cost_usd"])
+          except Exception:
+              pass
+          print(f"{kosten:.4f}")
+          PY
+          )
+          echo "Kosten dieses Laufs: USD $KOSTEN"
+
+          git config user.name "tageslauf[bot]"
+          git config user.email "tageslauf@users.noreply.github.com"
+          if git ls-remote --exit-code origin kosten >/dev/null 2>&1; then
+            git fetch -q origin kosten && git worktree add -q ../kosten origin/kosten && (cd ../kosten && git checkout -q -B kosten)
+          else
+            git worktree add -q --detach ../kosten && (cd ../kosten && git checkout -q --orphan kosten && git rm -rfq . && echo "datum,lauf,usd,ergebnis" > kosten.csv)
+          fi
+          cd ../kosten
+          MONAT=$(TZ=Europe/Zurich date +%Y-%m)
+          VORHER=$(awk -F, -v m="$MONAT" 'NR>1 && index($1,m)==1 {s+=$3} END {printf "%.4f", s+0}' kosten.csv)
+          echo "$TAG,${{ github.run_id }},$KOSTEN,$ERGEBNIS" >> kosten.csv
+          NACHHER=$(awk -F, -v m="$MONAT" 'NR>1 && index($1,m)==1 {s+=$3} END {printf "%.4f", s+0}' kosten.csv)
+          git add kosten.csv && git commit -qm "Kosten Tageslauf $TAG: USD $KOSTEN" && git push -q origin kosten
+
+          for P in 25 50 75; do
+            GRENZE=$(awk -v b="$BUDGET_USD" -v p="$P" 'BEGIN {printf "%.4f", b*p/100}')
+            if awk -v a="$VORHER" -v n="$NACHHER" -v g="$GRENZE" 'BEGIN {exit !(a < g && n >= g)}'; then
+              TEXT="Tageslauf signedbymattia: ${P} % des Monatsbudgets verbraucht (USD ${NACHHER} von ${BUDGET_USD}). Letzter Lauf ${TAG}: USD ${KOSTEN}."
+              if [ -n "$TG_TOKEN" ] && [ -n "$TG_CHAT" ]; then
+                curl -s -o /dev/null "https://api.telegram.org/bot${TG_TOKEN}/sendMessage" --data-urlencode "chat_id=${TG_CHAT}" --data-urlencode "text=${TEXT}"
+                echo "Telegram gesendet: $P %"
+              else
+                echo "Telegram-Secrets fehlen, keine Nachricht ($P %)."
+              fi
+            fi
+          done
+
