@@ -1,7 +1,6 @@
 # Preisrechner „Atelier“
 
-Stand: 28.09.2026 · Status: **in Planung** (Brainstorming mit Mattia, noch
-kein Design entschieden) · Wunsch Mattia 28.09.2026: interaktiv, spielerisch,
+Stand: 28.09.2026 · Status: **Konzept entschieden, Prototyp zur Prüfung** · Wunsch Mattia 28.09.2026: interaktiv, spielerisch,
 passt in die UI, keine Taschenrechner-Optik, der Kunde versteht jede Option.
 
 ## Entschieden [F] (28.09.2026)
@@ -44,9 +43,34 @@ Rand, als Einstieg. Aufwand grob: SEO + GEO ca. 7 h, Google-Profil ca. 3 h.
 - **SEO + GEO an:** „Ich recherchiere, wonach Ihre Kunden suchen, richte jede
   Seite darauf aus und mache sie für ChatGPT lesbar. Ohne Garantie auf Platz 1.“
 
+## Konzept [F] (Mattia 28.09.2026): Leinwand + Tarot-Karten
+
+Aus drei Vorschlägen (Leinwand, Himmelskuppel, Sammlerkarten) gewählt:
+**Leinwand, bedient mit Tarot-Karten.**
+
+1. Tiepolos Deckengemälde im Goldrahmen, zu Beginn als Bleistiftskizze.
+2. Vier Tarot-Karten: **I Das Werk** (Website), **II Das Rad** (Automation),
+   **III Der Stern** (SEO + GEO), **IV Die Welt** (Google-Profil).
+3. Karte antippen → dreht sich um: „An bedeutet / Aus bedeutet“, Knopf
+   „Ins Bild legen“. Beim Rad zusätzlich die Anzahl Abläufe.
+4. Ins Bild legen → die Karte fliegt aufs Gemälde, ihr Bildteil malt sich mit
+   Pinselstrichen aus, die Karte bekommt ein Wachssiegel. Herausnehmen macht
+   den Teil wieder zur Skizze.
+5. III + IV zusammen leuchten golden, das Schild zeigt CHF 890 statt 980.
+6. Museumsschild mit Richtwert, die Zahl rollt mit.
+7. „Werk signieren“ → Mattias Unterschrift zeichnet sich, Echtheitszertifikat
+   (Entwurf) mit vorausgefülltem Anfrageformular.
+8. Vorauswahl von Kaufseiten per Link, z. B. `?mit=werk,stern`.
+9. Ruhige Variante bei reduzierter Bewegung, ohne JavaScript eine Tabelle.
+
+**Prototyp:** `marke/entwuerfe/atelier-prototyp.html` (Wegwerf-Prototyp,
+28.09.2026, Bild: Tiepolo, *Allegory of the Planets and Continents*, 1752,
+The Met, CC0). Geprüft mit Playwright auf 1440 px und 390 px, ohne
+Konsolenfehler.
+
 ## Nächste Schritte
 
 1. ~~Preismatrix bestätigen~~: erledigt 28.09.2026.
-2. Drei Gestaltungsideen vorlegen (Idee: Ergebnis als Echtheitszertifikat aus
-   `marke/DESIGN.md` §8), mit echten Beispielen statt Skizzen.
-3. Design-Spec schreiben, danach Umsetzungsplan.
+2. ~~Gestaltungsideen~~: erledigt 28.09.2026, Prototyp steht.
+3. Mattia probiert den Prototyp und nennt Änderungen (Wow-Ablauf, `marke/DESIGN.md` §7).
+4. Später beim Bau: eigenes Barock-Bild statt Tiepolo? Ladezeit am Handy prüfen.
