@@ -1,6 +1,6 @@
 # Teardown Shopify Editions Winter '26: Lehren für unsere Website
 
-Stand: 28.09.2026 · Status: **Befund [F], Folgerungen [A] bis Mattia entscheidet** ·
+Stand: 28.09.2026 · Status: **Befund [F], Punkte 1, 2 und 4 entschieden (Mattia 28.09.2026)** ·
 Erstellt mit dem Skill `clone-site --analyze-only` · Vorbild laut `marke/referenzen.md` und
 `website/seitenstruktur.md` („Startseite wie Shopify Editions")
 
@@ -73,6 +73,9 @@ Nur Richtwerte, nicht gemessen; ersetzen keine Neuplanung (`plan/stand-2026-09-2
 | Akt II Galerie als 2.5D statt 3D-Saal | 8–12 h statt deutlich mehr für vollen 3D-Raum |
 | Kapitel-Leiste, Panels, Schmuck-Initiale | 4–6 h |
 
-## Nächster Entscheid [?] Mattia
+## Entscheide (Mattia, 28.09.2026) [F]
 
-Akt I und II als **2.5D-Bühne** nach diesem Muster bauen (Empfehlung) oder beim vollen 3D-Saal für Akt II bleiben?
+- Punkt 1: Akt I und II als **2.5D-Bühne**. Übernommen in `marke/DESIGN.md` §7.
+- Punkt 2: **Ölfarben-Übergang** mit eigener Textur. Übernommen in `marke/DESIGN.md` §7.
+- Punkt 4: **Schmuck-Initiale als eigenes SVG**. Übernommen in `marke/DESIGN.md` §7.
+- Punkte 3, 5, 6, 7 bleiben Vorschläge [A] für den Bau.

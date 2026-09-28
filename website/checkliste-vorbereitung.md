@@ -56,7 +56,9 @@ Abhaken, sobald erledigt. Reihenfolge = was zuerst blockiert.
 - [ ] **Wir:** Eigenes Barock-Bild (Signatur-Szene) erstellen
 - [ ] **Ich:** Logo als SVG und PNG, Favicon, Vorschaubild für Social Media
 - [ ] **Ich:** Barock-Bibliothek `marke/assets/` mit Freistellern und Lizenzliste
-- [ ] **Du:** Entscheid Plan B: Akt II als 3D oder zuerst 2D-Galerie (spätestens KW 45)
+- [x] **Du:** Entscheid Plan B: erledigt 28.09.2026, Akt I und II als 2.5D-Bühne (`marke/DESIGN.md` §7)
+- [ ] **Ich:** Schmuck-Initialen als SVG (Barock-Ornament) für die Erzählsätze
+- [ ] **Ich:** Leinwand- und Pinsel-Textur für den Ölfarben-Übergang
 
 ## 5. SEO-Basis (nächste Sitzung, mit claude-seo)
 

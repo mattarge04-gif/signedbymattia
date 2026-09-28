@@ -114,4 +114,5 @@ Merge `5c6b1ad`), Nachtrag in `plan/stand-2026-09-28.md`. Andere Bereiche:
 
 **Kommt erst mit der Website** (bis dahin nur dokumentiert in `DESIGN.md`):
 Raum-Tokens, Logo-Dateien (SVG, PNG), eigenes Barock-Bild, Freisteller für
-Collagen, Prototypen der Wow-Akte (Himmelsflug, 3D-Galerie).
+Collagen, Prototypen der Wow-Akte als 2.5D-Bühne (Himmelsflug, Galerie),
+Ölfarben-Übergang, SVG-Initialen (Entscheid 28.09.2026, `marke/DESIGN.md` §7).

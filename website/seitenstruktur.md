@@ -52,7 +52,7 @@ Wow-Akten aus `marke/DESIGN.md` §7.
    I–V** als fette Liste mit römischen Zahlen (Host Grotesk fett, Zahlen in
    Instrument Serif).
 2. **Akt I, Himmel:** Scroll-Flug durch die Wolkenebenen.
-3. **Akt II, Galerie:** Landung im 3D-Saal, die Editionen hängen als Gemälde.
+3. **Akt II, Galerie:** Landung im barocken Saal (2.5D-Bühne, `marke/DESIGN.md` §7), die Editionen hängen als Gemälde. Übergang zwischen den Akten in Ölfarbe.
 4. **Kapitel I–V:** je ein kurzer Abschnitt pro Leistung, jeweils mit Link zur
    Kaufseite:
 

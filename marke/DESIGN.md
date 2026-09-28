@@ -1,6 +1,6 @@
 # DESIGN.md — signedbymattia
 
-Stand: 24.09.2026 · Status: **Identität „Edition“ entschieden, Umsetzung offen** ·
+Stand: 28.09.2026 · Status: **Identität „Edition“ entschieden, Umsetzung offen** ·
 Zielplan KW 43 („Gestaltungsrichtung festlegen: Typografie, Farben,
 Bildsprache“), **vorgezogen**: Identität vor Website (Entscheid 24.09.2026)
 
@@ -157,11 +157,31 @@ Mikro-Interaktionen erwünscht.
 
 - **Akt I, Himmel (hell):** Beim Scrollen fliegt man durch pastellige
   Wolkenebenen. Engel und Browserfenster ziehen in der Tiefe vorbei.
-  Quelle/Werkzeug: `scroll-world` (Tool Box) mit Higgsfield, oder
-  Parallax-Ebenen in CSS/JS.
-- **Akt II, Galerie (dunkel):** Man landet in einem barocken 3D-Saal. Die
-  Editionen hängen als Gemälde an der Wand. Werkzeug: Three.js, allenfalls
-  `img2threejs` (Tool Box). Weiche Übergänge mit `oil-motion`.
+- **Akt II, Galerie (dunkel):** Man landet in einem barocken Saal. Die
+  Editionen hängen als Gemälde an der Wand.
+
+**Bauweise: 2.5D-Bühne [F, Mattia 28.09.2026]** nach dem Teardown von Shopify
+Editions (`marke/teardown-shopify-editions.md`):
+
+- Ein fixer WebGL-Canvas (three.js) hinter dem HTML-Inhalt, der darüber scrollt.
+- Pro Akt ein **gemaltes Hintergrundbild** (eigenes Barock-Bild oder Met CC0,
+  komprimiert als KTX2/AVIF) plus **3–5 echte 3D-Requisiten** (Browserfenster,
+  Engel mit Mauszeiger, Goldrahmen) und eine Kamera, die mit dem Scroll fährt.
+  **Kein voller 3D-Saal**; damit ist der frühere Plan-B-Entscheid (3D oder 2D
+  für Akt II) erledigt.
+- Kamera-Regie mit Theatre.js, Scroll-Fortschritt je Akt steuert die Sequenz,
+  weich nachgezogen. Smooth Scroll mit Lenis. Kein Scroll-Hijacking.
+- **Ölfarben-Übergang [F]** zwischen den Akten: Die Szene löst sich wie nasse
+  Farbe auf, über eine **eigene Leinwand- und Pinsel-Textur** (Shader). Gleiche
+  Handschrift wie im Atelier (Skizze wird Gemälde, `website/preisrechner.md`).
+- Schwache Geräte (`detect-gpu`) und `prefers-reduced-motion` bekommen eine
+  2D-Variante: dieselben Bilder als ruhige Ebenen.
+
+**Schmuck-Initiale [F, Mattia 28.09.2026]:** Der erste Buchstabe eines
+Erzählsatzes (Instrument Serif) wird durch eine **eigene Barock-Initiale als
+SVG** ersetzt (Ornament in Tinte, Gold als Detail). Instrument Serif hat keine
+verzierten Initialen; die SVG-Initiale wird ein Markenzeichen. Im HTML bleibt
+der echte Buchstabe für Suche und Screenreader erhalten.
 
 Stand im Wow-Ablauf: Schritt 1 (Vorschlag) und 2 (Quelle) erledigt. Als
 Nächstes folgen Prototyp, Mattias Änderungen und Abschluss. Ladezeit am Handy
