@@ -1,6 +1,6 @@
 # Preisrechner „Atelier“
 
-Stand: 28.09.2026 · Status: **Konzept entschieden, Prototyp zur Prüfung** · Wunsch Mattia 28.09.2026: interaktiv, spielerisch,
+Stand: 28.09.2026 · Status: **Konzept und Prototyp abgenommen** (28.09.2026) · Wunsch Mattia 28.09.2026: interaktiv, spielerisch,
 passt in die UI, keine Taschenrechner-Optik, der Kunde versteht jede Option.
 
 ## Entschieden [F] (28.09.2026)
@@ -72,5 +72,5 @@ Konsolenfehler.
 
 1. ~~Preismatrix bestätigen~~: erledigt 28.09.2026.
 2. ~~Gestaltungsideen~~: erledigt 28.09.2026, Prototyp steht.
-3. Mattia probiert den Prototyp und nennt Änderungen (Wow-Ablauf, `marke/DESIGN.md` §7).
+3. ~~Mattia prüft den Prototyp~~: 28.09.2026 „sieht toll aus“, keine Änderungen.
 4. Später beim Bau: eigenes Barock-Bild statt Tiepolo? Ladezeit am Handy prüfen.
