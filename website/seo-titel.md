@@ -1,6 +1,6 @@
 # Seitentitel und Beschreibungen
 
-Stand: 28.09.2026 · Status: **Vorschlag, Mattia entscheidet [?]** · Grundlage:
+Stand: 28.09.2026 · Status: **entschieden [F]** (Mattia, 28.09.2026) · Grundlage:
 `website/keywords.md`, `website/konkurrenz-seo.md`, `marke/stil.md`
 
 Titel = `<title>` (Tab und Google-Treffer), Beschreibung = `<meta name="description">`.
@@ -15,11 +15,11 @@ Titel = `<title>` (Tab und Google-Treffer), Beschreibung = `<meta name="descript
 - Kein Versprechen, das nicht belegt ist („ohne Ranking-Garantie“).
 - Zeichen gezählt am 28.09.2026.
 
-## Vorschläge
+## Titel und Beschreibungen
 
 | Seite | Titel (Zeichen) | Beschreibung (Zeichen) |
 | --- | --- | --- |
-| Startseite | signedbymattia – Webdesign und Automation aus Luzern (52) | Websites, Automationen und Sichtbarkeit für kleine Betriebe in Luzern. Von Grund auf gestaltet, von Mattia signiert. Kein Template, ein Werk. (141) |
+| Startseite | signedbymattia – Webdesign und Automation (41) | Websites, Automationen und Sichtbarkeit für kleine Betriebe in Luzern. Von Grund auf gestaltet, von Mattia signiert. Kein Template, ein Werk. (141) |
 | **I Website Core** | Webdesign Luzern: Website für CHF 1'600 \| signedbymattia (56) | Website erstellen lassen in Luzern: bis 5 Seiten, von Grund auf gestaltet und auf Anfragen ausgerichtet. CHF 1'600, Ablauf in drei Schritten. (141) |
 | **II Automation Core** | Automatisierung für KMU in Luzern \| signedbymattia (50) | Offertanfragen, Termine, Rückmeldungen: Ich automatisiere einen klar begrenzten Ablauf in Ihrem Betrieb. Ab CHF 500, mit Fehlerpfad und Übergabe. (145) |
 | **III + IV Sichtbarkeit** | SEO Luzern und Google-Profil \| signedbymattia (45) | SEO für kleine Betriebe in Luzern: Seitentitel, Google-Unternehmensprofil und Inhalte, die auch ChatGPT lesen kann. Ehrlich, ohne Ranking-Garantie. (147) |
@@ -33,27 +33,15 @@ Titel = `<title>` (Tab und Google-Treffer), Beschreibung = `<meta name="descript
 Impressum und Datenschutz: Titel „Impressum \| signedbymattia“ bzw.
 „Datenschutz \| signedbymattia“, keine eigene Beschreibung nötig.
 
-## Varianten, je nach Entscheid
+## Entscheide vom 28.09.2026 [F]
 
-| Fall | Seite | Titel statt oben |
-| --- | --- | --- |
-| Preise nicht im Titel | I | Webdesign Luzern für kleine Betriebe \| signedbymattia (53) |
-| Kaufseite II behält „prozesse automatisieren kmu“ (Variante B unten) | II | Prozesse automatisieren für KMU \| signedbymattia (48) |
-| dito | Blog: Automation | 3 kleine Automationen, die Selbstständigen Zeit sparen (54) |
-
-## Offene Entscheide [?]
-
-1. **Preis im Titel von Kaufseite I.** Der Preisrahmen ist auf Kaufseiten
-   schon entschieden (`website/seitenstruktur.md`, Pflichtelement 3). Offen ist
-   nur, ob „CHF 1'600“ auch im Google-Treffer steht. Vorschlag: ja, weil kein
-   Konkurrent in den Top 9 einen Preis im Treffer zeigt. Vorher klären: inkl.
-   oder exkl. MWST (`grundlagen/angebote-preise.md`, Entscheid 4).
-2. **Keyword-Rolle von Kaufseite II** (Befund in `website/konkurrenz-seo.md` §3):
-   - **A (Vorschlag):** Der Blogartikel übernimmt „prozesse automatisieren
-     kmu“ als Beispiel-Liste, weil Google dafür Ratgeber zeigt. Kaufseite II
-     zielt auf „automatisierung kmu luzern“ und „offertanfragen automatisieren“.
-     Kostet mehr Text für den Artikel (1'400–2'000 Wörter statt 1'000).
-   - **B:** Kaufseite II behält das Keyword, der Artikel bleibt wie geplant.
-     Weniger Arbeit, schlechtere Chancen für die Kaufseite.
-   - Das Volumen von „automatisierung kmu luzern“ ist ungeprüft [A]:
-     Keyword-Planer.
+1. **Preis im Titel von Kaufseite I: ja**, „CHF 1'600“. Der Preis ist ein
+   Endpreis, es kommt nichts dazu. Kein MWST-Hinweis, solange signedbymattia
+   nicht MWST-pflichtig ist (`grundlagen/angebote-preise.md`, Entscheid 4).
+2. **Startseite:** Titel nur Marke plus Leistung, ohne Ort. „Luzern“ steht
+   auf den Kaufseiten, die für Ortssuchen gedacht sind.
+3. **Kaufseite II, Variante A:** Der Blogartikel übernimmt „prozesse
+   automatisieren kmu“ als Beispiel-Liste (1'400–2'000 Wörter), Kaufseite II
+   zielt auf „automatisierung kmu luzern“ (`website/keywords.md`). Volumen
+   ungeprüft [A]: Keyword-Planer.
+4. **Beschreibungen** wie oben übernommen.

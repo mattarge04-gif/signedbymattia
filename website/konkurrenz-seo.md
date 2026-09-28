@@ -103,9 +103,9 @@ Keine Anzeigen, keine KI-Übersicht bei dieser Suche.
    Livegang). Aufnahme in thezone.ch und ähnliche Listen anfragen, gehört zu
    `website/vertrauen-und-sichtbarkeit.md`.
 4. **Kaufseite II:** Das Haupt-Keyword hat vor allem Ratgeber-Absicht. Eine
-   reine Angebotsseite rankt dafür schwer. Vorschlag: Kaufseite II behält das
-   Keyword im Titel, der Blogartikel „3 kleine Automationen …“ wird zur
-   Beispiel-Liste ausgebaut und verlinkt darauf. Entscheid **[?] Mattia**.
+   reine Angebotsseite rankt dafür schwer. **Entschieden 28.09.2026 [F]:**
+   Der Blogartikel übernimmt das Keyword als Beispiel-Liste, Kaufseite II
+   zielt auf „automatisierung kmu luzern“ (`website/keywords.md`).
 5. **Technik schlägt die Konkurrenz leicht:** saubere Titel, Beschreibungen,
    Markup und eine Seite, die ohne JavaScript lesbar ist, hat heute nur ein
    Teil der Treffer.

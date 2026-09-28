@@ -1,6 +1,6 @@
 # Angebote und Preise
 
-Stand: 24.09.2026 · Status: **Fokus entschieden, Zusatzleistungen ohne Preise** · Zielplan KW 40
+Stand: 28.09.2026 · Status: **Fokus entschieden, Zusatzleistungen ohne Preise** · Zielplan KW 40
 („Angebot schärfen: welche zwei der fünf Pakete stehen vorn“ und „Preise gegen
 offers.yaml prüfen“)
 
@@ -47,8 +47,12 @@ CHF 2'750 Umsatz → bei CHF 1'200 rund 2,3 Projekte pro Monat.
    der Website und nicht in Anzeigen, in Offerten möglich.
 3. ~~Preis Website Core~~ entschieden 24.09.2026 [F]: **CHF 1'600 testen.**
    Zielplan: 1,7 statt 2,3 Projekte pro Monat für CHF 2'750 Umsatz.
-4. **Mehrwertsteuer:** Preise inkl. oder ohne? Hängt vom Steuerstatus ab
-   (`recht/pflichtangaben.md`).
+4. ~~Mehrwertsteuer~~ entschieden 28.09.2026 [F]: **Alle Preise sind
+   Endpreise („inkl.“), es kommt nichts dazu.** Solange signedbymattia unter
+   CHF 100'000 Umsatz nicht MWST-pflichtig ist, steht kein MWST-Hinweis und
+   keine MWST auf Rechnungen (`recht/pflichtangaben.md`). Bei späterer Pflicht
+   bleiben die Preise gleich und enthalten die MWST. [A: ob ein Hinweis „nicht
+   MWST-pflichtig“ nötig ist, vor dem Livegang prüfen]
 5. **Branchenpakete** (z. B. „Website für HLKS-Betriebe“) mit festem Umfang?
 
 ## Zusatzleistungen (Entscheid 24.09.2026: „alles, was eine Digitalagentur hat“)

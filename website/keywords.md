@@ -1,6 +1,6 @@
 # Keywords der eigenen Website
 
-Stand: 27.09.2026 · Status: **entschieden [F]** (Auswahl Mattia, geclustert mit
+Stand: 28.09.2026 · Status: **entschieden [F]** (Auswahl Mattia, geclustert mit
 claude-seo `seo-cluster`) · Karte: [`keywords-cluster-map.html`](keywords-cluster-map.html)
 
 Welches Keyword gehört auf welche Seite. Anzeigen-Details (Match-Typen,
@@ -39,8 +39,9 @@ Cluster, 2–3 = verlinken, 0–1 = getrennt.** Gesucht am 27.09.2026, 34 Keywor
 
 | Rolle | Keyword |
 | --- | --- |
-| **Haupt-Keyword** | **prozesse automatisieren kmu** (3/9 Schweizer Treffer) |
+| **Haupt-Keyword** | **automatisierung kmu luzern** (Entscheid 28.09.2026, Volumen ungeprüft [A]) |
 | Abschnitt | offertanfragen automatisieren |
+| an den Blog abgegeben | prozesse automatisieren kmu: Google zeigt dafür fast nur Ratgeber (`website/konkurrenz-seo.md` §3) |
 
 ### Kaufseite III + IV · Sichtbarkeit
 
@@ -55,7 +56,7 @@ Cluster, 2–3 = verlinken, 0–1 = getrennt.** Gesucht am 27.09.2026, 34 Keywor
 | --- | --- | --- |
 | Von ChatGPT empfohlen werden: GEO für kleine Betriebe | in chatgpt gefunden werden, ki suchmaschinenoptimierung | Kaufseite III + IV |
 | Google-Unternehmensprofil in 30 Minuten | google unternehmensprofil einrichten, google unternehmensprofil optimieren | Kaufseite III + IV |
-| 3 kleine Automationen, die Selbstständigen Zeit sparen | termine automatisch buchen | Kaufseite II |
+| Prozesse automatisieren im KMU: 3 kleine Beispiele (Beispiel-Liste, 1'400–2'000 Wörter) | **prozesse automatisieren kmu**, termine automatisch buchen | Kaufseite II |
 
 Jeder Artikel verlinkt auf seine Kaufseite und zurück (Regel aus `seo-cluster`:
 jede Seite mindestens 3 interne Links, keine verwaisten Seiten).
