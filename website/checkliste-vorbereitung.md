@@ -1,6 +1,6 @@
 # Checkliste: Was Mattia vorbereiten muss, damit die Website gebaut werden kann
 
-Stand: 27.09.2026 · Livegang geplant 22.11.2026 (Vault `Zielplan.md`) · Bauen
+Stand: 28.09.2026 · Livegang geplant 22.11.2026 (Vault `Zielplan.md`) · Bauen
 ab KW 43 (19.10.2026). **Du** = Mattia liefert, **ich** = Claude erledigt, **wir** =
 gemeinsam im Interview.
 
@@ -60,7 +60,7 @@ Abhaken, sobald erledigt. Reihenfolge = was zuerst blockiert.
 
 ## 5. SEO-Basis (nächste Sitzung, mit claude-seo)
 
-- [ ] **Ich:** Konkurrenz-Analyse der Luzerner Webagenturen (`seo-competitor-pages`)
+- [x] **Ich:** Konkurrenz-Analyse der Luzerner Webagenturen: erledigt 28.09.2026, `website/konkurrenz-seo.md`
 - [ ] **Du:** Keyword-Volumen im Google Keyword-Planer prüfen (braucht das Google-Ads-Konto aus 3.)
 - [ ] **Ich:** Seitentitel, Beschreibungen, Überschriften je Seite (`seo-page`, `seo-content-brief`)
 - [ ] **Ich:** Strukturierte Daten: LocalBusiness, FAQ, Person (`seo-schema`)
