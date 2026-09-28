@@ -62,8 +62,8 @@ Abhaken, sobald erledigt. Reihenfolge = was zuerst blockiert.
 
 - [x] **Ich:** Konkurrenz-Analyse der Luzerner Webagenturen: erledigt 28.09.2026, `website/konkurrenz-seo.md`
 - [ ] **Du:** Keyword-Volumen im Google Keyword-Planer prüfen (braucht das Google-Ads-Konto aus 3.)
-- [ ] **Ich:** Seitentitel, Beschreibungen, Überschriften je Seite (`seo-page`, `seo-content-brief`)
-- [ ] **Ich:** Strukturierte Daten: LocalBusiness, FAQ, Person (`seo-schema`)
+- [ ] **Ich:** Seitentitel, Beschreibungen je Seite: Vorschlag 28.09.2026 in `website/seo-titel.md`, wartet auf Entscheid Mattia. Überschriften im Textinterview
+- [ ] **Ich:** Strukturierte Daten: LocalBusiness/ProfessionalService, Person (`seo-schema`); FAQPage ohne Google-Nutzen seit Mai 2026 [A]
 - [ ] **Ich:** GEO: für KI-Suchen lesbar machen, z. B. llms.txt (`seo-geo`)
 - [ ] **Wir:** Google-Unternehmensprofil vorbereiten: Kategorie, Beschreibung, Fotos (`seo-local`)
 - [ ] **Ich:** Nach dem Bau: technischer Check und Audit (`seo-technical`, `seo-audit`)

@@ -90,10 +90,13 @@ Keine Anzeigen, keine KI-Übersicht bei dieser Suche.
    „webdesign luzern“. Platz 2 in der Karte hat 7 Bewertungen. Ziel: Profil
    vor dem Livegang, erste 5–10 echte Bewertungen aus den ersten Aufträgen.
 2. **Kaufseite I:** Titel mit „Webdesign Luzern“ vorne, unter 60 Zeichen.
-   Rund 800–1200 Wörter reichen. ProfessionalService + FAQPage + Person
-   einbauen (haben nur 2 von 9). Mögliche Lücken: sichtbare Preise und eine
-   klare Zielgruppe. Ob wir Preise zeigen, ist offen **[?] Mattia**
-   (`grundlagen/angebote-preise.md`).
+   Rund 800–1200 Wörter reichen. ProfessionalService + Person als
+   strukturierte Daten einbauen. FAQPage bringt seit Mai 2026 bei Google keine
+   Anzeige im Treffer mehr [A: laut claude-seo, vor Gebrauch prüfen], die
+   Fragen gehören trotzdem auf die Seite. Lücken: sichtbare Preise und eine
+   klare Zielgruppe. Der Preisrahmen auf Kaufseiten ist schon entschieden
+   (`website/seitenstruktur.md`, Pflichtelement 3); ob er auch im Titel steht:
+   `website/seo-titel.md`.
 3. **Kaufseite III + IV:** Titelformel „SEO Luzern“ bzw. „SEO Agentur Luzern“
    ist gesetzt. GEO nicht als Alleinstellung verkaufen, sondern mit einem
    überprüfbaren Beleg (z. B. eigenes Ergebnis in ChatGPT/Perplexity nach dem
