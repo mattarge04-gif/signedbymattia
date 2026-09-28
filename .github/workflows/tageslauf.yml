@@ -31,7 +31,7 @@ jobs:
     steps:
       - name: Testnachricht senden
         env:
-          TG_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TG_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN || secrets.API_SIGNEDBYMATTIA }}
           TG_CHAT: ${{ secrets.TELEGRAM_CHAT_ID }}
         run: |
           ANTWORT=$(curl -s "https://api.telegram.org/bot${TG_TOKEN}/sendMessage" --data-urlencode "chat_id=${TG_CHAT}" --data-urlencode "text=Tageslauf signedbymattia: Telegram funktioniert.")
@@ -101,7 +101,7 @@ jobs:
         env:
           EXEC_FILE: ${{ steps.claude.outputs.execution_file }}
           ERGEBNIS: ${{ steps.claude.outcome }}
-          TG_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TG_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN || secrets.API_SIGNEDBYMATTIA }}
           TG_CHAT: ${{ secrets.TELEGRAM_CHAT_ID }}
           TAG: ${{ steps.auftrag.outputs.tag }}
         run: |

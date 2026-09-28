@@ -62,7 +62,7 @@ selbstständig ab (Mo–Fr, Start 08:30).
 4. Telegram: Dem eigenen Bot in Telegram einmal `/start` schreiben. Dann im Browser
    `https://api.telegram.org/bot<TOKEN>/getUpdates` öffnen und bei `"chat":{"id": …}` die Zahl
    ablesen. Zwei Secrets anlegen wie oben: `TELEGRAM_BOT_TOKEN` (Token von BotFather) und
-   `TELEGRAM_CHAT_ID` (die Zahl). Token nie in Chat oder Dateien.
+   `TELEGRAM_CHAT_ID` (die Zahl). Token nie in Chat oder Dateien. Der Token darf auch als `API_SIGNEDBYMATTIA` hinterlegt sein (so eingerichtet am 28.09.2026).
 5. Test Telegram: GitHub › Actions › Tageslauf › „Run workflow" › Haken bei
    „Nur Telegram testen" › Run. Keine Kosten.
 6. Test Lauf: gleich, ohne Haken (läuft nur mit freigegebenem Auftrag für heute).
