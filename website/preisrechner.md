@@ -18,16 +18,16 @@ passt in die UI, keine Taschenrechner-Optik, der Kunde versteht jede Option.
 5. Jeder Baustein erklärt in einfachen Worten, was **an** und was **aus**
    für den Kunden bedeutet.
 
-## Preismatrix: Vorschlag [A], Mattia bestätigt [?]
+## Preismatrix [F] (Mattia bestätigt 28.09.2026)
 
 | Baustein | Preis | Status |
 | --- | --- | --- |
 | Website Core (bis 5 Seiten) | CHF 1'600 | [F] |
-| SEO + GEO | CHF 690 | [A] Vorschlag |
-| Google-Profil einrichten | CHF 290 | [A] Vorschlag |
-| SEO + GEO und Google-Profil zusammen („Sichtbarkeit“) | CHF 890 statt 980 | [A] Vorschlag |
+| SEO + GEO | CHF 690 | [F] |
+| Google-Profil einrichten | CHF 290 | [F] |
+| SEO + GEO und Google-Profil zusammen („Sichtbarkeit“) | CHF 890 statt 980 | [F] |
 | Automation Core, 1 Ablauf | CHF 500 | [F] („ab CHF 500“) |
-| jeder weitere Ablauf | + CHF 400 | [A] Vorschlag |
+| jeder weitere Ablauf | + CHF 400 | [F] |
 
 Beispiel: Website + Sichtbarkeit = CHF 2'490, im Budget der Wunschkunden
 (CHF 1'500–2'500, `grundlagen/zielkunden.md`).
@@ -46,7 +46,7 @@ Rand, als Einstieg. Aufwand grob: SEO + GEO ca. 7 h, Google-Profil ca. 3 h.
 
 ## Nächste Schritte
 
-1. Mattia bestätigt oder ändert die Preismatrix.
+1. ~~Preismatrix bestätigen~~: erledigt 28.09.2026.
 2. Drei Gestaltungsideen vorlegen (Idee: Ergebnis als Echtheitszertifikat aus
    `marke/DESIGN.md` §8), mit echten Beispielen statt Skizzen.
 3. Design-Spec schreiben, danach Umsetzungsplan.

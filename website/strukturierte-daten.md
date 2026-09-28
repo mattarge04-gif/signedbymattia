@@ -68,7 +68,7 @@ Google-Unternehmensprofil kann die Adresse trotzdem verbergen (Einzugsgebiet).
         { "@type": "Country", "name": "Schweiz" }
       ],
       "knowsLanguage": "de-CH",
-      "priceRange": "CHF 500–2'500",
+      "priceRange": "CHF 290–2'990",
       "sameAs": ["[LINKEDIN-URL]"],
       "hasOfferCatalog": {
         "@type": "OfferCatalog",
@@ -101,8 +101,8 @@ Google-Unternehmensprofil kann die Adresse trotzdem verbergen (Einzugsgebiet).
 }
 ```
 
-`priceRange` [A]: vom günstigsten Einzelbaustein bis Website mit Sichtbarkeit.
-Anpassen, sobald die Preismatrix entschieden ist (`website/preisrechner.md`).
+`priceRange`: vom günstigsten Baustein (Google-Profil CHF 290) bis Website +
+Sichtbarkeit + ein Ablauf (CHF 2'990), Preismatrix `website/preisrechner.md`.
 
 ## 2 · Kaufseiten: Leistung mit Preis
 
@@ -155,8 +155,16 @@ Preis als Untergrenze:
 
 **Kaufseite III + IV** (`/seo-luzern/`): gleicher Aufbau, `name` „Sichtbarkeit:
 SEO, GEO und Google-Profil“, `serviceType` „Suchmaschinenoptimierung“.
-**`offers` erst einsetzen, wenn der Preis entschieden ist** [?]; bis dahin
-weglassen.
+Preis ab CHF 290 (Google-Profil allein; SEO + GEO CHF 690, beides CHF 890):
+
+```json
+"offers": {
+  "@type": "Offer",
+  "priceCurrency": "CHF",
+  "priceSpecification": { "@type": "PriceSpecification", "minPrice": "290", "priceCurrency": "CHF" },
+  "url": "https://signedbymattia.ch/seo-luzern/"
+}
+```
 
 ## 3 · Blogartikel
 
