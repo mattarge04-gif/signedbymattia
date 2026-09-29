@@ -44,7 +44,9 @@ selbstständig ab (Mo–Fr, Start 08:17, Ersatztermin 09:47; im Winter je eine S
 
 GitHub startet geplante Läufe nur nach Möglichkeit: bei Last später oder gar nicht,
 vor allem zur vollen und halben Stunde. Am 29.09.2026 ist der Lauf um 06:30 UTC
-ganz ausgefallen (kein Lauf in Actions, API nie aufgerufen). Darum:
+nicht pünktlich gekommen: Er startete erst um 13:14 UTC, fast 7 Stunden zu spät, nachdem
+der Auftrag schon von Hand gelaufen war, und arbeitete alles ein zweites Mal ab
+(Branch `tageslauf/2026-09-29-lauf2`, USD 3.74). Darum:
 
 - zwei Termine auf krummen Minuten: 06:17 und 07:47 UTC;
 - der zweite Termin bricht sofort ab, wenn es den Branch `tageslauf/JJJJ-MM-TT` oder
@@ -59,21 +61,22 @@ ganz ausgefallen (kein Lauf in Actions, API nie aufgerufen). Darum:
   `budgets.yaml` › `claude_tageslauf_api`.
 - Pro Lauf höchstens 120 Schritte (`--max-turns`), 150 Minuten. **Modell Opus** (Wunsch
   Mattia 28.09.2026); mit der Zeile `Modell: sonnet` im Auftrag Sonnet zum halben Preis.
-- **Erster Lauf 29.09.2026, gemessen in der Console:** USD 6.96 für 104 Schritte, zwei
-  Aufgaben (2.5D-Bühne, Initialen). 11.76 Mio. Tokens Eingabe (fast alles aus dem Cache),
-  0.15 Mio. Ausgabe. Claude Codes eigene Schätzung sagte USD 3.22, also zu tief.
-  **Folge:** USD 20 reichen für etwa 3 Läufe dieser Grösse, nicht für jeden Arbeitstag [A].
-- **Kostenzähler:** Nach jedem Lauf rechnet der Workflow Tokens × Preis und nimmt vorsichtig
-  den höheren Wert aus dieser Rechnung und der Schätzung × `KORREKTUR` (2.2). Die Zeile kommt
-  in den Branch `kosten` (`kosten.csv`, mit Tokens, Schritten und abgelehnten Befehlen).
-  Telegram-Nachricht, sobald im Monat **25, 50 und 75 %** von USD 20 erreicht sind. Die Zeile
-  vom 29.09. steht dort noch mit 3.2167; von Hand auf 6.96 korrigieren.
+- **Erster Tag 29.09.2026:** Der Auftrag lief **zweimal**: von Hand (USD 3.22, 104 Schritte)
+  und durch den um fast 7 Stunden verspäteten Zeitplanlauf (USD 3.74). Zusammen USD 6.96,
+  genau wie in der Console; Claude Codes Schätzung stimmt also. 11.76 Mio. Tokens Eingabe
+  (fast alles aus dem Cache), 0.15 Mio. Ausgabe. **Ein Lauf dieser Grösse kostet USD 3–4;**
+  USD 20 reichen für etwa 5–6 solche Läufe im Monat, nicht für jeden Arbeitstag [A].
+  Den doppelten Lauf verhindert seit 29.09. die Sperre im Zeitplan (siehe oben).
+- **Kostenzähler:** Nach jedem Lauf rechnet der Workflow Tokens × Preis und nimmt den höheren
+  Wert aus dieser Rechnung und Claude Codes Schätzung (`KORREKTUR` 1). Die Zeile kommt in den
+  Branch `kosten` (`kosten.csv`, mit Tokens, Schritten und abgelehnten Befehlen).
+  Telegram-Nachricht, sobald im Monat **25, 50 und 75 %** von USD 20 erreicht sind.
 - Höchstens 3–6 Aufgaben pro Auftrag.
 
 ## Sparsam laufen [F] (29.09.2026)
 
 Claude liest bei **jedem Schritt den ganzen bisherigen Verlauf** neu (am 29.09. im Schnitt
-rund 113'000 Tokens pro Schritt). Gespart wird darum mit **weniger Schritten** und **kürzerem
+rund 55'000 Tokens pro Schritt [A]). Gespart wird darum mit **weniger Schritten** und **kürzerem
 Verlauf**, nicht mit weniger Ergebnis:
 
 - Der Workflow macht die Vorarbeit ohne Tokens: Branch anlegen, `werkzeuge/` mit Playwright,
@@ -100,4 +103,5 @@ Verlauf**, nicht mit weniger Ergebnis:
 6. Test Lauf: gleich, ohne Haken (läuft nur mit freigegebenem Auftrag für heute).
 7. Damit der Workflow den PR öffnen darf: GitHub › Repo › Settings › Actions › General ›
    Workflow permissions › Haken bei „Allow GitHub Actions to create and approve pull
-   requests" › Save. (Am 29.09.2026 wurde kein PR erstellt, vermutlich fehlte dieser Haken [A].)
+   requests" › Save. (Am 29.09.2026 fehlte er: GitHub meldete „GitHub Actions is not permitted to create or
+   approve pull requests", darum kein PR.)
