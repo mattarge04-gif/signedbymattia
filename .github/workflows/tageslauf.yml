@@ -11,8 +11,14 @@ name: Tageslauf
 
 on:
   schedule:
-    # Mo–Fr 06:30 UTC = 08:30 Sommerzeit / 07:30 Winterzeit (Zürich)
-    - cron: "30 6 * * 1-5"
+    # GitHub startet Zeitpläne nur "best effort": bei Last verspätet oder gar nicht,
+    # vor allem zur vollen und halben Stunde (am 29.09.2026 fiel 06:30 UTC ganz aus).
+    # Darum krumme Minuten und ein Ersatztermin; der zweite bricht ab, wenn heute
+    # schon gelaufen wurde (Schritt "Auftrag des Tages suchen").
+    # Mo–Fr 06:17 UTC = 08:17 Sommerzeit / 07:17 Winterzeit (Zürich)
+    - cron: "17 6 * * 1-5"
+    # Ersatz: Mo–Fr 07:47 UTC = 09:47 Sommerzeit / 08:47 Winterzeit (Zürich)
+    - cron: "47 7 * * 1-5"
   workflow_dispatch:
     inputs:
       telegram_test:
@@ -57,7 +63,20 @@ jobs:
           TAG=$(TZ=Europe/Zurich date +%F)
           DATEI="plan/auftraege/$TAG.md"
           echo "tag=$TAG" >> "$GITHUB_OUTPUT"
-          if [ -f "$DATEI" ] && grep -q "^Status: freigegeben" "$DATEI"; then
+          # Schon gelaufen (Branch des Tages oder Kostenzeile vorhanden)? Dann kein zweiter
+          # geplanter Lauf. Von Hand gestartete Läufe gehen immer durch.
+          GELAUFEN=nein
+          if git ls-remote --exit-code origin "refs/heads/tageslauf/$TAG" >/dev/null 2>&1; then
+            GELAUFEN=ja
+          elif git ls-remote --exit-code origin kosten >/dev/null 2>&1 \
+            && git fetch -q origin kosten \
+            && git show FETCH_HEAD:kosten.csv 2>/dev/null | grep -q "^$TAG,"; then
+            GELAUFEN=ja
+          fi
+          if [ "${{ github.event_name }}" = "schedule" ] && [ "$GELAUFEN" = "ja" ]; then
+            echo "Tageslauf $TAG ist schon gelaufen. Ersatztermin übersprungen, keine Kosten."
+            echo "vorhanden=nein" >> "$GITHUB_OUTPUT"
+          elif [ -f "$DATEI" ] && grep -q "^Status: freigegeben" "$DATEI"; then
             echo "datei=$DATEI" >> "$GITHUB_OUTPUT"
             echo "vorhanden=ja" >> "$GITHUB_OUTPUT"
           else

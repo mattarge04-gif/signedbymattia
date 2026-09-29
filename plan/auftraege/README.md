@@ -1,6 +1,6 @@
 # Tageslauf: Aufträge für den Tag
 
-Stand: 28.09.2026 · Status: **eingerichtet, Test am 29.09.2026** · Workflow:
+Stand: 29.09.2026 · Status: **eingerichtet, geplanter Lauf am 29.09.2026 von GitHub nicht gestartet** · Workflow:
 `.github/workflows/tageslauf.yml`
 
 ## Idee [F] (Mattia, 28.09.2026)
@@ -8,7 +8,7 @@ Stand: 28.09.2026 · Status: **eingerichtet, Test am 29.09.2026** · Workflow:
 Mattia ist abends **2 h** am PC. Diese Zeit gehört den Aufgaben, die ihn brauchen:
 Texte, Entscheide, Interview, Kontrolle. Alles, was klar ist und ihn nicht braucht,
 schreiben wir abends als Auftrag auf. Claude arbeitet es am nächsten Tag
-selbstständig ab (Mo–Fr, Start 08:30).
+selbstständig ab (Mo–Fr, Start 08:17, Ersatztermin 09:47; im Winter je eine Stunde früher).
 
 ## Abends (ca. 15 Min. der 2 h)
 
@@ -39,6 +39,17 @@ selbstständig ab (Mo–Fr, Start 08:30).
 4. Nur die Dateien anfassen, die der Auftrag nennt (Scope halten). Ideen darüber
    hinaus kommen in den Bericht unter „Vorschläge".
 5. Am Ende Bericht in die Auftragsdatei und PR öffnen.
+
+## Zeitplan [F] (29.09.2026)
+
+GitHub startet geplante Läufe nur nach Möglichkeit: bei Last später oder gar nicht,
+vor allem zur vollen und halben Stunde. Am 29.09.2026 ist der Lauf um 06:30 UTC
+ganz ausgefallen (kein Lauf in Actions, API nie aufgerufen). Darum:
+
+- zwei Termine auf krummen Minuten: 06:17 und 07:47 UTC;
+- der zweite Termin bricht sofort ab, wenn es den Branch `tageslauf/JJJJ-MM-TT` oder
+  eine Zeile des Tages in `kosten.csv` schon gibt (keine doppelten Kosten);
+- „Run workflow" von Hand läuft immer, auch nach einem Lauf am selben Tag.
 
 ## Grenzen und Kosten [F]
 
