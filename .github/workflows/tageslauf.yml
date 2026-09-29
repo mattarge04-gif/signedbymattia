@@ -9,10 +9,10 @@
 
 env:
   BUDGET_USD: "20"   # Console rechnet in USD; ~ CHF 20 [A]
-  # Claude Codes eigene Kostenschätzung lag am 29.09.2026 zu tief (USD 3.22, Console
-  # USD 6.96). Gezählt wird darum vorsichtig: der höhere Wert aus Tokens × Preis und
-  # Schätzung × KORREKTUR. Nach ein paar Läufen mit der Console abgleichen.
-  KORREKTUR: "2.2"
+  # Gezählt wird der höhere Wert aus Tokens × Preis und Claude Codes Schätzung × KORREKTUR.
+  # Die Schätzung stimmte am 29.09.2026 mit der Console überein (zwei Läufe, 3.22 + 3.74
+  # = 6.96), darum 1. Nach ein paar Läufen wieder mit der Console abgleichen.
+  KORREKTUR: "1"
 
 name: Tageslauf
 
