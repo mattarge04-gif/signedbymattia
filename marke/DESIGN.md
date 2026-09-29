@@ -1,6 +1,6 @@
 # DESIGN.md — signedbymattia
 
-Stand: 28.09.2026 · Status: **Identität „Edition“ entschieden, Umsetzung offen** ·
+Stand: 29.09.2026 · Status: **Identität „Edition“ entschieden, Umsetzung offen** ·
 Zielplan KW 43 („Gestaltungsrichtung festlegen: Typografie, Farben,
 Bildsprache“), **vorgezogen**: Identität vor Website (Entscheid 24.09.2026)
 
@@ -153,12 +153,12 @@ Nach `ui-regeln.md`: keine Deko-Animation, kein Scroll-Hijacking,
 `prefers-reduced-motion` respektieren, Inhalt ohne JavaScript lesbar.
 Mikro-Interaktionen erwünscht.
 
-**Wow in zwei Akten [F, Richtung]**, gewählt aus vier Vorschlägen:
-
-- **Akt I, Himmel (hell):** Beim Scrollen fliegt man durch pastellige
-  Wolkenebenen. Engel und Browserfenster ziehen in der Tiefe vorbei.
-- **Akt II, Galerie (dunkel):** Man landet in einem barocken Saal. Die
-  Editionen hängen als Gemälde an der Wand.
+**Wow als Kapitel-Scroll [F, Mattia 29.09.2026]** (löst die „zwei Akte“ ab):
+Ein Scroll durch alle Kapitel wie Shopify Editions. Hero im Barock-Himmel mit
+Himmelsflug, dann je Kapitel eine eigene gemalte Szene mit kurzem Halt und
+spielerischem Erklär-Element, Kapitel II mit 3D-Objekt, danach die Werke im
+dunklen Galerie-Saal. Drehbuch: `website/drehbuch/10-startseite.md`,
+Bewegungswerte: `website/drehbuch/00-grammatik.md`.
 
 **Bauweise: 2.5D-Bühne [F, Mattia 28.09.2026]** nach dem Teardown von Shopify
 Editions (`marke/teardown-shopify-editions.md`):

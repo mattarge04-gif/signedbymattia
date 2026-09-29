@@ -1,6 +1,6 @@
 # Seitenstruktur der eigenen Website
 
-Stand: 28.09.2026 · Status: **entschieden [F]** (Interview 27.09.2026, baut auf
+Stand: 29.09.2026 · Status: **entschieden [F]** (Interview 27.09.2026, baut auf
 der Identität „Edition“ auf) · Zielplan KW 41 („Seitenstruktur festlegen: welche
 Seiten, in welcher Reihenfolge, ein Ziel pro Seite“) · gebaut wird in
 `signedbymattia-website`
@@ -43,30 +43,26 @@ flowchart LR
 - **HLKS-Branchenseite erst nach dem Livegang** (zum Start nicht gewählt).
 - **Nicht:** fast gleiche Ortsseiten für Luzern, Ebikon, Root, Zug.
 
-## Startseite: Aufbau wie Shopify Editions [F]
+## Startseite: ein Scroll durch alle Kapitel wie Shopify Editions [F]
 
-Vorbild: Shopify Editions (`marke/referenzen.md`), kombiniert mit den zwei
-Wow-Akten aus `marke/DESIGN.md` §7.
+Neu entschieden 29.09.2026 (Mattia): Die zwei Akte werden zu einem Scroll durch
+alle Kapitel. Jedes Kapitel hat eine eigene gemalte Szene, einen kurzen Halt
+mit spielerischem Erklär-Element und endet in einem Papier-Panel mit Details
+und Tarot-Karte. Zwischen den Kapiteln der Ölfarben-Übergang. Genaues Drehbuch:
+`website/drehbuch/10-startseite.md`, Bausteine: `website/drehbuch/01-bausteine.md`.
 
-1. **Hero:** „Gemalt in *Code*.“ im Barock-Himmel, daneben der **Kapitel-Index
-   I–V** als fette Liste mit römischen Zahlen (Host Grotesk fett, Zahlen in
-   Instrument Serif).
-2. **Akt I, Himmel:** Scroll-Flug durch die Wolkenebenen.
-3. **Akt II, Galerie:** Landung im barocken Saal (2.5D-Bühne, `marke/DESIGN.md` §7), die Editionen hängen als Gemälde. Übergang zwischen den Akten in Ölfarbe.
-4. **Kapitel I–V:** je ein kurzer Abschnitt pro Leistung, jeweils mit Link zur
-   Kaufseite:
+| Nr. | Szene | Leistung | führt zu |
+| --- | --- | --- | --- |
+| 10 | Hero „Gemalt in *Code*.“ im Barock-Himmel, Kapitel-Index, Himmelsflug | – | Kapitel I |
+| 11 | Kapitel I | Website Core | Atelier, Kaufseite I |
+| 12 | Kapitel II (mit 3D-Objekt) | Automation Core | Atelier, Kaufseite II |
+| 13 | Kapitel III | SEO + GEO | Atelier, Kaufseite III + IV |
+| 14 | Kapitel IV | Google-Profil | Atelier, Kaufseite III + IV |
+| 15 | Kapitel V | Texte + Branding | Anfrage |
+| 16 | Werke (Galerie-Saal) | Editionen | Editionen-Seite |
+| 17 | Abschluss „Kein Template. Ein *Werk*.“ | – | Anfrage, Atelier |
 
-   | Kapitel | Leistung | führt zu |
-   | --- | --- | --- |
-   | I | Website Core | Kaufseite I |
-   | II | Automation Core | Kaufseite II |
-   | III | SEO + GEO | Kaufseite III + IV |
-   | IV | Google-Profil | Kaufseite III + IV |
-   | V | Texte + Branding | Anfrage |
-
-5. **Abschluss:** „Kein Template. Ein *Werk*.“ und der Knopf „Edition anfragen“.
-
-Jede Sektion beantwortet eine Frage des Besuchers (`marke/ui-regeln.md`,
+Jede Szene beantwortet eine Frage des Besuchers (`marke/ui-regeln.md`,
 Sektionsfrage).
 
 ## Editionen [F]
