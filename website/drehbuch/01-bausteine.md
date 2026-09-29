@@ -1,6 +1,6 @@
 # Drehbuch 01: Bausteine (aus dem Shopify-Teardown)
 
-Stand: 29.09.2026 · Status: **Vorschlag [A], Mattia bestätigt [?]** · Quelle: Screenshots und HTML
+Stand: 29.09.2026 · Status: **Vorschlag [A], Mattia bestätigt [?]** · Nur Mechaniken übernehmen, nie Motive · Quelle: Screenshots und HTML
 von shopify.com/editions/winter2026 (lokal in `_rohdaten/teardown/`), `marke/teardown-shopify-editions.md`
 
 Shopify mischt pro Kapitel wenige, immer gleiche Bausteine. Wir übernehmen die **Idee** jedes
@@ -23,6 +23,7 @@ sie nutzt (Kürzel B1–B14).
 | B12 | **Konstruktionslinien** | da-Vinci-Linien (Goldener Schnitt, Kreise, Diagonalen) als Lader und feines Raster | Goldene Linien zeichnen sich beim Laden und schliessen sich im Abschluss |
 | B13 | **Kapitel-Leiste** | links, aktives Kapitel mit Punktlinie, hell/dunkel je Szene | links, I–V + Werke, gleiches Verhalten |
 | B14 | **Szenenrand** | Szene bleibt links neben dem Panel sichtbar | gleiche Aufteilung: Leiste links auf der Szene, Panel rechts |
+| B15 | **Grafik-Teil** | Klare Linien-Grafik auf Papier ohne Gemälde (Linien laufen zusammen, Zahlen gross, Zeitleiste) | Seitenbaum, Linien laufen in einen Eingang, Quellen laufen zu einer Website; nie erfundene Zahlen |
 
 **Übergang zwischen Kapiteln:** Ölfarben-Übergang (`marke/DESIGN.md` §7), bei Shopify der
 „Schlamm"-Übergang, bei uns mit eigener Pinseltextur.
