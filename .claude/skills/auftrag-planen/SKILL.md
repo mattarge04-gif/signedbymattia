@@ -121,17 +121,19 @@ pushen. Der Lauf liest `main`; was nur lokal liegt, läuft nicht.
 
 ## Skills im Tageslauf
 
-Im GitHub-Lauf gibt es **nur, was im Repo liegt**: `CLAUDE.md`, `.claude/agents/`,
-`.claude/skills/`. Globale Skills auf Mattias PC (unter `~/.claude/skills/`) fehlen dort,
-bis sie ins Repo kopiert sind (Anleitung `plan/auftraege/README.md` › „Skills in den
-Tageslauf bringen“). Vor dem Planen prüfen: `ls .claude/skills/`.
+Im GitHub-Lauf gibt es nur, was im Repo liegt (`.claude/skills/`, `.claude/agents/`).
+**Katalog mit Zweck, passendem Helfer und Gewicht: `.claude/skills/README.md`.** Kurz:
+Gestaltung `impeccable`, `taste-skill`, `redesign-skill`, `emil-design-eng`; Vorbilder
+untersuchen `clone-site` (nur `--analyze-only`, nie fremden Code übernehmen); SEO `seo-*`;
+weniger Code `ponytail`; Fehler `systematic-debugging`; Abschluss
+`verification-before-completion`; Diagramme `archify`.
 
 - Einen Skill **pro Schritt** nennen: `Skill: impeccable` hinter dem Schritt. Ohne Nennung
   lädt der Lauf keinen; jeder geladene Skill bleibt bis zum Ende im Verlauf und kostet.
-- Schwere Skills (lange Anleitungen) lieber einem **Helfer** geben, z. B.
+- **Schwere** Skills (laut Katalog) lieber einem **Helfer** geben, z. B.
   `[pruefer] … Skill: impeccable`: dann liegt der Skill nur in dessen kurzem Verlauf.
-- Fehlt ein nötiger Skill im Repo: für Gestaltung auf `marke/ui-regeln.md` verweisen (dort
-  sind die Regeln verdichtet), sonst die Aufgabe als Abendaufgabe führen.
+- Kommt „SEO“ im Auftrag vor, installiert der Lauf die Python-Pakete der SEO-Hilfsprogramme.
+- Widerspricht ein Skill der Marke (`marke/DESIGN.md`, `marke/ui-regeln.md`), gilt die Marke.
 
 ## Wissenskarte: wo was steht
 

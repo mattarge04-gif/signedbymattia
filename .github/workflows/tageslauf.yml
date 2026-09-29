@@ -113,12 +113,21 @@ jobs:
             || echo "::warning::Werkzeuge nicht vollständig installiert"
           python3 -m pip install --quiet --user --break-system-packages pillow \
             || echo "::warning::Pillow nicht installiert"
+          # SEO-Skills brauchen Python-Pakete für ihre Hilfsprogramme; nur wenn der Auftrag SEO nennt.
+          if grep -qi "seo" "${{ steps.auftrag.outputs.datei }}"; then
+            python3 -m pip install --quiet --user --break-system-packages beautifulsoup4 requests \
+              lxml lxml_html_clean trafilatura htmldate courlan \
+              || echo "::warning::SEO-Pakete nicht vollständig installiert"
+          fi
 
       - name: Claude arbeitet den Auftrag ab
         id: claude
         if: steps.auftrag.outputs.vorhanden == 'ja'
         continue-on-error: true
         uses: anthropics/claude-code-action@v1
+        env:
+          # Die SEO-Skills rufen "${CLAUDE_PLUGIN_ROOT}/scripts/claude-seo" auf (.claude/skills/README.md).
+          CLAUDE_PLUGIN_ROOT: ${{ github.workspace }}/.claude/vendor/claude-seo
         with:
           anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
           github_token: ${{ secrets.GITHUB_TOKEN }}

@@ -94,28 +94,14 @@ Verlauf**, nicht mit weniger Ergebnis:
 - Nachsehen: Laufseite › Summary zeigt Tokens, Schritte und abgelehnte Befehle; das
   vollständige Protokoll liegt 14 Tage als Artefakt beim Lauf.
 
-## Skills in den Tageslauf bringen
+## Skills im Tageslauf [F] (29.09.2026)
 
-Der Lauf kennt nur Skills, die im Repo unter `.claude/skills/` liegen; die globalen auf
-Mattias PC (`C:\Users\matta\.claude\skills\`) sieht er nicht. Einmalig am PC, wo sie
-installiert sind, Claude Code im Repo `signedbymattia` sagen:
-
-> Kopiere diese Skills aus meinem globalen Skill-Ordner (und, falls sie als Plugin installiert
-> sind, aus `~/.claude/plugins/`) nach `.claude/skills/`: impeccable, taste-skill,
-> emil-design-eng, archify, claude-seo, ponytail, copy-site und von superpowers nur die
-> Arbeits-Skills (z. B. systematic-debugging, verification-before-completion,
-> test-driven-development), **nicht** den Einstieg `using-superpowers`. Prüfe bei jedem die
-> Lizenz (LICENSE, Quelle), lass `node_modules`, Caches und Dateien über 1 MB weg, und liste
-> auf, was wie gross ist und wofür er im Tageslauf taugt. Committe und pushe auf einen
-> Branch, dann PR.
-
-Warum nicht ganz superpowers: Der Einstieg `using-superpowers` verlangt, vor jeder Handlung
-Skills zu prüfen, und bringt Abläufe mit Rückfragen (Brainstorming, Pläne zur Freigabe). Im
-Tageslauf ohne Mattia kostet das Schritte und kann hängen bleiben [A].
-
-Danach PR mergen. Nur übernehmen, was der Tageslauf wirklich braucht: Die Beschreibung jedes
-Skills steht bei jedem Schritt im Verlauf (klein), der ganze Skill nur, wenn ein Auftrag ihn
-nennt. Ohne Lizenz, die das Kopieren erlaubt, nicht übernehmen [?].
+Der Lauf kennt nur Skills im Repo. Seit 29.09.2026 liegen dort, mit Mattias Erlaubnis
+übernommen: impeccable, taste-skill, redesign-skill, emil-design-eng, clone-site (mit
+dom-clone, shader-extract, remix-site), sieben SEO-Skills von claude-seo, ponytail,
+ponytail-review, drei Arbeits-Skills von superpowers und archify. Katalog, Quellen,
+Lizenzen und Regeln: `.claude/skills/README.md`. Ein Skill wird nur geladen, wenn ein
+Schritt im Auftrag ihn nennt. Updates nie automatisch, nur als geprüfter PR.
 
 ## Einrichtung (einmalig, Mattia)
 
