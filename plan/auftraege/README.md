@@ -94,6 +94,21 @@ Verlauf**, nicht mit weniger Ergebnis:
 - Nachsehen: Laufseite › Summary zeigt Tokens, Schritte und abgelehnte Befehle; das
   vollständige Protokoll liegt 14 Tage als Artefakt beim Lauf.
 
+## Skills in den Tageslauf bringen
+
+Der Lauf kennt nur Skills, die im Repo unter `.claude/skills/` liegen; die globalen auf
+Mattias PC (`C:\Users\matta\.claude\skills\`) sieht er nicht. Einmalig am PC, wo sie
+installiert sind, Claude Code im Repo `signedbymattia` sagen:
+
+> Kopiere die Skills impeccable, taste-skill, emil-design-eng, archify und claude-seo aus
+> meinem globalen Skill-Ordner nach `.claude/skills/`. Prüfe bei jedem die Lizenz (LICENSE,
+> Quelle), lass `node_modules`, Caches und Dateien über 1 MB weg, und liste auf, was wie
+> gross ist. Committe und pushe auf einen Branch, dann PR.
+
+Danach PR mergen. Nur übernehmen, was der Tageslauf wirklich braucht: Die Beschreibung jedes
+Skills steht bei jedem Schritt im Verlauf (klein), der ganze Skill nur, wenn ein Auftrag ihn
+nennt. Ohne Lizenz, die das Kopieren erlaubt, nicht übernehmen [?].
+
 ## Einrichtung (einmalig, Mattia)
 
 1. console.anthropic.com: API-Schlüssel erstellen, Name „tageslauf-signedbymattia".
