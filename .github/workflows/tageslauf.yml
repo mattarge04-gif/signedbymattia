@@ -3,9 +3,16 @@
 # Kosten: eigener API-Schlüssel mit Ausgabenlimit CHF 20/Monat in der Anthropic Console
 # (Entscheid 28.09.2026, agency-automation-os budgets.yaml › claude_tageslauf_api).
 # Kostenzähler: Branch `kosten`, Datei kosten.csv. Telegram bei 25/50/75 % des Budgets.
+# Sparsam laufen (29.09.2026): Werkzeuge, Branch, Push und PR macht der Workflow, nicht
+# Claude; Claude arbeitet nur die Aufgaben ab. Kosten aus den Tokens gerechnet, das
+# vollständige Protokoll liegt 14 Tage als Artefakt beim Lauf.
 
 env:
   BUDGET_USD: "20"   # Console rechnet in USD; ~ CHF 20 [A]
+  # Claude Codes eigene Kostenschätzung lag am 29.09.2026 zu tief (USD 3.22, Console
+  # USD 6.96). Gezählt wird darum vorsichtig: der höhere Wert aus Tokens × Preis und
+  # Schätzung × KORREKTUR. Nach ein paar Läufen mit der Console abgleichen.
+  KORREKTUR: "2.2"
 
 name: Tageslauf
 
@@ -79,10 +86,33 @@ jobs:
           elif [ -f "$DATEI" ] && grep -q "^Status: freigegeben" "$DATEI"; then
             echo "datei=$DATEI" >> "$GITHUB_OUTPUT"
             echo "vorhanden=ja" >> "$GITHUB_OUTPUT"
+            # Optionale Zeile im Auftrag: "Modell: sonnet" (halber Preis, für einfache Tage).
+            if grep -qi "^Modell: *sonnet" "$DATEI"; then
+              echo "modell=claude-sonnet-5-5" >> "$GITHUB_OUTPUT"
+            else
+              echo "modell=claude-opus-5-5" >> "$GITHUB_OUTPUT"
+            fi
           else
             echo "Kein freigegebener Auftrag für $TAG. Kein Lauf, keine Kosten."
             echo "vorhanden=nein" >> "$GITHUB_OUTPUT"
           fi
+
+      # Vorarbeit ohne Tokens: Was hier läuft, muss Claude nicht selbst tun.
+      - name: Branch und Werkzeuge bereitstellen
+        if: steps.auftrag.outputs.vorhanden == 'ja'
+        env:
+          TAG: ${{ steps.auftrag.outputs.tag }}
+        run: |
+          if git ls-remote --exit-code origin "refs/heads/tageslauf/$TAG" >/dev/null 2>&1; then
+            git fetch -q origin "tageslauf/$TAG"
+            git checkout -q -B "tageslauf/$TAG" "origin/tageslauf/$TAG"
+          else
+            git checkout -q -b "tageslauf/$TAG"
+          fi
+          (cd werkzeuge && npm ci --no-audit --no-fund && npx playwright install --with-deps chromium) \
+            || echo "::warning::Werkzeuge nicht vollständig installiert"
+          python3 -m pip install --quiet --user --break-system-packages pillow \
+            || echo "::warning::Pillow nicht installiert"
 
       - name: Claude arbeitet den Auftrag ab
         id: claude
@@ -92,43 +122,92 @@ jobs:
         with:
           anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
           github_token: ${{ secrets.GITHUB_TOKEN }}
+          # CLAUDE.md lädt Claude Code selbst; hier nicht nochmals zum Lesen auffordern.
           prompt: |
-            REPO: ${{ github.repository }}
-            TAG: ${{ steps.auftrag.outputs.tag }}
-            AUFTRAG: ${{ steps.auftrag.outputs.datei }}
+            Du bist der Tageslauf von signedbymattia. Auftrag: ${{ steps.auftrag.outputs.datei }}
+            (lies ihn zuerst). Du stehst schon auf Branch `tageslauf/${{ steps.auftrag.outputs.tag }}`.
 
-            Du bist der Tageslauf von signedbymattia. Lies zuerst CLAUDE.md,
-            dann plan/auftraege/README.md (Regeln), dann den AUFTRAG.
+            Bereit, nicht nochmals installieren: `werkzeuge/` (npm ci + Playwright Chromium),
+            Python mit Pillow (Bilder verkleinern). Push und Pull Request macht der Workflow
+            nach dir: nicht pushen, keinen PR öffnen.
 
-            1. Erstelle den Branch `tageslauf/${{ steps.auftrag.outputs.tag }}` von main.
-            2. Arbeite die Aufgaben der Reihe nach ab. Pro Aufgabe ein Commit.
-            3. Halte dich an „Grenzen" jeder Aufgabe. Triffst du auf einen offenen
-               Entscheid [?], rate nicht: Aufgabe als blockiert markieren, Frage notieren,
-               zur nächsten Aufgabe.
-            4. Schreibe am Ende den Bericht in den AUFTRAG (Abschnitt „Bericht") und
-               committe ihn.
-            5. Pushe den Branch und öffne einen Pull Request gegen main mit dem Titel
-               „Tageslauf ${{ steps.auftrag.outputs.tag }}" und dem Bericht als Beschreibung.
-            Nie auf main pushen, nie mergen, nichts veröffentlichen, keine Geheimnisse.
+            Regeln (Kurzform von plan/auftraege/README.md, die Datei nicht extra lesen):
+            - Aufgaben der Reihe nach, pro Aufgabe ein Commit. Nur die Dateien anfassen, die
+              der Auftrag nennt; Ideen darüber hinaus nur in den Bericht unter „Vorschläge".
+            - Offener Entscheid [?] oder Unklarheit: nicht raten. Aufgabe als blockiert
+              markieren, Frage in den Bericht, weiter zur nächsten.
+            - Nie auf main, nie mergen, nichts veröffentlichen, keine Geheimnisse.
+            - Am Ende den Abschnitt „Bericht" im Auftrag ausfüllen und committen.
+
+            Sparsam arbeiten (jeder Schritt liest den ganzen bisherigen Verlauf neu):
+            - Nur die Grundlagen und Abschnitte lesen, die der Auftrag nennt; lange Dateien
+              gezielt (Abschnitt suchen), nicht ganz.
+            - Prüf-Screenshots speichern, aber höchstens 3 davon selbst ansehen.
+            - Befehle bündeln statt viele kleine Einzelschritte.
           claude_args: |
-            --model claude-opus-5-5
+            --model ${{ steps.auftrag.outputs.modell }}
             --max-turns 120
-            --allowedTools "Read,Write,Edit,Glob,Grep,WebSearch,WebFetch,Bash(git:*),Bash(gh pr:*),Bash(node:*),Bash(npm:*),Bash(npx:*),Bash(python3:*),Bash(ls:*),Bash(mkdir:*)"
+            --allowedTools "Read,Write,Edit,Glob,Grep,WebSearch,WebFetch,Bash(git:*),Bash(node:*),Bash(npm:*),Bash(npx:*),Bash(python3:*),Bash(ls:*),Bash(mkdir:*),Bash(cd:*),Bash(cp:*),Bash(mv:*),Bash(rm:*),Bash(cat:*),Bash(head:*),Bash(tail:*),Bash(wc:*),Bash(du:*),Bash(find:*),Bash(file:*),Bash(sleep:*),Bash(kill:*),Bash(curl:*),Bash(timeout:*)"
+
+      - name: Protokoll aufbewahren
+        if: always() && steps.claude.outputs.execution_file != ''
+        uses: actions/upload-artifact@v4
+        with:
+          name: protokoll-${{ steps.auftrag.outputs.tag }}-${{ github.run_id }}
+          path: ${{ steps.claude.outputs.execution_file }}
+          retention-days: 14
+
+      - name: Branch pushen und Pull Request öffnen
+        if: always() && steps.auftrag.outputs.vorhanden == 'ja'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ steps.auftrag.outputs.tag }}
+          DATEI: ${{ steps.auftrag.outputs.datei }}
+        run: |
+          BRANCH="tageslauf/$TAG"
+          git config user.name "tageslauf[bot]"
+          git config user.email "tageslauf@users.noreply.github.com"
+          # Was Claude nicht mehr committen konnte (z. B. Abbruch am Schrittlimit), sichern.
+          git add -A
+          git diff --cached --quiet || git commit -qm "Tageslauf $TAG: nicht committete Änderungen gesichert"
+          if [ -z "$(git log --oneline origin/main..HEAD)" ]; then
+            echo "Keine Commits, nichts zu pushen."; exit 0
+          fi
+          git push -q -u origin "$BRANCH"
+          if [ -n "$(gh pr list --head "$BRANCH" --state open --json number --jq '.[].number')" ]; then
+            echo "PR existiert schon."; exit 0
+          fi
+          sed -n '/^## Bericht/,$p' "$DATEI" > /tmp/pr-text.md
+          [ -s /tmp/pr-text.md ] || echo "Kein Bericht im Auftrag gefunden." > /tmp/pr-text.md
+          gh pr create --base main --head "$BRANCH" --title "Tageslauf $TAG" --body-file /tmp/pr-text.md \
+            || echo "::warning::PR nicht erstellt. Einstellung prüfen: Settings › Actions › General › Allow GitHub Actions to create and approve pull requests. Von Hand: https://github.com/${{ github.repository }}/compare/main...$BRANCH"
 
       - name: Kosten erfassen und bei 25/50/75 % melden
         if: always() && steps.auftrag.outputs.vorhanden == 'ja'
         env:
           EXEC_FILE: ${{ steps.claude.outputs.execution_file }}
           ERGEBNIS: ${{ steps.claude.outcome }}
+          MODELL: ${{ steps.auftrag.outputs.modell }}
           TG_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN || secrets.API_SIGNEDBYMATTIA }}
           TG_CHAT: ${{ secrets.TELEGRAM_CHAT_ID }}
           TAG: ${{ steps.auftrag.outputs.tag }}
         run: |
           set -e
-          KOSTEN=$(python3 - <<'PY'
+          # Preise USD pro Million Tokens: Eingabe, Ausgabe, Cache lesen, Cache schreiben (5 Min.)
+          python3 - > /tmp/kosten.env <<'PY'
           import json, os
+          PREISE = {
+              "claude-opus-5-5":   (4.0, 20.0, 0.20, 5.00),
+              "claude-sonnet-5-5": (2.0, 10.0, 0.20, 2.50),
+              "claude-haiku-4-5":  (1.0,  5.0, 0.10, 1.25),
+          }
+          def preis(modell):
+              for k, v in PREISE.items():
+                  if modell.startswith(k):
+                      return v
+              return PREISE["claude-opus-5-5"]  # im Zweifel teuer rechnen
           f = os.environ.get("EXEC_FILE") or ""
-          kosten = 0.0
+          ergebnis = {}
           try:
               txt = open(f, encoding="utf-8").read()
               try:
@@ -137,27 +216,61 @@ jobs:
               except Exception:
                   daten = [json.loads(z) for z in txt.splitlines() if z.strip().startswith("{")]
               for d in daten:
-                  if isinstance(d, dict) and d.get("type") == "result" and "total_cost_usd" in d:
-                      kosten = float(d["total_cost_usd"])
+                  if isinstance(d, dict) and d.get("type") == "result":
+                      ergebnis = d
           except Exception:
               pass
-          print(f"{kosten:.4f}")
+          gemeldet = float(ergebnis.get("total_cost_usd") or 0)
+          ein = aus = lesen = schreiben = 0
+          berechnet = 0.0
+          for modell, u in (ergebnis.get("modelUsage") or {}).items():
+              p = preis(modell)
+              e, a = u.get("inputTokens", 0), u.get("outputTokens", 0)
+              l, s = u.get("cacheReadInputTokens", 0), u.get("cacheCreationInputTokens", 0)
+              ein += e; aus += a; lesen += l; schreiben += s
+              berechnet += (e * p[0] + a * p[1] + l * p[2] + s * p[3]) / 1e6
+          if not (ein or aus or lesen or schreiben):
+              u = ergebnis.get("usage") or {}
+              ein, aus = u.get("input_tokens", 0), u.get("output_tokens", 0)
+              lesen, schreiben = u.get("cache_read_input_tokens", 0), u.get("cache_creation_input_tokens", 0)
+              p = preis(os.environ.get("MODELL", ""))
+              berechnet = (ein * p[0] + aus * p[1] + lesen * p[2] + schreiben * p[3]) / 1e6
+          usd = max(berechnet, gemeldet * float(os.environ.get("KORREKTUR", "1")))
+          ablehnungen = ergebnis.get("permission_denials")
+          anzahl = len(ablehnungen) if isinstance(ablehnungen, list) else int(ergebnis.get("permission_denials_count") or 0)
+          print(f"KOSTEN={usd:.4f}")
+          print(f"ZEILE=,{os.environ.get('MODELL','')},{gemeldet:.4f},{ein},{lesen},{schreiben},{aus},{ergebnis.get('num_turns', 0)},{anzahl}")
+          # Übersicht für die Laufseite (Summary): Tokens und abgelehnte Befehle.
+          with open(os.environ["GITHUB_STEP_SUMMARY"], "a", encoding="utf-8") as s:
+              s.write(f"### Kosten Tageslauf\n\n| | |\n|---|---|\n")
+              s.write(f"| Gezählt (vorsichtig) | USD {usd:.2f} |\n| Aus Tokens | USD {berechnet:.2f} |\n")
+              s.write(f"| Schätzung Claude Code | USD {gemeldet:.2f} |\n| Schritte | {ergebnis.get('num_turns', 0)} |\n")
+              s.write(f"| Eingabe / Cache lesen / Cache schreiben / Ausgabe | {ein:,} / {lesen:,} / {schreiben:,} / {aus:,} |\n")
+              s.write(f"| Abgelehnte Befehle | {anzahl} |\n")
+              if isinstance(ablehnungen, list) and ablehnungen:
+                  s.write("\n**Abgelehnt:**\n\n")
+                  for a in ablehnungen[:20]:
+                      if isinstance(a, dict):
+                          eingabe = json.dumps(a.get("tool_input", ""), ensure_ascii=False)[:160]
+                          s.write(f"- `{a.get('tool_name', '?')}`: `{eingabe}`\n")
           PY
-          )
-          echo "Kosten dieses Laufs: USD $KOSTEN"
+          . /tmp/kosten.env
+          echo "Kosten dieses Laufs (vorsichtig gezählt): USD $KOSTEN"
 
-          git config user.name "tageslauf[bot]"
-          git config user.email "tageslauf@users.noreply.github.com"
+          KOPF="datum,lauf,usd,ergebnis,modell,geschaetzt_usd,eingabe,cache_lesen,cache_schreiben,ausgabe,schritte,ablehnungen"
           if git ls-remote --exit-code origin kosten >/dev/null 2>&1; then
             git fetch -q origin kosten && git worktree add -q ../kosten origin/kosten && (cd ../kosten && git checkout -q -B kosten)
           else
-            git worktree add -q --detach ../kosten && (cd ../kosten && git checkout -q --orphan kosten && git rm -rfq . && echo "datum,lauf,usd,ergebnis" > kosten.csv)
+            git worktree add -q --detach ../kosten && (cd ../kosten && git checkout -q --orphan kosten && git rm -rfq . && echo "$KOPF" > kosten.csv)
           fi
           cd ../kosten
+          [ "$(head -1 kosten.csv)" = "$KOPF" ] || sed -i "1s/.*/$KOPF/" kosten.csv
           MONAT=$(TZ=Europe/Zurich date +%Y-%m)
           VORHER=$(awk -F, -v m="$MONAT" 'NR>1 && index($1,m)==1 {s+=$3} END {printf "%.4f", s+0}' kosten.csv)
-          echo "$TAG,${{ github.run_id }},$KOSTEN,$ERGEBNIS" >> kosten.csv
+          echo "$TAG,${{ github.run_id }},$KOSTEN,$ERGEBNIS$ZEILE" >> kosten.csv
           NACHHER=$(awk -F, -v m="$MONAT" 'NR>1 && index($1,m)==1 {s+=$3} END {printf "%.4f", s+0}' kosten.csv)
+          git config user.name "tageslauf[bot]"
+          git config user.email "tageslauf@users.noreply.github.com"
           git add kosten.csv && git commit -qm "Kosten Tageslauf $TAG: USD $KOSTEN" && git push -q origin kosten
 
           for P in 25 50 75; do
@@ -172,4 +285,3 @@ jobs:
               fi
             fi
           done
-
