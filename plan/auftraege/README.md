@@ -14,7 +14,10 @@ selbstständig ab (Mo–Fr, Start 08:17, Ersatztermin 09:47; im Winter je eine S
 
 1. PR des Tageslaufs ansehen: Bericht lesen, Ergebnis kurz anklicken, mergen oder
    Änderungen notieren.
-2. Auftrag für morgen schreiben: `plan/auftraege/JJJJ-MM-TT.md` nach `VORLAGE.md`.
+2. Auftrag für morgen schreiben: `plan/auftraege/JJJJ-MM-TT.md` nach `VORLAGE.md`. Am
+   einfachsten Claude sagen: „bereite mir die Liste für morgen vor“ (Skill
+   `.claude/skills/auftrag-planen/`): Vorschläge mit Modell und Kosten, Mattia wählt,
+   Claude schreibt den Auftrag.
 3. Erst mit `Status: freigegeben` läuft der Auftrag. Ohne Auftrag: kein Lauf,
    keine Kosten.
 4. Committen und pushen (der Lauf liest `main`).
@@ -85,6 +88,9 @@ Verlauf**, nicht mit weniger Ergebnis:
   die Regeln dieser Datei in Kurzform.
 - Mehr harmlose Befehle sind erlaubt (am 29.09. zehn Ablehnungen mit Umwegen).
 - Aufträge nennen die Grundlagen mit Abschnitt (§); höchstens 3 Prüfbilder ansehen.
+- Einfache Schritte gehen an günstige Helfer mit eigenem, kurzem Verlauf (`.claude/agents/`):
+  `recherche` (Sonnet), `umsetzer` (Sonnet), `pruefer` (Haiku). Im Auftrag mit `[recherche]`,
+  `[umsetzer]`, `[pruefer]` vor dem Schritt markiert. Noch nicht im Lauf erprobt [A].
 - Nachsehen: Laufseite › Summary zeigt Tokens, Schritte und abgelehnte Befehle; das
   vollständige Protokoll liegt 14 Tage als Artefakt beim Lauf.
 

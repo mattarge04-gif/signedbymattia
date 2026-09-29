@@ -144,10 +144,13 @@ jobs:
               gezielt (Abschnitt suchen), nicht ganz.
             - Prüf-Screenshots speichern, aber höchstens 3 davon selbst ansehen.
             - Befehle bündeln statt viele kleine Einzelschritte.
+            - Schritte mit `[recherche]`, `[umsetzer]` oder `[pruefer]` an diesen Helfer geben
+              (Agent-Werkzeug, `.claude/agents/`), mit genau den Angaben aus dem Auftrag.
+              `[selbst]` oder ohne Rolle: selbst erledigen.
           claude_args: |
             --model ${{ steps.auftrag.outputs.modell }}
             --max-turns 120
-            --allowedTools "Read,Write,Edit,Glob,Grep,WebSearch,WebFetch,Bash(git:*),Bash(node:*),Bash(npm:*),Bash(npx:*),Bash(python3:*),Bash(ls:*),Bash(mkdir:*),Bash(cd:*),Bash(cp:*),Bash(mv:*),Bash(rm:*),Bash(cat:*),Bash(head:*),Bash(tail:*),Bash(wc:*),Bash(du:*),Bash(find:*),Bash(file:*),Bash(sleep:*),Bash(kill:*),Bash(curl:*),Bash(timeout:*)"
+            --allowedTools "Agent,Task,Read,Write,Edit,Glob,Grep,WebSearch,WebFetch,Bash(git:*),Bash(node:*),Bash(npm:*),Bash(npx:*),Bash(python3:*),Bash(ls:*),Bash(mkdir:*),Bash(cd:*),Bash(cp:*),Bash(mv:*),Bash(rm:*),Bash(cat:*),Bash(head:*),Bash(tail:*),Bash(wc:*),Bash(du:*),Bash(find:*),Bash(file:*),Bash(sleep:*),Bash(kill:*),Bash(curl:*),Bash(timeout:*)"
 
       - name: Protokoll aufbewahren
         if: always() && steps.claude.outputs.execution_file != ''

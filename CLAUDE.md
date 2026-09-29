@@ -46,7 +46,8 @@ Budgets und Kostenfreigaben bleiben in `agency-automation-os/projects/lead-engin
    Klare Aufgaben ohne ihn kommen als Auftrag nach `plan/auftraege/` und laufen
    Mo–Fr tagsüber per GitHub Actions (Budget CHF 20/Monat). Regeln:
    `plan/auftraege/README.md`. Am Ende jeder Abendsitzung fragen: Was kann
-   morgen ohne Mattia laufen?
+   morgen ohne Mattia laufen? Dafür den Skill `auftrag-planen` nutzen
+   („bereite mir die Liste für morgen vor“).
 
 ## Aktueller Stand und nächste Schritte
 
