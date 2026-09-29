@@ -53,14 +53,15 @@ und Tarot-Karte. Zwischen den Kapiteln der Ölfarben-Übergang. Genaues Drehbuch
 
 | Nr. | Szene | Leistung | führt zu |
 | --- | --- | --- | --- |
-| 10 | Hero „Gemalt in *Code*.“ im Barock-Himmel, Kapitel-Index, Himmelsflug | – | Kapitel I |
-| 11 | Kapitel I | Website Core | Atelier, Kaufseite I |
-| 12 | Kapitel II (mit 3D-Objekt) | Automation Core | Atelier, Kaufseite II |
-| 13 | Kapitel III | SEO + GEO | Atelier, Kaufseite III + IV |
-| 14 | Kapitel IV | Google-Profil | Atelier, Kaufseite III + IV |
-| 15 | Kapitel V | Texte + Branding | Anfrage |
-| 16 | Werke (Galerie-Saal) | Editionen | Editionen-Seite |
-| 17 | Abschluss „Kein Template. Ein *Werk*.“ | – | Anfrage, Atelier |
+| 10 | Hero „Gemalt in *Code*." im Barock-Himmel, Kapitel-Index, Himmelsflug | – | Kapitel I |
+| 11 | Kapitel I Website | Website Core | Atelier, Kaufseite I |
+| 12 | Kapitel II Automation (mit 3D-Kugelbahn) | Automation Core | Atelier, Kaufseite II |
+| 13 | Kapitel III Sichtbar | SEO + GEO + Google-Profil | Atelier, Kaufseite III + IV |
+| 14 | Zwischenspiel Handschrift (klein) | Texte + Branding | Anfrage |
+| 15 | Werke (Galerie-Saal) | Editionen | Editionen-Seite |
+| 16 | Abschluss „Kein Template. Ein *Werk*." | – | Anfrage, Atelier |
+
+Ordnung entschieden 29.09.2026 (Mattia): 4 grosse Choreografien statt vieler halber Szenen.
 
 Jede Szene beantwortet eine Frage des Besuchers (`marke/ui-regeln.md`,
 Sektionsfrage).
