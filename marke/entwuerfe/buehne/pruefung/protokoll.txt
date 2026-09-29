@@ -1,0 +1,5 @@
+Prüfung 2026-09-29T12:14:27.461Z · http://localhost:8123/marke/entwuerfe/buehne/
+desktop: Modus webgl-schwach, Konsolenfehler/Warnungen: keine
+mobil: Modus webgl-schwach, Konsolenfehler/Warnungen: keine
+ruhig: Modus 2d-ruhig, Konsolenfehler/Warnungen: keine
+ohne-js: 974 Zeichen Text im HTML sichtbar
