@@ -1,6 +1,6 @@
 # Plan und Stand
 
-Stand: 28.09.2026 (abends). Aktuelle Übersicht: [`uebersicht.html`](uebersicht.html).
+Stand: 29.09.2026. Aktuelle Ampel: [`stand-2026-09-29.html`](stand-2026-09-29.html). Aktuelle Übersicht: [`uebersicht.html`](uebersicht.html).
 Sitzungsabschluss mit Aufgaben und Quellen: [`stand-2026-09-28.md`](stand-2026-09-28.md),
 inklusive Nachtrag vom Abend (SEO-Basis weitgehend erledigt). Das Diagramm
 `stand-2026-09-28.html` ist noch vom Mittag.

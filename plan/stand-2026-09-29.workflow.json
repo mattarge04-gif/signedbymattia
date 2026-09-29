@@ -1,0 +1,194 @@
+{
+  "schema_version": 2,
+  "diagram_type": "workflow",
+  "meta": {
+    "title": "signedbymattia · Stand 29.09. · bis live",
+    "output": "plan/stand-2026-09-29.html",
+    "quality_profile": "showcase",
+    "viewBox": [
+      1116,
+      528
+    ],
+    "legend": {
+      "mode": "auto",
+      "entries": {
+        "frontend": {
+          "label": "Erledigt"
+        },
+        "backend": {
+          "label": "Läuft"
+        },
+        "security": {
+          "label": "Gefährdet"
+        },
+        "cloud": {
+          "label": "Noch offen"
+        }
+      }
+    }
+  },
+  "lanes": [
+    {
+      "id": "gut",
+      "label": "Erledigt + läuft"
+    },
+    {
+      "id": "gefaehrdet",
+      "label": "Gefährdet",
+      "variant": "exception"
+    },
+    {
+      "id": "offen",
+      "label": "Noch nicht begonnen"
+    }
+  ],
+  "phases": [
+    {
+      "id": "fundament",
+      "label": "Fundament bis 18.10.",
+      "fromCol": 0,
+      "toCol": 3
+    },
+    {
+      "id": "bau",
+      "label": "Bau KW 43–46",
+      "fromCol": 4,
+      "toCol": 4,
+      "variant": "emphasis"
+    },
+    {
+      "id": "live",
+      "label": "Live 22.11.",
+      "fromCol": 5,
+      "toCol": 5,
+      "variant": "dashed"
+    }
+  ],
+  "mainPath": [
+    "marke",
+    "seo",
+    "drehbuch",
+    "prototypen",
+    "bau",
+    "livegang"
+  ],
+  "nodes": [
+    {
+      "id": "marke",
+      "lane": "gut",
+      "col": 0,
+      "type": "frontend",
+      "label": "Marke + Design",
+      "sublabel": "Edition, Tokens"
+    },
+    {
+      "id": "seo",
+      "lane": "gut",
+      "col": 1,
+      "type": "frontend",
+      "label": "SEO + Preise",
+      "sublabel": "Atelier, PR #16"
+    },
+    {
+      "id": "drehbuch",
+      "lane": "gut",
+      "col": 2,
+      "type": "backend",
+      "label": "Drehbuch",
+      "sublabel": "Startseite v3"
+    },
+    {
+      "id": "prototypen",
+      "lane": "gut",
+      "col": 3,
+      "type": "backend",
+      "label": "Prototypen",
+      "sublabel": "Tageslauf"
+    },
+    {
+      "id": "bilder",
+      "lane": "gefaehrdet",
+      "col": 2,
+      "type": "security",
+      "label": "Szenenbilder",
+      "sublabel": "Met + Twist"
+    },
+    {
+      "id": "texte",
+      "lane": "gefaehrdet",
+      "col": 3,
+      "type": "security",
+      "label": "Texte",
+      "sublabel": "0/14, bis 18.10."
+    },
+    {
+      "id": "zugaenge",
+      "lane": "gefaehrdet",
+      "col": 4,
+      "type": "security",
+      "label": "Zugänge",
+      "sublabel": "+ Recht, 0 von 14"
+    },
+    {
+      "id": "bau",
+      "lane": "offen",
+      "col": 4,
+      "type": "cloud",
+      "label": "Website-Bau",
+      "sublabel": "neues Repo"
+    },
+    {
+      "id": "livegang",
+      "lane": "offen",
+      "col": 5,
+      "type": "cloud",
+      "label": "Livegang",
+      "sublabel": "22.11.2026"
+    }
+  ],
+  "edges": [
+    {
+      "from": "marke",
+      "to": "seo"
+    },
+    {
+      "from": "seo",
+      "to": "drehbuch"
+    },
+    {
+      "from": "drehbuch",
+      "to": "prototypen"
+    },
+    {
+      "from": "prototypen",
+      "to": "bau"
+    },
+    {
+      "from": "bilder",
+      "to": "bau"
+    },
+    {
+      "from": "texte",
+      "to": "bau"
+    },
+    {
+      "from": "zugaenge",
+      "to": "bau"
+    },
+    {
+      "from": "bau",
+      "to": "livegang"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "amber",
+      "title": "Hält der 22.11.?",
+      "items": [
+        "Design und Technik: vor Plan",
+        "Texte, Zugänge, Bilder: hinter Plan",
+        "Hält nur, wenn das Texte-Interview diese Woche startet; sonst Livegang in zwei Stufen"
+      ]
+    }
+  ]
+}
