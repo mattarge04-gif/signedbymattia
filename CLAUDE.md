@@ -51,7 +51,7 @@ Budgets und Kostenfreigaben bleiben in `agency-automation-os/projects/lead-engin
 
 ## Aktueller Stand und nächste Schritte
 
-Stand: 28.09.2026. Zeitplan: Vault `Zielplan.md`. Aktuelle Phase
+Stand: 29.09.2026. Zeitplan: Vault `Zielplan.md`. Aktuelle Phase
 **Fundament** (KW 39–42, bis 18.10.2026).
 
 **Sitzungsabschluss 28.09.:** Claude erreichte am 27.09. um 23:59 das
@@ -66,6 +66,15 @@ Merge `5c6b1ad`), Nachtrag in `plan/stand-2026-09-28.md`. Andere Bereiche:
 `signedbymattia-website` existiert noch nicht (Bau ab KW 43, 19.10., live
 22.11.2026); `agency-marketing` nur Plan, nichts gebaut; Lead Engine in
 `agency-automation-os` DEV-Stand 08.09., nichts live.
+
+**Sitzungsabschluss 29.09.:** Erster Tageslauf lief (Bühnen-Prototyp und SVG-Initialen, PR #18
+gemergt, USD 6.96 inkl. Doppellauf). Drehbuch der Website begonnen in `website/drehbuch/`:
+`00-grammatik.md` (Bewegungswerte, entschieden), `01-bausteine.md` (B1–B15), `02-mechaniken.md`
+(M1–M14 aus Shopify-Filmstreifen), `10-startseite.md` (v3: Hero Deckengemälde, I Website
+Trompe-l'œil, II Automation Wasserspiele, III Sichtbar Spiegelsaal, Zwischenspiel Schreiber, Werke
+Galeriebild, Abschluss; eigene barocke Motive, nie Shopify-Motive), `20-weitere-seiten.md` (grob).
+Tageslauf 30.09. freigegeben: Bausteine M1/M7/M9 + Kapitel II als Prototyp
+(`plan/auftraege/2026-09-30.md`). Danach: Mattias Rückmeldung → Nachbesserung → weitere Kapitel.
 
 **Erledigt [F]:**
 
