@@ -122,13 +122,16 @@ pushen. Der Lauf liest `main`; was nur lokal liegt, läuft nicht.
 ## Skills im Tageslauf
 
 Im GitHub-Lauf gibt es **nur, was im Repo liegt**: `CLAUDE.md`, `.claude/agents/`,
-`.claude/skills/`. Die globalen Skills auf Mattias PC (impeccable, taste-skill,
-emil-design-eng, archify, claude-seo) sind dort **nicht** vorhanden. Darum:
+`.claude/skills/`. Globale Skills auf Mattias PC (unter `~/.claude/skills/`) fehlen dort,
+bis sie ins Repo kopiert sind (Anleitung `plan/auftraege/README.md` › „Skills in den
+Tageslauf bringen“). Vor dem Planen prüfen: `ls .claude/skills/`.
 
-- Für Gestaltung auf `marke/ui-regeln.md` verweisen; dort sind die Regeln aus diesen Skills
-  schon verdichtet.
-- Braucht eine Aufgabe wirklich einen globalen Skill, ist sie eine Abendaufgabe, oder der
-  Skill wird vorher ins Repo übernommen (Lizenz prüfen, eigener Entscheid [?]).
+- Einen Skill **pro Schritt** nennen: `Skill: impeccable` hinter dem Schritt. Ohne Nennung
+  lädt der Lauf keinen; jeder geladene Skill bleibt bis zum Ende im Verlauf und kostet.
+- Schwere Skills (lange Anleitungen) lieber einem **Helfer** geben, z. B.
+  `[pruefer] … Skill: impeccable`: dann liegt der Skill nur in dessen kurzem Verlauf.
+- Fehlt ein nötiger Skill im Repo: für Gestaltung auf `marke/ui-regeln.md` verweisen (dort
+  sind die Regeln verdichtet), sonst die Aufgabe als Abendaufgabe führen.
 
 ## Wissenskarte: wo was steht
 
