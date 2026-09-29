@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 200 200" role="img" aria-labelledby="t">
+  <!-- Schmuck-Initiale G · ENTWURF 29.09.2026 · eigene Pfade, Tinte #231B3A, Gold #E3C58A (marke/DESIGN.md §2, §7) -->
+  <title id="t">Schmuck-Initiale G (Entwurf)</title>
+  <defs>
+    <g id="ranke" fill="none" stroke="#231B3A" stroke-width="1.6" stroke-linecap="round">
+      <path d="M18 60 C18 34 34 18 60 18"/>
+      <path d="M24 52 C26 36 38 28 50 30 C60 32 60 46 50 46 C43 46 43 38 49 38"/>
+      <path d="M52 24 C62 20 74 24 78 32 C70 30 64 32 60 38"/>
+      <path d="M26 54 C22 64 24 76 32 80 C30 72 32 66 38 62"/>
+      <circle cx="49" cy="41" r="2.4" fill="#E3C58A" stroke="none"/>
+      <circle cx="80" cy="34" r="2" fill="#E3C58A" stroke="none"/>
+      <circle cx="34" cy="82" r="2" fill="#E3C58A" stroke="none"/>
+    </g>
+    <!-- Bogen mit Betonung links (innere Ellipse nach rechts versetzt), Sporn und Querbalken -->
+    <path id="buchstabe" d="M141 56.2A58 62 0 1 0 150.2 131L136.9 125A38 50 0 1 1 130.9 64.6Z
+      M136 42H148V76L141 74Z
+      M116 104H164V112L156 113V142C150 150 140 156 130 158L140 146V113L116 112Z"/>
+  </defs>
+  <rect x="5" y="5" width="190" height="190" rx="2" fill="none" stroke="#E3C58A" stroke-width="3"/>
+  <rect x="12" y="12" width="176" height="176" fill="none" stroke="#231B3A" stroke-width="1"/>
+  <use xlink:href="#ranke"/>
+  <use xlink:href="#ranke" transform="rotate(90 100 100)"/>
+  <use xlink:href="#ranke" transform="rotate(180 100 100)"/>
+  <use xlink:href="#ranke" transform="rotate(270 100 100)"/>
+  <!-- Kleine Rosette im Bauch des G -->
+  <g fill="#E3C58A">
+    <circle cx="104" cy="100" r="3"/>
+    <ellipse cx="104" cy="91" rx="2.2" ry="5"/><ellipse cx="104" cy="109" rx="2.2" ry="5"/>
+    <ellipse cx="95" cy="100" rx="5" ry="2.2"/><ellipse cx="113" cy="100" rx="5" ry="2.2"/>
+  </g>
+  <use xlink:href="#buchstabe" fill="none" stroke="#E3C58A" stroke-width="5" stroke-linejoin="round"/>
+  <use xlink:href="#buchstabe" fill="#231B3A"/>
+</svg>

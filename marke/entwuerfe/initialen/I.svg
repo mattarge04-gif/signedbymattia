@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 200 200" role="img" aria-labelledby="t">
+  <!-- Schmuck-Initiale I · ENTWURF 29.09.2026 · eigene Pfade, Tinte #231B3A, Gold #E3C58A (marke/DESIGN.md §2, §7) -->
+  <title id="t">Schmuck-Initiale I (Entwurf)</title>
+  <defs>
+    <g id="ranke" fill="none" stroke="#231B3A" stroke-width="1.6" stroke-linecap="round">
+      <path d="M18 60 C18 34 34 18 60 18"/>
+      <path d="M24 52 C26 36 38 28 50 30 C60 32 60 46 50 46 C43 46 43 38 49 38"/>
+      <path d="M52 24 C62 20 74 24 78 32 C70 30 64 32 60 38"/>
+      <path d="M26 54 C22 64 24 76 32 80 C30 72 32 66 38 62"/>
+      <circle cx="49" cy="41" r="2.4" fill="#E3C58A" stroke="none"/>
+      <circle cx="80" cy="34" r="2" fill="#E3C58A" stroke="none"/>
+      <circle cx="34" cy="82" r="2" fill="#E3C58A" stroke="none"/>
+    </g>
+    <path id="buchstabe" d="M70 40H130V46L114 49V151L130 154V160H70V154L86 151V49L70 46Z"/>
+    <!-- Seitliche Blattranke, die den schmalen Buchstaben einfasst -->
+    <g id="blatt" fill="none" stroke="#231B3A" stroke-width="1.6" stroke-linecap="round">
+      <path d="M80 100 C62 96 52 82 56 68 C62 76 70 80 80 82"/>
+      <path d="M80 104 C62 108 52 122 56 136 C62 128 70 124 80 122"/>
+      <path d="M56 68 C50 60 50 50 58 46"/>
+      <path d="M56 136 C50 144 50 154 58 158"/>
+      <circle cx="58" cy="46" r="2.2" fill="#E3C58A" stroke="none"/>
+      <circle cx="58" cy="158" r="2.2" fill="#E3C58A" stroke="none"/>
+    </g>
+  </defs>
+  <rect x="5" y="5" width="190" height="190" rx="2" fill="none" stroke="#E3C58A" stroke-width="3"/>
+  <rect x="12" y="12" width="176" height="176" fill="none" stroke="#231B3A" stroke-width="1"/>
+  <use xlink:href="#ranke"/>
+  <use xlink:href="#ranke" transform="rotate(90 100 100)"/>
+  <use xlink:href="#ranke" transform="rotate(180 100 100)"/>
+  <use xlink:href="#ranke" transform="rotate(270 100 100)"/>
+  <use xlink:href="#blatt"/>
+  <use xlink:href="#blatt" transform="matrix(-1 0 0 1 200 0)"/>
+  <use xlink:href="#buchstabe" fill="none" stroke="#E3C58A" stroke-width="5" stroke-linejoin="round"/>
+  <use xlink:href="#buchstabe" fill="#231B3A"/>
+  <path d="M93 58V142" stroke="#E3C58A" stroke-width="1.4" opacity=".9"/>
+</svg>

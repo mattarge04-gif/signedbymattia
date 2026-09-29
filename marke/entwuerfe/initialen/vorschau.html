@@ -1,0 +1,84 @@
+<!doctype html>
+<!--
+  Vorschau Schmuck-Initialen K, G, I · ENTWURF 29.09.2026
+  Grundlage: marke/DESIGN.md §2, §3, §7 (Schmuck-Initiale). Erzählsätze sind [Platzhalter].
+  Der echte Buchstabe bleibt im HTML (Suche, Screenreader); die SVG-Initiale ist nur Schmuck.
+-->
+<html lang="de-CH">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Schmuck-Initialen · Entwurf</title>
+  <meta name="robots" content="noindex">
+  <link rel="stylesheet" href="../../tokens.css">
+  <style>
+    body { margin: 0; font-family: var(--font-system); color: var(--color-text); background: var(--color-bg); }
+    header { padding: 2.5rem 6vw 1rem; }
+    header h1 { margin: 0; font-size: 2.4rem; letter-spacing: var(--tracking-headline); }
+    header p { margin: .4rem 0 0; color: var(--color-text-muted); }
+    .flaeche { display: grid; grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr)); gap: 2.5rem; padding: 2.5rem 6vw; }
+    .dunkel { background: var(--color-bg-dark); color: var(--color-bg); }
+    .label { grid-column: 1 / -1; margin: 0; font-size: .8rem; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; }
+
+    /* Erzählsatz in Instrument Serif mit Schmuck-Initiale */
+    .erzaehlsatz { font-family: var(--font-hand); font-size: 1.45rem; line-height: 1.35; margin: 0; max-width: 34ch; }
+    .initiale {
+      float: left; width: 4.1em; height: 4.1em; margin: .1em .35em 0 0;
+      background: center / contain no-repeat;
+    }
+    .initiale .zeichen {        /* echter Buchstabe: für Screenreader und Suche, optisch versteckt */
+      position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap;
+    }
+    .i-K { background-image: url(K.svg); }
+    .i-G { background-image: url(G.svg); }
+    .i-I { background-image: url(I.svg); }
+
+    /* Vergleich: Buchstabe in Instrument Serif gleich gross */
+    .vergleich { display: flex; align-items: center; gap: 1.2rem; margin-top: 1.2rem; clear: both; }
+    .vergleich img { width: 96px; height: 96px; }
+    .vergleich span { font-family: var(--font-hand); font-size: 96px; line-height: 1; }
+    .klein { display: flex; gap: .6rem; align-items: end; }
+    .klein img:nth-child(1) { width: 24px; } .klein img:nth-child(2) { width: 48px; } .klein img:nth-child(3) { width: 160px; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Schmuck-<span class="hand">Initialen</span></h1>
+    <p>Entwurf 29.09.2026 · K, G, I · eigene Pfade, Tinte und Blattgold · alle Sätze sind [Platzhalter]</p>
+  </header>
+
+  <section class="flaeche" aria-label="Auf Creme">
+    <p class="label">Hell, auf Creme</p>
+    <div>
+      <p class="erzaehlsatz"><span class="initiale i-K"><span class="zeichen">K</span></span>[Platzhalter: Erzählsatz, der mit K beginnt. Mattia schreibt den Text; hier steht nur so viel, dass der Umbruch um die Initiale sichtbar wird.]</p>
+      <div class="vergleich"><img src="K.svg" alt=""><span>K</span></div>
+    </div>
+    <div>
+      <p class="erzaehlsatz"><span class="initiale i-G"><span class="zeichen">G</span></span>[Platzhalter: Erzählsatz, der mit G beginnt. Mattia schreibt den Text; hier steht nur so viel, dass der Umbruch um die Initiale sichtbar wird.]</p>
+      <div class="vergleich"><img src="G.svg" alt=""><span>G</span></div>
+    </div>
+    <div>
+      <p class="erzaehlsatz"><span class="initiale i-I"><span class="zeichen">I</span></span>[Platzhalter: Erzählsatz, der mit I beginnt. Mattia schreibt den Text; hier steht nur so viel, dass der Umbruch um die Initiale sichtbar wird.]</p>
+      <div class="vergleich"><img src="I.svg" alt=""><span>I</span></div>
+    </div>
+    <p class="label">Skalierung 24 / 48 / 160 px</p>
+    <div class="klein"><img src="K.svg" alt=""><img src="G.svg" alt=""><img src="I.svg" alt=""></div>
+  </section>
+
+  <section class="flaeche dunkel" aria-label="Auf Nacht">
+    <p class="label">Dunkel, auf Nacht (Akt II)</p>
+    <div>
+      <p class="erzaehlsatz"><span class="initiale i-K"><span class="zeichen">K</span></span>[Platzhalter: Erzählsatz, der mit K beginnt, auf dunklem Grund.]</p>
+      <div class="vergleich"><img src="K.svg" alt=""><span>K</span></div>
+    </div>
+    <div>
+      <p class="erzaehlsatz"><span class="initiale i-G"><span class="zeichen">G</span></span>[Platzhalter: Erzählsatz, der mit G beginnt, auf dunklem Grund.]</p>
+      <div class="vergleich"><img src="G.svg" alt=""><span>G</span></div>
+    </div>
+    <div>
+      <p class="erzaehlsatz"><span class="initiale i-I"><span class="zeichen">I</span></span>[Platzhalter: Erzählsatz, der mit I beginnt, auf dunklem Grund.]</p>
+      <div class="vergleich"><img src="I.svg" alt=""><span>I</span></div>
+    </div>
+  </section>
+</body>
+</html>

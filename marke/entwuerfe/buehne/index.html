@@ -1,0 +1,236 @@
+<!doctype html>
+<!--
+  Prototyp 2.5D-Bühne mit Ölfarben-Übergang · ENTWURF, Wegwerf-Prototyp
+  Stand: 29.09.2026 · Grundlage: marke/DESIGN.md §7, website/seitenstruktur.md (Startseite)
+  Alle Texte sind [Platzhalter]; Mattia schreibt die Texte selbst.
+  Ohne JavaScript, ohne WebGL oder mit prefers-reduced-motion: dieselben Bilder als ruhige 2D-Ebenen.
+-->
+<html lang="de-CH">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Prototyp Bühne · signedbymattia (Entwurf)</title>
+  <meta name="robots" content="noindex">
+  <link rel="stylesheet" href="../../tokens.css">
+  <script>document.documentElement.classList.add('js');</script>
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://cdn.jsdelivr.net/npm/three@0.172.0/build/three.module.js",
+        "lenis": "https://cdn.jsdelivr.net/npm/lenis@1.3.4/dist/lenis.mjs"
+      }
+    }
+  </script>
+  <style>
+    * { box-sizing: border-box; }
+    html { background: var(--color-bg); }
+    body {
+      margin: 0;
+      color: var(--color-text);
+      font-family: var(--font-system);
+      font-size: 1.125rem;
+      line-height: 1.55;
+    }
+    a { color: inherit; }
+
+    /* Die Bühne: ein fixer Canvas hinter dem HTML. Nur sichtbar, wenn WebGL läuft. */
+    #buehne { position: fixed; inset: 0; width: 100vw; height: 100vh; display: none; z-index: 0; }
+    html.webgl #buehne { display: block; }
+    main { position: relative; z-index: 1; }
+
+    .hand { font-size: 1.04em; }
+    .entwurf {
+      position: fixed; right: 12px; bottom: 12px; z-index: 5;
+      font: 600 12px/1 var(--font-system); letter-spacing: .04em; text-transform: uppercase;
+      background: var(--color-bg); color: var(--color-text); padding: 8px 10px; border-radius: 999px;
+      box-shadow: var(--outline-button);
+    }
+
+    /* Hero mit Kapitel-Index I–V */
+    .hero {
+      min-height: 100vh; display: grid; align-content: center; gap: 3rem;
+      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+      padding: 6vh 6vw;
+    }
+    .hero h1 {
+      margin: 0; font-weight: 800; letter-spacing: var(--tracking-headline);
+      font-size: clamp(3.4rem, 9vw, 8.5rem); line-height: .92;
+    }
+    .hero .unterzeile { font-family: var(--font-hand); font-size: clamp(1.3rem, 2.2vw, 1.8rem); margin: 1.2rem 0 0; }
+    .index { list-style: none; margin: 0; padding: 0; align-self: end; }
+    .index li { border-top: 1.5px solid var(--color-text); }
+    .index li:last-child { border-bottom: 1.5px solid var(--color-text); }
+    .index a {
+      display: grid; grid-template-columns: 3.2rem 1fr; align-items: baseline;
+      padding: .55rem 0; text-decoration: none; font-weight: 700; font-size: clamp(1.1rem, 1.7vw, 1.5rem);
+      letter-spacing: -0.02em; transition: padding-left .45s cubic-bezier(.34,1.56,.64,1);
+    }
+    .index a:hover, .index a:focus-visible { padding-left: .6rem; }
+    .index .nr { font-family: var(--font-hand); font-style: italic; font-weight: 400; font-size: 1.15em; }
+
+    /* Akte: hohe Abschnitte, der Scroll-Fortschritt (0–1) führt die Kamera */
+    .akt { position: relative; }
+    .akt-1 { min-height: 260vh; }
+    .uebergang { min-height: 140vh; }
+    .akt-2 { min-height: 280vh; color: var(--color-bg); }
+    .akt-text {
+      position: sticky; top: 18vh; max-width: 34rem; margin: 0 6vw; padding: 1.6rem 1.8rem;
+      background: color-mix(in srgb, var(--color-bg) 82%, transparent); border-radius: 8px;
+    }
+    .akt-2 .akt-text { background: color-mix(in srgb, var(--color-bg-dark) 78%, transparent); margin-left: auto; }
+    .akt-text h2 { margin: 0 0 .5rem; font-size: clamp(2rem, 4vw, 3.2rem); letter-spacing: var(--tracking-headline); line-height: 1; }
+    .akt-text p { margin: 0; }
+    .label { font-size: .8rem; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; }
+
+    /* Editionen stehen als Text im HTML (website/geo.md §1); die Bühne malt sie zusätzlich. */
+    .editionen { list-style: none; padding: 0; margin: 1.2rem 0 0; display: grid; gap: .4rem; }
+    .editionen .rahmen { display: none; }
+
+    /* Kapitel I–V als Creme-Panels über der Szene */
+    .kapitel { position: relative; padding: 20vh 6vw 30vh; display: grid; gap: 14vh; }
+    .panel {
+      background: var(--color-bg); border-radius: 8px; padding: clamp(1.6rem, 4vw, 3.2rem);
+      max-width: 44rem; box-shadow: 0 30px 80px -30px rgb(0 0 0 / .45);
+    }
+    .panel:nth-child(even) { margin-left: auto; }
+    .panel .nr { font-family: var(--font-hand); font-style: italic; font-size: clamp(3rem, 6vw, 5rem); line-height: 1; }
+    .panel h2 { margin: .3rem 0 .8rem; font-size: clamp(1.8rem, 3.4vw, 2.8rem); letter-spacing: var(--tracking-headline); line-height: 1.05; }
+    .panel p { margin: 0 0 1rem; max-width: 62ch; }
+    .panel .band { height: 6px; border-radius: 3px; margin-bottom: 1.4rem; width: 5rem; }
+    .abschluss { text-align: center; max-width: none; margin: 0 auto; }
+    .abschluss h2 { font-size: clamp(2.2rem, 6vw, 4.6rem); }
+    .button-edition { display: inline-block; padding: .9rem 1.6rem; font-size: 1.05rem; text-decoration: none; cursor: pointer;
+      transition: transform .45s cubic-bezier(.34,1.56,.64,1); }
+    .button-edition:hover, .button-edition:focus-visible { transform: translateY(-2px) scale(1.03); }
+
+    /* 2D-Variante: dieselben Bilder als ruhige Ebenen (ohne JS, ohne WebGL, reduzierte Bewegung) */
+    .ebenen-2d { position: absolute; inset: 0; overflow: hidden; z-index: -1; pointer-events: none; }
+    html.webgl .ebenen-2d { display: none; }
+    .ebene { position: absolute; background-size: cover; background-position: center; }
+    /* Himmelsmitte des Deckenbilds, aufgehellt über Creme, damit Tinte lesbar bleibt. */
+    .ebene.himmel { inset: 0; background-image: url(bilder/met-437790.jpg); background-size: 190% auto;
+      background-position: 50% 38%; background-repeat: no-repeat; filter: saturate(.75); opacity: .5; }
+    .ebene.figur {
+      -webkit-mask-image: radial-gradient(closest-side, #000 55%, transparent 100%);
+      mask-image: radial-gradient(closest-side, #000 55%, transparent 100%);
+    }
+    .ebene.figur-1 { width: min(46vw, 640px); aspect-ratio: 2 / 1; left: 2vw; top: 110vh;
+      background-image: url(bilder/met-437792.jpg); background-size: 228% auto; background-position: 14% 8%; }
+    .ebene.figur-2 { width: min(34vw, 460px); aspect-ratio: 1.4 / 1; right: 4vw; top: 170vh;
+      background-image: url(bilder/met-437792.jpg); background-size: 370% auto; background-position: 72% 35%; }
+    .ebene.wolke { inset: auto 0 0 0; height: 60vh;
+      background: linear-gradient(to top, var(--color-bg), color-mix(in srgb, var(--color-bg) 0%, transparent)); }
+    .akt-2 .ebenen-2d, .kapitel .ebenen-2d { background: var(--color-bg-dark); }
+    .uebergang .ebenen-2d { background: linear-gradient(var(--color-bg), var(--color-bg-dark)); }
+    html:not(.webgl) .editionen { grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr)); gap: 1.4rem; }
+    html:not(.webgl) .editionen .rahmen {
+      display: grid; place-items: center; aspect-ratio: 4 / 5; margin-bottom: .5rem; border-radius: 2px;
+      box-shadow: 0 0 0 6px var(--color-gold), 0 0 0 7px var(--color-text);
+      color: var(--color-text); font-family: var(--font-hand); font-style: italic; font-size: 1.6rem;
+    }
+    html:not(.webgl) .akt-2 .akt-text { position: relative; top: 0; margin-top: 30vh; }
+
+    @media (max-width: 760px) {
+      .hero { grid-template-columns: 1fr; align-content: end; padding-bottom: 8vh; }
+      .akt-text { margin: 0 5vw; }
+      .ebene.figur-1 { width: 90vw; top: 105vh; }
+      .ebene.figur-2 { width: 70vw; top: 175vh; }
+    }
+  </style>
+</head>
+<body>
+  <canvas id="buehne" aria-hidden="true"></canvas>
+  <div class="entwurf">Entwurf · Prototyp</div>
+
+  <main>
+    <div class="akt akt-1" id="akt-1" data-akt="himmel">
+      <div class="ebenen-2d" aria-hidden="true">
+        <div class="ebene himmel"></div>
+        <div class="ebene figur figur-1"></div>
+        <div class="ebene figur figur-2"></div>
+        <div class="ebene wolke"></div>
+      </div>
+
+      <header class="hero">
+        <div>
+          <h1>Gemalt in <span class="hand">Code</span>.</h1>
+          <p class="unterzeile">[Platzhalter: Unterzeile, schreibt Mattia]</p>
+        </div>
+        <nav aria-label="Kapitel">
+          <ol class="index">
+            <li><a href="#kapitel-1"><span class="nr">I</span>Website Core</a></li>
+            <li><a href="#kapitel-2"><span class="nr">II</span>Automation Core</a></li>
+            <li><a href="#kapitel-3"><span class="nr">III</span>SEO + GEO</a></li>
+            <li><a href="#kapitel-4"><span class="nr">IV</span>Google-Profil</a></li>
+            <li><a href="#kapitel-5"><span class="nr">V</span>Texte + Branding</a></li>
+          </ol>
+        </nav>
+      </header>
+
+      <section class="akt-text" aria-labelledby="akt-1-titel">
+        <p class="label">Akt I</p>
+        <h2 id="akt-1-titel">Himmel</h2>
+        <p>[Platzhalter: kurzer Text zu Akt I, schreibt Mattia.]</p>
+      </section>
+    </div>
+
+    <div class="akt uebergang" id="uebergang" data-akt="uebergang" aria-hidden="true">
+      <div class="ebenen-2d"></div>
+    </div>
+
+    <section class="akt akt-2" id="akt-2" data-akt="galerie" aria-labelledby="akt-2-titel">
+      <div class="ebenen-2d" aria-hidden="true"></div>
+      <div class="akt-text">
+        <p class="label">Akt II</p>
+        <h2 id="akt-2-titel">Galerie</h2>
+        <p>[Platzhalter: kurzer Text zu Akt II, schreibt Mattia.]</p>
+        <ul class="editionen">
+          <li><div class="rahmen" style="background: var(--color-chapter-1)" aria-hidden="true">Konzept</div>Konzept · [Platzhalter Edition A]</li>
+          <li><div class="rahmen" style="background: var(--color-chapter-2)" aria-hidden="true">Konzept</div>Konzept · [Platzhalter Edition B]</li>
+          <li><div class="rahmen" style="background: var(--color-chapter-3)" aria-hidden="true">Konzept</div>Konzept · [Platzhalter Edition C]</li>
+        </ul>
+      </div>
+    </section>
+
+    <div class="kapitel">
+      <div class="ebenen-2d" aria-hidden="true"></div>
+      <section class="panel" id="kapitel-1">
+        <div class="nr">I</div><h2>Website Core</h2>
+        <div class="band" style="background: var(--color-chapter-1)"></div>
+        <p>[Platzhalter: Kapiteltext I, schreibt Mattia.]</p>
+        <a href="#" class="button-edition">[Platzhalter: Link Kaufseite I]</a>
+      </section>
+      <section class="panel" id="kapitel-2">
+        <div class="nr">II</div><h2>Automation Core</h2>
+        <div class="band" style="background: var(--color-chapter-2)"></div>
+        <p>[Platzhalter: Kapiteltext II, schreibt Mattia.]</p>
+        <a href="#" class="button-edition">[Platzhalter: Link Kaufseite II]</a>
+      </section>
+      <section class="panel" id="kapitel-3">
+        <div class="nr">III</div><h2>SEO + GEO</h2>
+        <div class="band" style="background: var(--color-chapter-3)"></div>
+        <p>[Platzhalter: Kapiteltext III, schreibt Mattia.]</p>
+        <a href="#" class="button-edition">[Platzhalter: Link Kaufseite III + IV]</a>
+      </section>
+      <section class="panel" id="kapitel-4">
+        <div class="nr">IV</div><h2>Google-Profil</h2>
+        <div class="band" style="background: var(--color-chapter-1)"></div>
+        <p>[Platzhalter: Kapiteltext IV, schreibt Mattia.]</p>
+        <a href="#" class="button-edition">[Platzhalter: Link Kaufseite III + IV]</a>
+      </section>
+      <section class="panel" id="kapitel-5">
+        <div class="nr">V</div><h2>Texte + Branding</h2>
+        <div class="band" style="background: var(--color-chapter-2)"></div>
+        <p>[Platzhalter: Kapiteltext V, schreibt Mattia.]</p>
+        <a href="#" class="button-edition">[Platzhalter: Anfrage]</a>
+      </section>
+      <section class="panel abschluss">
+        <h2>Kein Template. Ein <span class="hand">Werk</span>.</h2>
+        <a href="#" class="button-edition">Edition anfragen</a>
+      </section>
+    </div>
+  </main>
+
+  <script type="module" src="buehne.js"></script>
+</body>
+</html>

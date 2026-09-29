@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 200 200" role="img" aria-labelledby="t">
+  <!-- Schmuck-Initiale K · ENTWURF 29.09.2026 · eigene Pfade, Tinte #231B3A, Gold #E3C58A (marke/DESIGN.md §2, §7) -->
+  <title id="t">Schmuck-Initiale K (Entwurf)</title>
+  <defs>
+    <!-- Ranke für eine Ecke: Spirale mit Blatt, wird viermal gedreht -->
+    <g id="ranke" fill="none" stroke="#231B3A" stroke-width="1.6" stroke-linecap="round">
+      <path d="M18 60 C18 34 34 18 60 18"/>
+      <path d="M24 52 C26 36 38 28 50 30 C60 32 60 46 50 46 C43 46 43 38 49 38"/>
+      <path d="M52 24 C62 20 74 24 78 32 C70 30 64 32 60 38"/>
+      <path d="M26 54 C22 64 24 76 32 80 C30 72 32 66 38 62"/>
+      <circle cx="49" cy="41" r="2.4" fill="#E3C58A" stroke="none"/>
+      <circle cx="80" cy="34" r="2" fill="#E3C58A" stroke="none"/>
+      <circle cx="34" cy="82" r="2" fill="#E3C58A" stroke="none"/>
+    </g>
+    <path id="buchstabe" d="M44 40H86V46L78 48V152L86 154V160H44V154L52 152V48L44 46Z
+      M78 101L136 48H130L128 46V40H162V46L150 48L78 113Z
+      M92 95L112 82L150 152L160 154V160H124V154L131 152Z"/>
+  </defs>
+  <rect x="5" y="5" width="190" height="190" rx="2" fill="none" stroke="#E3C58A" stroke-width="3"/>
+  <rect x="12" y="12" width="176" height="176" fill="none" stroke="#231B3A" stroke-width="1"/>
+  <use xlink:href="#ranke"/>
+  <use xlink:href="#ranke" transform="rotate(90 100 100)"/>
+  <use xlink:href="#ranke" transform="rotate(180 100 100)"/>
+  <use xlink:href="#ranke" transform="rotate(270 100 100)"/>
+  <!-- Buchstabe: Goldkontur darunter, damit er auch auf Nacht lesbar bleibt -->
+  <use xlink:href="#buchstabe" fill="none" stroke="#E3C58A" stroke-width="5" stroke-linejoin="round"/>
+  <use xlink:href="#buchstabe" fill="#231B3A"/>
+  <path d="M60 60V140" stroke="#E3C58A" stroke-width="1.4" opacity=".9"/>
+</svg>
