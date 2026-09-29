@@ -8,6 +8,12 @@ Kapitel hat eine **eigene gemalte Szene**, einen **kurzen Halt** (die Szene blei
 man weiterscrollt; nie gekapert) und ein **spielerisches Erklär-Element**. Zwischen den Kapiteln
 der Ölfarben-Übergang. Links läuft die Kapitel-Leiste mit (B13).
 
+**Stil jeder Szene [F] (Mattia, 29.09.2026): Barock + frecher Bruch.** Nie nur „alt". Jede Szene
+zeigt barocke Figuren, die etwas **Modernes und Freches** tun, mit mindestens einem Gegenstand in
+**Pink** (`--color-accent`) oder Pastell: Handy, Kopfhörer, Sneaker, Neon, Sonnenbrille. Wie bei Shopify
+(Skateboard, pinke Einkaufstüte, lila Maske). Der Witz geht immer gegen die Figuren oder Mattia,
+nie gegen Kunden oder Konkurrenz (`marke/tonalitaet.md`).
+
 **Texte** sind überall `[Platzhalter]`; sie entstehen im Textinterview (`marke/stil.md`).
 **Beispiel-Anzeigen** (Suchergebnis, Chat, Google-Profil) sind sichtbar als „Beispiel" markiert
 und versprechen nichts (`grundlagen/ausschluesse.md`: keine Ranking-Garantie).
@@ -27,9 +33,10 @@ Erklär-Element → Papier-Panel (Details, Tarot-Karte, Links)**.
 ## 10 · Hero „Gemalt in *Code*."
 
 - **Frage:** „Bin ich hier richtig?"
-- **Szene (B1):** Barock-Himmel (Tiepolo-Decke, später eigenes Bild). Davor zwei schwebende
-  Figuren: ein **Engel, der einen Mauszeiger hält**, und ein Putto mit Laptop. Wolkenebenen in
-  der Tiefe (2.5D).
+- **Szene (B1):** Barock-Himmel (Tiepolo-Decke, später eigenes Bild). Davor schwebende Figuren:
+  ein **Engel, der einen pinken Mauszeiger hält**, ein Putto mit **Kopfhörern**, der auf dem Handy
+  scrollt, und einer, der ein **Browserfenster wie ein Surfbrett** durch die Wolken reitet.
+  Wolkenebenen in der Tiefe (2.5D).
 - **Beim Ankommen:** Die Szene steht als Bleistiftskizze da; **goldene Konstruktionslinien (B12)**
   zeichnen sich in 1 s (Goldener Schnitt, Kreis um die Mitte). Sobald die Bilder geladen sind,
   malt sich die Szene aus. Titel und Index sind sofort lesbar.
@@ -47,8 +54,9 @@ Erklär-Element → Papier-Panel (Details, Tarot-Karte, Links)**.
 ## 11 · Kapitel I Website
 
 - **Frage:** „Was bekomme ich, wenn er meine Website macht?"
-- **Szene (B1):** **Atelier eines Malers**: Staffelei, auf der Leinwand eine Website im Rohbau,
-  daneben ein Maler mit Pinsel (Barock-Porträt), Farbtöpfe in Pastell. Kapitelwort „Website".
+- **Szene (B1):** Ein Barock-Maler mit **Sneakern und Beanie** steht vor einer Staffelei, auf der
+  statt einer Leinwand ein **riesiges Handy** steht; er malt die Website direkt aufs Display. Farbtöpfe
+  sind **Neon-Farbeimer** in Pink und Pastell, ein Putto hält den Kaffeebecher. Kapitelwort „Website".
 - **Erzählsatz (B2):** `[Platzhalter]` mit Schmuck-Initiale.
 - **Halt, Erklär-Element „Skizze → Website":** Die Leinwand auf der Staffelei rückt nach vorn.
   Ein **Regler** (Maus ziehen, Finger wischen) fährt über die Leinwand: links Bleistiftskizze der
@@ -64,24 +72,28 @@ Erklär-Element → Papier-Panel (Details, Tarot-Karte, Links)**.
 ## 12 · Kapitel II Automation
 
 - **Frage:** „Welche Arbeit nimmt mir das ab?"
-- **Szene (B1):** Barockes **Uhrwerk-Kabinett**: grosses Uhrwerk mit Zahnrädern in Gold,
-  Pergamente, ein Engel zieht die Uhr auf. Kapitelwort „Automation".
-- **Halt, 3D-Produkt (B3) „Das Rad":** Ein **3D-Uhrwerk** dreht sich; beim Scrollen **zerlegt es
-  sich** in 4 Zahnräder, jedes beschriftet mit einem Schritt: *Anfrage kommt* → *wird sortiert* →
-  *Antwort geht raus* → *Termin steht*.
+- **Szene (B1):** Ein Barock-Gelehrter liegt im **Liegestuhl mit Sonnenbrille und pinkem
+  Eiskaffee**, Füsse auf dem Pult, während hinter ihm die Arbeit von selbst läuft. Motto: „Er macht
+  Pause, der Ablauf nicht." Kapitelwort „Automation".
+- **Halt, 3D-Produkt (B3) „Das Rad":** Eine **3D-Kugelbahn** in Pastell und Chrom (wie ein
+  Designobjekt) dreht sich ins Bild; beim Scrollen **zerlegt sie sich** in 4 Stationen, jede
+  beschriftet: *Anfrage kommt* → *wird sortiert* → *Antwort geht raus* → *Termin steht*. Ein
+  Rad in der Mitte hält alles in Gang (Tarot „Das Rad").
 - **Erklär-Element „Probier es":** Kleine Beispiel-Offertanfrage (B5) mit Knopf „Absenden". Klick:
-  Die Zahnräder greifen ineinander, ein Brief wandert sichtbar durch alle 4 Stationen (2 s) und
-  endet als sortierter Eintrag plus automatischer Antwort. Nichts wird wirklich gesendet.
+  Eine **pinke Kugel** rollt sichtbar durch alle 4 Stationen (2 s), klackt federnd in jede
+  Station und endet als sortierter Eintrag plus automatischer Antwort. Der Gelehrte hebt kurz
+  das Glas. Nichts wird wirklich gesendet.
 - **Papier-Panel:** Beispiele für Abläufe als **schwebende Kartenwolke (B7)** (Offertanfragen,
   Terminbuchung, Rückmeldungen), Tags mit Popup (B10) für Fachwörter.
 - **Tarot-Karte II „Das Rad":** ab CHF 500, + CHF 400 je weiterer Ablauf, Knopf „Ins Atelier legen".
-- **Assets:** Kabinett-Szene, **3D-Modell Uhrwerk** (GLB, eigenes Modell [A: in Blender oder
-  CC0-Quelle]), Brief-Symbol.
+- **Assets:** Liegestuhl-Szene, **3D-Modell Kugelbahn** (GLB, eigenes Modell [A: in Blender oder
+  CC0-Quelle]), Kugel.
 
 ## 13 · Kapitel III SEO + GEO
 
 - **Frage:** „Wie werde ich gefunden, auch von ChatGPT?"
-- **Szene (B1):** **Sternwarte**: Astronom am Fernrohr, Nachthimmel; die Sterne bilden langsam ein
+- **Szene (B1):** Ein Barock-Astronom schaut durchs Fernrohr, aber am Okular klemmt **sein Handy**
+  und er macht ein Foto vom Himmel. Am Nachthimmel leuchtet eine **Neon-Suchleiste** wie ein
   Sternbild. Kapitelwort „Sichtbar".
 - **Halt, Erklär-Element „Suche":** Ein Suchfeld tippt sich selbst „webdesign luzern". Darunter eine
   **Beispiel-Trefferliste**; beim Scrollen steigt der Eintrag „signedbymattia" Platz für Platz nach
@@ -97,7 +109,8 @@ Erklär-Element → Papier-Panel (Details, Tarot-Karte, Links)**.
 
 - **Frage:** „Erscheine ich auf der Karte, wenn jemand in Luzern sucht?"
 - **Szene (B1):** **Alte Stadtansicht von Luzern** (Kupferstich, gemeinfrei [A: Quelle prüfen]),
-  Kapellbrücke, See, Berge; ein Putto hält eine Stecknadel. Kapitelwort „Karte".
+  Kapellbrücke, See, Berge. Auf dem Wasserturm steckt ein **riesiger pinker Karten-Pin** wie ein
+  gelandetes Ufo, davor macht ein Putto ein **Selfie**. Kapitelwort „Karte".
 - **Halt, Erklär-Element „Pin":** Die alte Ansicht wird zur Karte; ein **Pin fällt** federnd
   (`--ease-pointe`) auf die Stadt, daraus klappt eine **Beispiel-Profilkarte** (B5): Name,
   Kategorie „Webdesigner", Sterne füllen sich einer nach dem anderen, Knöpfe „Route" und „Website".
@@ -109,21 +122,24 @@ Erklär-Element → Papier-Panel (Details, Tarot-Karte, Links)**.
 ## 15 · Kapitel V Texte + Branding
 
 - **Frage:** „Wer schreibt die Texte, wer macht das Logo?"
-- **Szene (B1):** **Schreibpult** mit Feder, Tintenfass, Siegel und Farbmustern. Kapitelwort „Handschrift".
-- **Halt, Erklär-Element „Feder":** Eine Feder schreibt einen schwachen Satz (Beispiel aus
-  `marke/stil.md`: „Wir bringen Ihr Business aufs nächste Level."), streicht ihn mit einer
-  Tintenlinie durch und schreibt darunter den besseren (Beispiel: „Website erstellen lassen in
-  Luzern. Von Grund auf gestaltet, ab CHF 1'600."). Daneben ein **Fächer aus Farbmustern (B6)**,
-  der sich mit der Maus auffächert.
+- **Szene (B1):** Ein Barock-Dichter mit Halskrause tippt auf einem **pastellfarbenen Laptop**,
+  hinter ihm ein Stapel zerknüllter Entwürfe; ein Putto hält einen **pinken Textmarker** wie ein
+  Schwert. Kapitelwort „Handschrift".
+- **Halt, Erklär-Element „Streichen":** Ein schwacher Satz tippt sich (Beispiel aus
+  `marke/stil.md`: „Wir bringen Ihr Business aufs nächste Level."), der **pinke Marker streicht
+  ihn durch**, das Blatt knüllt sich und fliegt aus dem Bild, darunter tippt sich der bessere
+  (Beispiel: „Website erstellen lassen in Luzern. Von Grund auf gestaltet, ab CHF 1'600.").
+  Daneben ein **Fächer aus Farbmustern (B6)**, der sich mit der Maus auffächert.
 - **Papier-Panel:** Was dazugehört (Texte nach Briefing, Logo, Farben, Schriften).
 - **Karte:** keine Tarot-Karte (nicht im Atelier); Knopf „Anfragen". Preis `[?]` offen.
-- **Assets:** Schreibpult-Szene, Feder-Requisit.
+- **Assets:** Dichter-Szene, Laptop- und Marker-Requisit.
 
 ## 16 · Werke (Galerie)
 
 - **Frage:** „Wie denkt er, was hat er schon gemacht?"
 - **Szene:** **Dunkler Barock-Saal** (`--color-bg-dark`); die Editionen hängen in Goldrahmen.
-  Die Kamera gleitet mit dem Scroll an der Wand entlang.
+  Davor stehen Barock-Besucher, die die Bilder **mit dem Handy fotografieren**; ein Putto-Aufseher
+  hält ein Schild „Bitte berühren". Die Kamera gleitet mit dem Scroll an der Wand entlang.
 - **Maus:** Lupen-Zeiger. Über einem Bild: leichter Glanz wie Firnis, Plakette „Edition No. 00X ·
   Konzept". **Klick:** Der Rahmen zoomt nach vorn und wird zur Detailansicht mit 3 Sätzen
   (Aufgabe, Entscheidung, Grund) und Link zur Edition.
@@ -136,7 +152,8 @@ Erklär-Element → Papier-Panel (Details, Tarot-Karte, Links)**.
 - **Szene:** Zurück in den hellen Himmel, die **Konstruktionslinien (B12)** vom Anfang schliessen
   sich zu einem Rahmen.
 - **Inhalt:** „Kein Template. Ein *Werk*." Darunter zeichnet sich **Mattias Signatur**, ein
-  **Wachssiegel** stempelt federnd daneben.
+  **pinkes Wachssiegel** stempelt federnd daneben; der Engel vom Anfang fliegt mit dem pinken
+  Mauszeiger vorbei und klickt auf „Edition anfragen".
 - **Knöpfe:** „Edition anfragen" (Formular) und „Ins Atelier" (Preise).
 - **Assets:** Signatur als SVG-Pfad, Siegel.
 
@@ -146,6 +163,6 @@ Erklär-Element → Papier-Panel (Details, Tarot-Karte, Links)**.
 
 1. Kapitelwörter: „Website / Automation / Sichtbar / Karte / Handschrift" oder die Leistungsnamen?
 2. Twist im Hero „Erschaffung Adams": ja?
-3. 3D-Uhrwerk in Kapitel II selbst modellieren (Blender) oder fertiges CC0-Modell suchen?
+3. 3D-Kugelbahn in Kapitel II selbst modellieren (Blender) oder fertiges CC0-Modell suchen?
 4. Preis für Texte + Branding (Kapitel V).
 5. Eigenes Barock-Bild pro Szene (Higgsfield-Budget) oder Met CC0 zuerst?

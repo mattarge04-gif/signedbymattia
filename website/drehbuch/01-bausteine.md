@@ -9,7 +9,7 @@ sie nutzt (Kürzel B1–B14).
 
 | Kürzel | Baustein | Bei Shopify gesehen | Bei signedbymattia |
 | --- | --- | --- | --- |
-| B1 | **Kapitel-Szene** | Gemaltes Renaissance-Bild + moderne Gegenstände (Becher, Skateboard, Laptop), riesiges Kapitelwort darüber | Barock-Szene + Web-Gegenstände (Browserfenster, Mauszeiger, Handy), Wort in Host Grotesk |
+| B1 | **Kapitel-Szene** | Gemaltes Renaissance-Bild + moderne Gegenstände (Becher, Skateboard, Laptop), riesiges Kapitelwort darüber | **Barock + frecher Bruch:** Figuren tun etwas Modernes (Selfie, Liegestuhl, Sneaker), mindestens ein Gegenstand in Pink oder Pastell; Wort in Host Grotesk |
 | B2 | **Erzählsatz mit Schmuck-Initiale** | Serif-Satz, erster Buchstabe verziert | Instrument Serif, unsere SVG-Initialen, Tinte zeichnet sich |
 | B3 | **3D-Produkt** | Kasse und Hub drehen sich, Explosionsansicht, Merkmalliste daneben | Ein Kapitel zeigt ein 3D-Objekt, das sich mit dem Scroll zerlegt (Uhrwerk bei II) |
 | B4 | **Gerissenes Papier** | Papierpanel mit ausgefranster Kante schiebt sich über die Szene | Creme-Papier mit Büttenrand, darunter bleibt die Szene sichtbar |
