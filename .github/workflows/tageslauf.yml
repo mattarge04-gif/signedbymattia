@@ -152,6 +152,7 @@ jobs:
             - Offener Entscheid [?] oder Unklarheit: nicht raten. Aufgabe als blockiert
               markieren, Frage in den Bericht, weiter zur nächsten.
             - Nie auf main, nie mergen, nichts veröffentlichen, keine Geheimnisse.
+            - Nichts unter `.github/` ändern (Workflows): GitHub lehnt sonst den Push ab.
             - Am Ende den Abschnitt „Bericht" im Auftrag ausfüllen und committen.
 
             Sparsam arbeiten (jeder Schritt liest den ganzen bisherigen Verlauf neu):
@@ -192,6 +193,18 @@ jobs:
           git diff --cached --quiet || git commit -qm "Tageslauf $TAG: nicht committete Änderungen gesichert"
           if [ -z "$(git log --oneline origin/main..HEAD)" ]; then
             echo "Keine Commits, nichts zu pushen."; exit 0
+          fi
+          # Der Lauf darf keine Workflows ändern: GitHub lehnt sonst den ganzen Push ab
+          # (am 30.09.2026 ging so die Arbeit eines Laufs verloren). Änderungen unter .github/
+          # werden verworfen, der Rest landet als ein Commit auf dem Branch.
+          BASIS=$(git rev-parse -q --verify "origin/$BRANCH" || git rev-parse origin/main)
+          if git log --format= --name-only "$BASIS..HEAD" | grep -q '^\.github/'; then
+            echo "::warning::Claude hat Dateien unter .github/ geändert. Diese Änderungen werden verworfen, der Rest wird gepusht."
+            git reset -q --soft "$BASIS"
+            git reset -q -- .github
+            git checkout -q "$BASIS" -- .github
+            git clean -fdq -- .github
+            git diff --cached --quiet || git commit -qm "Tageslauf $TAG: Ergebnis (Änderungen an .github verworfen)"
           fi
           git push -q -u origin "$BRANCH"
           if [ -n "$(gh pr list --head "$BRANCH" --state open --json number --jq '.[].number')" ]; then
