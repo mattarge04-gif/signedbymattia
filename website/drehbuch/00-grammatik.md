@@ -1,6 +1,6 @@
 # Drehbuch 00: Grammatik der Bewegung
 
-Stand: 29.09.2026 · Status: **entschieden [F]** (Mattia, 29.09.2026) · Grundlage für alle
+Stand: 30.09.2026 · Status: **entschieden [F]** (Mattia, 29.09.2026) · Grundlage für alle
 Szenen in `website/drehbuch/` · Quellen: `marke/DESIGN.md` §7, `marke/ui-regeln.md`,
 `marke/teardown-shopify-editions.md`, Emil Kowalski (Design Engineering)
 
@@ -42,6 +42,20 @@ kommen seltene federnde Pointen (frecher Meister).
 5. Höchstens **ein Wow pro Bildschirm**.
 6. Nichts erscheint aus dem Nichts: Einblenden ab `scale(.95)` und Deckkraft 0, nie `scale(0)`.
 7. Kein Scroll-Hijacking, Text immer im HTML (`website/geo.md` §1).
+
+## Bilder ohne Ladeprobleme [F] (Mattia, 30.09.2026)
+
+Gleicher Trick wie Shopify Editions (dort 100–430 KB pro Szene, gemessen im Teardown):
+
+1. **Original in hoher Qualität** (z. B. 4K aus der KI) bleibt im Archiv und wird nie direkt geladen.
+2. **Moderne Formate:** AVIF oder WebP, freigestellte Figuren mit Transparenz; Texturen der 3D-Bühne
+   als KTX2.
+3. **Passende Grösse pro Gerät** (`srcset`): Handy ca. 800 px, Laptop ca. 1600 px, grosse Bildschirme
+   bis ca. 2400 px.
+4. **Skizze zuerst** (ca. 20 KB), das echte Bild malt sich nach (siehe „Laden" oben).
+5. **Kapitelweise nachladen:** nur, was gleich sichtbar wird.
+6. **Auslieferung über ein CDN.**
+7. **Messen statt annehmen:** Lighthouse und Bildgrössen beim Bau prüfen, Grenzen aus „Tempo-Budget".
 
 ## Tempo-Budget [A]
 
