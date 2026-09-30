@@ -1,6 +1,8 @@
 # Plan und Stand
 
-Stand: 29.09.2026. Aktuelle Ampel: [`stand-2026-09-29.html`](stand-2026-09-29.html). Aktuelle Übersicht: [`uebersicht.html`](uebersicht.html).
+Stand: 30.09.2026. Aktuelle Ampel: [`stand-2026-09-30.html`](stand-2026-09-30.html). Aktuelle Übersicht: [`uebersicht.html`](uebersicht.html).
+Aktueller Abschluss [F]: [`gemini-abo-test-2026-09-30.md`](gemini-abo-test-2026-09-30.md).
+GitHub Actions sind vorläufig vollständig ausgeschaltet; Bilder entstehen gemeinsam mit Mattia.
 Sitzungsabschluss mit Aufgaben und Quellen: [`stand-2026-09-28.md`](stand-2026-09-28.md),
 inklusive Nachtrag vom Abend (SEO-Basis weitgehend erledigt). Das Diagramm
 `stand-2026-09-28.html` ist noch vom Mittag.
@@ -8,6 +10,7 @@ inklusive Nachtrag vom Abend (SEO-Basis weitgehend erledigt). Das Diagramm
 | Datei | Inhalt |
 | --- | --- |
 | `uebersicht.html` | aktuelle Kurzansicht und Eigenaufwand |
+| `stand-2026-09-30.workflow.json` → `stand-2026-09-30.html` | aktueller Stand mit Abo-Bildtest und gestoppten Actions |
 | `stand-2026-09-28.workflow.json` → `stand-2026-09-28.html` | aktueller Weg bis live als Archify-Grafik |
 | `plan.workflow.json` → `plan-archify.html` | älterer Gesamtplan, Status teils überholt |
 | `bis-live.workflow.json` → `bis-live-archify.html` | ältere Stundenannahmen, nicht aktuelle Restschätzung |

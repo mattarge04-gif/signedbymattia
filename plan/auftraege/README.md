@@ -1,7 +1,13 @@
 # Tageslauf: Aufträge für den Tag
 
-Stand: 29.09.2026 · Status: **erster Lauf 29.09.2026 von Hand, danach auf sparsam umgestellt** · Workflow:
+Stand: 30.09.2026 · Status: **vorläufig gestoppt [F]** · Workflow:
 `.github/workflows/tageslauf.yml`
+
+**Mattia, 30.09.2026 [F]:** GitHub Actions im Repo vollständig ausgeschaltet
+(`enabled: false`), Tageslauf zusätzlich deaktiviert (`disabled_manually`). Kein
+Durchlauf am 01.10.; Bilder werden gemeinsam bearbeitet. Keine laufenden oder
+wartenden Runs vorhanden. Reaktivierung erst auf ausdrückliche Anweisung.
+Die folgenden Abschnitte dokumentieren den bisherigen Ablauf.
 
 ## Idee [F] (Mattia, 28.09.2026)
 

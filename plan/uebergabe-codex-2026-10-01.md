@@ -4,6 +4,13 @@ Stand: 30.09.2026 abends · Von: Claude (Sitzung mit Mattia) · Für: Codex, Sit
 
 ## Ziel der Sitzung
 
+**Nachtrag 30.09.2026, Mattia [F]:** Die folgende API-Einrichtung ist vorläufig
+zurückgestellt. Einzeltest über das vorhandene Abo erfolgreich; Bilder gemeinsam
+weiterbearbeiten. Alle GitHub Actions im Repo sind vollständig deaktiviert; kein
+Durchlauf am 01.10. Reaktivierung nur auf Anweisung. Aktueller Abschluss:
+`plan/gemini-abo-test-2026-09-30.md`. Die ursprünglichen Aufgaben unten bleiben
+als zurückgestellte Übergabe erhalten.
+
 Die **Gemini API (Nano Banana Pro)** so vorbereiten, dass der Tageslauf (GitHub Actions) Bilder für die
 Website **automatisch erzeugen, freistellen und fürs Web umwandeln** kann. Mattia findet Stil und
 Vorlagen abends selbst in der Gemini-App; die Masse (ca. 70 Bilder) soll über die API laufen.

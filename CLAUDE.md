@@ -1,6 +1,6 @@
 # signedbymattia — zentrales Agency-Repo
 
-Stand: 24.09.2026. Hier steht **alles, was die Agency ausmacht**: Positionierung,
+Stand: 30.09.2026. Hier steht **alles, was die Agency ausmacht**: Positionierung,
 Zielkunden, Angebote, Preise, Marke, Designsystem, UI-Regeln, Tonalität,
 Vorlagen, Abläufe und Pflichtangaben. Alle anderen Repos **lesen** hier und
 kopieren nichts. So wird eine Grundlage nur an einer Stelle geändert.
@@ -85,6 +85,17 @@ Masse; Bilder werden wie bei Shopify ausgeliefert (`00-grammatik.md`). Hero-Dreh
 Chat vorgeschlagen (noch nicht ausdrücklich abgenommen, nicht in `10-startseite.md` übertragen). **Erstes Bild fertig:**
 `marke/assets/hero/e0-himmel.jpg`. Offen für Szene 1: Amor (Stil-Vorlage), E1 Kuppelrand (Prompts in
 `03-bildstil.md`). Gemini-Tageslimit am 30.09. erreicht.
+
+**Sitzungsabschluss 30.09. mit Codex [F]:** Gemini-Bilderstellung über Mattias
+angemeldeten Chrome erfolgreich getestet: Amor-Prompt unverändert aus `03-bildstil.md`,
+Original 2048 × 2048 in `marke/assets/tests/amor-abo-test-2026-09-30.jpg`, Quellen erfasst.
+**Noch keine abgenommene Stil-Vorlage**, kein Serienlauf, kein API-Aufruf.
+Mattia: Bilder gemeinsam weiterbearbeiten, kein automatischer Durchlauf am 01.10.
+**GitHub Actions im Repo vollständig deaktiviert** (`enabled: false`), Workflow
+Tageslauf `disabled_manually`; keine laufenden oder wartenden Runs. Reaktivierung
+nur auf Mattias Anweisung. API-Einrichtung und Serienlauf vorläufig zurückgestellt;
+Budget bleibt offen. Abschluss: `plan/gemini-abo-test-2026-09-30.md`; aktuelle Übersicht
+`plan/uebersicht.html`, Diagramm `plan/stand-2026-09-30.html`.
 
 **Erledigt [F]:**
 
