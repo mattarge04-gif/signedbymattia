@@ -153,6 +153,9 @@ jobs:
               markieren, Frage in den Bericht, weiter zur nächsten.
             - Nie auf main, nie mergen, nichts veröffentlichen, keine Geheimnisse.
             - Nichts unter `.github/` ändern (Workflows): GitHub lehnt sonst den Push ab.
+            - Dateien nur mit Write/Edit anlegen oder ändern, nicht mit `cat >`, `sed -i` oder
+              Python-Ersetzungen in der Shell; höchstens ein `cd` pro Befehl. Solche Befehle werden
+              im Lauf abgelehnt (am 30.09.2026 13 Ablehnungen) und kosten Umwege.
             - Am Ende den Abschnitt „Bericht" im Auftrag ausfüllen und committen.
 
             Sparsam arbeiten (jeder Schritt liest den ganzen bisherigen Verlauf neu):
@@ -194,9 +197,17 @@ jobs:
           if [ -z "$(git log --oneline origin/main..HEAD)" ]; then
             echo "Keine Commits, nichts zu pushen."; exit 0
           fi
-          # Der Lauf darf keine Workflows ändern: GitHub lehnt sonst den ganzen Push ab
-          # (am 30.09.2026 ging so die Arbeit eines Laufs verloren). Änderungen unter .github/
-          # werden verworfen, der Rest landet als ein Commit auf dem Branch.
+          # Auf den neuesten Stand von main bringen. Am 30.09.2026 wurde während des Laufs eine
+          # Änderung an diesem Workflow gemergt; der Branch trug danach die alte Fassung, und GitHub
+          # lehnte den Push als „Workflow-Änderung“ ab. Die ganze Arbeit blieb auf dem Runner.
+          git fetch -q origin main
+          if git rev-parse -q --verify "origin/$BRANCH" >/dev/null; then
+            git merge -q --no-edit origin/main
+          else
+            git rebase -q origin/main || { git rebase --abort; git merge -q --no-edit origin/main; }
+          fi
+          # Der Lauf selbst darf keine Workflows ändern: solche Änderungen werden verworfen, der
+          # Rest landet als ein Commit auf dem Branch.
           BASIS=$(git rev-parse -q --verify "origin/$BRANCH" || git rev-parse origin/main)
           if git log --format= --name-only "$BASIS..HEAD" | grep -q '^\.github/'; then
             echo "::warning::Claude hat Dateien unter .github/ geändert. Diese Änderungen werden verworfen, der Rest wird gepusht."
