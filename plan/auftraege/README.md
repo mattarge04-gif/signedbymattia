@@ -55,6 +55,9 @@ der Auftrag schon von Hand gelaufen war, und arbeitete alles ein zweites Mal ab
 - der zweite Termin bricht sofort ab, wenn es den Branch `tageslauf/JJJJ-MM-TT` oder
   eine Zeile des Tages in `kosten.csv` schon gibt (keine doppelten Kosten);
 - „Run workflow" von Hand läuft immer, auch nach einem Lauf am selben Tag.
+- **Zu späte Zeitplanläufe laufen nicht:** Startet GitHub einen geplanten Lauf erst ab 11:00
+  Zürich, bricht er ohne Kosten ab (am 30.09.2026 kam bis 10:24 gar keiner). Der verlässliche
+  Start kommt von aussen (n8n oder von Hand); der GitHub-Zeitplan ist nur noch Reserve.
 
 ## Grenzen und Kosten [F]
 

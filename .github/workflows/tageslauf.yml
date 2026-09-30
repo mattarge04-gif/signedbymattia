@@ -80,7 +80,13 @@ jobs:
             && git show FETCH_HEAD:kosten.csv 2>/dev/null | grep -q "^$TAG,"; then
             GELAUFEN=ja
           fi
-          if [ "${{ github.event_name }}" = "schedule" ] && [ "$GELAUFEN" = "ja" ]; then
+          # Verspätete Zeitplanläufe (GitHub kam am 29.09.2026 fast 7 Stunden zu spät) laufen
+          # nicht mehr: ab 11:00 Zürich startet nur noch, wer von Hand oder per n8n startet.
+          STUNDE=$(TZ=Europe/Zurich date +%-H)
+          if [ "${{ github.event_name }}" = "schedule" ] && [ "$STUNDE" -ge 11 ]; then
+            echo "Zeitplanlauf kommt zu spät ($(TZ=Europe/Zurich date +%H:%M) Zürich). Übersprungen, keine Kosten."
+            echo "vorhanden=nein" >> "$GITHUB_OUTPUT"
+          elif [ "${{ github.event_name }}" = "schedule" ] && [ "$GELAUFEN" = "ja" ]; then
             echo "Tageslauf $TAG ist schon gelaufen. Ersatztermin übersprungen, keine Kosten."
             echo "vorhanden=nein" >> "$GITHUB_OUTPUT"
           elif [ -f "$DATEI" ] && grep -q "^Status: freigegeben" "$DATEI"; then
