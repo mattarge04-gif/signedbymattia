@@ -51,7 +51,7 @@ Budgets und Kostenfreigaben bleiben in `agency-automation-os/projects/lead-engin
 
 ## Aktueller Stand und nächste Schritte
 
-Stand: 29.09.2026. Zeitplan: Vault `Zielplan.md`. Aktuelle Phase
+Stand: 30.09.2026. Zeitplan: Vault `Zielplan.md`. Aktuelle Phase
 **Fundament** (KW 39–42, bis 18.10.2026).
 
 **Sitzungsabschluss 28.09.:** Claude erreichte am 27.09. um 23:59 das
@@ -75,6 +75,16 @@ Trompe-l'œil, II Automation Wasserspiele, III Sichtbar Spiegelsaal, Zwischenspi
 Galeriebild, Abschluss; eigene barocke Motive, nie Shopify-Motive), `20-weitere-seiten.md` (grob).
 Tageslauf 30.09. freigegeben: Bausteine M1/M7/M9 + Kapitel II als Prototyp
 (`plan/auftraege/2026-09-30.md`). Danach: Mattias Rückmeldung → Nachbesserung → weitere Kapitel.
+
+**Sitzungsabschluss 30.09.:** Tageslauf 30.09. gebaut (Bausteine M1/M7/M9, Kapitel II
+Wasserspiele), Push scheiterte an der Workflow-Sperre, aus dem Laufprotokoll wiederhergestellt: **PR #25
+offen** (Mattia: Technik ok, Grafik ungenügend). Befund: Met-Gemälde sind zu dunkel, es fehlen
+lebende 2.5D-Ebenen. Entscheide: **alle Grafiken neu mit KI** im Stil „Barock + frecher Bruch"
+(`website/drehbuch/03-bildstil.md`), Werkzeug **Google AI Pro** (privates Konto) + Gemini API für die
+Masse; Bilder werden wie bei Shopify ausgeliefert (`00-grammatik.md`). Hero-Drehbuch mit 8 Ebenen im
+Chat abgenommen, noch nicht in `10-startseite.md` übertragen. **Erstes Bild fertig:**
+`marke/assets/hero/e0-himmel.jpg`. Offen für Szene 1: Amor (Stil-Vorlage), E1 Kuppelrand (Prompts in
+`03-bildstil.md`). Gemini-Tageslimit am 30.09. erreicht.
 
 **Erledigt [F]:**
 
