@@ -1,3 +1,4 @@
-datum,lauf,usd,ergebnis
+datum,lauf,usd,ergebnis,modell,geschaetzt_usd,eingabe,cache_lesen,cache_schreiben,ausgabe,schritte,ablehnungen
 2026-09-29,36564387614,3.2167,success
 2026-09-29,36573707457,3.7388,success
+2026-09-30,36689809841,4.0515,success,claude-opus-5-5,4.0515,36727,6776105,270646,135134,69,13
