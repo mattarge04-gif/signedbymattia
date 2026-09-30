@@ -58,3 +58,52 @@ no frame, no watermark. Square format, high detail.
 
 **Abnahme:** Mattia wählt 1 Bild → wird als `marke/assets/stil-vorlage-amor.png` abgelegt und ist ab dann
 Bezug für alle weiteren Figuren.
+
+## Test 2 und 3: Hauptplatten des Hero (E0 Himmel, E1 Kuppelrand)
+
+**Reihenfolge:** zuerst die Amor-Vorlage (Test 1) wählen, dann diese Platten **mit der Vorlage als
+angehängtem Bild** erzeugen, damit Malweise und Palette übereinstimmen.
+
+**Einstellungen in der Gemini-App [A: Oberfläche kann abweichen]:**
+- Modell **Nano Banana Pro** (in der Werkzeugwahl „Bilder erstellen", Pro-Modell).
+- Seitenverhältnis steht im Prompt (**16:9**); die App übernimmt es aus dem Text.
+- Nach dem Erzeugen **„Download in voller Grösse"** wählen (höchste Auflösung, Ziel 4K).
+- Pro Platte 3–4 Varianten, dann im Gespräch nachschärfen.
+- Platten sind **leer**: keine Figuren, keine Putti, keine Engel. Figuren kommen als eigene Ebenen.
+
+### E0 Himmel (hinterste Ebene)
+
+```
+Using the attached image only as a reference for painting style and palette:
+an empty baroque sky painted as a Venetian ceiling fresco in the manner of Tiepolo, seen from below.
+Soft luminous oil painting, visible delicate brushwork, bright and airy, light falling from the upper left.
+Gradient from powder blue (#CFE3F7) at the top to soft lilac (#D9CCF5) toward the bottom, with a warm
+cream glow (#FBF3EA) in the centre where the light comes from, and faint peach (#FFD6C2) tints on a few
+thin, wispy clouds near the edges. The centre stays calm and open for text and figures.
+No figures, no angels, no putti, no birds, no architecture, no frame, no text, no watermark.
+No brown, no dark areas, no varnish yellow. Wide format 16:9, ultra high resolution, seamless even edges.
+```
+
+### E1 Kuppelrand (Scheinarchitektur um die Öffnung)
+
+```
+Using the attached image only as a reference for painting style and palette:
+a baroque trompe-l'oeil ceiling seen straight from below (di sotto in su): a painted architectural dome
+rim with pastel stucco mouldings, soft cream and lilac marble, delicate pale-gold ornaments (#E3C58A),
+shell and scroll motifs, a few small painted balustrades, all in the luminous oil-painting style of a
+Tiepolo ceiling fresco, light from the upper left.
+In the exact centre there is a large oval opening occupying about 60 percent of the image width. The
+opening is filled with a flat, uniform, pure chroma green (#00FF00), completely even, with no texture,
+no gradient, no sky and no clouds, so it can be cut out precisely. The inner edge of the rim is clean.
+Pastel palette only: powder blue (#CFE3F7), lilac (#D9CCF5), peach (#FFD6C2), cream (#FBF3EA),
+pale gold. No figures, no angels, no putti, no statues of people, no text, no watermark, no brown,
+no dark shadows. Wide format 16:9, ultra high resolution, symmetric composition.
+```
+
+**Nachschärfen (Beispiele):** „Die grüne Öffnung muss ganz flach und einfarbig sein." · „Weniger Gold,
+mehr Flieder im Stuck." · „Heller, pastelliger, keine dunklen Schatten in den Profilen." · „Öffnung
+etwas grösser, Rand schmaler."
+
+**Abnahme:** Mattia wählt je 1 Bild; Ablage als Original in `marke/assets/hero/` (Archiv, 4K). Der
+Tageslauf stellt die grüne Öffnung frei, färbt fein nach und erzeugt die Web-Fassungen
+(`00-grammatik.md`, „Bilder ohne Ladeprobleme").
