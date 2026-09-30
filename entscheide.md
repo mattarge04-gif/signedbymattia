@@ -1,5 +1,7 @@
 # Entscheide der Agency
 
+Stand: 30.09.2026.
+
 Kurzliste der Entscheide, die Grundlagen betreffen. Ausführliche Begründungen
 stehen im Vault (`40_Entscheide/`) oder im jeweiligen Repo.
 
@@ -49,3 +51,4 @@ stehen im Vault (`40_Entscheide/`) oder im jeweiligen Repo.
 | 29.09.2026 | Szenen mit eigenen barocken Motiven (keine Shopify-Motive), Met CC0 + eigener Twist als Collage, ein Lächeln pro Szene, Grafik-Teile ohne Gemälde im Wechsel; Handschrift ohne Preis, nur Bewegung | `website/drehbuch/10-startseite.md` |
 | 30.09.2026 | Bilder wie Shopify ausliefern: Original hoch aufgelöst im Archiv, auf der Seite AVIF/WebP/KTX2 in Gerätegrössen, Skizze zuerst, kapitelweise nachladen, CDN, messen | `website/drehbuch/00-grammatik.md` |
 | 30.09.2026 | Bilder neu mit KI: Google AI Pro (privates Konto, CHF 17/Monat) für Stil und Vorlagen, Gemini API für die Masse im Tageslauf; Met-Freisteller verworfen | `website/drehbuch/03-bildstil.md` |
+| 30.09.2026 | [F] GitHub Actions im Repo vorläufig vollständig ausschalten; kein Durchlauf am 01.10.; Bilder gemeinsam mit Mattia erstellen. API-Einrichtung und Serienlauf zurückgestellt, Reaktivierung nur auf Anweisung. Abo-Einzeltest erfolgreich, Stil noch offen. | `plan/gemini-abo-test-2026-09-30.md` |
