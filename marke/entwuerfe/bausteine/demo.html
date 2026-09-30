@@ -1,0 +1,136 @@
+<!doctype html>
+<!--
+  Demo Bausteine M1, M7, M9 · ENTWURF, Prototyp · Stand: 30.09.2026
+  Platzhalter-Szene (Tiepolo, aus ../buehne/bilder/), darauf M1, dann M7 mit 3 Karten M9.
+  Alle Werbesätze sind [Platzhalter]; Mattia schreibt die Texte selbst.
+-->
+<html lang="de-CH">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bausteine M1 · M7 · M9 · signedbymattia (Entwurf)</title>
+  <meta name="robots" content="noindex">
+  <link rel="stylesheet" href="../../tokens.css">
+  <link rel="stylesheet" href="bausteine.css">
+  <script>document.documentElement.classList.add('js');</script>
+  <style>
+    * { box-sizing: border-box; }
+    html { background: var(--color-bg); }
+    body { margin: 0; color: var(--color-text); font-family: var(--font-system); font-size: 1.125rem; line-height: 1.55; }
+    .entwurf {
+      position: fixed; right: 12px; bottom: 12px; z-index: 5;
+      font: 600 12px/1 var(--font-system); letter-spacing: .04em; text-transform: uppercase;
+      background: var(--color-bg); padding: 8px 10px; border-radius: 999px; box-shadow: var(--outline-button);
+    }
+    /* Platzhalter-Szene: steht still (sticky), die Bausteine ziehen darüber */
+    .kapitel { position: relative; }
+    .szene { position: sticky; top: 0; height: 100vh; overflow: hidden; }
+    .szene img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 30%; display: block; }
+    .szene::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to bottom, transparent 55%, rgb(251 243 234 / .35)); }
+    .kapitel > .b-auftakt { margin-top: -100vh; }
+    .kapitel > .b-papier { margin-top: 30vh; }
+    .b-papier h2 { margin: 0 0 8px; font-weight: 800; line-height: .95; letter-spacing: var(--tracking-headline); font-size: clamp(2.2rem, 5vw, 4rem); }
+    .b-papier .unterzeile { margin: 0 0 clamp(28px, 4vw, 48px); max-width: 38rem; font-family: var(--font-hand); font-size: 1.4rem; line-height: 1.3; color: var(--color-text-muted); }
+    .ende { padding: 80px clamp(20px, 5vw, 72px); color: var(--color-text-muted); font-size: .95rem; }
+  </style>
+</head>
+<body>
+  <span class="entwurf">Entwurf · Bausteine</span>
+
+  <main>
+    <div class="kapitel">
+      <div class="szene" aria-hidden="true">
+        <img src="../buehne/bilder/met-437790.jpg" alt="" width="1600" height="2122">
+      </div>
+
+      <!-- M1 Kapitel-Auftakt -->
+      <section class="b-auftakt" aria-labelledby="wort">
+        <h2 class="b-auftakt__wort" id="wort">Kapitel</h2>
+        <p class="b-auftakt__satz b-erscheint">
+          <span class="b-initiale"><img src="../initialen/K.svg" alt="" aria-hidden="true" width="200" height="200"><span class="b-initiale__buchstabe">K</span></span>apitel [Platzhalter: Erzählsatz des Kapitels in Instrument Serif, zwei bis drei Zeilen, Mattia schreibt]
+        </p>
+      </section>
+
+      <!-- M7 Gerissenes Papier mit 3 Karten M9 -->
+      <section class="b-papier" aria-labelledby="papier-titel">
+        <h2 id="papier-titel">[Platzhalter Titel]</h2>
+        <p class="unterzeile">[Platzhalter: Unterzeile]</p>
+
+        <div class="b-karten">
+          <article class="b-karte" data-farbe="1">
+            <div class="b-karte__buehne">
+              <div class="b-karte__eingabe">
+                <p class="b-karte__titel">Beispiel · Formular</p>
+                <span class="b-karte__feld"><small>Name</small>[Beispiel]</span>
+                <span class="b-karte__feld"><small>Anliegen</small>[Beispiel]</span>
+                <span class="b-karte__feld"><small>Wunschtermin</small>[Beispiel]</span>
+              </div>
+              <div class="b-karte__ergebnis">
+                <p class="b-karte__titel">Anfrage eingegangen</p>
+                <ul class="b-karte__liste">
+                  <li class="b-karte__zeile"><span>[Beispiel 1]</span><span class="b-karte__marke">neu</span></li>
+                  <li class="b-karte__zeile"><span>[Beispiel 2]</span><span>sortiert</span></li>
+                  <li class="b-karte__zeile"><span>[Beispiel 3]</span><span>beantwortet</span></li>
+                </ul>
+              </div>
+            </div>
+            <div class="b-karte__fuss">
+              <p class="b-karte__name">[Platzhalter]</p>
+              <button class="b-karte__knopf button-edition" type="button">Ergebnis zeigen</button>
+            </div>
+          </article>
+
+          <article class="b-karte" data-farbe="2">
+            <div class="b-karte__buehne">
+              <div class="b-karte__eingabe">
+                <p class="b-karte__titel">Beispiel · Suche</p>
+                <span class="b-karte__feld"><small>Suchbegriff</small>[Beispiel]</span>
+              </div>
+              <div class="b-karte__ergebnis">
+                <p class="b-karte__titel">Suchergebnis</p>
+                <ul class="b-karte__liste">
+                  <li class="b-karte__zeile"><span>[Beispiel-Treffer 1]</span><span class="b-karte__marke">1</span></li>
+                  <li class="b-karte__zeile"><span>[Beispiel-Treffer 2]</span><span>2</span></li>
+                  <li class="b-karte__zeile"><span>[Beispiel-Treffer 3]</span><span>3</span></li>
+                </ul>
+              </div>
+            </div>
+            <div class="b-karte__fuss">
+              <p class="b-karte__name">[Platzhalter]</p>
+              <button class="b-karte__knopf button-edition" type="button">Ergebnis zeigen</button>
+            </div>
+          </article>
+
+          <article class="b-karte" data-farbe="3">
+            <div class="b-karte__buehne">
+              <div class="b-karte__eingabe">
+                <p class="b-karte__titel">Beispiel · Google-Profil</p>
+                <span class="b-karte__feld"><small>Firma</small>[Beispiel]</span>
+                <span class="b-karte__feld"><small>Ort</small>[Beispiel]</span>
+              </div>
+              <div class="b-karte__ergebnis">
+                <p class="b-karte__titel">Profil</p>
+                <ul class="b-karte__liste">
+                  <li class="b-karte__zeile"><span>Öffnungszeiten</span><span>[Beispiel]</span></li>
+                  <li class="b-karte__zeile"><span>Bewertungen</span><span>[Beispiel]</span></li>
+                  <li class="b-karte__zeile"><span>Route</span><span class="b-karte__marke">Karte</span></li>
+                </ul>
+              </div>
+            </div>
+            <div class="b-karte__fuss">
+              <p class="b-karte__name">[Platzhalter]</p>
+              <button class="b-karte__knopf button-edition" type="button">Ergebnis zeigen</button>
+            </div>
+          </article>
+        </div>
+      </section>
+    </div>
+    <p class="ende">Ende der Demo · Bausteine: bausteine.js, bausteine.css · Einbau: README.md</p>
+  </main>
+
+  <script type="module">
+    import { alleStarten } from './bausteine.js';
+    alleStarten();
+  </script>
+</body>
+</html>
