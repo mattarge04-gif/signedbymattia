@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="de-CH">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hero · Prototyp</title>
+<!--
+  Prototyp Szene 10 „Hero" · Stand 02.10.2026 · gebaut gemeinsam mit Mattia.
+  Drehbuch: website/drehbuch/10-startseite.md, Werte: website/drehbuch/00-grammatik.md.
+  Bilder: KI (Gemini, Nano Banana Pro), Originale in marke/assets/erster-wurf/.
+-->
+<link rel="stylesheet" href="../../tokens.css">
+<link rel="stylesheet" href="hero.css">
+<script>document.documentElement.classList.add('js')</script>
+</head>
+<body>
+<section class="hero" id="hero" aria-labelledby="hero-titel">
+  <div class="buehne skizze" id="buehne">
+    <img class="ebene himmel" src="bilder/himmel.webp" alt="" aria-hidden="true">
+    <canvas class="ebene staub" id="staub" aria-hidden="true"></canvas>
+
+    <div class="ebene fern" aria-hidden="true">
+      <div class="wolke w1"><img src="bilder/wolke1.webp" alt=""></div>
+      <div class="wolke w2"><img src="bilder/wolke2.webp" alt=""></div>
+      <div class="wolke w3"><img src="bilder/wolke3.webp" alt=""></div>
+    </div>
+
+    <img class="ebene kuppel" src="bilder/kuppel.webp" alt="" aria-hidden="true">
+
+    <svg class="ebene linien" id="linien" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+      <ellipse cx="800" cy="450" rx="430" ry="290"/>
+      <ellipse cx="800" cy="450" rx="560" ry="380"/>
+      <line x1="611" y1="0" x2="611" y2="900"/>
+      <line x1="989" y1="0" x2="989" y2="900"/>
+      <line x1="0" y1="344" x2="1600" y2="344"/>
+      <line x1="0" y1="556" x2="1600" y2="556"/>
+      <line x1="0" y1="0" x2="1600" y2="900"/>
+      <line x1="1600" y1="0" x2="0" y2="900"/>
+    </svg>
+
+    <div class="figur muse" id="muse" aria-hidden="true">
+      <div class="lebt">
+        <svg class="heiligenschein" id="schein" viewBox="0 0 100 100">
+          <circle class="glanz" cx="50" cy="50" r="38"/>
+          <circle class="spur" cx="50" cy="50" r="38"/>
+          <circle class="lader" id="lader" cx="50" cy="50" r="38" pathLength="100"/>
+        </svg>
+        <img src="bilder/muse.webp" alt="">
+        <img class="augen-zu" id="augenZu" src="bilder/muse-augen-zu.webp" alt="">
+      </div>
+    </div>
+
+    <div class="figur amor" id="amor" aria-hidden="true">
+      <div class="zielt" id="amorZielt">
+        <div class="lebt">
+          <img class="amor-normal" src="bilder/amor.webp" alt="">
+          <img class="amor-zucken" src="bilder/amor-zucken.webp" alt="">
+        </div>
+      </div>
+    </div>
+
+    <div class="figur putto" id="putto" aria-hidden="true">
+      <div class="lebt">
+        <div class="bildschirm"><div class="mini">
+          <span class="mini-logo">signed <i>by</i> mattia</span>
+          <span class="mini-titel">Gemalt in <i>Code</i>.</span>
+          <span class="mini-knopf">Edition anfragen</span>
+          <span class="mini-zeile"></span><span class="mini-zeile kurz"></span>
+          <span class="mini-titel">Kein Template.</span>
+          <span class="mini-zeile"></span><span class="mini-zeile"></span>
+        </div></div>
+        <img src="bilder/putto.webp" alt="">
+      </div>
+    </div>
+
+    <div class="ebene nah" aria-hidden="true">
+      <div class="wolke w4"><img src="bilder/wolke4.webp" alt=""></div>
+      <div class="wolke w5"><img src="bilder/wolke5.webp" alt=""></div>
+    </div>
+
+    <div class="text" id="text">
+      <h1 id="hero-titel">Gemalt in <span class="hand" id="codeWort">Code</span>.</h1>
+      <nav class="index" aria-label="Kapitel">
+        <a href="#kapitel-1"><span class="nr">I</span>Website</a>
+        <a href="#kapitel-2"><span class="nr">II</span>Automation</a>
+        <a href="#kapitel-3"><span class="nr">III</span>Sichtbar</a>
+        <a href="#werke"><span class="nr">✦</span>Werke</a>
+      </nav>
+    </div>
+
+    <canvas class="pinsel-spur" id="spur" aria-hidden="true"></canvas>
+    <div class="pinsel" id="pinsel" aria-hidden="true"></div>
+  </div>
+</section>
+
+<section class="weiter" id="kapitel-1">
+  <p class="kicker">Kapitel I</p>
+  <h2>Website</h2>
+  <p>[Platzhalter: hier beginnt Kapitel I. Der Übergang wird später das Wolkenband.]</p>
+</section>
+
+<script type="module" src="hero.js"></script>
+</body>
+</html>
