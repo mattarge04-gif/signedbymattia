@@ -16,7 +16,8 @@ html, body { margin: 0; background: var(--color-bg); color: var(--color-text); f
 
 .ebene { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
 img.ebene { object-fit: cover; }
-.himmel, .kuppel, .fern, .nah, .figur, .text, .linien { will-change: transform, opacity; }
+/* will-change nur während des Flugs (Audit 02.10.) */
+.fliegt .himmel, .fliegt .kuppel, .fliegt .fern, .fliegt .nah, .fliegt .figur, .fliegt .text { will-change: transform, opacity; }
 
 /* Wolken */
 .wolke { position: absolute; }
@@ -29,7 +30,8 @@ img.ebene { object-fit: cover; }
 @keyframes treiben { from { transform: translateX(-2.5%); } to { transform: translateX(2.5%); } }
 
 /* Konstruktionslinien */
-.linien { fill: none; stroke: var(--color-gold); stroke-width: 1; opacity: .55; }
+.linien { fill: none; stroke: var(--color-gold); stroke-width: 1; opacity: .55; transition: opacity 1s var(--ease-farbe); }
+.linien.aus { opacity: 0 !important; }
 .linien * { stroke-dasharray: 3000; stroke-dashoffset: 3000; }
 .linien.zeichnen * { animation: zeichnen 1.4s var(--ease-farbe) forwards; }
 @keyframes zeichnen { to { stroke-dashoffset: 0; } }
@@ -63,6 +65,8 @@ img.ebene { object-fit: cover; }
 .amor.zuckt .amor-normal { opacity: 0; transition: opacity .2s var(--ease-ui); }
 
 .putto { right: 4%; top: 15%; width: min(19vw, 34vh); }
+.putto .lebt { opacity: 0; translate: 0 6%; transition: opacity .8s var(--ease-ui), translate .8s var(--ease-ui); }
+.putto.da .lebt { opacity: 1; translate: 0 0; }
 .putto .lebt { animation: wippen .9s ease-in-out infinite alternate, schweben 4.4s ease-in-out infinite alternate; }
 .bildschirm {
   position: absolute; left: 82.2%; top: 26.4%; width: 8.6%; height: 21.4%;
@@ -92,8 +96,8 @@ h1 {
   letter-spacing: var(--tracking-headline);
 }
 h1 .hand { font-family: var(--font-hand); font-style: italic; font-weight: 400; position: relative; display: inline-block; }
-.index { display: flex; justify-content: center; flex-wrap: wrap; gap: 6px 28px; margin-top: 26px; font-weight: 700; font-size: clamp(15px, 1.4vw, 19px); }
-.index a { color: inherit; text-decoration: none; padding: 6px 2px; transition: opacity .2s var(--ease-ui); }
+.index { display: flex; justify-content: center; flex-wrap: wrap; gap: 0 28px; margin-top: 14px; font-weight: 700; font-size: clamp(15px, 1.4vw, 19px); }
+.index a { color: inherit; text-decoration: none; padding: 12px 4px; min-height: 44px; display: inline-flex; align-items: center; transition: opacity .2s var(--ease-ui); }
 .index .nr { font-family: var(--font-hand); font-weight: 400; font-size: 1.25em; margin-right: 6px; }
 @media (hover: hover) and (pointer: fine) {
   .index a:hover { opacity: .6; }
@@ -127,11 +131,13 @@ h1 .hand { font-family: var(--font-hand); font-style: italic; font-weight: 400; 
 
 /* Handy */
 @media (max-width: 720px) {
-  .muse { top: 12%; width: 30vw; margin-left: -15vw; }
-  .amor { left: -6%; top: 42%; width: 44vw; }
-  .putto { right: -6%; top: 20%; width: 36vw; }
-  .text { top: 66%; }
-  .index { gap: 4px 16px; }
+  .muse { top: 11%; width: 30vw; margin-left: -15vw; }
+  .amor { left: -3%; top: 15%; width: 34vw; }
+  .putto { display: none; }
+  .text { top: 64%; }
+  .index { gap: 0 14px; }
+  .kopf-nav a:not(.knopf) { display: none; }
+  .knoepfe { flex-direction: column; align-items: center; }
 }
 
 /* Ruhig */
@@ -140,4 +146,51 @@ h1 .hand { font-family: var(--font-hand); font-style: italic; font-weight: 400; 
   .lebt, .wolke, .mini { animation: none !important; }
   .buehne { transition-duration: .2s; }
   .linien.zeichnen * { animation-duration: 1ms; }
+}
+
+/* Kopfzeile (Szene 02) */
+.kopf {
+  position: fixed; inset: 0 0 auto 0; z-index: 50; display: flex; justify-content: space-between; align-items: center;
+  padding: 18px clamp(16px, 3vw, 40px); transition: transform .2s var(--ease-ui), opacity .2s var(--ease-ui);
+}
+.kopf.weg { transform: translateY(-100%); opacity: 0; }
+.logo { color: var(--color-text); text-decoration: none; font-weight: 700; font-size: 20px; letter-spacing: var(--tracking-headline); }
+.logo .hand { font-family: var(--font-hand); font-style: italic; font-weight: 400; }
+.kopf-nav { display: flex; align-items: center; gap: clamp(12px, 2vw, 28px); font-weight: 600; font-size: 15px; }
+.kopf-nav a { color: var(--color-text); text-decoration: none; min-height: 44px; display: inline-flex; align-items: center; }
+
+/* Unterzeile und Knöpfe */
+.unterzeile { margin: 18px auto 0; max-width: 34ch; font-family: var(--font-hand); font-size: clamp(19px, 1.8vw, 26px); line-height: 1.25; }
+.knoepfe { display: flex; justify-content: center; gap: 12px; margin-top: 22px; }
+.knopf {
+  display: inline-flex; align-items: center; min-height: 48px; padding: 0 26px; border-radius: var(--radius-button);
+  font-family: var(--font-system); font-weight: 700; font-size: 16px; text-decoration: none; color: var(--color-text);
+  transition: transform .16s var(--ease-ui), background-color .2s var(--ease-ui);
+}
+.knopf.klein { min-height: 40px; padding: 0 18px; font-size: 14px; }
+.knopf.zweit { background: rgb(251 243 234 / .7); box-shadow: var(--outline-button); }
+.knopf:active { transform: scale(.97); }
+@media (hover: hover) and (pointer: fine) {
+  .knopf.zweit:hover { background: var(--color-bg); }
+  .button-edition.knopf:hover { background: color-mix(in oklab, var(--color-accent), white 15%); }
+}
+
+/* Fokus sichtbar (Audit) */
+a:focus-visible { outline: 2px solid var(--color-text); outline-offset: 3px; border-radius: 6px; }
+
+/* Scroll-Hinweis */
+.scroll-hinweis {
+  position: absolute; left: 50%; bottom: 3.5vh; translate: -50% 0; margin: 0; z-index: 6;
+  font-family: var(--font-hand); font-style: italic; font-size: 18px; opacity: 0; transition: opacity .6s var(--ease-ui);
+}
+.scroll-hinweis.da { opacity: .7; animation: hinweis 2.4s ease-in-out infinite; }
+@keyframes hinweis { 50% { transform: translateY(6px); } }
+
+/* Amor-Andeutung: spannt kurz die Sehne */
+.amor.andeuten .zielt > .lebt { animation: spannen .9s var(--ease-pointe); }
+@keyframes spannen { 0%, 100% { scale: 1; } 35% { scale: 1.035; rotate: -2deg; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .putto .lebt { opacity: 1; translate: none; transition: none; }
+  .scroll-hinweis.da { animation: none; }
 }

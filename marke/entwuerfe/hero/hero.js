@@ -26,6 +26,7 @@ const ebenen = {
   himmel: $('.himmel'), kuppel: $('.kuppel'), fern: $('.fern'), nah: $('.nah'),
   muse: $('#muse'), amor: $('#amor'), putto: $('#putto'), text: $('#text'), linien: $('#linien'),
 };
+const hinweis = $('#scrollHinweis');
 const ende = Object.assign(document.createElement('div'), { className: 'ebene' });
 ende.style.cssText = 'background:var(--color-bg);opacity:0;z-index:25';
 buehne.appendChild(ende);
@@ -44,6 +45,11 @@ const fortschritt = () => {
     setTimeout(() => {
       $('#schein').classList.add('fertig');
       buehne.classList.remove('skizze');
+      // Dosierung (Audit 02.10.): Linien weg, Putto kommt später, Scroll-Hinweis
+      setTimeout(() => ebenen.linien.classList.add('aus'), 1600);
+      setTimeout(() => ebenen.putto.classList.add('da'), RUHIG ? 0 : 1400);
+      setTimeout(() => { if (s < 0.03) hinweis.classList.add('da'); }, 2600);
+      if (!RUHIG) andeutungPlanen(4000);
     }, RUHIG ? 0 : rest);
   }
 };
@@ -87,9 +93,20 @@ if (amorBild.complete) pfeilAuflegen(); else amorBild.addEventListener('load', p
 
 const codeWort = $('#codeWort');
 let pfeile = [];
+let geschossen = false;
+// Andeutung: Amor spannt kurz die Sehne, bis zum ersten Schuss
+function andeutungPlanen(ms) {
+  setTimeout(() => {
+    if (geschossen) return;
+    ebenen.amor.classList.add('andeuten');
+    setTimeout(() => ebenen.amor.classList.remove('andeuten'), 900);
+    andeutungPlanen(7000);
+  }, ms);
+}
 let zuckt = false;
 function schiessen() {
   if (zuckt || RUHIG || aufgelegt.style.opacity === '0') return;
+  geschossen = true;
   const r = aufgelegt.getBoundingClientRect();
   const winkel0 = ((PARAMETER.pfeilWinkel + zielWinkel) * Math.PI) / 180;
   const breite = r.width / Math.cos(Math.abs(winkel0)) || r.width;
@@ -161,7 +178,7 @@ function spurPunkt(x, y) {
 // ---------- Lichtstaub ----------
 const staub = $('#staub');
 const dctx = staub.getContext('2d');
-const teilchen = Array.from({ length: 60 }, () => ({ x: Math.random(), y: Math.random(), r: 0.6 + Math.random() * 1.6, v: 0.15 + Math.random() * 0.35, p: Math.random() * 6.28 }));
+const teilchen = Array.from({ length: 40 }, () => ({ x: Math.random(), y: Math.random(), r: 0.6 + Math.random() * 1.6, v: 0.15 + Math.random() * 0.35, p: Math.random() * 6.28 }));
 
 function groesse() {
   const dpr = Math.min(devicePixelRatio || 1, 2);
@@ -187,7 +204,22 @@ if (!RUHIG) {
   const lenisLauf = (t) => { lenis.raf(t); requestAnimationFrame(lenisLauf); };
   requestAnimationFrame(lenisLauf);
 }
-addEventListener('scroll', scrollZiel, { passive: true });
+// Kopfzeile: beim Runterscrollen weg, beim Hochscrollen zurück (200 ms)
+const kopf = $('#kopf');
+let letzteY = scrollY;
+addEventListener('scroll', () => {
+  scrollZiel();
+  const y = scrollY;
+  kopf.classList.toggle('weg', y > letzteY && y > 80);
+  letzteY = y;
+}, { passive: true });
+
+// Schleife nur, solange der Hero sichtbar ist (Audit 02.10.)
+let laeuft = false;
+new IntersectionObserver(([e]) => {
+  if (e.isIntersecting && !laeuft) { laeuft = true; requestAnimationFrame(bild); }
+  else if (!e.isIntersecting) laeuft = false;
+}).observe(hero);
 
 function setzen(el, transform, deckkraft = 1) {
   el.style.transform = transform;
@@ -198,6 +230,8 @@ function bild(jetzt) {
   scrollZiel();
   s += (ziel - s) * PARAMETER.nachziehen;
   if (Math.abs(ziel - s) < 0.0005) s = ziel;
+  buehne.classList.toggle('fliegt', s > 0.001 && s < 0.999);
+  if (s > 0.03) hinweis.classList.remove('da');
   const vw = innerWidth / 100;
   const vh = innerHeight / 100;
 
@@ -232,7 +266,7 @@ function bild(jetzt) {
     for (const pt of punkte) {
       const alter = (jetzt - pt.t) / 600;
       if (alter >= 1) continue;
-      sctx.globalAlpha = 0.55 * (1 - alter);
+      sctx.globalAlpha = 0.35 * (1 - alter);
       sctx.fillStyle = pt.f;
       sctx.beginPath();
       sctx.arc(pt.x, pt.y, 7 * (1 - alter * 0.5), 0, 6.283);
@@ -250,13 +284,12 @@ function bild(jetzt) {
       t.y += 0.00025 * t.v * 6;
       if (t.y > 1 || t.x > 1) { t.x = Math.random() * 0.5; t.y = -0.02; }
       const blink = 0.35 + 0.65 * Math.abs(Math.sin(jetzt / 900 + t.p));
-      dctx.globalAlpha = blink * 0.75;
+      dctx.globalAlpha = blink * 0.45;
       dctx.fillStyle = '#FFF3D6';
       dctx.beginPath();
       dctx.arc(t.x * W, t.y * H, t.r, 0, 6.283);
       dctx.fill();
     }
   }
-  requestAnimationFrame(bild);
+  if (laeuft) requestAnimationFrame(bild);
 }
-requestAnimationFrame(bild);
