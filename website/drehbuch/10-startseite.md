@@ -151,3 +151,34 @@ Kapitel-Index im Hero: **I Website · II Automation · III Sichtbar · Werke**. 
 
 1. 3D-Kaskade in Kapitel II: selbst modellieren oder CC0-Modell als Basis (Erklärung im Chat 29.09.2026).
 2. Motive v3 bestätigen oder einzelne tauschen.
+
+---
+
+## Umsetzungsstand Hero (Szene 10) [F] (02.10.2026)
+
+**Prototyp:** `marke/entwuerfe/hero/` (v2 nach UX/UI-Audit, Commit `80c6a21`), Bilder aus
+`marke/assets/erster-wurf/` (KI, Gemini), freigestellt in `marke/entwuerfe/hero/bilder/`. Statt der Heiligen
+eine **Muse** (Allegorie, kein religiöses Motiv; Entscheid Mattia 01.10.2026).
+
+**Umgesetzt:** Himmel, Kuppel mit durchscheinendem Himmel, 5 Wolken, Muse mit Ladekreis-Heiligenschein
+(echter Ladefortschritt) und Blinzeln, Amor zielt auf den Zeiger und schiesst den pinken Mauszeiger-Pfeil
+ins Wort *Code* (nach 3 Schüssen Schulterzucken), Putto mit Kopfhörern und Mini-Website auf dem Handy,
+Lichtstaub, Goldlinien, Pinsel-Zeiger mit Farbspur, Flug durch die Kuppel, Kopfzeile, Unterzeile, CTA,
+Amor-Andeutung, Scroll-Hinweis, ruhige Variante, Handy-Anordnung, srcset, pausierte Schleife.
+
+**Noch offen (nicht vergessen, Mattia 02.10.2026) [F]:**
+
+| Nr. | Punkt | Art |
+| --- | --- | --- |
+| H1 | Flug kürzen (340 vh → ca. 260 vh), leere Strecke bei 60–80 % füllen | Code |
+| H2 | Goldglanz wandert langsam über den Kuppel-Stuck | Code |
+| H3 | Hand-Wort *Code* schimmert | Code |
+| H4 | Muse nickt beim Vorbeiflug | Code |
+| H5 | Farbtropfen beim Tippen auf dem Handy | Code |
+| H6 | Ölfarben-Übergang ans Ende des Hero (statt Überblenden) bzw. Wolkenband (B4) | Code + Grafik |
+| H7 | Echte Bleistiftskizze beim Laden; Farbe breitet sich vom Heiligenschein aus | Code (+ Skizzen-Bild) |
+| H8 | Flügel schlagen (Amor, Putto) und Gewandsaum der Muse weht | 2–3 KI-Bilder als eigene Ebenen + Code |
+| H9 | Putto wischt mit dem Finger übers Handy (Finger tippt im Bild noch auf den Arm) | KI-Bild nachschärfen |
+| H10 | Pinselspur nur über freiem Himmel, nicht über Text | Code |
+| H11 | Ease-Kurven nach `marke/tokens.css` verschieben | Code |
+| H12 | Texte (Unterzeile final, Index) aus dem Textinterview | Mattia |
