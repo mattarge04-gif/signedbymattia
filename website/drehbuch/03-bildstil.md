@@ -107,3 +107,12 @@ etwas grösser, Rand schmaler."
 **Abnahme:** Mattia wählt je 1 Bild; Ablage als Original in `marke/assets/hero/` (Archiv, 4K). Der
 Tageslauf stellt die grüne Öffnung frei, färbt fein nach und erzeugt die Web-Fassungen
 (`00-grammatik.md`, „Bilder ohne Ladeprobleme").
+
+## Später zu erstellen [F] (Mattia, 01.10.2026)
+
+- **Wolkenband als Übergang** (ersetzt das gerissene Papier, `01-bausteine.md` B4): breite, dicke, weiche
+  Barockwolken in Pastell als waagrechte Kante, oben und unten sauber auslaufend, zum Freistellen auf
+  flachem Grund; in der Breite nahtlos wiederholbar.
+- **Goldener Barockrahmen** (Variante 2 des Übergangs): Rahmen in Pastell-Gold `#E3C58A`, Ecken und
+  Kanten einzeln nutzbar (für verschiedene Abschnittsgrössen), Inneres flach grün zum Ausschneiden.
+

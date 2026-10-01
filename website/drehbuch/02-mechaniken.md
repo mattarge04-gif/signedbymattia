@@ -25,7 +25,7 @@ von 160 px gefilmt (1280×800, 6 Kapitel, 134 Bilder) plus Maus-Test links/recht
 | M4 | **Buch-Auswurf** | Ein Buch blättert auf, Karten fliegen gestaffelt heraus und schweben im Raum | Agentic |
 | M5 | **Hand ins Bild** | Eine gemalte Hand hält einen modernen Gegenstand (Handy, Karte) und steigt mit dem Scroll ins Bild; bei Agentic fliegen die Karten ins Handy | Agentic, Checkout |
 | M6 | **Bildschirm in der Szene** | Auf einem Gegenstand im Gemälde läuft Video oder UI (Plakatwand mit Skate-Video, Monitor mit Code, Zeichenbrett mit Entwurf) | Marketing, Online |
-| M7 | **Gerissenes Papier** | Das Lese-Panel schiebt sich mit ausgefranster, leicht glitzernder Kante über die Szene; oben bleibt die Szene sichtbar | alle |
+| M7 | **Gerissenes Papier** | Das Lese-Panel schiebt sich mit ausgefranster, leicht glitzernder Kante über die Szene; oben bleibt die Szene sichtbar. **Bei uns ersetzt durch Wolkenband oder goldenen Rahmen (B4, 01.10.2026)**; die Mechanik (Panel schiebt sich über die Szene) bleibt | alle |
 | M8 | **Auflösung zwischen Szenen** | Szene zerfällt in Glitzer/Schlamm mit hellen Kanten, die nächste erscheint dahinter | Hero → Sidekick, Agentic → Online |
 | M9 | **Karte weckt sich (Hover)** | Karte zeigt eine Eingabe; Maus drüber → Ergebnis klappt auf (Tabelle, Ablauf) | Sidekick-Karten |
 | M10 | **Kartenwolke mit Linien** | Kleine UI-Karten fliegen gestaffelt ein, feine Linien verbinden sie | Online (SimGym), Sidekick |

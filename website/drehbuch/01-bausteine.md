@@ -12,7 +12,7 @@ sie nutzt (Kürzel B1–B14).
 | B1 | **Kapitel-Szene** | Gemaltes Renaissance-Bild + moderne Gegenstände (Becher, Skateboard, Laptop), riesiges Kapitelwort darüber | **Barock + frecher Bruch:** Figuren tun etwas Modernes (Selfie, Liegestuhl, Sneaker), mindestens ein Gegenstand in Pink oder Pastell; Wort in Host Grotesk |
 | B2 | **Erzählsatz mit Schmuck-Initiale** | Serif-Satz, erster Buchstabe verziert | Instrument Serif, unsere SVG-Initialen, Tinte zeichnet sich |
 | B3 | **3D-Produkt** | Kasse und Hub drehen sich, Explosionsansicht, Merkmalliste daneben | Ein Kapitel zeigt ein 3D-Objekt, das sich mit dem Scroll zerlegt (Kugelbahn bei II) |
-| B4 | **Gerissenes Papier** | Papierpanel mit ausgefranster Kante schiebt sich über die Szene | Creme-Papier mit Büttenrand, darunter bleibt die Szene sichtbar |
+| B4 | **Übergang zum Lese-Panel** | Papierpanel mit ausgefranster Kante schiebt sich über die Szene | **Neu (Mattia, 01.10.2026) [F]:** statt gerissenem Papier ein **Wolkenband**: dicke, weiche Pastell-Wolken bilden die Kante zwischen Szene und Panel (Vorbild: Kurs-Website mit Wolkenkante, nur zum Studieren). **Variante 2:** ein **goldener Barockrahmen** fasst den Abschnitt ein. Grafiken beider Varianten entstehen später (`03-bildstil.md`, Abschnitt Später zu erstellen). |
 | B5 | **Produkt-UI auf gemaltem Grund** | Echte Bedienelemente (Eingabefeld, Tabelle, Handy) auf gemalter Textur (Blätter, Samt, Wandfarbe) | Unsere Beispiele (Formular, Suchergebnis, Google-Profil) auf Pastell-Leinwand |
 | B6 | **Karten-Fächer** | Schräge, überlappende Karten | Tarot-Karten I–IV (wie im Atelier) |
 | B7 | **Schwebende Kartenwolke** | Karten in Wolken, leichte Parallaxe mit der Maus | Kleine Karten (Seiten, Abläufe) schweben in Barock-Wolken |

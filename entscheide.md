@@ -49,3 +49,4 @@ stehen im Vault (`40_Entscheide/`) oder im jeweiligen Repo.
 | 29.09.2026 | Szenen mit eigenen barocken Motiven (keine Shopify-Motive), Met CC0 + eigener Twist als Collage, ein Lächeln pro Szene, Grafik-Teile ohne Gemälde im Wechsel; Handschrift ohne Preis, nur Bewegung | `website/drehbuch/10-startseite.md` |
 | 30.09.2026 | Bilder wie Shopify ausliefern: Original hoch aufgelöst im Archiv, auf der Seite AVIF/WebP/KTX2 in Gerätegrössen, Skizze zuerst, kapitelweise nachladen, CDN, messen | `website/drehbuch/00-grammatik.md` |
 | 30.09.2026 | Bilder neu mit KI: Google AI Pro (privates Konto, CHF 17/Monat) für Stil und Vorlagen, Gemini API für die Masse im Tageslauf; Met-Freisteller verworfen | `website/drehbuch/03-bildstil.md` |
+| 01.10.2026 | Übergang Szene → Lese-Panel: Wolkenband statt gerissenem Papier; Variante 2 goldener Barockrahmen; Grafiken später erstellen | `website/drehbuch/01-bausteine.md` B4, `03-bildstil.md` |
