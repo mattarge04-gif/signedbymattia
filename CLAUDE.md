@@ -86,6 +86,16 @@ Chat vorgeschlagen (noch nicht ausdrücklich abgenommen, nicht in `10-startseite
 `marke/assets/hero/e0-himmel.jpg`. Offen für Szene 1: Amor (Stil-Vorlage), E1 Kuppelrand (Prompts in
 `03-bildstil.md`). Gemini-Tageslimit am 30.09. erreicht.
 
+**Sitzungsabschluss 02.10. (vor Mattias Ferien) [F]:** Hero (Szene 10) und
+**Kapitel I** (Szene 11) als Prototyp in `marke/entwuerfe/hero/` gebaut, alle
+Bilder neu mit Gemini (Originale `marke/assets/erster-wurf/`). Kapitel I:
+Browser aus dem Torbogen, Bau, Roller-Putto als ziehbarer Regler, Wolkenband
+(Commit `4f6f3f4`). Offene Punkte: H1–H12 und K1–K5 in
+`website/drehbuch/10-startseite.md`. **Beim Wiedereinstieg zuerst:** UX- und
+UI-Audit über Hero + Kapitel I (impeccable), dann Verbesserungen, dann
+Kapitel II. GitHub Actions bleibt deaktiviert, PRs #25 und #26 offen, nicht
+ohne Mattia mergen.
+
 **Erledigt [F]:**
 
 - Identität „Edition“: `marke/DESIGN.md`, Markenübersicht
