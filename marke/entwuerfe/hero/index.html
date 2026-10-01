@@ -12,6 +12,7 @@
 -->
 <link rel="stylesheet" href="../../tokens.css">
 <link rel="stylesheet" href="hero.css">
+<link rel="stylesheet" href="kapitel1.css">
 <link rel="preload" as="image" href="bilder/kuppel-1600.webp" imagesrcset="bilder/kuppel-800.webp 800w, bilder/kuppel-1600.webp 1600w, bilder/kuppel.webp 2400w" imagesizes="100vw" fetchpriority="high">
 <script>document.documentElement.classList.add('js')</script>
 </head>
@@ -112,13 +113,70 @@
   </div>
 </section>
 
-<section class="weiter" id="kapitel-1">
-  <p class="kicker">Kapitel I</p>
-  <h2>Website</h2>
-  <p>[Platzhalter: hier beginnt Kapitel I. Der Übergang wird später das Wolkenband.]</p>
+<section class="k1" id="kapitel-1" aria-labelledby="k1-titel">
+  <div class="k1-bahn" id="k1Bahn">
+  <div class="k1-buehne" id="k1Buehne">
+    <div class="k1-hinten" aria-hidden="true"></div>
+
+    <div class="k1-browser" id="k1Browser">
+      <div class="br-leiste" aria-hidden="true"><i></i><i></i><i></i><span class="br-url">ihr-betrieb.ch</span></div>
+      <div class="br-seite" id="k1Seite">
+        <div class="seite rohbau" aria-hidden="true">
+          <div class="r-kopf"></div>
+          <div class="r-bild"><span>Bild</span></div>
+          <div class="r-titel"></div><div class="r-zeile"></div><div class="r-zeile kurz"></div>
+          <div class="r-knopf"><span>Knopf</span></div>
+        </div>
+        <div class="seite fertig" id="k1Fertig">
+          <div class="f-kopf teil"><b>[Ihr Betrieb]</b><span>Angebot · Über uns · Kontakt</span></div>
+          <div class="f-bild teil"></div>
+          <div class="f-titel teil">[Ihr Angebot in <i>einem</i> Satz]</div>
+          <div class="f-zeile teil"></div><div class="f-zeile kurz teil"></div>
+          <div class="f-knopf teil" id="k1Knopf">Anfrage senden</div>
+        </div>
+      </div>
+      <div class="k1-roller" id="k1Roller" role="slider" tabindex="0" aria-label="Rohbau oder fertige Website zeigen" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+        <img class="roller-normal" src="bilder/k1-putto-roller-600.webp" alt="">
+        <img class="roller-oops" src="bilder/k1-putto-oops-600.webp" alt="">
+      </div>
+    </div>
+
+    <img class="k1-wand" id="k1Wand" src="bilder/k1-wand-1600.webp" srcset="bilder/k1-wand-800.webp 800w, bilder/k1-wand-1600.webp 1600w, bilder/k1-wand.webp 2400w" sizes="100vw" alt="" aria-hidden="true">
+    <img class="k1-geruest" id="k1Geruest" src="bilder/k1-geruest-700.webp" alt="" aria-hidden="true">
+    <img class="k1-schraube" id="k1Schraube" src="bilder/k1-putto-schraube-600.webp" alt="" aria-hidden="true">
+
+    <div class="k1-text" id="k1Text">
+      <p class="k1-kicker"><span class="nr">I</span> Kapitel</p>
+      <h2 id="k1-titel">Website</h2>
+      <p class="k1-satz">[Platzhalter: Erzählsatz zu Kapitel I, schreibt Mattia im Textinterview.]</p>
+    </div>
+    <p class="k1-tipp" id="k1Tipp" aria-hidden="true">Zieh den Putto hin und her</p>
+  </div>
+  </div>
+
+  <div class="k1-panel">
+    <div class="wolkenband" aria-hidden="true">
+      <img src="bilder/wolke4-700.webp" alt=""><img src="bilder/wolke2.webp" alt=""><img src="bilder/wolke5-700.webp" alt=""><img src="bilder/wolke1.webp" alt=""><img src="bilder/wolke4-700.webp" alt="">
+    </div>
+    <div class="k1-inhalt">
+      <h3>Was Sie bekommen</h3>
+      <ul class="k1-liste">
+        <li><b>Bis 5 Seiten</b>, von Grund auf gestaltet</li>
+        <li><b>Auf dem Handy</b> genauso schön wie am Bildschirm</li>
+        <li><b>Struktur für Anfragen</b> mit Kontakt- oder Buchungsweg</li>
+        <li><b>Lokale SEO-Grundlagen</b> und Aufschaltung</li>
+      </ul>
+      <div class="k1-karte">
+        <span class="nr">I</span><b>Das Werk</b><span>Website Core</span><strong>CHF 1'600</strong>
+        <a class="button-edition knopf" href="#atelier">Ins Atelier legen</a>
+      </div>
+      <p class="k1-hinweis">[Platzhalter: Ablauf in 3 Schritten und Grenzen des Angebots folgen aus dem Textinterview.]</p>
+    </div>
+  </div>
 </section>
 </main>
 
 <script type="module" src="hero.js"></script>
+<script type="module" src="kapitel1.js"></script>
 </body>
 </html>

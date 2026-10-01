@@ -201,6 +201,7 @@ function scrollZiel() {
 }
 if (!RUHIG) {
   const lenis = new Lenis({ lerp: 0.1 });
+  window.lenis = lenis; // für Tests und Sprungmarken
   const lenisLauf = (t) => { lenis.raf(t); requestAnimationFrame(lenisLauf); };
   requestAnimationFrame(lenisLauf);
 }

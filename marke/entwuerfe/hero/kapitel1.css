@@ -1,0 +1,104 @@
+/* Kapitel I Website · Trompe-l'œil · Werte aus website/drehbuch/00-grammatik.md */
+.k1 { position: relative; background: var(--color-bg); }
+.k1-bahn { position: relative; height: 420vh; }
+.k1-buehne { position: sticky; top: 0; height: 100vh; height: 100svh; overflow: hidden; }
+.k1-hinten { position: absolute; inset: 0; background: linear-gradient(180deg, var(--color-chapter-2), var(--color-chapter-1)); }
+
+.k1-wand, .k1-geruest, .k1-schraube { position: absolute; pointer-events: none; }
+.k1-wand { inset: 0; width: 100%; height: 100%; object-fit: cover; transform-origin: 50% 70%; z-index: 3; }
+.k1-geruest { left: 5%; bottom: -4%; height: 62vh; z-index: 4; }
+.k1-schraube { width: min(15vw, 26vh); z-index: 8; opacity: 0; left: 0; top: 0; }
+.k1-fliegt .k1-wand, .k1-fliegt .k1-browser, .k1-fliegt .k1-geruest { will-change: transform, opacity; }
+
+/* Browser im Torbogen */
+.k1-browser {
+  position: absolute; left: 0; top: 0; z-index: 2; border-radius: 10px; overflow: visible;
+  background: #fff; box-shadow: 0 30px 80px -30px rgb(35 27 58 / .45);
+}
+.br-leiste { height: 30px; display: flex; align-items: center; gap: 6px; padding: 0 12px; background: var(--color-bg); border-radius: 10px 10px 0 0; border-bottom: 1px solid rgb(35 27 58 / .08); }
+.br-leiste i { width: 10px; height: 10px; border-radius: 50%; background: var(--color-chapter-1); }
+.br-leiste i:nth-child(2) { background: var(--color-chapter-3); }
+.br-leiste i:nth-child(3) { background: var(--color-chapter-2); }
+.br-url { margin-left: 12px; font-size: 12px; color: var(--color-text-muted); background: #fff; border-radius: 99px; padding: 3px 14px; }
+.br-seite { position: absolute; inset: 30px 0 0 0; overflow: hidden; border-radius: 0 0 10px 10px; transition: filter .6s var(--ease-ui); }
+.k1-browser.gemalt .br-seite { filter: sepia(.35) saturate(.7) blur(1.2px); }
+.seite { position: absolute; inset: 0; padding: 4% 6%; display: grid; grid-template-rows: auto 1fr auto auto auto auto; gap: 3%; }
+
+/* Rohbau: Skizze mit Gerüst-Charakter */
+.rohbau { background: repeating-linear-gradient(0deg, transparent 0 23px, rgb(35 27 58 / .06) 23px 24px), #fbf8f2; }
+.rohbau > div { border: 2px dashed rgb(35 27 58 / .35); border-radius: 6px; display: grid; place-items: center; color: rgb(35 27 58 / .45); font-family: var(--font-hand); font-style: italic; font-size: clamp(14px, 1.6vw, 22px); }
+.r-kopf { height: 8%; min-height: 26px; }
+.r-titel { height: 48px; width: 70%; }
+.r-zeile { height: 14px; width: 85%; }
+.r-zeile.kurz { width: 55%; }
+.r-knopf { height: 44px; width: 180px; border-radius: 99px !important; }
+
+/* Fertige Seite */
+.fertig { background: var(--color-bg); clip-path: inset(0 100% 0 0); }
+.f-kopf { display: flex; justify-content: space-between; align-items: center; font-size: clamp(12px, 1.1vw, 15px); }
+.f-kopf span { color: var(--color-text-muted); }
+.f-bild { border-radius: 8px; background: url("bilder/himmel-800.webp") center/cover; min-height: 0; }
+.f-titel { font-weight: 800; font-size: clamp(20px, 3vw, 46px); letter-spacing: var(--tracking-headline); line-height: 1; }
+.f-titel i { font-family: var(--font-hand); font-weight: 400; }
+.f-zeile { height: 12px; width: 85%; border-radius: 6px; background: var(--color-chapter-1); }
+.f-zeile.kurz { width: 55%; background: var(--color-chapter-3); }
+.f-knopf { justify-self: start; padding: 12px 26px; border-radius: 99px; background: var(--color-accent); box-shadow: var(--outline-button); font-weight: 700; font-size: 15px; }
+.teil { will-change: transform; }
+
+/* Roller-Putto = Regler */
+.k1-roller {
+  position: absolute; top: 50%; left: 0; width: min(13vw, 24vh); translate: -50% -55%;
+  z-index: 6; cursor: grab; touch-action: none; opacity: 0; transition: opacity .4s var(--ease-ui);
+}
+.k1-roller:active { cursor: grabbing; }
+.k1-roller img { width: 100%; display: block; pointer-events: none; }
+.k1-roller .roller-oops { position: absolute; inset: 0; opacity: 0; }
+.k1-roller.oops .roller-oops { opacity: 1; }
+.k1-roller.oops .roller-normal { opacity: 0; }
+.k1-roller.da { opacity: 1; }
+.k1-roller:focus-visible { outline: 2px solid var(--color-text); outline-offset: 4px; border-radius: 12px; }
+.k1-roller.da .roller-normal { animation: rollen .8s ease-in-out infinite alternate; }
+@keyframes rollen { from { rotate: -3deg; } to { rotate: 3deg; } }
+.k1-tipp {
+  position: absolute; left: 50%; bottom: 4vh; translate: -50% 0; margin: 0; z-index: 9; font-family: var(--font-hand); font-style: italic;
+  font-size: 19px; opacity: 0; transition: opacity .4s var(--ease-ui);
+}
+.k1-tipp.da { opacity: .75; }
+
+/* Text (M1: Kapitelwort steigt schneller als der Scroll) */
+.k1-text { position: absolute; left: 6vw; top: 0; z-index: 7; max-width: 46ch; }
+.k1-kicker { margin: 0; font-family: var(--font-hand); font-size: 26px; }
+.k1-kicker .nr { font-size: 1.2em; }
+.k1-text h2 { margin: 0; font-weight: 800; font-size: clamp(72px, 13vw, 210px); line-height: .88; letter-spacing: var(--tracking-headline); }
+.k1-satz { margin: 14px 0 0; font-family: var(--font-hand); font-size: clamp(18px, 1.6vw, 24px); }
+
+/* Panel mit Wolkenband (B4) */
+.k1-panel { position: relative; z-index: 10; margin-top: -26vh; background: var(--color-bg); padding: 0 6vw 14vh; }
+.wolkenband { position: absolute; left: -4vw; right: -4vw; top: 0; translate: 0 -62%; height: 30vh; display: flex; align-items: flex-end; justify-content: center; pointer-events: none; }
+.wolkenband img { height: 100%; width: auto; margin: 0 -6vw; flex: none; }
+.wolkenband img:nth-child(2n) { height: 70%; }
+.k1-inhalt { position: relative; display: grid; grid-template-columns: 1.4fr 1fr; gap: 4vw; align-items: start; padding-top: 8vh; max-width: 1200px; margin: 0 auto; }
+.k1-inhalt h3 { grid-column: 1 / -1; margin: 0; font-size: clamp(32px, 4vw, 60px); letter-spacing: var(--tracking-headline); }
+.k1-liste { margin: 0; padding: 0; list-style: none; display: grid; gap: 18px; font-size: 19px; }
+.k1-liste li { padding-left: 34px; position: relative; }
+.k1-liste li::before { content: "✦"; position: absolute; left: 0; color: var(--color-gold); }
+.k1-karte {
+  display: grid; gap: 6px; justify-items: center; text-align: center; padding: 28px 22px; border-radius: 16px;
+  background: linear-gradient(to bottom, var(--color-bg) 50%, var(--color-chapter-1));
+  box-shadow: 0 0 0 1.5px var(--color-gold), 0 0 0 6px var(--color-bg), 0 0 0 7.5px var(--color-gold), 0 24px 40px -22px rgb(35 27 58 / .5);
+}
+.k1-karte .nr { font-family: var(--font-hand); font-size: 34px; }
+.k1-karte b { letter-spacing: .16em; text-transform: uppercase; font-size: 14px; }
+.k1-karte strong { font-size: 30px; letter-spacing: var(--tracking-headline); margin: 6px 0 10px; }
+.k1-hinweis { grid-column: 1 / -1; color: var(--color-text-muted); font-size: 14px; margin: 0; }
+
+@media (max-width: 720px) {
+  .k1-geruest { height: 40vh; left: -10%; }
+  .k1-inhalt { grid-template-columns: 1fr; }
+  .k1-roller { width: 28vw; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .k1-bahn { height: auto; }
+  .k1-buehne { position: relative; }
+  .k1-roller.da .roller-normal { animation: none; }
+}

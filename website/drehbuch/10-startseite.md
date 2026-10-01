@@ -182,3 +182,24 @@ Amor-Andeutung, Scroll-Hinweis, ruhige Variante, Handy-Anordnung, srcset, pausie
 | H10 | Pinselspur nur über freiem Himmel, nicht über Text | Code |
 | H11 | Ease-Kurven nach `marke/tokens.css` verschieben | Code |
 | H12 | Texte (Unterzeile final, Index) aus dem Textinterview | Mattia |
+
+## Umsetzungsstand Kapitel I (Szene 11) [F] (02.10.2026)
+
+Prototyp: `marke/entwuerfe/hero/` (`kapitel1.css`, `kapitel1.js`), Bilder aus
+`marke/assets/erster-wurf/k1-*` (Gemini, je ein Versuch). Ablauf über 420vh:
+
+1. Palastwand mit Gerüst, im Torbogen schon „ihr-betrieb.ch" (die Täuschung), Kapitelwort steigt schneller als der Scroll (M1).
+2. Kamera fährt in den Bogen, Wand und Gerüst gehen weg, der Browser wird ein echtes Fenster.
+3. Rohbau-Teile fallen wie Stuck an ihren Platz, der Bauhelm-Putto schraubt den Knopf fest.
+4. **Neu: Der Roller-Putto ist ein Regler.** Er rollt die fertige Seite über den Rohbau und lässt sich ziehen (Maus, Finger, Pfeiltasten). Zu schnell gezogen: er lässt den Roller fallen.
+5. Wolkenband (B4) führt ins Lese-Panel mit Leistungen und Karte „I Das Werk, CHF 1'600".
+
+Offen:
+
+| Nr. | Punkt | Art |
+| --- | --- | --- |
+| K1 | Rohbau wirkt noch wie Wireframe, soll gemalt/skizziert aussehen (Bleistift, Stuckteile) | KI-Bilder oder SVG |
+| K2 | Bauhelm-Putto erscheint nur kurz und ohne Schraub-Bewegung | Code + 1 KI-Bild |
+| K3 | Fertige Seite zeigt Platzhalter; Beispielinhalt aus echter Edition | Mattia |
+| K4 | Übergang Hero → Kapitel I: heller Leerraum nach dem Himmelsflug (hängt an H1, H6) | Code |
+| K5 | Erzählsatz und Ablauf in 3 Schritten | Textinterview |
