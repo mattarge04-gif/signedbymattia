@@ -116,3 +116,58 @@ Tageslauf stellt die grüne Öffnung frei, färbt fein nach und erzeugt die Web-
 - **Goldener Barockrahmen** (Variante 2 des Übergangs): Rahmen in Pastell-Gold `#E3C58A`, Ecken und
   Kanten einzeln nutzbar (für verschiedene Abschnittsgrössen), Inneres flach grün zum Ausschneiden.
 
+
+## Kapitel I Website (Szene 11): Prompts [A] (02.10.2026)
+
+Für alle: Modell „3.1 Pro“, als Stil-Vorlagen `erster-wurf/amor-ohne-pfeil-v1.jpg` und
+`erster-wurf/kuppel-v1.jpg` anhängen. Speichern in `marke/assets/erster-wurf/` mit den genannten Namen.
+
+**K1-1 Palastwand mit Torbogen** (16:9) → `k1-wand-v1.jpg`
+```
+Using the attached images as a reference for painting style, brushwork and pastel palette:
+a baroque palace wall painted as a trompe-l'oeil fresco in the luminous style of a Tiepolo, seen straight on.
+Pastel stucco pilasters, cream and lilac marble panels, delicate pale-gold ornaments (#E3C58A), shell and
+scroll motifs, light from the upper left. In the centre a grand painted archway; inside the arch, a large
+upright rectangular area (about 45 percent of the image width, 70 percent of its height) filled with a flat,
+uniform pure chroma green (#00FF00), completely even, no texture, so it can be cut out precisely. Clean
+edges around the green area. Pastel palette only: powder blue (#CFE3F7), lilac (#D9CCF5), peach (#FFD6C2),
+cream (#FBF3EA), pale gold. No figures, no text, no watermark, no brown, no dark shadows. 16:9, high detail.
+```
+
+**K1-2 Baugerüst** (3:4) → `k1-geruest-v1.jpg`
+```
+Using the attached images as a reference for painting style and pastel palette:
+a charming wooden painter's scaffolding painted in baroque oil-painting style with visible brushstrokes:
+two levels of pale wooden planks, ladders, ropes, a few small pastel paint pots, a cream drop cloth hanging
+over the edge. Light, airy, pastel colours, no brown-heavy tones (pale honey wood). Full object visible,
+isolated on a plain flat light-grey background (#EDEDED), no ground shadow, no figures, no text. 3:4.
+```
+
+**K1-3 Putto mit Bauhelm und Farbroller** (1:1) → `k1-putto-roller-v1.jpg`
+```
+Using the attached images as a reference for painting style, brushwork and pastel palette:
+a chubby baroque putto with small lilac-white wings, painted like a Tiepolo ceiling fresco, light from the
+upper left. He wears a glossy pink construction hard hat (#FF9DC8), rendered crisp and modern like a product
+render, slightly too big for his head. Concentrated and proud, tongue tip out, he pushes a paint roller on a
+long handle, the roller dripping with pastel lilac paint. Light powder-blue drape. Full body, isolated on a
+plain flat light-grey background (#EDEDED), no ground shadow, no text, no watermark. Square format.
+```
+
+**K1-4 Putto schraubt einen Knopf fest** (1:1) → `k1-putto-schraube-v1.jpg`
+```
+Same painting style, same putto character as before (pink hard hat, lilac-white wings, powder-blue drape).
+He holds a large pastel-pink rounded website button (a pill shape with no text, glossy and crisp like a UI
+element) against nothing with one hand and tightens it with a small golden screwdriver in the other hand,
+squinting with focus. Full body, isolated on a plain flat light-grey background (#EDEDED), no ground shadow,
+no text, no watermark. Square format.
+```
+
+**K1-5 Putto lässt den Farbroller fallen** (1:1) → `k1-putto-oops-v1.jpg`
+```
+Same painting style, same putto character with the pink hard hat holding the paint roller. The roller has
+just slipped out of his hands and is falling, a few lilac paint drops flying; he reaches after it with wide
+eyes and an "oops" face, hat tilted. Full body, isolated on a plain flat light-grey background (#EDEDED),
+no ground shadow, no text, no watermark. Square format.
+```
+
+Tipp: K1-4 und K1-5 im **selben Chat** wie K1-3 erzeugen, damit der Putto gleich aussieht.
