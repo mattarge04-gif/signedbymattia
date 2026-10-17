@@ -1,6 +1,6 @@
 # Drehbuch 03: Bildstil und Prompts
 
-Stand: 30.09.2026 · Status: **Werkzeug entschieden [F], Stil im Test [A]** · Grundlage:
+Stand: 17.10.2026 · Status: **Werkzeug entschieden [F], Stil im Test [A]** · Grundlage:
 `marke/DESIGN.md` §1, §2, §6; `marke/tokens.css`; `website/drehbuch/10-startseite.md` (Stil „Barock +
 frecher Bruch"); `00-grammatik.md` („Bilder ohne Ladeprobleme")
 
@@ -115,6 +115,60 @@ Tageslauf stellt die grüne Öffnung frei, färbt fein nach und erzeugt die Web-
   flachem Grund; in der Breite nahtlos wiederholbar.
 - **Goldener Barockrahmen** (Variante 2 des Übergangs): Rahmen in Pastell-Gold `#E3C58A`, Ecken und
   Kanten einzeln nutzbar (für verschiedene Abschnittsgrössen), Inneres flach grün zum Ausschneiden.
+
+## Reihenfolge [F] (Mattia, 17.10.2026)
+
+Baustein für Baustein: erst **Wolkenband und Hero** fertig abschliessen, dann Kapitel I, dann II usw.
+Kein Kapitel beginnen, bevor das vorherige abgenommen ist.
+
+## Wolkenband und Hero abschliessen: Prompts [A] (17.10.2026)
+
+Für alle: Modell „3.1 Pro“, Ablage in `marke/assets/erster-wurf/`. Die Varianten H8/H9 entstehen als
+**Bearbeitung des bestehenden Bildes** (Bild anhängen, gleicher Bildausschnitt), damit sie im Code
+genau übereinander passen und nur abwechseln (2 Bilder = eine Bewegung).
+
+**W-1 Wolkenband** (16:9, Stil-Vorlage `wolken-v1.jpg` anhängen) → `wolkenband-v1.jpg`
+```
+Using the attached image as a reference for painting style and pastel palette:
+a long horizontal band of thick, soft baroque clouds painted like a Tiepolo ceiling fresco, light from the
+upper left. The clouds form one continuous band across the full width of the image, about one third of
+the image height, in the vertical middle, with a billowing, rounded upper edge and a softer lower edge.
+Colours: cream (#FBF3EA) and peach (#FFD6C2) highlights, lilac (#D9CCF5) and powder-blue (#CFE3F7)
+shadows, no grey, no dark. The left and right edges must continue seamlessly so the band can be repeated
+side by side. Above and below the band a plain flat light-grey background (#EDEDED), no sky, no figures,
+no text, no watermark. 16:9, high detail.
+```
+
+**H8-1 Amor, Flügel im Abschlag** (Bild `amor-v1.jpg` anhängen) → `amor-fluegel-v1.jpg`
+```
+Edit the attached image. Keep everything exactly the same: same cherub, pose, bow, arrow, colours,
+framing, size and position, same flat light-grey background. Change only the wings: show them in the
+downstroke, swept down and slightly forward, feathers spread, as the next frame of a flapping motion.
+```
+
+**H8-2 Putto, Flügel im Abschlag** (Bild `putto-v1.jpg` anhängen) → `putto-fluegel-v1.jpg`
+```
+Edit the attached image. Keep everything exactly the same: same putto, headphones, phone, pose, colours,
+framing, size and position, same flat light-grey background. Change only the wings: show them in the
+downstroke, swept down and slightly forward, as the next frame of a flapping motion.
+```
+
+**H8-3 Muse, Gewandsaum weht** (Bild `muse-v1.jpg` anhängen) → `muse-saum-v1.jpg`
+```
+Edit the attached image. Keep the figure, face, pose, halo area, colours, framing, size and position
+exactly the same, same flat light-grey background. Change only the hem and loose ends of the drapery:
+they flutter to the right in a gentle breeze, as the next frame of a slow waving motion.
+```
+
+**H9 Putto wischt übers Handy** (Bild `putto-v1.jpg` anhängen) → `putto-wischt-v1.jpg`
+```
+Edit the attached image. Keep everything exactly the same except the free hand: its index finger now
+clearly touches the phone screen and swipes upward across it. The finger must be on the screen, not on
+the arm. Same framing, size and position, same flat light-grey background.
+```
+
+Tipp: H8-2 und H9 im **selben Chat** erzeugen. Goldener Rahmen (Variante 2) erst, wenn Mattia ihn
+für eine Stelle braucht.
 
 
 ## Kapitel I Website (Szene 11): Prompts [A] (02.10.2026)
