@@ -32,7 +32,7 @@ ende.style.cssText = 'background:var(--color-bg);opacity:0;z-index:25';
 buehne.appendChild(ende);
 
 // ---------- Laden: Heiligenschein ist der Ladekreis ----------
-const bilder = [...document.querySelectorAll('.buehne img')];
+const bilder = [...document.querySelectorAll('.buehne img:not(.variante)')];
 let geladen = 0;
 const lader = $('#lader');
 const start = performance.now();
@@ -64,6 +64,63 @@ function blinzeln() {
   setTimeout(blinzeln, 5000 + Math.random() * 4000);
 }
 setTimeout(blinzeln, 3500);
+
+// ---------- Zwei-Bild-Bewegungen (H8, H9) ----------
+// Je Figur ein zweites, passgenaues Bild; abwechselnd gezeigt ergibt das eine Bewegung.
+const warte = (ms) => new Promise((r) => setTimeout(r, ms));
+const zufall = (a, b) => a + Math.random() * (b - a);
+function zeige(variante, an) {
+  variante.classList.toggle('an', an);
+  variante.parentElement.querySelector('.haupt').classList.toggle('weg', an);
+}
+// Flügelschlag: 2–3 Schläge, dann Pause
+async function fluegelschlag(variante, darf) {
+  for (let i = 0, n = Math.random() < 0.5 ? 2 : 3; i < n; i++) {
+    if (!darf()) break;
+    zeige(variante, true);
+    await warte(150);
+    zeige(variante, false);
+    await warte(190);
+  }
+}
+const amorFluegel = $('#amorFluegel');
+const puttoFluegel = $('#puttoFluegel');
+const puttoWischt = $('#puttoWischt');
+const museSaum = $('#museSaum');
+const imBild = () => s < 0.4 && !document.hidden;
+async function amorLebt() {
+  await warte(zufall(2500, 5000));
+  if (imBild()) await fluegelschlag(amorFluegel, () => !ebenen.amor.classList.contains('zuckt') && !ebenen.amor.classList.contains('andeuten'));
+  amorLebt();
+}
+// Putto: wischt übers Handy oder schlägt mit den Flügeln, nie beides zugleich
+async function puttoLebt() {
+  await warte(zufall(2200, 4200));
+  if (imBild() && ebenen.putto.classList.contains('da')) {
+    if (Math.random() < 0.6) {
+      zeige(puttoWischt, true);
+      await warte(520);
+      zeige(puttoWischt, false);
+    } else {
+      await fluegelschlag(puttoFluegel, () => true);
+    }
+  }
+  puttoLebt();
+}
+// Muse: ein Windstoss im Gewand, weich überblendet
+async function museLebt() {
+  await warte(zufall(4500, 8000));
+  if (imBild()) {
+    museSaum.classList.add('an');
+    await warte(450);
+    museSaum.parentElement.querySelector('.haupt').classList.add('weg');
+    await warte(zufall(900, 1500));
+    museSaum.parentElement.querySelector('.haupt').classList.remove('weg');
+    museSaum.classList.remove('an');
+  }
+  museLebt();
+}
+if (!RUHIG) { amorLebt(); puttoLebt(); museLebt(); }
 
 // ---------- Pfeil (Mauszeiger als Spitze) ----------
 const PFEIL_SVG = `<svg viewBox="0 0 120 24" width="120" height="24" aria-hidden="true">

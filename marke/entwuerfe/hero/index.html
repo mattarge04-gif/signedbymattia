@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Hero · Prototyp</title>
 <!--
-  Prototyp Szene 10 „Hero" · Stand 02.10.2026 (v2 nach Audit) · gebaut gemeinsam mit Mattia.
+  Prototyp Szene 10 „Hero" · Stand 18.10.2026 (v3: Zwei-Bild-Bewegungen H8/H9, Wolkenband W-1) · gebaut gemeinsam mit Mattia.
   Drehbuch: website/drehbuch/10-startseite.md, Werte: website/drehbuch/00-grammatik.md.
   Bilder: KI (Gemini, Nano Banana Pro), Originale in marke/assets/erster-wurf/.
   Unterzeile aus website/seo-titel.md (Beschreibung Startseite, entschieden); CTA aus marke/stil.md.
@@ -59,7 +59,8 @@
           <circle class="spur" cx="50" cy="50" r="38"/>
           <circle class="lader" id="lader" cx="50" cy="50" r="38" pathLength="100"/>
         </svg>
-        <img src="bilder/muse-500.webp" srcset="bilder/muse-500.webp 500w, bilder/muse.webp 727w" sizes="(max-width: 720px) 30vw, 17vw" alt="">
+        <img class="haupt" src="bilder/muse-500.webp" srcset="bilder/muse-500.webp 500w, bilder/muse.webp 727w" sizes="(max-width: 720px) 30vw, 17vw" alt="">
+        <img class="variante" id="museSaum" src="bilder/muse-saum-500.webp" srcset="bilder/muse-saum-500.webp 577w, bilder/muse-saum.webp 839w" sizes="(max-width: 720px) 35vw, 20vw" style="left:-1.689%;top:-0.862%;width:115.467%" alt="">
         <img class="augen-zu" id="augenZu" src="bilder/muse-augen-zu-500.webp" srcset="bilder/muse-augen-zu-500.webp 500w, bilder/muse-augen-zu.webp 727w" sizes="(max-width: 720px) 30vw, 17vw" alt="">
       </div>
     </div>
@@ -67,7 +68,8 @@
     <div class="figur amor" id="amor" aria-hidden="true">
       <div class="zielt" id="amorZielt">
         <div class="lebt">
-          <img class="amor-normal" src="bilder/amor-600.webp" srcset="bilder/amor-600.webp 600w, bilder/amor.webp 1099w" sizes="(max-width: 720px) 40vw, 23vw" alt="">
+          <img class="amor-normal haupt" src="bilder/amor-600.webp" srcset="bilder/amor-600.webp 600w, bilder/amor.webp 1099w" sizes="(max-width: 720px) 40vw, 23vw" alt="">
+          <img class="variante" id="amorFluegel" src="bilder/amor-fluegel-600.webp" srcset="bilder/amor-fluegel-600.webp 686w, bilder/amor-fluegel.webp 1256w" sizes="(max-width: 720px) 46vw, 27vw" style="left:-14.247%;top:-0.439%;width:114.247%" alt="">
           <img class="amor-zucken" src="bilder/amor-zucken-600.webp" srcset="bilder/amor-zucken-600.webp 600w, bilder/amor-zucken.webp 1099w" sizes="(max-width: 720px) 40vw, 23vw" alt="">
         </div>
       </div>
@@ -83,7 +85,9 @@
           <span class="mini-titel">Kein Template.</span>
           <span class="mini-zeile"></span><span class="mini-zeile"></span>
         </div></div>
-        <img src="bilder/putto-600.webp" srcset="bilder/putto-600.webp 600w, bilder/putto.webp 1032w" sizes="19vw" alt="">
+        <img class="haupt" src="bilder/putto-600.webp" srcset="bilder/putto-600.webp 600w, bilder/putto.webp 1032w" sizes="19vw" alt="">
+        <img class="variante" id="puttoFluegel" src="bilder/putto-fluegel-600.webp" srcset="bilder/putto-fluegel-600.webp 712w, bilder/putto-fluegel.webp 1225w" sizes="23vw" style="left:-8.12%;top:-0.818%;width:118.654%" alt="">
+        <img class="variante" id="puttoWischt" src="bilder/putto-wischt-600.webp" srcset="bilder/putto-wischt-600.webp 610w, bilder/putto-wischt.webp 1050w" sizes="19vw" style="left:-0.878%;top:-0.755%;width:101.683%" alt="">
       </div>
     </div>
 
@@ -155,9 +159,7 @@
   </div>
 
   <div class="k1-panel">
-    <div class="wolkenband" aria-hidden="true">
-      <img src="bilder/wolke4-700.webp" alt=""><img src="bilder/wolke2.webp" alt=""><img src="bilder/wolke5-700.webp" alt=""><img src="bilder/wolke1.webp" alt=""><img src="bilder/wolke4-700.webp" alt="">
-    </div>
+    <div class="wolkenband" aria-hidden="true"></div>
     <div class="k1-inhalt">
       <h3>Was Sie bekommen</h3>
       <ul class="k1-liste">

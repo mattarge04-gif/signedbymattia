@@ -64,6 +64,13 @@ img.ebene { object-fit: cover; }
 .amor.zuckt .amor-zucken { opacity: 1; }
 .amor.zuckt .amor-normal { opacity: 0; transition: opacity .2s var(--ease-ui); }
 
+/* Zwei-Bild-Bewegungen (H8 Flügelschlag, Saum; H9 Wischen): Variante liegt passgenau über dem Hauptbild */
+.figur img.variante { position: absolute; max-width: none; opacity: 0; pointer-events: none; }
+.figur img.variante.an { opacity: 1; }
+.figur img.haupt.weg { opacity: 0; }
+#museSaum { transition: opacity .45s var(--ease-ui); }
+.amor.zuckt img.variante { opacity: 0; }
+
 .putto { right: 4%; top: 15%; width: min(19vw, 34vh); }
 .putto .lebt { opacity: 0; translate: 0 6%; transition: opacity .8s var(--ease-ui), translate .8s var(--ease-ui); }
 .putto.da .lebt { opacity: 1; translate: 0 0; }

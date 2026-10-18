@@ -177,8 +177,8 @@ Amor-Andeutung, Scroll-Hinweis, ruhige Variante, Handy-Anordnung, srcset, pausie
 | H5 | Farbtropfen beim Tippen auf dem Handy | Code |
 | H6 | Ölfarben-Übergang ans Ende des Hero (statt Überblenden) bzw. Wolkenband (B4) | Code + Grafik |
 | H7 | Echte Bleistiftskizze beim Laden; Farbe breitet sich vom Heiligenschein aus | Code (+ Skizzen-Bild) |
-| H8 | Flügel schlagen (Amor, Putto) und Gewandsaum der Muse weht | 2–3 KI-Bilder als eigene Ebenen + Code |
-| H9 | Putto wischt mit dem Finger übers Handy (Finger tippt im Bild noch auf den Arm) | KI-Bild nachschärfen |
+| H8 | Flügel schlagen (Amor, Putto) und Gewandsaum der Muse weht | **erledigt 18.10.2026** [F]: Zwei-Bild-Wechsel, Bilder `*-fluegel`, `muse-saum` |
+| H9 | Putto wischt mit dem Finger übers Handy (Finger tippt im Bild noch auf den Arm) | **erledigt 18.10.2026** [F]: `putto-wischt`, nie zugleich mit Flügelschlag |
 | H10 | Pinselspur nur über freiem Himmel, nicht über Text | Code |
 | H11 | Ease-Kurven nach `marke/tokens.css` verschieben | Code |
 | H12 | Texte (Unterzeile final, Index) aus dem Textinterview | Mattia |
