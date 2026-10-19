@@ -51,8 +51,8 @@ Budgets und Kostenfreigaben bleiben in `agency-automation-os/projects/lead-engin
 
 ## Aktueller Stand und nächste Schritte
 
-Stand: 30.09.2026. Zeitplan: Vault `Zielplan.md`. Aktuelle Phase
-**Fundament** (KW 39–42, bis 18.10.2026).
+Stand: 19.10.2026. Zeitplan: Vault `Zielplan.md`. Phase **Fundament**
+(KW 39–42) endete am 18.10.2026; Zeitplan wegen verschobener Punkte prüfen [?].
 
 **Sitzungsabschluss 28.09.:** Claude erreichte am 27.09. um 23:59 das
 Sitzungslimit. Git und lokale Sitzungsdateien sind vorhanden; kein belegter
@@ -91,10 +91,45 @@ Chat vorgeschlagen (noch nicht ausdrücklich abgenommen, nicht in `10-startseite
 Bilder neu mit Gemini (Originale `marke/assets/erster-wurf/`). Kapitel I:
 Browser aus dem Torbogen, Bau, Roller-Putto als ziehbarer Regler, Wolkenband
 (Commit `4f6f3f4`). Offene Punkte: H1–H12 und K1–K5 in
-`website/drehbuch/10-startseite.md`. **Beim Wiedereinstieg zuerst:** UX- und
+`website/drehbuch/10-startseite.md`. *(Überholt durch 18./19.10.:)* Beim Wiedereinstieg zuerst UX- und
 UI-Audit über Hero + Kapitel I (impeccable), dann Verbesserungen, dann
 Kapitel II. GitHub Actions bleibt deaktiviert, PRs #25 und #26 offen, nicht
 ohne Mattia mergen.
+
+**Sitzungsabschluss 18./19.10. [F]:** Mattia ist zurück aus den Ferien.
+Reihenfolge entschieden (17.10.): Baustein für Baustein, zuerst Wolkenband
+und Hero abschliessen, dann Kapitel I, dann II usw.
+(`website/drehbuch/03-bildstil.md`). Mattia erzeugt die Bilder selbst in
+Gemini mit den Prompts aus `03-bildstil.md`; Claude prüft, benennt, stellt
+frei und baut ein. Chrome/Gemini steuert Claude nicht mehr.
+
+- Erledigt (Commit `61ce97d`): Wolkenband W-1 nahtlos gekachelt (ersetzt
+  die 5 Einzelwolken im Panel von Kapitel I); H8 Flügelschlag Amor und
+  Putto, Gewandsaum Muse; H9 Putto wischt übers Handy – alles als
+  Zwei-Bild-Wechsel. Originale in `marke/assets/erster-wurf/`
+  (`wolkenband-v1`, `amor-fluegel-v1`, `amor-fluegel-ohne-pfeil-v1` (Flügel
+  auf Amor ohne gemalten Pfeil gesetzt), `putto-fluegel-v1`,
+  `putto-wischt-v1`, `muse-saum-v1`); Lage der Varianten in
+  `marke/entwuerfe/hero/bilder/varianten-manifest.json`. Test Desktop und
+  Handy ohne Konsolenfehler.
+- Offen: Mattias Rückmeldung zum Tempo der Bewegungen; Hero-Punkte H1–H7,
+  H10, H11 im Code; Abnahme Hero durch Mattia; dann Kapitel I K1–K5; dann
+  Kapitel II.
+- [?] Nebenbefund: Putto im Hero ist auf dem Handy nicht sichtbar (war schon
+  vorher so).
+- [?] Phase Fundament endete 18.10.; das Textinterview (Meilenstein 18.10.)
+  ist noch nicht gemacht und verschoben – Zeitplan prüfen.
+- Unverändert: GitHub Actions deaktiviert, PRs #25 und #26 offen, nicht ohne
+  Mattia mergen.
+- Werkzeuge: Die Freisteller-Skripte (`varianten.py`, `wolkenband.py`) lagen
+  nur im temporären Scratchpad und sind nicht im Repo. Die rembg-Umgebung
+  bei Bedarf neu einrichten: `pip install "rembg[cpu]"`, Modell
+  `isnet-general-use`. [A] Vorschlag: Skripte künftig nach `werkzeuge/`
+  übernehmen.
+- **Beim Wiedereinstieg zuerst:** Mattia schaut den Prototyp an
+  (`python -m http.server 8130` im Repo-Wurzelordner, dann
+  http://localhost:8130/marke/entwuerfe/hero/) und gibt Rückmeldung zum
+  Tempo; danach H1–H7, H10, H11.
 
 **Erledigt [F]:**
 
