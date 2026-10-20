@@ -160,7 +160,7 @@ h1 .hand { font-family: var(--font-hand); font-style: italic; font-weight: 400; 
 @media (max-width: 720px) {
   .muse { top: 11%; width: 30vw; margin-left: -15vw; }
   .amor { left: -3%; top: 15%; width: 34vw; }
-  .putto { display: none; }
+  .putto { right: -3%; top: 18%; width: 33vw; }
   .text { top: 64%; }
   .index { gap: 0 14px; }
   .kopf-nav a:not(.knopf) { display: none; }
