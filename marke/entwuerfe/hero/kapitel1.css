@@ -34,58 +34,79 @@
    grau (Skizze + Inhalte, noch ungemalt) und farbig (der Roller malt sie frei).
    Container-Queries: wird das Fenster zum Handy, ordnet sich die Seite selbst neu an. */
 .hb {
-  --hb-blau: #2F6FA8; --hb-hell: #EAF4FC; --hb-tinte: #17324D; --hb-gold: #F2B84B;
+  --hb-blau: #2C6EA6; --hb-himmel: #D7EAF8; --hb-tinte: #142A40; --hb-gelb: #F4C443; --hb-linie: #D5E2EE;
   position: absolute; inset: 0; overflow: hidden;
-  display: flex; flex-direction: column; gap: 3.2cqh; padding: 3.2cqh 5cqw 4cqh;
-  background: #fff; color: var(--hb-tinte); font-family: var(--font-system); font-size: 1.5cqw;
+  display: grid; grid-template-rows: auto 1fr auto; row-gap: 3.4cqh; padding: 3cqh 5cqw 0;
+  background: #FCFCFA; color: var(--hb-tinte); font-family: "Bricolage Grotesque", var(--font-system); font-size: 1.45cqw;
 }
-.hb-kopf { display: flex; align-items: center; gap: 3cqw; padding-bottom: 1.6cqh; border-bottom: 1px solid #E3EDF6; }
-.hb-logo { display: flex; align-items: center; gap: .6em; font-size: 1.35em; white-space: nowrap; }
-.hb-logo svg { width: 2.2em; height: auto; }
-.hb-nav { display: flex; gap: 2.2cqw; margin-left: auto; font-weight: 600; opacity: .75; white-space: nowrap; }
-.hb-knopf { display: inline-flex; align-items: center; justify-content: center; padding: .75em 1.4em; border-radius: 99px; font-weight: 700; white-space: nowrap; }
-.hb-knopf.klein, .hb-knopf.haupt { background: var(--hb-blau); color: #fff; }
-.hb-knopf.zweit { box-shadow: inset 0 0 0 2px var(--hb-blau); color: var(--hb-blau); }
-.hb-held { flex: 1; min-height: 0; display: grid; grid-template-columns: 1.05fr 1fr; gap: 4cqw; align-items: center; }
-.hb-text { display: flex; flex-direction: column; gap: 2.2cqh; align-items: flex-start; }
-.hb-kicker { margin: 0; font-weight: 700; color: var(--hb-blau); letter-spacing: .04em; text-transform: uppercase; font-size: .85em; }
-.hb-titel { margin: 0; font-weight: 800; font-size: 4.6cqw; line-height: 1; letter-spacing: -.02em; }
-.hb-lead { margin: 0; font-size: 1.15em; line-height: 1.4; opacity: .8; max-width: 34ch; }
-.hb-knoepfe { display: flex; gap: 1cqw; }
+.hb-kopf { display: flex; align-items: center; gap: 3.4cqw; }
+.hb-marke { display: grid; line-height: .95; }
+.hb-marke b { font-size: 2.1em; font-weight: 800; letter-spacing: -.04em; color: var(--hb-blau); }
+.hb-marke small { font-size: .78em; letter-spacing: .02em; opacity: .7; }
+.hb-nav { display: flex; gap: 2.4cqw; margin-left: auto; white-space: nowrap; }
+.hb-notruf { display: flex; align-items: center; gap: .55em; font-weight: 600; white-space: nowrap; }
+.hb-notruf i { width: .6em; height: .6em; border-radius: 50%; background: #E2533A; box-shadow: 0 0 0 .3em rgb(226 83 58 / .18); }
+.hb-held { min-height: 0; display: grid; grid-template-columns: 1.15fr 1fr; gap: 3cqw; align-items: center; }
+.hb-text { display: flex; flex-direction: column; align-items: flex-start; gap: 2.4cqh; }
+.hb-ort { margin: 0; font-family: Georgia, serif; font-style: italic; font-size: 1.15em; color: var(--hb-blau); }
+.hb-titel { margin: 0; font-weight: 800; font-size: 5.6cqw; line-height: .92; letter-spacing: -.045em; }
+.hb-lead { margin: 0; font-size: 1.15em; line-height: 1.45; max-width: 36ch; opacity: .82; }
+.hb-knoepfe { display: flex; align-items: center; gap: 2.2cqw; }
+.hb-knopf { display: inline-flex; gap: .7em; align-items: center; padding: .85em 1.3em; border-radius: .35em; background: var(--hb-tinte); color: #fff; font-weight: 600; white-space: nowrap; }
+.hb-knopf em { font-style: normal; color: var(--hb-gelb); }
+.hb-link { font-weight: 600; text-decoration: underline; text-decoration-thickness: .12em; text-underline-offset: .3em; text-decoration-color: var(--hb-gelb); white-space: nowrap; }
+.hb-bewertung { margin: 0; font-size: .85em; opacity: .7; }
+.hb-sterne { color: #E9A81E; letter-spacing: .08em; opacity: 1; }
 .hb-foto {
-  position: relative; align-self: stretch; border-radius: 1.4cqw; min-height: 0;
-  background: url("bilder/k1-musterfoto-600.webp") 55% 60% / cover, #CFE6F8;
+  position: relative; align-self: stretch; min-height: 0; margin-right: -5cqw;
+  border-radius: 1.4cqw 0 0 1.4cqw; background: url("bilder/k1-musterfoto-600.webp") 50% 60% / cover var(--hb-himmel);
   background-image: image-set(url("bilder/k1-musterfoto-600.webp") 1x, url("bilder/k1-musterfoto.webp") 2x);
 }
-.hb-sterne { position: absolute; left: 4%; bottom: 6%; background: #fff; border-radius: 99px; padding: .55em 1em; font-size: .9em; color: #E0A21B; box-shadow: 0 6px 18px -8px rgb(23 50 77 / .4); white-space: nowrap; }
-.hb-sterne b { color: var(--hb-tinte); }
-.hb-leistungen { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2cqw; }
-.hb-karte { display: grid; grid-template-columns: auto 1fr; column-gap: .9em; align-items: center; padding: 1.1em 1.2em; border-radius: 1cqw; background: var(--hb-hell); }
-.hb-karte i { grid-row: span 2; font-style: normal; font-size: 1.8em; }
-.hb-karte span { font-size: .85em; opacity: .7; }
+.hb-stempel {
+  position: absolute; left: -4.5cqw; bottom: 8%; width: 10cqw; aspect-ratio: 1; border-radius: 50%;
+  display: grid; place-content: center; text-align: center; line-height: .9; rotate: -12deg;
+  background: var(--hb-gelb); color: var(--hb-tinte); box-shadow: 0 .6cqw 1.6cqw -0.6cqw rgb(20 42 64 / .45);
+}
+.hb-stempel svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+.hb-stempel text { font-size: 8.4px; font-weight: 700; letter-spacing: .12em; fill: var(--hb-tinte); }
+.hb-stempel b { font-size: 2.6cqw; font-weight: 800; letter-spacing: -.04em; }
+.hb-stempel small { font-size: .8cqw; font-weight: 600; text-transform: uppercase; letter-spacing: .1em; }
+.hb-leistungen { list-style: none; margin: 0 -5cqw; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--hb-linie); counter-reset: hb; }
+.hb-leistungen li { counter-increment: hb; display: grid; gap: .25em; padding: 2.2cqh 5cqw 3cqh; border-left: 1px solid var(--hb-linie); }
+.hb-leistungen li:first-child { border-left: 0; }
+.hb-leistungen li::before { content: "0" counter(hb); font-family: Georgia, serif; font-style: italic; color: var(--hb-blau); font-size: .95em; }
+.hb-leistungen b { font-size: 1.35em; font-weight: 800; letter-spacing: -.03em; }
+.hb-leistungen span { font-size: .9em; opacity: .7; }
 .hb-toast {
   position: absolute; left: 50%; bottom: 6cqh; translate: -50% 140%; opacity: 0; z-index: 3;
-  background: var(--hb-tinte); color: #fff; padding: .9em 1.4em; border-radius: 99px; font-weight: 600; white-space: nowrap;
+  background: var(--hb-tinte); color: #fff; padding: .95em 1.4em; border-radius: .4em; font-weight: 600; white-space: nowrap;
+  border-left: .35em solid var(--hb-gelb);
   transition: translate .45s var(--ease-pointe), opacity .3s;
 }
-.hb-toast b { color: #7BE0A5; margin-right: .3em; }
 .hb-toast.da { translate: -50% 0; opacity: 1; }
-.hb-knopf.gedrueckt { scale: .94; filter: brightness(.9); }
+.hb-knopf.gedrueckt { scale: .94; filter: brightness(1.25); }
 
 /* Handy: gleiche Seite, eine Spalte */
 @container (max-width: 560px) {
-  .hb { font-size: 3.6cqw; gap: 2.4cqh; padding: 3cqh 6cqw; }
-  .hb-nav, .hb-kopf .hb-knopf { display: none; }
-  .hb-held { grid-template-columns: 1fr; grid-template-rows: auto 1fr; gap: 2.6cqh; }
-  .hb-titel { font-size: 9.5cqw; }
-  .hb-foto { order: -1; min-height: 22cqh; border-radius: 4cqw; }
-  .hb-leistungen { grid-template-columns: 1fr; gap: 1.4cqh; }
-  .hb-karte { padding: .8em 1em; border-radius: 3cqw; }
-  .hb-karte:nth-child(n+3) { display: none; }
+  .hb { font-size: 3.7cqw; row-gap: 2.2cqh; padding: 2.6cqh 6cqw 0; grid-template-rows: auto 1fr auto; }
+  .hb-nav { display: none; }
+  .hb-notruf { margin-left: auto; font-size: .85em; }
+  .hb-notruf { font-size: 0; gap: 0; }
+  .hb-notruf i { width: 2.6cqw; height: 2.6cqw; }
+  .hb-held { grid-template-columns: 1fr; grid-template-rows: 26cqh auto; gap: 2.4cqh; align-content: start; }
+  .hb-foto { order: -1; margin: 0 -6cqw; border-radius: 0; }
+  .hb-stempel { left: auto; right: 6cqw; bottom: -5cqh; width: 22cqw; }
+  .hb-stempel b { font-size: 6cqw; } .hb-stempel small { font-size: 2cqw; }
+  .hb-titel { font-size: 11cqw; }
+  .hb-leistungen { grid-template-columns: 1fr; margin: 0 -6cqw; }
+  .hb-leistungen li { grid-template-columns: auto auto 1fr; align-items: baseline; column-gap: .7em; padding: 1.4cqh 6cqw; border-left: 0; border-top: 1px solid var(--hb-linie); }
+  .hb-leistungen li:first-child { border-top: 0; }
+  .hb-leistungen span { display: none; }
+  .hb-bewertung { display: none; }
 }
 
 /* Ungemalte Ebene: Papier, Graustufen; die Teile kommen einzeln */
-.hb-grau { background: #FAF8F4; filter: grayscale(1) contrast(.85) brightness(1.05); }
+.hb-grau { background: #F6F3EE; filter: grayscale(1) contrast(.85) brightness(1.05); }
 .hb-grau .hb-teil { opacity: 0; }
 .hb-farbe { clip-path: inset(0 100% 0 0); }
 /* Kohleskizze über der grauen Ebene */

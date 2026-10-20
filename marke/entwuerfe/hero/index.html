@@ -11,6 +11,8 @@
   Unterzeile aus website/seo-titel.md (Beschreibung Startseite, entschieden); CTA aus marke/stil.md.
 -->
 <link rel="stylesheet" href="../../tokens.css">
+<!-- Schrift nur für die Musterseite „Himmelblau“ (eigene Marke des erfundenen Betriebs) -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&display=swap">
 <link rel="stylesheet" href="hero.css">
 <link rel="stylesheet" href="kapitel1.css">
 <link rel="preload" as="image" href="bilder/kuppel-1600.webp" imagesrcset="bilder/kuppel-800.webp 800w, bilder/kuppel-1600.webp 1600w, bilder/kuppel.webp 2400w" imagesizes="100vw" fetchpriority="high">
@@ -122,48 +124,50 @@
       <div class="br-seite" id="k1Seite">
         <div class="hb hb-grau" aria-hidden="true">
           <header class="hb-kopf hb-teil" data-skizze="rahmen">
-            <span class="hb-logo"><svg viewBox="0 0 40 28" aria-hidden="true"><path d="M10 24h20a7 7 0 0 0 0-14 9 9 0 0 0-17-2A7 7 0 0 0 10 24z" fill="#BFDDF5" stroke="#2F6FA8" stroke-width="2"/><path d="M20 12c-3 4-4 6-4 8a4 4 0 0 0 8 0c0-2-1-4-4-8z" fill="#2F6FA8"/></svg><b>Himmelblau</b> Haustechnik</span>
-            <nav class="hb-nav"><span>Leistungen</span><span>Notfall</span><span>Über uns</span></nav>
-            <span class="hb-knopf klein">Termin anfragen</span>
+            <span class="hb-marke"><b>Himmelblau</b><small>Haustechnik GmbH</small></span>
+            <nav class="hb-nav"><span>Sanitär</span><span>Heizung</span><span>Bäder</span><span>Team</span></nav>
+            <span class="hb-notruf"><i></i>Notfalldienst rund um die Uhr</span>
           </header>
           <section class="hb-held">
             <div class="hb-text">
-              <p class="hb-kicker hb-teil" data-skizze="zeile">Sanitär &amp; Heizung in Luzern</p>
-              <h3 class="hb-titel hb-teil" data-skizze="zeilen">Warmes Wasser.<br>Himmlische Ruhe.</h3>
-              <p class="hb-lead hb-teil" data-skizze="zeilen">Reparatur, Service und neue Bäder – mit fixem Termin und sauberer Baustelle.</p>
-              <div class="hb-knoepfe hb-teil" data-skizze="rahmen"><span class="hb-knopf haupt">Termin anfragen</span><span class="hb-knopf zweit">24h-Notfall</span></div>
+              <p class="hb-ort hb-teil" data-skizze="zeile">Sanitär und Heizung in Luzern</p>
+              <h3 class="hb-titel hb-teil" data-skizze="zeilen">Wir kommen,<br>bevor es tropft.</h3>
+              <p class="hb-lead hb-teil" data-skizze="zeilen">Reparaturen, Heizungsservice und neue Bäder für Luzern und Umgebung. Notfälle erledigen wir am selben Tag.</p>
+              <div class="hb-knoepfe hb-teil" data-skizze="rahmen"><span class="hb-knopf haupt">Termin anfragen <em>→</em></span><span class="hb-link">Notfall melden</span></div>
+              <p class="hb-bewertung hb-teil" data-skizze="zeile"><span class="hb-sterne">★★★★★</span> 4,9 von 5 aus 87 Google-Bewertungen</p>
             </div>
-            <div class="hb-foto hb-teil" data-skizze="bild"><span class="hb-sterne">★★★★★ <b>4,9</b> · 87 Google-Bewertungen</span></div>
+            <div class="hb-foto hb-teil" data-skizze="bild"><span class="hb-stempel"><svg viewBox="0 0 100 100"><defs><path id="hbKreishb-grau" d="M50 50m-36 0a36 36 0 1 1 72 0a36 36 0 1 1-72 0"/></defs><text><textPath href="#hbKreishb-grau">FAMILIENBETRIEB · SEIT 1987 · LUZERN ·</textPath></text></svg><b>37</b><small>Jahre</small></span></div>
           </section>
-          <section class="hb-leistungen">
-            <div class="hb-karte hb-teil" data-skizze="rahmen"><i>🔧</i><b>Sanitär</b><span>Leitungen, Boiler, Reparaturen</span></div>
-            <div class="hb-karte hb-teil" data-skizze="rahmen"><i>🔥</i><b>Heizung</b><span>Wärmepumpe und Service</span></div>
-            <div class="hb-karte hb-teil" data-skizze="rahmen"><i>🛁</i><b>Badumbau</b><span>Planung bis Schlüssel</span></div>
-          </section>
+          <ol class="hb-leistungen">
+            <li class="hb-teil" data-skizze="zeilen"><b>Sanitär</b><span>Leitungen, Boiler, verstopfte Abflüsse</span></li>
+            <li class="hb-teil" data-skizze="zeilen"><b>Heizung</b><span>Wärmepumpen und Jahresservice</span></li>
+            <li class="hb-teil" data-skizze="zeilen"><b>Bäder</b><span>Umbau mit fixem Fertigtermin</span></li>
+          </ol>
           
         </div>
         <svg class="hb-skizze" id="k1Skizze" aria-hidden="true"></svg>
         <div class="hb hb-farbe" id="k1Fertig">
           <header class="hb-kopf hb-teil" data-skizze="rahmen">
-            <span class="hb-logo"><svg viewBox="0 0 40 28" aria-hidden="true"><path d="M10 24h20a7 7 0 0 0 0-14 9 9 0 0 0-17-2A7 7 0 0 0 10 24z" fill="#BFDDF5" stroke="#2F6FA8" stroke-width="2"/><path d="M20 12c-3 4-4 6-4 8a4 4 0 0 0 8 0c0-2-1-4-4-8z" fill="#2F6FA8"/></svg><b>Himmelblau</b> Haustechnik</span>
-            <nav class="hb-nav"><span>Leistungen</span><span>Notfall</span><span>Über uns</span></nav>
-            <span class="hb-knopf klein">Termin anfragen</span>
+            <span class="hb-marke"><b>Himmelblau</b><small>Haustechnik GmbH</small></span>
+            <nav class="hb-nav"><span>Sanitär</span><span>Heizung</span><span>Bäder</span><span>Team</span></nav>
+            <span class="hb-notruf"><i></i>Notfalldienst rund um die Uhr</span>
           </header>
           <section class="hb-held">
             <div class="hb-text">
-              <p class="hb-kicker hb-teil" data-skizze="zeile">Sanitär &amp; Heizung in Luzern</p>
-              <h3 class="hb-titel hb-teil" data-skizze="zeilen">Warmes Wasser.<br>Himmlische Ruhe.</h3>
-              <p class="hb-lead hb-teil" data-skizze="zeilen">Reparatur, Service und neue Bäder – mit fixem Termin und sauberer Baustelle.</p>
-              <div class="hb-knoepfe hb-teil" data-skizze="rahmen"><span class="hb-knopf haupt">Termin anfragen</span><span class="hb-knopf zweit">24h-Notfall</span></div>
+              <p class="hb-ort hb-teil" data-skizze="zeile">Sanitär und Heizung in Luzern</p>
+              <h3 class="hb-titel hb-teil" data-skizze="zeilen">Wir kommen,<br>bevor es tropft.</h3>
+              <p class="hb-lead hb-teil" data-skizze="zeilen">Reparaturen, Heizungsservice und neue Bäder für Luzern und Umgebung. Notfälle erledigen wir am selben Tag.</p>
+              <div class="hb-knoepfe hb-teil" data-skizze="rahmen"><span class="hb-knopf haupt">Termin anfragen <em>→</em></span><span class="hb-link">Notfall melden</span></div>
+              <p class="hb-bewertung hb-teil" data-skizze="zeile"><span class="hb-sterne">★★★★★</span> 4,9 von 5 aus 87 Google-Bewertungen</p>
             </div>
-            <div class="hb-foto hb-teil" data-skizze="bild"><span class="hb-sterne">★★★★★ <b>4,9</b> · 87 Google-Bewertungen</span></div>
+            <div class="hb-foto hb-teil" data-skizze="bild"><span class="hb-stempel"><svg viewBox="0 0 100 100"><defs><path id="hbKreishb-farbe" d="M50 50m-36 0a36 36 0 1 1 72 0a36 36 0 1 1-72 0"/></defs><text><textPath href="#hbKreishb-farbe">FAMILIENBETRIEB · SEIT 1987 · LUZERN ·</textPath></text></svg><b>37</b><small>Jahre</small></span></div>
           </section>
-          <section class="hb-leistungen">
-            <div class="hb-karte hb-teil" data-skizze="rahmen"><i>🔧</i><b>Sanitär</b><span>Leitungen, Boiler, Reparaturen</span></div>
-            <div class="hb-karte hb-teil" data-skizze="rahmen"><i>🔥</i><b>Heizung</b><span>Wärmepumpe und Service</span></div>
-            <div class="hb-karte hb-teil" data-skizze="rahmen"><i>🛁</i><b>Badumbau</b><span>Planung bis Schlüssel</span></div>
-          </section>
-          <div class="hb-toast" id="k1Toast"><b>✓</b> Anfrage gesendet – wir melden uns heute noch.</div>
+          <ol class="hb-leistungen">
+            <li class="hb-teil" data-skizze="zeilen"><b>Sanitär</b><span>Leitungen, Boiler, verstopfte Abflüsse</span></li>
+            <li class="hb-teil" data-skizze="zeilen"><b>Heizung</b><span>Wärmepumpen und Jahresservice</span></li>
+            <li class="hb-teil" data-skizze="zeilen"><b>Bäder</b><span>Umbau mit fixem Fertigtermin</span></li>
+          </ol>
+          <div class="hb-toast" id="k1Toast">Danke, Frau Meier. Wir rufen Sie heute noch zurück.</div>
         </div>
         <div class="k1-zeiger" id="k1Zeiger" aria-hidden="true"><svg viewBox="0 0 20 24"><path d="M2 2v18l5-4.5 3.4 6.8 3-1.5-3.3-6.6H17z" fill="#fff" stroke="#231B3A" stroke-width="1.6" stroke-linejoin="round"/></svg></div>
       </div>
