@@ -323,7 +323,10 @@ function setzen(el, transform, deckkraft = 1) {
 }
 
 function bild(jetzt) {
-  scrollZiel();
+  // Erst alles messen, dann schreiben (kein erzwungenes Layout pro Frame, Audit 20.10.)
+  const heroRect = hero.getBoundingClientRect();
+  ziel = klemm(-heroRect.top / (heroRect.height - innerHeight));
+  const ar = amorZielt.getBoundingClientRect();
   s += (ziel - s) * PARAMETER.nachziehen;
   if (Math.abs(ziel - s) < 0.0005) s = ziel;
   buehne.classList.toggle('fliegt', s > 0.001 && s < 0.999);
@@ -352,8 +355,7 @@ function bild(jetzt) {
     // Kein Ausblenden mehr: die Wolkenbank von Kapitel I schiebt sich über den Himmel
   }
 
-  // Amor zielt weich auf den Zeiger
-  const ar = amorZielt.getBoundingClientRect();
+  // Amor zielt weich auf den Zeiger (gemessen am Frame-Anfang)
   const mitte = { x: ar.left + ar.width * 0.55, y: ar.top + ar.height * 0.45 };
   const wunsch = maus.x > mitte.x ? klemm((Math.atan2(maus.y - mitte.y, maus.x - mitte.x) * 180) / Math.PI, -PARAMETER.zielMax, PARAMETER.zielMax) : 0;
   zielWinkel += ((RUHIG ? 0 : wunsch) - zielWinkel) * PARAMETER.zielFeder;
@@ -363,8 +365,6 @@ function bild(jetzt) {
   if (MAUS && !RUHIG) {
     pinsel.x += (maus.x - pinsel.x) * PARAMETER.pinselFolgt;
     pinsel.y += (maus.y - pinsel.y) * PARAMETER.pinselFolgt;
-    pinselEl.style.transform = `translate(${pinsel.x - 2}px, ${pinsel.y - 30}px)`;
-    pinselEl.style.opacity = maus.da && buehne.getBoundingClientRect().bottom > maus.y ? '1' : '0';
     sctx.clearRect(0, 0, spur.clientWidth, spur.clientHeight);
     for (const pt of punkte) {
       const alter = (jetzt - pt.t) / 600;
@@ -378,7 +378,7 @@ function bild(jetzt) {
   }
 
   // Lichtstaub im Strahl von oben links
-  if (!RUHIG && hero.getBoundingClientRect().bottom > 0) {
+  if (!RUHIG && heroRect.bottom > 0) {
     const W = staub.clientWidth;
     const H = staub.clientHeight;
     dctx.clearRect(0, 0, W, H);

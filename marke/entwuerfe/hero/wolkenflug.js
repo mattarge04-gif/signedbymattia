@@ -22,7 +22,7 @@ const HANDY = matchMedia('(max-width: 720px)').matches;
 const VERT = `attribute vec2 a; void main(){ gl_Position = vec4(a, 0.0, 1.0); }`;
 const FRAG = `
 precision highp float;
-uniform vec2 uRes; uniform float uZeit; uniform float uFlug; uniform float uKlar; uniform float uSonne; uniform float uDeck;
+uniform vec2 uRes; uniform float uZeit; uniform float uFlug; uniform float uKlar; uniform float uSonne; uniform float uDeck; uniform float uMax;
 #define SCHRITTE ${HANDY ? 56 : 90}
 
 float hash(vec3 p){ p = fract(p * 0.3183099 + 0.1); p *= 17.0; return fract(p.x * p.y * p.z * (p.x + p.y + p.z)); }
@@ -85,7 +85,7 @@ void main(){
   float vorne = pow(max(dot(rd, sonneR), 0.0), 5.0);   // Silberrand Richtung Sonne
   float t = 0.12 + hash(vec3(gl_FragCoord.xy, uZeit)) * 0.06;
   for (int i = 0; i < SCHRITTE; i++) {
-    if (summe.a > 0.97 || t > 10.0) break;
+    if (summe.a > 0.97 || t > 10.0 || float(i) >= uMax) break;
     vec3 p = ro + rd * t;
     float g = grob(p);
     if (g <= 0.0) { t += 0.16 + 0.02 * t; continue; }    // leere Luft schnell überspringen
@@ -139,13 +139,24 @@ function baue() {
   gl.enableVertexAttribArray(a);
   gl.vertexAttribPointer(a, 2, gl.FLOAT, false, 0, 0);
   const u = {};
-  for (const n of ['uRes', 'uZeit', 'uFlug', 'uKlar', 'uSonne', 'uDeck']) u[n] = gl.getUniformLocation(prog, n);
+  for (const n of ['uRes', 'uZeit', 'uFlug', 'uKlar', 'uSonne', 'uDeck', 'uMax']) u[n] = gl.getUniformLocation(prog, n);
   return u;
+}
+
+// Qualität passt sich der Bildrate an: zu langsam → weniger Schritte, dann tiefere Auflösung (Audit 20.10.)
+const guete = { stufe: 1, schritte: HANDY ? 44 : 90, frameMs: 16, letzte: 0, ruhe: 0 };
+function gueteAnpassen(jetzt) {
+  if (guete.letzte) guete.frameMs += (Math.min(100, jetzt - guete.letzte) - guete.frameMs) * 0.1;
+  guete.letzte = jetzt;
+  if (++guete.ruhe < 30 || guete.frameMs < 24) return;
+  guete.ruhe = 0;
+  if (guete.schritte > 40) guete.schritte = Math.round(guete.schritte * 0.75);
+  else if (guete.stufe > 0.55) { guete.stufe -= 0.15; groesse(); }
 }
 
 function groesse() {
   // höchstens ~820 px Breite rendern: weich genug für Wolken, schnell genug für Laptops
-  const f = Math.min(PARAMETER.aufloesung * Math.min(devicePixelRatio || 1, 2), 820 / innerWidth);
+  const f = Math.min(PARAMETER.aufloesung * guete.stufe * Math.min(devicePixelRatio || 1, 2), (820 * guete.stufe) / innerWidth);
   canvas.width = Math.round(innerWidth * f);
   canvas.height = Math.round(innerHeight * f);
   gl.viewport(0, 0, canvas.width, canvas.height);
@@ -180,6 +191,8 @@ function bild(jetzt) {
     gl.uniform1f(u.uKlar, klar);
     gl.uniform1f(u.uSonne, sonne);
     gl.uniform1f(u.uDeck, deck);
+    gl.uniform1f(u.uMax, guete.schritte);
+    gueteAnpassen(jetzt);
     gl.drawArrays(gl.TRIANGLES, 0, 3);
   }
   if (laeuft) requestAnimationFrame(bild);

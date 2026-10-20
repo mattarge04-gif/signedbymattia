@@ -34,10 +34,9 @@
 .br-tab::before, .br-tab::after { content: ""; position: absolute; bottom: 0; width: 9px; height: 9px; background: radial-gradient(circle at 0 0, transparent 8.5px, #F1F1F3 9px); }
 .br-tab::before { left: -9px; transform: scaleX(-1); }
 .br-tab::after { right: -9px; }
-.br-plus { align-self: center; font-size: 16px; color: #6B6B72; }
+.br-plus { align-self: center; width: 11px; height: 11px; fill: none; stroke: #6B6B72; stroke-width: 1.6; stroke-linecap: round; }
 .br-werkzeug { height: 32px; display: flex; align-items: center; gap: 12px; padding: 0 12px; background: #F1F1F3; border-bottom: 1px solid #DADADD; color: #6B6B72; }
-.br-pfeile { font-size: 14px; letter-spacing: 2px; }
-.br-neu { font-size: 14px; }
+.br-ico { width: 60px; height: 16px; fill: none; stroke: #6B6B72; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
 .br-url { flex: 1; height: 22px; display: flex; align-items: center; padding: 0 12px; border-radius: 99px; background: #fff; font-size: 12px; color: #3A3A40; }
 .br-menu { display: grid; gap: 3px; }
 .br-menu i { width: 14px; height: 2px; background: #6B6B72; border-radius: 1px; }
@@ -63,15 +62,15 @@
 .hb-notruf i { width: .6em; height: .6em; border-radius: 50%; background: #E2533A; box-shadow: 0 0 0 .3em rgb(226 83 58 / .18); }
 .hb-held { min-height: 0; display: grid; grid-template-columns: 1.15fr 1fr; gap: 3cqw; align-items: center; }
 .hb-text { display: flex; flex-direction: column; align-items: flex-start; gap: 2.4cqh; }
-.hb-ort { margin: 0; font-family: Georgia, serif; font-style: italic; font-size: 1.15em; color: var(--hb-blau); }
 .hb-titel { margin: 0; font-weight: 800; font-size: 5.6cqw; line-height: .92; letter-spacing: -.045em; }
-.hb-lead { margin: 0; font-size: 1.15em; line-height: 1.45; max-width: 36ch; opacity: .82; }
+.hb-lead { margin: 0; font-size: 1.15em; line-height: 1.45; max-width: 36ch; color: #3D5266; }
+.hb-lead em { font-family: Georgia, serif; font-style: italic; color: var(--hb-blau); }
 .hb-knoepfe { display: flex; align-items: center; gap: 2.2cqw; }
 .hb-knopf { display: inline-flex; gap: .7em; align-items: center; padding: .85em 1.3em; border-radius: .35em; background: var(--hb-tinte); color: #fff; font-weight: 600; white-space: nowrap; }
-.hb-knopf em { font-style: normal; color: var(--hb-gelb); }
+.hb-ico { width: 1.05em; height: 1.05em; color: var(--hb-gelb); }
 .hb-link { font-weight: 600; text-decoration: underline; text-decoration-thickness: .12em; text-underline-offset: .3em; text-decoration-color: var(--hb-gelb); white-space: nowrap; }
-.hb-bewertung { margin: 0; font-size: .85em; opacity: .7; }
-.hb-sterne { color: #E9A81E; letter-spacing: .08em; opacity: 1; }
+.hb-bewertung { margin: 0; display: flex; align-items: center; gap: .6em; font-size: .85em; color: #4A5D70; }
+.hb-sterne { height: .95em; width: auto; fill: #E9A81E; }
 .hb-foto {
   position: relative; align-self: stretch; min-height: 0; margin-right: -5cqw;
   border-radius: 1.4cqw 0 0 1.4cqw; background: url("bilder/k1-musterfoto-600.webp") 50% 60% / cover var(--hb-himmel);
@@ -86,18 +85,17 @@
 .hb-stempel text { font-size: 8.4px; font-weight: 700; letter-spacing: .12em; fill: var(--hb-tinte); }
 .hb-stempel b { font-size: 2.6cqw; font-weight: 800; letter-spacing: -.04em; }
 .hb-stempel small { font-size: .8cqw; font-weight: 600; text-transform: uppercase; letter-spacing: .1em; }
-.hb-leistungen { list-style: none; margin: 0 -5cqw; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--hb-linie); counter-reset: hb; }
-.hb-leistungen li { counter-increment: hb; display: grid; gap: .25em; padding: 2.2cqh 5cqw 3cqh; border-left: 1px solid var(--hb-linie); }
+.hb-leistungen { list-style: none; margin: 0 -5cqw; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--hb-linie); }
+.hb-leistungen li { display: grid; gap: .25em; padding: 2.2cqh 5cqw 3cqh; border-left: 1px solid var(--hb-linie); }
 .hb-leistungen li:first-child { border-left: 0; }
-.hb-leistungen li::before { content: "0" counter(hb); font-family: Georgia, serif; font-style: italic; color: var(--hb-blau); font-size: .95em; }
 .hb-leistungen b { font-size: 1.35em; font-weight: 800; letter-spacing: -.03em; }
-.hb-leistungen span { font-size: .9em; opacity: .7; }
+.hb-leistungen span { font-size: .9em; color: #4A5D70; }
 .hb-toast {
   position: absolute; left: 50%; bottom: 6cqh; translate: -50% 140%; opacity: 0; z-index: 3;
   background: var(--hb-tinte); color: #fff; padding: .95em 1.4em; border-radius: .4em; font-weight: 600; white-space: nowrap;
-  border-left: .35em solid var(--hb-gelb);
   transition: translate .45s var(--ease-pointe), opacity .3s;
 }
+.hb-toast::before { content: ""; display: inline-block; width: .55em; height: .55em; margin-right: .7em; border-radius: 50%; background: #7BE0A5; vertical-align: .08em; }
 .hb-toast.da { translate: -50% 0; opacity: 1; }
 .hb-knopf.gedrueckt { scale: .94; filter: brightness(1.25); }
 
@@ -114,7 +112,7 @@
   .hb-stempel b { font-size: 6cqw; } .hb-stempel small { font-size: 2cqw; }
   .hb-titel { font-size: 11cqw; }
   .hb-leistungen { grid-template-columns: 1fr; margin: 0 -6cqw; }
-  .hb-leistungen li { grid-template-columns: auto auto 1fr; align-items: baseline; column-gap: .7em; padding: 1.4cqh 6cqw; border-left: 0; border-top: 1px solid var(--hb-linie); }
+  .hb-leistungen li { grid-template-columns: auto 1fr; align-items: baseline; column-gap: .7em; padding: 1.4cqh 6cqw; border-left: 0; border-top: 1px solid var(--hb-linie); }
   .hb-leistungen li:first-child { border-top: 0; }
   .hb-leistungen span { display: none; }
   .hb-bewertung { display: none; }
@@ -128,8 +126,8 @@
 
 /* Ungemalte Ebene: Papier, Graustufen; die Teile kommen einzeln */
 .hb-grau { background: #F6F3EE; filter: grayscale(1) contrast(.85) brightness(1.05); }
-.hb-grau .hb-teil { opacity: 0; }
-.hb-farbe { clip-path: inset(0 100% 0 0); }
+.js .hb-grau .hb-teil { opacity: 0; }
+.js .hb-farbe { clip-path: inset(0 100% 0 0); }
 /* Kohleskizze über der grauen Ebene */
 .hb-skizze { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1; overflow: visible; }
 .hb-skizze path { fill: none; stroke: #5E566B; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; opacity: .8; }
@@ -137,8 +135,8 @@
 /* Mauszeiger für den Live-Moment */
 .k1-zeiger { position: absolute; left: 0; top: 0; width: 22px; z-index: 4; opacity: 0; pointer-events: none; filter: drop-shadow(0 2px 3px rgb(0 0 0 / .25)); }
 .k1-zeiger svg { display: block; width: 100%; }
-.k1-muster { position: absolute; right: 3vw; bottom: 3vh; margin: 0; z-index: 9; font-family: var(--font-hand); font-style: italic; font-size: 16px; opacity: 0; transition: opacity .4s; }
-.k1-muster.da { opacity: .6; }
+.k1-muster { position: absolute; right: 3vw; bottom: 3vh; margin: 0; z-index: 9; font-family: var(--font-hand); font-style: italic; font-size: 17px; color: var(--color-text); opacity: 0; transition: opacity .4s; }
+.k1-muster.da { opacity: 1; }
 
 /* Roller-Putto = Regler */
 .k1-roller {
@@ -158,7 +156,7 @@
   position: absolute; left: 50%; bottom: 4vh; translate: -50% 0; margin: 0; z-index: 9; font-family: var(--font-hand); font-style: italic;
   font-size: 19px; opacity: 0; transition: opacity .4s var(--ease-ui);
 }
-.k1-tipp.da { opacity: .75; }
+.k1-tipp.da { opacity: 1; }
 
 /* Text (M1: Kapitelwort steigt schneller als der Scroll) */
 .k1-text { position: absolute; left: 6vw; top: 0; z-index: 7; max-width: 46ch; }
@@ -197,6 +195,7 @@
 }
 @media (prefers-reduced-motion: reduce) {
   .k1-bahn { height: auto; }
+  .k1-panel { margin-top: 26vh; }
   .k1-buehne { position: relative; }
   .k1-roller.da .roller-normal { animation: none; }
 }

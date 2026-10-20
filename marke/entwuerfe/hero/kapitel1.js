@@ -35,6 +35,18 @@ const muster = $('#k1Muster');
 // ---------- Kohleskizze: aus den echten Teilen der Seite gezeichnet ----------
 const SVGNS = 'http://www.w3.org/2000/svg';
 let skizzenSchluessel = '';
+// Lage eines Elements in der Seite (unabhängig von Zoom und Transform), gecacht je Fenstergrösse
+const lagen = new Map();
+function lageIn(el) {
+  const schluessel = `${seite.offsetWidth}x${seite.offsetHeight}`;
+  const alt = lagen.get(el);
+  if (alt && alt.k === schluessel) return alt;
+  let x = 0, y = 0, n = el;
+  while (n && !n.classList.contains('hb')) { x += n.offsetLeft; y += n.offsetTop; n = n.offsetParent; }
+  const neu = { k: schluessel, x, y, w: el.offsetWidth, h: el.offsetHeight };
+  lagen.set(el, neu);
+  return neu;
+}
 let striche = [];
 function wackel(n) { const x = Math.sin(n * 12.9898) * 43758.5453; return (x - Math.floor(x) - 0.5) * 2; }
 function linie(x0, y0, x1, y1, n) {
@@ -103,14 +115,16 @@ function masse() {
 
 // Die ersten 90vh gehören dem Wolkenflug (wolkenflug.js), erst danach beginnt die Choreografie
 const WOLKEN_VH = 0.9;
+let bahnOben = 0;
 function fortschritt() {
   const rect = sektion.getBoundingClientRect();
+  bahnOben = rect.top;
   const vor = WOLKEN_VH * innerHeight;
   return klemm((-rect.top - vor) / (rect.height - innerHeight - vor));
 }
 
 function bild() {
-  const ziel = RUHIG ? 0.9 : fortschritt();
+  const ziel = RUHIG ? 0.7 : fortschritt();
   s += (ziel - s) * (RUHIG ? 1 : PARAMETER.nachziehen);
   if (Math.abs(ziel - s) < 0.0004) s = ziel;
   const m = masse();
@@ -151,10 +165,13 @@ function bild() {
   browser.style.height = `${bh}px`;
   browser.style.borderRadius = `${10 + 26 * hp}px`;
   leiste.style.opacity = String(1 - klemm(hp * 2));
-  seite.style.top = `${66 - 54 * hp}px`;
+  const seiteOben = 66 - 54 * hp;
+  seite.style.top = `${seiteOben}px`;
   seite.style.borderRadius = `${10 + 22 * hp}px`;
   browser.style.transformOrigin = '0 0';
-  browser.style.transform = `translate(${mx - (bw * sc) / 2}px, ${my - (bh * sc) / 2}px) scale(${sc})`;
+  const fx = mx - (bw * sc) / 2;
+  const fy = my - (bh * sc) / 2;
+  browser.style.transform = `translate(${fx}px, ${fy}px) scale(${sc})`;
   browser.classList.toggle('gemalt', mix < 0.6);
 
   // Schritt 1 · Skizze: Kohlestriche zeichnen die echte Seite vor
@@ -175,11 +192,12 @@ function bild() {
   // Bauhelm-Putto schraubt den Knopf fest
   const sp = klemm((s - 0.5) / 0.03) * (1 - klemm((s - 0.58) / 0.03));
   if (sp > 0) {
-    const kb = grauKnopf.getBoundingClientRect();
-    const bb = buehne.getBoundingClientRect();
-    const w = schraube.clientWidth;
+    const kb = lageIn(grauKnopf);
+    const w = schraube.offsetWidth;
+    const rechts = fx + (kb.x + kb.w) * sc;
+    const oben = fy + (seiteOben + kb.y) * sc;
     const wack = Math.sin(performance.now() / 90) * 3 * sp;
-    schraube.style.transform = `translate(${kb.right - bb.left - w * 0.42}px, ${kb.top - bb.top - w * 0.55}px) rotate(${wack}deg)`;
+    schraube.style.transform = `translate(${rechts - w * 0.42}px, ${oben - w * 0.55}px) rotate(${wack}deg)`;
   }
   schraube.style.opacity = String(sp);
 
@@ -194,11 +212,9 @@ function bild() {
   // Schritt 5 · Live: ein Zeiger klickt „Termin anfragen“, die Anfrage geht raus
   const zp = glatt(klemm((s - 0.84) / 0.05));
   if (s > 0.82) {
-    const lage = seite.getBoundingClientRect();
-    const k = lage.width / seite.offsetWidth || 1;
-    const kb = farbKnopf.getBoundingClientRect();
-    const zx = (kb.left + kb.width * 0.6 - lage.left) / k;
-    const zy = (kb.top + kb.height * 0.6 - lage.top) / k;
+    const kb = lageIn(farbKnopf);
+    const zx = kb.x + kb.w * 0.6;
+    const zy = kb.y + kb.h * 0.6;
     const sx = seite.offsetWidth * 0.85;
     const sy = seite.offsetHeight * 0.95;
     zeiger.style.transform = `translate(${sx + (zx - sx) * zp}px, ${sy + (zy - sy) * zp}px) scale(${s > 0.89 && s < 0.91 ? 0.85 : 1})`;
@@ -208,7 +224,7 @@ function bild() {
   toast.classList.toggle('da', s > 0.905);
 
   // Bühne erst zeigen, wenn sie festgeheftet ist (vorher liegt sie unter dem Hero, im Nebel)
-  if (!RUHIG) buehne.style.visibility = sektion.getBoundingClientRect().top > 1 ? 'hidden' : 'visible';
+  if (!RUHIG) buehne.style.visibility = bahnOben > 1 ? 'hidden' : 'visible';
   if (laeuft) requestAnimationFrame(bild);
 }
 
