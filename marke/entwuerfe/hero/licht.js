@@ -10,14 +10,14 @@ const gl = canvas && canvas.getContext('webgl', { alpha: true, premultipliedAlph
 
 const FRAG = `
 precision mediump float;
-uniform vec2 uRes; uniform float uZeit; uniform vec2 uQuelle; uniform float uStaerke;
+uniform vec2 uRes; uniform float uZeit; uniform vec2 uQuelle; uniform float uStaerke; uniform float uNeigung;
 float hash(float n){ return fract(sin(n) * 43758.5453); }
 float rausch(float x){ float i = floor(x), f = fract(x); f = f * f * (3.0 - 2.0 * f); return mix(hash(i), hash(i + 1.0), f); }
 void main(){
   vec2 uv = gl_FragCoord.xy / uRes;
   vec2 d = uv - uQuelle; d.x *= uRes.x / uRes.y;
   float r = length(d);
-  float w = atan(d.x, -d.y);                          // Winkel, 0 = gerade nach unten
+  float w = atan(d.x, -d.y) - uNeigung;               // Winkel, 0 = gerade nach unten; Fächer neigt zur Maus
   // Strahlenbündel: mehrere Frequenzen, langsam wandernd und flackernd
   float strahl = rausch(w * 9.0 + uZeit * 0.12) * 0.55 + rausch(w * 23.0 - uZeit * 0.2 + 4.0) * 0.3 + rausch(w * 51.0 + uZeit * 0.35) * 0.15;
   strahl = smoothstep(0.3, 0.85, strahl);
@@ -46,7 +46,7 @@ if (!RUHIG && gl) {
   gl.enableVertexAttribArray(a);
   gl.vertexAttribPointer(a, 2, gl.FLOAT, false, 0, 0);
   const u = {};
-  for (const n of ['uRes', 'uZeit', 'uQuelle', 'uStaerke']) u[n] = gl.getUniformLocation(prog, n);
+  for (const n of ['uRes', 'uZeit', 'uQuelle', 'uStaerke', 'uNeigung']) u[n] = gl.getUniformLocation(prog, n);
 
   const groesse = () => {
     const f = Math.min(0.4, 640 / innerWidth);   // weich, günstig
@@ -57,18 +57,16 @@ if (!RUHIG && gl) {
   addEventListener('resize', groesse);
   groesse();
 
-  // Quelle oben in der Kuppelöffnung; neigt sich sanft zur Maus
-  const ruhe = { x: 0.5, y: 0.96 };
-  const quelle = { ...ruhe };
-  let ziel = { ...ruhe };
-  if (MAUS) addEventListener('pointermove', (e) => {
-    ziel = { x: ruhe.x + (e.clientX / innerWidth - 0.5) * 0.22, y: ruhe.y + (0.5 - e.clientY / innerHeight) * 0.06 };
-  });
+  // Quelle fest oben in der Mitte der Kuppelöffnung; nur der Strahlenfächer unten neigt sich zur Maus
+  const quelle = { x: 0.5, y: 0.96 };
+  let neigung = 0;
+  let zielNeigung = 0;
+  if (MAUS) addEventListener('pointermove', (e) => { zielNeigung = (e.clientX / innerWidth - 0.5) * -0.5; });
 
   let laeuft = false;
   const bild = (jetzt) => {
-    quelle.x += (ziel.x - quelle.x) * 0.03;
-    quelle.y += (ziel.y - quelle.y) * 0.03;
+    neigung += (zielNeigung - neigung) * 0.03;
+    gl.uniform1f(u.uNeigung, neigung);
     const r = hero.getBoundingClientRect();
     const s = klemm(-r.top / (r.height - innerHeight));
     gl.uniform2f(u.uRes, canvas.width, canvas.height);
