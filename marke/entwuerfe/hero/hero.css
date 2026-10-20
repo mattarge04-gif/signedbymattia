@@ -103,6 +103,18 @@ h1 {
   letter-spacing: var(--tracking-headline);
 }
 h1 .hand { font-family: var(--font-hand); font-style: italic; font-weight: 400; position: relative; display: inline-block; }
+/* „Code" als Glyphen-Pfade der Instrument Serif kursiv: wird live mit Goldtinte geschrieben (GSAP DrawSVG) */
+.code-svg { height: 1.3em; width: auto; vertical-align: -0.31em; overflow: visible; display: inline-block; }
+.code-zug { fill: currentColor; stroke: var(--color-gold); stroke-width: 7; stroke-linejoin: round; stroke-opacity: 0; }
+.sr-nur { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+.malen .char { display: inline-block; }
+/* Bis GSAP bereit ist, bleibt der Titel unsichtbar (nur mit JS und Bewegung) */
+@media (prefers-reduced-motion: no-preference) {
+  .js h1 .malen, .js .code-svg { visibility: hidden; }
+}
+/* Göttliches Licht durch die Kuppelöffnung (licht.js) */
+.licht { mix-blend-mode: screen; opacity: 0; transition: opacity 1.4s var(--ease-farbe); }
+.licht.an { opacity: 1; }
 .index { display: flex; justify-content: center; flex-wrap: wrap; gap: 0 28px; margin-top: 14px; font-weight: 700; font-size: clamp(15px, 1.4vw, 19px); }
 .index a { color: inherit; text-decoration: none; padding: 12px 4px; min-height: 44px; display: inline-flex; align-items: center; transition: opacity .2s var(--ease-ui); }
 .index .nr { font-family: var(--font-hand); font-weight: 400; font-size: 1.25em; margin-right: 6px; }

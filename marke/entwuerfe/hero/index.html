@@ -41,6 +41,8 @@
 
     <img class="ebene kuppel" src="bilder/kuppel-1600.webp" srcset="bilder/kuppel-800.webp 800w, bilder/kuppel-1600.webp 1600w, bilder/kuppel.webp 2400w" sizes="100vw" alt="" aria-hidden="true" fetchpriority="high">
 
+    <canvas class="ebene licht" id="licht" aria-hidden="true"></canvas>
+
     <svg class="ebene linien" id="linien" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
       <ellipse cx="800" cy="450" rx="430" ry="290"/>
       <ellipse cx="800" cy="450" rx="560" ry="380"/>
@@ -97,7 +99,7 @@
     </div>
 
     <div class="text" id="text">
-      <h1 id="hero-titel">Gemalt in <span class="hand" id="codeWort">Code</span>.</h1>
+      <h1 id="hero-titel"><span class="malen">Gemalt in</span> <span class="hand" id="codeWort"><span class="sr-nur">Code</span><svg class="code-svg" viewBox="0 0 1711 1300" aria-hidden="true"><path class="code-zug" d="M256 999Q150 999 102.5 932.0Q55 865 55 738Q55 677 70.0 611.0Q85 545 113.5 482.5Q142 420 182.0 370.0Q222 320 272.5 290.0Q323 260 382 260Q452 260 509 307Q519 315 516 329L486 480Q483 496 471 496Q459 496 459 480L458 441Q456 358 434.0 323.0Q412 288 371 288Q332 288 296.0 319.5Q260 351 229.0 403.5Q198 456 174.5 519.5Q151 583 138.0 647.0Q125 711 125 766Q125 856 152.5 913.0Q180 970 244 970Q282 970 311.5 942.5Q341 915 372 848L394 801Q399 789 409 789Q425 789 420 808L380 964Q376 979 364 982Q347 988 315.0 993.5Q283 999 256 999Z"/><path class="code-zug" d="M629 999Q567 999 531.0 947.5Q495 896 495 808Q495 743 516.0 683.0Q537 623 571.5 576.0Q606 529 648.5 501.5Q691 474 734 474Q796 474 832.0 525.0Q868 576 868 665Q868 730 847.0 790.0Q826 850 791.5 897.0Q757 944 714.5 971.5Q672 999 629 999ZM627 975Q659 975 689.5 944.0Q720 913 745.0 862.0Q770 811 785.0 748.5Q800 686 800 623Q800 498 735 498Q704 498 673.0 528.5Q642 559 617.5 610.0Q593 661 578.0 723.5Q563 786 563 849Q563 975 627 975Z"/><path class="code-zug" d="M979 999Q942 999 922.0 968.0Q902 937 902 877Q902 820 918.0 762.5Q934 705 962.0 653.0Q990 601 1025.5 561.0Q1061 521 1100.5 497.5Q1140 474 1179 474Q1206 474 1226 488Q1240 497 1243 482L1275 350Q1280 332 1275.5 325.0Q1271 318 1257 317L1227 314Q1212 313 1214 301Q1216 292 1228 290Q1264 284 1292.0 275.5Q1320 267 1337 253Q1345 247 1352 247Q1364 247 1361 262L1219 877Q1204 942 1239 942Q1262 942 1280.5 911.0Q1299 880 1318 815Q1321 804 1331 804Q1338 804 1340.0 810.0Q1342 816 1340 824Q1321 918 1287.5 958.5Q1254 999 1209 999Q1170 999 1153.5 966.0Q1137 933 1150 876L1161 830Q1163 823 1158.5 822.0Q1154 821 1151 827Q1103 921 1060.0 960.0Q1017 999 979 999ZM1003 948Q1027 948 1056.0 919.0Q1085 890 1113.5 844.0Q1142 798 1166.0 745.0Q1190 692 1204.5 643.0Q1219 594 1219 560Q1219 499 1176 499Q1150 499 1121.0 522.5Q1092 546 1065.5 586.0Q1039 626 1017.5 676.5Q996 727 983.0 781.5Q970 836 970 888Q970 923 979.5 935.5Q989 948 1003 948Z"/><path class="code-zug" d="M1492 999Q1439 999 1407.0 957.5Q1375 916 1375 840Q1375 774 1398.5 709.0Q1422 644 1460.0 591.0Q1498 538 1543.5 506.0Q1589 474 1632 474Q1679 474 1699.5 496.5Q1720 519 1720 557Q1720 602 1688.5 646.5Q1657 691 1600.5 726.0Q1544 761 1468 778Q1446 783 1445 803Q1444 810 1444.0 817.5Q1444 825 1444 832Q1444 889 1463.5 918.0Q1483 947 1517 947Q1555 947 1590.5 912.0Q1626 877 1650 813Q1653 804 1662 804Q1668 804 1669.5 809.0Q1671 814 1669 821Q1637 909 1591.5 954.0Q1546 999 1492 999ZM1455 740Q1453 747 1457.5 751.5Q1462 756 1469 754Q1531 737 1573.0 702.5Q1615 668 1636.5 625.0Q1658 582 1658 541Q1658 499 1625 499Q1596 499 1562.0 533.0Q1528 567 1499.0 622.0Q1470 677 1455 740Z"/></svg></span><span class="malen">.</span></h1>
       <p class="unterzeile">Websites, Automationen und Sichtbarkeit für kleine Betriebe in Luzern.</p>
       <div class="knoepfe">
         <a class="button-edition knopf" href="#anfrage">Edition anfragen</a>
@@ -180,7 +182,12 @@
 
 <div class="wolkenflug" id="wolkenflug" aria-hidden="true"><canvas id="wfCanvas"></canvas></div>
 
+<!-- GSAP 3.13 (Standardlizenz ohne Kosten, alle Plugins frei): Titel wird gemalt -->
+<script defer src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/SplitText.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/DrawSVGPlugin.min.js"></script>
 <script type="module" src="hero.js"></script>
+<script type="module" src="licht.js"></script>
 <script type="module" src="kapitel1.js"></script>
 <script type="module" src="wolkenflug.js"></script>
 </body>

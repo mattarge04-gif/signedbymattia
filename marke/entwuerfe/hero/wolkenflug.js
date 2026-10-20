@@ -56,7 +56,7 @@ float grob(vec3 p){
   float r = length(p.xy - bahn(p.z));
   // Korridor nur nahe der Kamera (sonst sieht man eine Röhre); weiter vorne fliegt man durch Wolken
   float nah = 1.0 - smoothstep(0.6, 2.2, p.z - uFlug);
-  float b = form(p) - smoothstep(0.7, 0.0, r) * 0.32 * nah - uKlar * 0.5;
+  float b = form(p) - (1.0 - smoothstep(0.0, 0.7, r)) * 0.32 * nah - uKlar * 0.5;
   return clamp((b - 0.56) / 0.2, 0.0, 1.0);
 }
 float dichte(vec3 p, float g){

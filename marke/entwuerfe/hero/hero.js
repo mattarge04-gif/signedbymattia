@@ -45,6 +45,8 @@ const fortschritt = () => {
     setTimeout(() => {
       $('#schein').classList.add('fertig');
       buehne.classList.remove('skizze');
+      titelMalen();
+      document.getElementById('licht')?.classList.add('an');
       // Dosierung (Audit 02.10.): Linien weg, Putto kommt später, Scroll-Hinweis
       setTimeout(() => ebenen.linien.classList.add('aus'), 1600);
       setTimeout(() => ebenen.putto.classList.add('da'), RUHIG ? 0 : 1400);
@@ -54,6 +56,36 @@ const fortschritt = () => {
   }
 };
 bilder.forEach((b) => (b.complete ? fortschritt() : b.addEventListener('load', fortschritt, { once: true })));
+
+// ---------- Titel wird gemalt (GSAP SplitText + DrawSVG) ----------
+// „Gemalt in" entsteht Buchstabe für Buchstabe wie nasse Farbe, „Code" schreibt sich mit Goldtinte.
+const titelSichtbar = () => document.querySelectorAll('h1 .malen, .code-svg').forEach((el) => { el.style.visibility = 'visible'; });
+let titelBereit = null;
+let titelGewuenscht = false;
+function titelVorbereiten() {
+  const g = window.gsap;
+  if (RUHIG || !g || !window.SplitText || !window.DrawSVGPlugin) { titelSichtbar(); return; }
+  g.registerPlugin(window.SplitText, window.DrawSVGPlugin);
+  const teile = new window.SplitText('h1 .malen', { type: 'chars' });
+  const zuege = document.querySelectorAll('.code-zug');
+  g.set(teile.chars, { clipPath: 'inset(-20% 100% -20% 0)', filter: 'blur(6px)', color: '#FF9DC8', y: '0.06em' });
+  g.set(zuege, { drawSVG: '0%', fillOpacity: 0, strokeOpacity: 1 });
+  titelSichtbar();
+  titelBereit = { g, chars: teile.chars, zuege };
+  if (titelGewuenscht) titelMalen();
+}
+function titelMalen() {
+  if (!titelBereit) { titelGewuenscht = true; return; }
+  const { g, chars, zuege } = titelBereit;
+  const tl = g.timeline({ delay: 0.15 });
+  tl.to(chars.slice(0, -1), { clipPath: 'inset(-20% 0% -20% 0)', filter: 'blur(0px)', y: 0, duration: 0.6, stagger: 0.055, ease: 'power2.out' })
+    .to(chars.slice(0, -1), { color: '#231B3A', duration: 0.9, stagger: 0.055, ease: 'power1.inOut' }, 0.25)
+    .to(zuege, { drawSVG: '100%', duration: 0.75, stagger: 0.22, ease: 'power1.inOut' }, '-=0.6')
+    .to(zuege, { fillOpacity: 1, duration: 0.5, stagger: 0.12, ease: 'power1.out' }, '-=0.55')
+    .to(zuege, { strokeOpacity: 0, duration: 0.6 }, '-=0.2')
+    .to(chars.slice(-1), { clipPath: 'inset(-20% 0% -20% 0)', filter: 'blur(0px)', y: 0, color: '#231B3A', duration: 0.35, ease: 'back.out(3)' }, '-=0.7');
+}
+(document.fonts ? document.fonts.ready : Promise.resolve()).then(titelVorbereiten);
 
 // ---------- Blinzeln ----------
 const augenZu = $('#augenZu');
@@ -218,6 +250,7 @@ buehne.addEventListener('click', (e) => { if (!e.target.closest('a')) schiessen(
 
 // ---------- Zeiger, Pinsel, Spur ----------
 let maus = { x: innerWidth * 0.6, y: innerHeight * 0.4, da: false };
+const neigung = { x: 0, y: 0 };
 let pinsel = { x: maus.x, y: maus.y };
 addEventListener('pointermove', (e) => { maus = { x: e.clientX, y: e.clientY, da: true }; spurPunkt(e.clientX, e.clientY); });
 const pinselEl = $('#pinsel');
@@ -295,14 +328,21 @@ function bild(jetzt) {
 
   if (!RUHIG) {
     const flug = ausEase(klemm(s / 0.62));
-    setzen(ebenen.himmel, `scale(${1 + 0.35 * s})`);
-    setzen(ebenen.kuppel, `scale(${1 + 2.9 * flug})`, 1 - klemm((s - 0.48) / 0.16));
-    setzen(ebenen.fern, `translateY(${-18 * s * vh}px) scale(${1 + 0.5 * s})`, 1 - klemm((s - 0.7) / 0.2));
-    setzen(ebenen.nah, `scale(${1 + 2.4 * ausEase(klemm(s / 0.55))})`, 1 - klemm((s - 0.42) / 0.15));
-    setzen(ebenen.muse, `translateY(${-55 * s * vh}px) scale(${1 + 0.9 * s})`, 1 - klemm((s - 0.45) / 0.18));
-    setzen(ebenen.amor, `translate(${-45 * s * vw}px, ${-10 * s * vh}px) scale(${1 + 1.3 * s})`, 1 - klemm((s - 0.4) / 0.15));
-    setzen(ebenen.putto, `translate(${25 * s * vw}px, ${12 * s * vh}px) scale(${1 + 3.2 * s})`, 1 - klemm((s - 0.3) / 0.15));
-    setzen(ebenen.text, `translate(-50%, calc(-50% - ${120 * s * vh}px))`, 1 - klemm(s / 0.28));
+    // Tiefe mit der Maus (2.5D): nahe Ebenen weichen stärker aus als ferne
+    const tx = (MAUS && maus.da ? (maus.x / innerWidth - 0.5) * -2 : 0);
+    const ty = (MAUS && maus.da ? (maus.y / innerHeight - 0.5) * -2 : 0);
+    neigung.x += (tx - neigung.x) * 0.05;
+    neigung.y += (ty - neigung.y) * 0.05;
+    const tief = (px) => `translate(${neigung.x * px}px, ${neigung.y * px * 0.6}px) `;
+    // Die Kuppel dreht sich beim Flug, der Himmel leicht gegenläufig
+    setzen(ebenen.himmel, tief(6) + `rotate(${4 * flug}deg) scale(${1.02 + 0.35 * s})`);
+    setzen(ebenen.kuppel, tief(16) + `rotate(${-16 * flug}deg) scale(${1.04 + 2.9 * flug})`, 1 - klemm((s - 0.48) / 0.16));
+    setzen(ebenen.fern, tief(10) + `translateY(${-18 * s * vh}px) scale(${1 + 0.5 * s})`, 1 - klemm((s - 0.7) / 0.2));
+    setzen(ebenen.nah, tief(46) + `scale(${1 + 2.4 * ausEase(klemm(s / 0.55))})`, 1 - klemm((s - 0.42) / 0.15));
+    setzen(ebenen.muse, tief(22) + `translateY(${-55 * s * vh}px) scale(${1 + 0.9 * s})`, 1 - klemm((s - 0.45) / 0.18));
+    setzen(ebenen.amor, tief(32) + `translate(${-45 * s * vw}px, ${-10 * s * vh}px) scale(${1 + 1.3 * s})`, 1 - klemm((s - 0.4) / 0.15));
+    setzen(ebenen.putto, tief(30) + `translate(${25 * s * vw}px, ${12 * s * vh}px) scale(${1 + 3.2 * s})`, 1 - klemm((s - 0.3) / 0.15));
+    setzen(ebenen.text, `translate(calc(-50% + ${neigung.x * 5}px), calc(-50% - ${120 * s * vh}px + ${neigung.y * 3}px))`, 1 - klemm(s / 0.28));
     ebenen.linien.style.opacity = String(0.55 * (1 - klemm(s / 0.15)));
     // Kein Ausblenden mehr: die Wolkenbank von Kapitel I schiebt sich über den Himmel
   }
