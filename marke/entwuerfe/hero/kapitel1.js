@@ -47,22 +47,12 @@ function masse() {
   return { vw, vh, loch, tw, th, zoom: handy ? 0.5 : PARAMETER.zoom };
 }
 
-// Die ersten 120vh gehören der Wolkenbank, erst danach beginnt die Choreografie
-const WOLKEN_VH = 1.2;
-const wolkenReihen = [...document.querySelectorAll('#k1Wolken i')];
+// Die ersten 60vh gehören dem Wolkenflug (wolkenflug.js), erst danach beginnt die Choreografie
+const WOLKEN_VH = 0.6;
 function fortschritt() {
   const rect = sektion.getBoundingClientRect();
   const vor = WOLKEN_VH * innerHeight;
   return klemm((-rect.top - vor) / (rect.height - innerHeight - vor));
-}
-// Parallaxe: nahe Reihen (unten, gross) ziehen schneller nach oben
-function wolkenFlug() {
-  const top = sektion.getBoundingClientRect().top;
-  const p = klemm((innerHeight - top) / (2.6 * innerHeight));
-  wolkenReihen.forEach((el) => {
-    const t = Number(el.dataset.tiefe);
-    el.style.transform = `translateY(${-(t * 9 * p) * innerHeight / 100}px)`;
-  });
 }
 
 function bild() {
@@ -127,7 +117,8 @@ function bild() {
   setzeR(r);
   tipp.classList.toggle('da', s > 0.86 && s < 0.98 && !gezogen);
 
-  if (!RUHIG) wolkenFlug();
+  // Bühne erst zeigen, wenn sie festgeheftet ist (vorher liegt sie unter dem Hero, im Nebel)
+  if (!RUHIG) buehne.style.visibility = sektion.getBoundingClientRect().top > 1 ? 'hidden' : 'visible';
   if (laeuft) requestAnimationFrame(bild);
 }
 
