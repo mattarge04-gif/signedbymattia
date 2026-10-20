@@ -9,7 +9,7 @@ const glatt = (t) => t * t * (3 - 2 * t);
 const PARAMETER = {
   start: 0.62,      // Anteil der Hero-Strecke, ab dem die Wolken kommen
   danach: 0.9,      // so viele Bildschirmhöhen nach dem Hero (Kapitel I festgeheftet)
-  aufloesung: 0.5,  // Renderauflösung relativ zu CSS-Pixeln (weich, schnell)
+  aufloesung: 0.6,  // Renderauflösung relativ zu CSS-Pixeln (weich, schnell)
   flugweg: 13,      // so weit fliegt die Kamera über die ganze Strecke
 };
 
@@ -23,7 +23,7 @@ const VERT = `attribute vec2 a; void main(){ gl_Position = vec4(a, 0.0, 1.0); }`
 const FRAG = `
 precision highp float;
 uniform vec2 uRes; uniform float uZeit; uniform float uFlug; uniform float uKlar; uniform float uSonne; uniform float uDeck;
-#define SCHRITTE ${HANDY ? 34 : 56}
+#define SCHRITTE ${HANDY ? 56 : 90}
 
 float hash(vec3 p){ p = fract(p * 0.3183099 + 0.1); p *= 17.0; return fract(p.x * p.y * p.z * (p.x + p.y + p.z)); }
 float rausch(vec3 x){
@@ -39,16 +39,29 @@ float fbm(vec3 p){
 }
 vec2 bahn(float z){ return vec2(sin(z * 0.28) * 0.9, cos(z * 0.21) * 0.45); }
 
-// Dichte: lebende Wolkenmasse, Korridor um die Flugbahn bleibt offen
-float dichte(vec3 p){
-  vec3 q = p + vec3(0.0, 0.0, uZeit * 0.12);
-  q += 0.35 * vec3(fbm(q * 0.5 + uZeit * 0.05), fbm(q * 0.5 + 7.3), 0.0);   // Wirbel, damit es lebt
-  float d = fbm(q * 0.55);
+// Grundform: grosse, klar abgegrenzte Wolkenballen (tiefe Frequenzen), langsam quellend
+float form(vec3 p){
+  vec3 q = p * 0.34 + vec3(uZeit * 0.012, 0.0, uZeit * 0.03);
+  return rausch(q) * 0.58 + rausch(q * 2.07 + 3.1) * 0.29 + rausch(q * 4.31 + 7.7) * 0.13;
+}
+// Quellen: "Blumenkohl"-Detail (Billow-Rauschen), nagt nur an den Rändern
+float quellen(vec3 p){
+  vec3 q = p * 1.9 + vec3(uZeit * 0.05, -uZeit * 0.03, uZeit * 0.02);
+  float s = 0.0, a = 0.5;
+  for (int i = 0; i < 3; i++) { s += a * (1.0 - abs(rausch(q) * 2.0 - 1.0)); q = DREH * q * 2.11; a *= 0.5; }
+  return s / 0.875;
+}
+// Grobe Dichte (für Schatten und leere Bereiche); Korridor um die Flugbahn bleibt frei
+float grob(vec3 p){
   float r = length(p.xy - bahn(p.z));
-  // Korridor: innen frei, aussen dichte Wolkenwände mit klaren Bäuschen
-  d = d * 2.1 - 1.02 + smoothstep(0.55, 1.9, r) * 0.55 - uKlar * 0.7;
-  d = smoothstep(0.0, 0.32, d);
-  return clamp(d, 0.0, 1.0);
+  // Korridor nur nahe der Kamera (sonst sieht man eine Röhre); weiter vorne fliegt man durch Wolken
+  float nah = 1.0 - smoothstep(0.6, 2.2, p.z - uFlug);
+  float b = form(p) - smoothstep(0.7, 0.0, r) * 0.32 * nah - uKlar * 0.5;
+  return clamp((b - 0.56) / 0.2, 0.0, 1.0);
+}
+float dichte(vec3 p, float g){
+  float e = (1.0 - quellen(p)) * 0.68;
+  return clamp((g - e) / (1.0 - e) * 1.7, 0.0, 1.0);
 }
 
 void main(){
@@ -66,27 +79,35 @@ void main(){
   // Barock-Pastell: Himmel, Schatten Flieder, Licht Pfirsich/Creme
   vec3 himmelO = vec3(0.81, 0.89, 0.97), himmelU = vec3(0.99, 0.95, 0.92);
   vec3 himmel = mix(himmelU, himmelO, clamp(rd.y * 1.6 + 0.45, 0.0, 1.0));
-  vec3 flieder = vec3(0.86, 0.80, 0.93), pfirsich = vec3(1.0, 0.80, 0.70), creme = vec3(1.0, 0.97, 0.91);
+  vec3 flieder = vec3(0.89, 0.84, 0.95), pfirsich = vec3(1.0, 0.80, 0.70), creme = vec3(1.0, 0.97, 0.91);
 
   vec4 summe = vec4(0.0);
-  float t = 0.15 + hash(vec3(gl_FragCoord.xy, uZeit)) * 0.05;
+  float vorne = pow(max(dot(rd, sonneR), 0.0), 5.0);   // Silberrand Richtung Sonne
+  float t = 0.12 + hash(vec3(gl_FragCoord.xy, uZeit)) * 0.06;
   for (int i = 0; i < SCHRITTE; i++) {
-    if (summe.a > 0.97) break;
+    if (summe.a > 0.97 || t > 10.0) break;
     vec3 p = ro + rd * t;
-    float d = dichte(p);
-    if (d > 0.01) {
-      // Selbstschatten Richtung Sonne: Kerne Flieder, Ränder Pfirsich/Creme leuchtend
-      float licht = clamp(1.0 - dichte(p + sonneR * 0.45) * 1.6, 0.0, 1.0);
-      licht = 0.15 + 0.85 * licht;
-      vec3 farbe = mix(flieder, pfirsich, smoothstep(0.1, 0.6, licht));
-      farbe = mix(farbe, creme, smoothstep(0.65, 1.0, licht));
-      farbe += vec3(1.0, 0.88, 0.7) * uSonne * licht * 0.5;
-      float a = d * 0.55;
+    float g = grob(p);
+    if (g <= 0.0) { t += 0.16 + 0.02 * t; continue; }    // leere Luft schnell überspringen
+    float schritt = 0.05 + 0.012 * t;
+    float d = dichte(p, g);
+    if (d > 0.005) {
+      // Licht: drei Schattenproben Richtung Sonne (Beer), Puder-Effekt gibt den Ballen Form
+      float sh = grob(p + sonneR * 0.18) + grob(p + sonneR * 0.45) + grob(p + sonneR * 0.95) * 0.8;
+      float T = exp(-sh * 1.6);
+      float puder = 1.0 - exp(-d * 5.0);
+      float licht = T * (0.55 + 0.45 * puder);
+      float oben = clamp(0.5 + (p.y - bahn(p.z).y) * 0.5, 0.0, 1.0);   // oben heller, unten Flieder
+      vec3 farbe = mix(flieder * (0.86 + 0.14 * oben), pfirsich, smoothstep(0.08, 0.55, licht));
+      farbe = mix(farbe, creme, smoothstep(0.45, 0.95, licht));
+      farbe += vec3(1.0, 0.9, 0.74) * (vorne * T * 0.55 + uSonne * licht * 0.45);
+      farbe = mix(farbe, himmel, smoothstep(2.5, 10.0, t) * 0.55);   // Luftperspektive: Ferne wird Himmel
+      farbe = mix(farbe, mix(creme, pfirsich, 0.25), (1.0 - smoothstep(0.1, 1.3, t)) * 0.7);   // mitten in der Wolke: hell, nicht grau
+      float a = 1.0 - exp(-d * schritt * 11.0);
       summe.rgb += farbe * a * (1.0 - summe.a);
       summe.a += a * (1.0 - summe.a);
     }
-    t += max(0.06, 0.035 * t);
-    if (t > 9.0) break;
+    t += schritt;
   }
   vec3 farbe = himmel * (1.0 - summe.a) + summe.rgb;
 
@@ -123,7 +144,8 @@ function baue() {
 }
 
 function groesse() {
-  const f = PARAMETER.aufloesung * Math.min(devicePixelRatio || 1, 2);
+  // höchstens ~820 px Breite rendern: weich genug für Wolken, schnell genug für Laptops
+  const f = Math.min(PARAMETER.aufloesung * Math.min(devicePixelRatio || 1, 2), 820 / innerWidth);
   canvas.width = Math.round(innerWidth * f);
   canvas.height = Math.round(innerHeight * f);
   gl.viewport(0, 0, canvas.width, canvas.height);
