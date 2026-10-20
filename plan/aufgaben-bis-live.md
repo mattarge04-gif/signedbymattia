@@ -89,6 +89,6 @@ Reihenfolge entschieden: erst Desktop fertig, dann Handy komplett neu (20.10.).
 | Wer | Zeit |
 |---|---|
 | Du (inkl. Wir) | ca. 17 h, also rund 3,5 h pro Woche |
-| Ich | ca. 46 h Bauzeit |
+| Ich | ca. 37 h Bauzeit |
 
 **Risiko:** Die 3 Blogartikel und die Netzwerk-Einträge (local.ch, LinkedIn, Verbände) sind hier nicht drin. Sie kommen nach dem Livegang oder in eine zweite Stufe.
