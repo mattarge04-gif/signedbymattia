@@ -216,10 +216,3 @@ a:focus-visible { outline: 2px solid var(--color-text); outline-offset: 3px; bor
   .scroll-hinweis.da { animation: none; }
 }
 
-/* Übergang Hero → Kapitel I: Wolkendecke steigt auf (statt leerer Fläche) */
-.wolkendecke { position: absolute; left: -2%; right: -2%; top: 100%; height: 120vh; z-index: 24; pointer-events: none; background: var(--color-bg); }
-.wolkendecke::before {
-  content: ""; position: absolute; left: 0; right: 0; bottom: 100%; height: 40vh; margin-bottom: -22vh;
-  background: url("bilder/wolkenband-1600.webp") repeat-x left bottom / auto 100%;
-}
-@media (prefers-reduced-motion: reduce) { .wolkendecke { display: none; } }

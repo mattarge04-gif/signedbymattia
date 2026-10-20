@@ -1,14 +1,21 @@
 /* Kapitel I Website · Trompe-l'œil · Werte aus website/drehbuch/00-grammatik.md */
-.k1 { position: relative; z-index: 2; margin-top: -66vh; background: var(--color-bg); }
+.k1 { position: relative; z-index: 2; margin-top: -100vh; }
 @media (prefers-reduced-motion: reduce) { .k1 { margin-top: 0; } }
-.k1-bahn { position: relative; height: 420vh; }
-/* Wolken hängen über die Oberkante: Anschluss an die Wolkendecke des Hero */
-.k1-wolken { position: absolute; left: 0; right: 0; top: 0; height: 58vh; translate: 0 -30vh; z-index: 20; pointer-events: none; }
+.k1-bahn { position: relative; height: 540vh; }
+/* Wolkenbank zwischen Hero und Kapitel I: 6 Reihen Wolkenband, nach unten grösser (näher),
+   mit Parallaxe; der Besucher fliegt hindurch, unten liegen die Wolken auf der Wand auf. */
+.k1-wolken { position: absolute; left: 0; right: 0; top: -16vh; height: 150vh; z-index: 20; pointer-events: none; }
 .k1-wolken::before {
-  content: ""; position: absolute; left: 0; right: 0; top: 18vh; height: 40vh; transform: scaleY(-1);
-  background: url("bilder/wolkenband-1600.webp") repeat-x 37% bottom / auto 100%;
+  content: ""; position: absolute; left: 0; right: 0; top: 30vh; height: 60vh;
+  background: linear-gradient(#F7E7DE, #F3E2E6 50%, #EEE0EC);
+  -webkit-mask-image: linear-gradient(#000 70%, transparent); mask-image: linear-gradient(#000 70%, transparent);
 }
-.k1-wolken::after { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 33vh; background: linear-gradient(var(--color-bg) 82%, rgb(251 243 234 / 0)); }
+.k1-wolken i {
+  position: absolute; left: -10%; right: -10%;
+  background: url("bilder/wolkenband-1600.webp") repeat-x left bottom / auto 100%;
+  background-image: image-set(url("bilder/wolkenband-1600.webp") 1x, url("bilder/wolkenband.webp") 2x);
+}
+.k1-wolken i:nth-child(2n) { scale: -1 1; }
 .k1-buehne { position: sticky; top: 0; height: 100vh; height: 100svh; overflow: hidden; }
 .k1-hinten { position: absolute; inset: 0; background: linear-gradient(180deg, var(--color-chapter-2), var(--color-chapter-1)); }
 
