@@ -1,0 +1,214 @@
+{
+  "schema_version": 2,
+  "diagram_type": "workflow",
+  "meta": {
+    "title": "signedbymattia · Stand 20.10. · bis live 22.11.",
+    "output": "plan/stand-2026-10-20.html",
+    "quality_profile": "showcase",
+    "legend": {
+      "mode": "auto",
+      "entries": {
+        "frontend": {
+          "label": "Erledigt"
+        },
+        "backend": {
+          "label": "Läuft"
+        },
+        "security": {
+          "label": "Gefährdet"
+        },
+        "cloud": {
+          "label": "Noch offen"
+        }
+      }
+    },
+    "viewBox": [
+      930,
+      528
+    ]
+  },
+  "lanes": [
+    {
+      "id": "gut",
+      "label": "Erledigt + läuft"
+    },
+    {
+      "id": "offen",
+      "label": "Noch offen"
+    },
+    {
+      "id": "gefaehrdet",
+      "label": "Gefährdet",
+      "variant": "exception"
+    }
+  ],
+  "phases": [
+    {
+      "id": "fundament",
+      "label": "Fundament bis 18.10.",
+      "fromCol": 0,
+      "toCol": 1
+    },
+    {
+      "id": "bau",
+      "label": "Bau KW 43–46 · jetzt",
+      "fromCol": 2,
+      "toCol": 4,
+      "variant": "emphasis"
+    },
+    {
+      "id": "live",
+      "label": "Live 22.11.",
+      "fromCol": 5,
+      "toCol": 5,
+      "variant": "dashed"
+    }
+  ],
+  "mainPath": [
+    "marke",
+    "drehbuch",
+    "hero",
+    "kap1",
+    "rest",
+    "livegang"
+  ],
+  "nodes": [
+    {
+      "id": "marke",
+      "lane": "gut",
+      "col": 0,
+      "type": "frontend",
+      "label": "Marke + SEO",
+      "sublabel": "Edition, Preise"
+    },
+    {
+      "id": "drehbuch",
+      "lane": "gut",
+      "col": 1,
+      "type": "frontend",
+      "label": "Drehbuch",
+      "sublabel": "Startseite v3"
+    },
+    {
+      "id": "hero",
+      "lane": "gut",
+      "col": 2,
+      "type": "frontend",
+      "label": "Hero",
+      "sublabel": "fertig, Pinsel fehlt"
+    },
+    {
+      "id": "kap1",
+      "lane": "gut",
+      "col": 3,
+      "type": "backend",
+      "label": "Kapitel I",
+      "sublabel": "Abnahme offen"
+    },
+    {
+      "id": "texte",
+      "lane": "gefaehrdet",
+      "col": 2,
+      "type": "security",
+      "label": "Texte",
+      "sublabel": "Interview offen"
+    },
+    {
+      "id": "handy",
+      "lane": "gefaehrdet",
+      "col": 3,
+      "type": "security",
+      "label": "Handy-Version",
+      "sublabel": "neu, ca. 2 Abende"
+    },
+    {
+      "id": "zugaenge",
+      "lane": "gefaehrdet",
+      "col": 4,
+      "type": "security",
+      "label": "Zugänge",
+      "sublabel": "Hosting, DNS, Mail"
+    },
+    {
+      "id": "unterseiten",
+      "lane": "offen",
+      "col": 3,
+      "type": "cloud",
+      "label": "Unterseiten",
+      "sublabel": "Kaufseiten, Editionen"
+    },
+    {
+      "id": "rest",
+      "lane": "offen",
+      "col": 4,
+      "type": "cloud",
+      "label": "Startseite",
+      "sublabel": "Kapitel II bis Ende"
+    },
+    {
+      "id": "livegang",
+      "lane": "offen",
+      "col": 5,
+      "type": "cloud",
+      "label": "Livegang",
+      "sublabel": "22.11.2026"
+    }
+  ],
+  "edges": [
+    {
+      "from": "marke",
+      "to": "drehbuch"
+    },
+    {
+      "from": "drehbuch",
+      "to": "hero"
+    },
+    {
+      "from": "hero",
+      "to": "kap1"
+    },
+    {
+      "from": "kap1",
+      "to": "rest"
+    },
+    {
+      "from": "rest",
+      "to": "livegang"
+    },
+    {
+      "from": "texte",
+      "to": "rest"
+    },
+    {
+      "from": "handy",
+      "to": "livegang"
+    },
+    {
+      "from": "zugaenge",
+      "to": "livegang"
+    },
+    {
+      "from": "unterseiten",
+      "to": "rest"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "amber",
+      "title": "Hält der 22.11.? Knapp [A]",
+      "items": [
+        "Offen: 5 Szenen, Unterseiten, Handy, Texte",
+        "Nur mit Textinterview diese Woche, sonst zwei Stufen"
+      ]
+    },
+    {
+      "dot": "violet",
+      "title": "Was auf dich zukommt",
+      "items": [
+        "Textinterview und Abnahmen (Hero, Kapitel I)",
+        "Gemini-Bilder: Pinsel, Szenen, 3 Handy-Bilder",
+        "Zugänge, Logo + Porträt, Google-Profil"
+      ]
+    }
+  ]
+}
