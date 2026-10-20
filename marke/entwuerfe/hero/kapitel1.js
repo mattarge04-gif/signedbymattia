@@ -151,7 +151,7 @@ function bild() {
   browser.style.height = `${bh}px`;
   browser.style.borderRadius = `${10 + 26 * hp}px`;
   leiste.style.opacity = String(1 - klemm(hp * 2));
-  seite.style.top = `${30 - 18 * hp}px`;
+  seite.style.top = `${66 - 54 * hp}px`;
   seite.style.borderRadius = `${10 + 22 * hp}px`;
   browser.style.transformOrigin = '0 0';
   browser.style.transform = `translate(${mx - (bw * sc) / 2}px, ${my - (bh * sc) / 2}px) scale(${sc})`;
