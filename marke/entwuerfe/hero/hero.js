@@ -119,6 +119,7 @@ const amorFluegel = $('#amorFluegel');
 const puttoFluegel = $('#puttoFluegel');
 const puttoWischt = $('#puttoWischt');
 const museSaum = $('#museSaum');
+const bildschirm = $('#bildschirm');
 const imBild = () => s < 0.4 && !document.hidden;
 async function amorLebt() {
   await warte(zufall(2500, 5000));
@@ -131,8 +132,12 @@ async function puttoLebt() {
   if (imBild() && ebenen.putto.classList.contains('da')) {
     if (Math.random() < 0.6) {
       zeige(puttoWischt, true);
-      await warte(520);
+      await warte(260);
+      bildschirm.classList.add('match');   // gewischt: Match!
+      await warte(260);
       zeige(puttoWischt, false);
+      await warte(900);
+      bildschirm.classList.remove('match');
     } else {
       await fluegelschlag(puttoFluegel, () => true);
     }
