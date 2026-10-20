@@ -51,7 +51,7 @@ Budgets und Kostenfreigaben bleiben in `agency-automation-os/projects/lead-engin
 
 ## Aktueller Stand und nächste Schritte
 
-Stand: 19.10.2026. Zeitplan: Vault `Zielplan.md`. Phase **Fundament**
+Stand: 21.10.2026. Zeitplan: Vault `Zielplan.md`, Aufgabenliste `plan/aufgaben-bis-live.md`. Phase **Fundament**
 (KW 39–42) endete am 18.10.2026; Zeitplan wegen verschobener Punkte prüfen [?].
 
 **Sitzungsabschluss 28.09.:** Claude erreichte am 27.09. um 23:59 das
@@ -126,10 +126,35 @@ frei und baut ein. Chrome/Gemini steuert Claude nicht mehr.
   bei Bedarf neu einrichten: `pip install "rembg[cpu]"`, Modell
   `isnet-general-use`. [A] Vorschlag: Skripte künftig nach `werkzeuge/`
   übernehmen.
-- **Beim Wiedereinstieg zuerst:** Mattia schaut den Prototyp an
-  (`python -m http.server 8130` im Repo-Wurzelordner, dann
-  http://localhost:8130/marke/entwuerfe/hero/) und gibt Rückmeldung zum
-  Tempo; danach H1–H7, H10, H11.
+- *(Wiedereinstieg überholt durch 20./21.10.)*
+
+**Sitzungsabschluss 20./21.10. [F]:** Hero und Kapitel I stark weitergebaut
+(Commits `61ce97d` bis `3240021`, alle auf `main`).
+
+- Hero: Knöpfe mit gemaltem Goldrahmen (9-Slice), Titel wird gemalt (GSAP 3.13
+  SplitText + DrawSVG, Standardlizenz ohne Kosten), göttliches Licht (WebGL,
+  Ursprung fest), Tiefe mit der Maus, Kuppel dreht beim Flug, Putto-Handy =
+  „Dating-App für Engel" (Herz, Match beim Wischen). Mattia: „10 von 10".
+- Übergang Hero → Kapitel I: **Wolkenflug** als eigener WebGL-Volumen-Raymarcher
+  (`wolkenflug.js`, kein Shadertoy-Code wegen CC BY-NC-SA), Sonne erleuchtet am
+  Schluss, Qualität passt sich der Bildrate an. Mattia: „perfekt".
+- Kapitel I neu: Musterseite **Himmelblau Haustechnik GmbH** (erfunden,
+  „Musterbetrieb, frei erfunden" sichtbar) baut sich in 5 Schritten auf (Skizze,
+  Inhalte, Roller-Farbe, Handy-Faltung, Live-Klick), Chrome-Fenster, eigene
+  Schrift Bricolage Grotesque, Musterfoto von Gemini. Abnahme durch Mattia offen.
+- impeccable-Audit 14/20, Fixes umgesetzt (Commit `f6e51d2`).
+- Entscheide Mattia: kein Kapitel-Fortschritt am Rand; Putto im Hero auch auf
+  dem Handy; **erst Desktop fertig, dann Handy komplett neu** (eigene
+  Hochformat-Bilder, ca. 2 Abende).
+- Neu: `plan/aufgaben-bis-live.md` (55 Aufgaben, Mattia ca. 17 h, Claude ca.
+  37 h [A]); `website/drehbuch/12-16-naechste-kapitel.md` (Kapitel II–Abschluss
+  mit Wows, roter Faden Himmelblau [A], 3 Entscheide [?]).
+- [?] Offen: Pinsel-Bild (`pinsel-v1.jpg`), Abnahme Kapitel I, Textinterview
+  (Meilenstein 18.10. verpasst, 22.11. knapp [A]).
+- **Beim Wiedereinstieg zuerst:** **Drehbuch Kapitel II (Wasserspiele)
+  gemeinsam schreiben**, Grundlage `website/drehbuch/12-16-naechste-kapitel.md`
+  §12; vorher die 3 Entscheide dort klären. Prototyp: `python -m http.server
+  8130` im Repo, dann http://localhost:8130/marke/entwuerfe/hero/.
 
 **Erledigt [F]:**
 
