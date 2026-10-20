@@ -47,8 +47,8 @@ function masse() {
   return { vw, vh, loch, tw, th, zoom: handy ? 0.5 : PARAMETER.zoom };
 }
 
-// Die ersten 60vh gehören dem Wolkenflug (wolkenflug.js), erst danach beginnt die Choreografie
-const WOLKEN_VH = 0.6;
+// Die ersten 90vh gehören dem Wolkenflug (wolkenflug.js), erst danach beginnt die Choreografie
+const WOLKEN_VH = 0.9;
 function fortschritt() {
   const rect = sektion.getBoundingClientRect();
   const vor = WOLKEN_VH * innerHeight;
