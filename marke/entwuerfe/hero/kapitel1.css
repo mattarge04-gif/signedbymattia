@@ -1,6 +1,14 @@
 /* Kapitel I Website · Trompe-l'œil · Werte aus website/drehbuch/00-grammatik.md */
-.k1 { position: relative; background: var(--color-bg); }
+.k1 { position: relative; z-index: 2; margin-top: -66vh; background: var(--color-bg); }
+@media (prefers-reduced-motion: reduce) { .k1 { margin-top: 0; } }
 .k1-bahn { position: relative; height: 420vh; }
+/* Wolken hängen über die Oberkante: Anschluss an die Wolkendecke des Hero */
+.k1-wolken { position: absolute; left: 0; right: 0; top: 0; height: 58vh; translate: 0 -30vh; z-index: 20; pointer-events: none; }
+.k1-wolken::before {
+  content: ""; position: absolute; left: 0; right: 0; top: 18vh; height: 40vh; transform: scaleY(-1);
+  background: url("bilder/wolkenband-1600.webp") repeat-x 37% bottom / auto 100%;
+}
+.k1-wolken::after { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 33vh; background: linear-gradient(var(--color-bg) 82%, rgb(251 243 234 / 0)); }
 .k1-buehne { position: sticky; top: 0; height: 100vh; height: 100svh; overflow: hidden; }
 .k1-hinten { position: absolute; inset: 0; background: linear-gradient(180deg, var(--color-chapter-2), var(--color-chapter-1)); }
 

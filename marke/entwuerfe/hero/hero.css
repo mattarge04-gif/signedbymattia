@@ -182,6 +182,20 @@ h1 .hand { font-family: var(--font-hand); font-style: italic; font-weight: 400; 
   .button-edition.knopf:hover { background: color-mix(in oklab, var(--color-accent), white 15%); }
 }
 
+/* Goldrahmen mit Schein (Mattia 20.10.): gemalter Rahmen als 9-Slice, Enden fest, Mitte streckt sich */
+.knopf.button-edition, .knopf.zweit {
+  box-sizing: border-box; min-height: 56px; padding: 0 4px; background: none; box-shadow: none;
+  border-style: solid; border-color: transparent; border-width: 14px 37px;
+  border-image: url("bilder/knopf-rahmen-rosa.webp") 45 120 fill / 14px 37px stretch;
+  filter: drop-shadow(0 0 5px rgb(227 197 138 / .55));
+  transition: transform .16s var(--ease-ui), filter .25s var(--ease-ui);
+}
+.knopf.zweit { border-image-source: url("bilder/knopf-rahmen-creme.webp"); }
+.knopf.klein.button-edition { min-height: 46px; border-width: 11px 30px; border-image-width: 11px 30px; font-size: 14px; padding: 0 2px; }
+@media (hover: hover) and (pointer: fine) {
+  .knopf.button-edition:hover, .knopf.zweit:hover { background: none; filter: drop-shadow(0 0 10px rgb(240 210 150 / .9)) brightness(1.04); }
+}
+
 /* Fokus sichtbar (Audit) */
 a:focus-visible { outline: 2px solid var(--color-text); outline-offset: 3px; border-radius: 6px; }
 
@@ -201,3 +215,11 @@ a:focus-visible { outline: 2px solid var(--color-text); outline-offset: 3px; bor
   .putto .lebt { opacity: 1; translate: none; transition: none; }
   .scroll-hinweis.da { animation: none; }
 }
+
+/* Übergang Hero → Kapitel I: Wolkendecke steigt auf (statt leerer Fläche) */
+.wolkendecke { position: absolute; left: -2%; right: -2%; top: 100%; height: 120vh; z-index: 24; pointer-events: none; background: var(--color-bg); }
+.wolkendecke::before {
+  content: ""; position: absolute; left: 0; right: 0; bottom: 100%; height: 40vh; margin-bottom: -22vh;
+  background: url("bilder/wolkenband-1600.webp") repeat-x left bottom / auto 100%;
+}
+@media (prefers-reduced-motion: reduce) { .wolkendecke { display: none; } }

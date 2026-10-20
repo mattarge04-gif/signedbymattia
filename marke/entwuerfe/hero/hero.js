@@ -25,6 +25,7 @@ const hero = $('#hero');
 const ebenen = {
   himmel: $('.himmel'), kuppel: $('.kuppel'), fern: $('.fern'), nah: $('.nah'),
   muse: $('#muse'), amor: $('#amor'), putto: $('#putto'), text: $('#text'), linien: $('#linien'),
+  decke: $('#wolkendecke'),
 };
 const hinweis = $('#scrollHinweis');
 const ende = Object.assign(document.createElement('div'), { className: 'ebene' });
@@ -304,6 +305,9 @@ function bild(jetzt) {
     setzen(ebenen.putto, `translate(${25 * s * vw}px, ${12 * s * vh}px) scale(${1 + 3.2 * s})`, 1 - klemm((s - 0.3) / 0.15));
     setzen(ebenen.text, `translate(-50%, calc(-50% - ${120 * s * vh}px))`, 1 - klemm(s / 0.28));
     ebenen.linien.style.opacity = String(0.55 * (1 - klemm(s / 0.15)));
+    // Wolkendecke steigt auf und deckt zum Schluss alles zu (Anschluss an Kapitel I)
+    const decke = klemm((s - 0.55) / 0.45);
+    setzen(ebenen.decke, `translateY(${-100 * vh * decke * decke * (3 - 2 * decke)}px)`);
     ende.style.opacity = String(klemm((s - 0.82) / 0.16));
   }
 
