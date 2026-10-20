@@ -165,6 +165,7 @@ function bild(jetzt) {
   const { anfang, ende, wechsel } = strecke();
   const ziel = klemm((scrollY - anfang) / (ende - anfang));
   stand += (ziel - stand) * 0.12;
+  if (Math.abs(ziel - stand) > 0.3) stand = ziel;   // Sprung (Anker, Neuladen): nicht hinterherfliegen
   if (Math.abs(ziel - stand) < 0.0005) stand = ziel;
   const aktiv = stand > 0.001 && stand < 0.999;
   flug.style.visibility = aktiv ? 'visible' : 'hidden';

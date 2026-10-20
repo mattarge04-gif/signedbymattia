@@ -54,7 +54,8 @@
 .hb-knoepfe { display: flex; gap: 1cqw; }
 .hb-foto {
   position: relative; align-self: stretch; border-radius: 1.4cqw; min-height: 0;
-  background: linear-gradient(160deg, #CFE6F8, #9CC7EA 60%, #F6E7D8);   /* Foto folgt: bilder/k1-musterfoto.webp */
+  background: url("bilder/k1-musterfoto-600.webp") 55% 60% / cover, #CFE6F8;
+  background-image: image-set(url("bilder/k1-musterfoto-600.webp") 1x, url("bilder/k1-musterfoto.webp") 2x);
 }
 .hb-sterne { position: absolute; left: 4%; bottom: 6%; background: #fff; border-radius: 99px; padding: .55em 1em; font-size: .9em; color: #E0A21B; box-shadow: 0 6px 18px -8px rgb(23 50 77 / .4); white-space: nowrap; }
 .hb-sterne b { color: var(--hb-tinte); }
