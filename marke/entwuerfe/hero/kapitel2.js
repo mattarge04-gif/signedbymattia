@@ -14,6 +14,8 @@ const warte = (ms) => new Promise((r) => setTimeout(r, ms));
 const sektion = $('#k2Bahn');
 const buehne = $('#k2Buehne');
 const garten = $('#k2Garten');
+const abend = $('#k2Abend');
+const pergola = $('#k2Pergola');
 const leben = $('#k2Leben');
 const drei = $('#k2Drei');
 const faeden = $('#k2Faeden');
@@ -166,6 +168,19 @@ function bild(jetztMs) {
   brunnen.style.transform = tief(22) + `translateX(${-30 * panel}vw) translateX(${6 * zoom}vw) scale(${1 - 0.1 * zoom})`;
   vorne.style.transform = tief(40) + `translateY(${12 * zoom}vh) scale(${1 + 0.2 * zoom})`;
   ablauf.classList.toggle('da', panel > 0.5);
+
+  // Szenenwechsel im Hintergrund (wie Shopify): Garten → Blick hoch in die Pergola → Garten am Abend
+  const hoch = glatt(klemm((s - 0.33) / 0.08)) * (1 - glatt(klemm((s - 0.53) / 0.08)));
+  const abendlicht = glatt(klemm((s - 0.53) / 0.1));
+  pergola.style.opacity = String(hoch);
+  pergola.style.transform = `rotate(${(s - 0.45) * 40}deg) scale(${1.15 - 0.15 * hoch})`;
+  abend.style.opacity = String(abendlicht);
+  leben.style.opacity = String(1 - 0.5 * abendlicht);
+  const amBoden = String(1 - hoch);
+  gelehrter.style.opacity = amBoden;
+  brunnen.style.opacity = amBoden;
+  vorne.style.opacity = amBoden;
+  wecken.style.visibility = hoch > 0.5 ? 'hidden' : 'visible';
 
   // 3D-Kaskade: nach links rücken, wenn das Panel rechts steht
   if (k3) {
