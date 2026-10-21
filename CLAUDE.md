@@ -51,7 +51,7 @@ Budgets und Kostenfreigaben bleiben in `agency-automation-os/projects/lead-engin
 
 ## Aktueller Stand und nächste Schritte
 
-Stand: 21.10.2026. Zeitplan: Vault `Zielplan.md`, Aufgabenliste `plan/aufgaben-bis-live.md`. Phase **Fundament**
+Stand: 22.10.2026. Zeitplan: Vault `Zielplan.md`, Aufgabenliste `plan/aufgaben-bis-live.md`. Phase **Fundament**
 (KW 39–42) endete am 18.10.2026; Zeitplan wegen verschobener Punkte prüfen [?].
 
 **Sitzungsabschluss 28.09.:** Claude erreichte am 27.09. um 23:59 das
@@ -151,10 +151,33 @@ frei und baut ein. Chrome/Gemini steuert Claude nicht mehr.
   mit Wows, roter Faden Himmelblau [A], 3 Entscheide [?]).
 - [?] Offen: Pinsel-Bild (`pinsel-v1.jpg`), Abnahme Kapitel I, Textinterview
   (Meilenstein 18.10. verpasst, 22.11. knapp [A]).
-- **Beim Wiedereinstieg zuerst:** **Drehbuch Kapitel II (Wasserspiele)
-  gemeinsam schreiben**, Grundlage `website/drehbuch/12-16-naechste-kapitel.md`
-  §12; vorher die 3 Entscheide dort klären. Prototyp: `python -m http.server
-  8130` im Repo, dann http://localhost:8130/marke/entwuerfe/hero/.
+- *(Wiedereinstieg überholt durch 21./22.10.)*
+
+**Sitzungsabschluss 21./22.10. [F]:** Kapitel II (Wasserspiele) gebaut, Commits
+`79e9aff` bis `266ce61`.
+
+- Drehbuch `website/drehbuch/12-kapitel-2.md` abgenommen (namenloser Gelehrter,
+  Schmetterling, Umdrehen, Anfrage „Boiler tropft, Kriens"). 9 Gemini-Bilder
+  (Garten v2, Kaskade, Gelehrter schläft/wach/dreht, Brunnen-Putto, Vordergrund,
+  Pergola, Abend) in `marke/assets/erster-wurf/k2-*`.
+- Prototyp: echter **3D-Brunnen** (three.js, Modell „Fountain" von jolly.sweets,
+  Sketchfab **CC BY 4.0 → Nennung im Impressum Pflicht**, umgefärbt
+  `bilder/k2-brunnen3d.glb`), dreht beim Scrollen; Szenenwechsel Garten →
+  Pergola → Abend; Ablauf-Panel „So läuft eine Anfrage durch" mit Fäden;
+  lebendes Gras; Gartenplan als Karte (`gartenplan.js`). Desktop/Handy ohne
+  Konsolenfehler.
+- Mattia: noch nicht wie ein Video, soll **wie Shopify** wirken. Teardown
+  `marke/teardown-shopify-pos-szene.md`: Shopify spult eine in Blender
+  gekeyframte Objekt- und Kamera-Animation (GLB) per Scroll ab, Raum als
+  Gaussian Splat, Video-Kuppel im Hintergrund.
+- **Beim Wiedereinstieg zuerst:** Entscheide aus dem Teardown klären:
+  (1) Motiv **Brunnen oder barocker Automat** (Vorschlag Automat, Zahnräder
+  fahren auseinander), (2) Raum **Veo-Video** (Vorschlag) / Splat / Blender.
+  Dann: Veo-Prompt an Mattia, Szene in Blender bauen und keyframen (Blender MCP
+  läuft, Addon-Update `uvx mcp-for-blender install-addon` empfohlen), als GLB
+  exportieren, im Prototyp vom Scroll spulen lassen. Aufwand ca. 1–1,5 Abende [A].
+- Offen weiter: Pinsel-Bild, Abnahmen Kapitel I und II, Textinterview,
+  Handy-Version neu (nach Desktop).
 
 **Erledigt [F]:**
 
