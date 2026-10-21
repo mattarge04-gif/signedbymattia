@@ -115,8 +115,8 @@
 .k2-grafik .gp-titel { font: italic 26px var(--font-hand); fill: var(--color-text); }
 .k2-grafik .gp-name { font: 600 14px var(--font-system); fill: var(--color-text); }
 .k2-grafik .gp-klein { font: italic 14px var(--font-hand); fill: #8C7650; }
-.k2-grafik .gp-weg { fill: none; stroke: #EADBC4; stroke-width: 7; stroke-linecap: round; stroke-dasharray: 1; stroke-dashoffset: 1; transition: stroke-dashoffset 1.8s var(--ease-farbe); }
-.k2-grafik .gp-allee { fill: none; stroke: #E3C58A; stroke-width: 9; stroke-linecap: round; stroke-linejoin: round; opacity: .85; stroke-dasharray: 1; stroke-dashoffset: 1; transition: stroke-dashoffset 1.4s var(--ease-farbe) 1s; }
+.k2-grafik .gp-weg { fill: none; stroke: #FF9DC8; stroke-width: 1.4; opacity: .55; stroke-linecap: round; stroke-dasharray: 1; stroke-dashoffset: 1; transition: stroke-dashoffset 1.8s var(--ease-farbe); }
+.k2-grafik .gp-allee { fill: none; stroke: #EADBC4; stroke-width: 12; stroke-linecap: round; stroke-linejoin: round; opacity: .85; stroke-dasharray: 1; stroke-dashoffset: 1; transition: stroke-dashoffset 1.4s var(--ease-farbe) 1s; }
 .k2-grafik.zeigt .gp-weg, .k2-grafik.zeigt .gp-allee { stroke-dashoffset: 0; }
 .k2-grafik .gp-baum { fill: #C5D8BE; stroke: #9DB396; stroke-width: .8; opacity: 0; transition: opacity .6s 1.6s; }
 .k2-grafik.zeigt .gp-baum { opacity: 1; }
