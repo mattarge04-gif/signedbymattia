@@ -39,12 +39,13 @@ Becken und kommt als fertiger Termin unten an.
    `[Platzhalter Erzählsatz]`. Im Garten schnarcht der Gelehrte, über ihm steigen drei kleine „z" auf.
 2. **Kamerafahrt (s 0.15–0.32):** Die Kamera gleitet am Schläfer vorbei auf die Kaskade zu. Die Becken
    plätschern leise (nur Bild, kein Ton).
-3. **Explosionsansicht (s 0.32–0.5):** Die 4 Becken schweben auseinander (Becken 1 oben, 4 unten), an
-   jedem zeichnet sich eine goldene Linie zu einem Schild:
+3. **Explosionsansicht (s 0.32–0.5):** Die 5 Becken schweben auseinander (Becken 1 oben, 5 unten), an
+   jedem zeichnet sich eine goldene Linie zu einem Schild (Kaskade hat 5 Becken, Bild 21.10.):
    1. *Anfrage kommt an*
    2. *wird sortiert*
    3. *Antwort geht raus*
    4. *Termin steht*
+   5. unterstes, grösstes Becken: *Und Sie?* → *haben geschlafen.* (Pointe) [A]
 4. ⭐ **„Probier es" (s 0.5–0.82):** Neben Becken 1 liegt eine Karte, schon ausgefüllt mit Frau Meiers
    Anfrage aus Kapitel I: *„Boiler tropft in der Küche, Kriens. Morgen möglich?"* Knopf **„Absenden"**.
    - Klick: Die Karte rollt sich zur **pinken Kugel** und fällt in Becken 1. Ringe im Wasser.
@@ -52,6 +53,7 @@ Becken und kommt als fertiger Termin unten an.
      **Notfall · Sanitär · Kriens**.
    - Becken 2 → 3: Ein Brief steigt auf: *„Guten Tag Frau Meier, wir kommen morgen um 8 Uhr."*
    - Becken 3 → 4: Ein Kalenderblatt klappt auf: **Do 08:00 · Meier, Kriens · Boiler**.
+   - Becken 4 → 5: Die Kugel landet im grossen Becken und treibt ruhig.
    - Pointe: Der Scherzbrunnen spritzt dem Gelehrten ins Gesicht. Er schreckt hoch (nass, Maske
      verrutscht), schaut auf das Kalenderblatt, nickt zufrieden und schläft weiter.
    - Klickt niemand, läuft das Ganze ab s 0.7 von selbst ab.
