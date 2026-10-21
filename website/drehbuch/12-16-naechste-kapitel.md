@@ -146,9 +146,9 @@ Ich vektorisiere sie.
 
 ---
 
-## Entscheide [?] (Mattia)
+## Entscheide (Mattia, 21.10.2026)
 
-1. Himmelblau als roter Faden durch II und III: ja / nein
-2. Kaskade in Kapitel II: gemaltes 2.5D-Bild (schneller, passt zum Stil) / echtes 3D-Modell
-   (mehr Wow, ca. 3 h mehr)
-3. Einzelne Motive tauschen? Welche?
+1. Himmelblau als roter Faden: **vorerst ja** [F]. Die Musterseite in Kapitel I soll besser aussehen [?]
+   (Mattia: sieht noch nicht gut aus), eigener Punkt.
+2. Kaskade in Kapitel II: **gemaltes 2.5D-Bild** [F].
+3. Motiv Kapitel II: **passt so** [F]. Drehbuch: `12-kapitel-2.md`.
