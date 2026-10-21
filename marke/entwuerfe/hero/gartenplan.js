@@ -162,6 +162,44 @@ const kart = el('g', { transform: 'translate(470 40)' });
 el('path', { d: 'M-160 0 C-140 -26 -60 -22 0 -22 C 60 -22 140 -26 160 0 C 140 26 60 22 0 22 C -60 22 -140 26 -160 0 Z', fill: '#FBF3EA', stroke: F.gold, 'stroke-width': 1.5 }, kart);
 el('text', { class: 'gp-titel', x: 0, y: 8, 'text-anchor': 'middle' }, kart, 'Plan der Wasserspiele');
 
+// ---------- Karten-Symbole (wie auf einem gestochenen Gartenplan) ----------
+const sym = el('g', { class: 'gp-symbole' });
+// Bäume als gestochene Baumkronen in den Ecken und an den Hecken
+function baum(x, y, r = 11) {
+  const g = el('g', { transform: `translate(${x} ${y})` }, sym);
+  el('circle', { r, fill: '#D5E2C6', stroke: '#8FA684', 'stroke-width': 1 }, g);
+  for (let k = 0; k < 6; k++) { const a = k * 1.047; el('circle', { cx: Math.cos(a) * r * 0.55, cy: Math.sin(a) * r * 0.55, r: r * 0.42, fill: 'none', stroke: '#8FA684', 'stroke-width': 0.7 }, g); }
+  el('path', { d: `M${-r * 0.4} ${r * 0.3} l${r * 0.8} 0`, stroke: '#8FA684', 'stroke-width': 0.6 }, g);
+}
+[[60, 70], [60, 540], [930, 540], [200, 110], [740, 110], [170, 520], [780, 525], [40, 300]].forEach(([x, y]) => baum(x, y));
+// Zypressen entlang der Heckenbögen
+[[118, 175], [118, 260], [118, 368], [118, 470]].forEach(([x, y]) => { el('ellipse', { cx: x, cy: y, rx: 4, ry: 9, fill: '#C5D8BE', stroke: '#8FA684', 'stroke-width': 0.8 }, sym); });
+// Statuen auf Sockeln (Kreuz im Kreis), Vasen an der Balustrade
+function statue(x, y) { const g = el('g', { transform: `translate(${x} ${y})` }, sym); el('rect', { x: -6, y: -6, width: 12, height: 12, fill: '#FBF3EA', stroke: F.gold, 'stroke-width': 1.2 }, g); el('circle', { r: 3, fill: F.gold }, g); }
+[[M.x - 250, M.y - 40], [M.x - 250, M.y + 40], [M.x + 250, M.y - 40], [M.x + 250, M.y + 40]].forEach(([x, y]) => statue(x, y));
+// Kleine Bänke am Kiesrund
+[[M.x - 140, M.y - 175], [M.x + 140, M.y - 175]].forEach(([x, y]) => el('rect', { x: x - 12, y: y - 3, width: 24, height: 6, rx: 2, fill: '#FBF3EA', stroke: F.tinte, 'stroke-width': 0.8 }, sym));
+// Legende (Kartusche unten links)
+const leg = el('g', { transform: 'translate(205 545)' }, sym);
+el('rect', { x: 0, y: -22, width: 210, height: 58, rx: 6, fill: '#FBF3EA', stroke: F.gold, 'stroke-width': 1 }, leg);
+el('circle', { cx: 14, cy: -6, r: 4.5, fill: '#FF9DC8', stroke: '#fff' }, leg);
+el('text', { class: 'gp-leg', x: 26, y: -2 }, leg, 'Anfrage');
+el('circle', { cx: 112, cy: -6, r: 4.5, fill: F.gold, stroke: '#fff' }, leg);
+el('text', { class: 'gp-leg', x: 124, y: -2 }, leg, 'Ergebnis');
+el('path', { d: 'M8 18 q8 -8 16 0 t16 0', stroke: '#8DB8E0', 'stroke-width': 2, fill: 'none' }, leg);
+el('text', { class: 'gp-leg', x: 48, y: 22 }, leg, 'Wasser läuft von selbst');
+
+// ---------- Wasser fliesst: Kanäle vom Brunnen in die Alleen, Glanz auf dem Wasser ----------
+const wasser = el('g', { class: 'gp-wasser' });
+zielPfade.forEach((d) => el('path', { d, class: 'gp-kanal' }, wasser));
+el('ellipse', { cx: M.x, cy: M.y, rx: 52, ry: 41, class: 'gp-glanz' }, wasser);
+// Glanzpunkte (Gold blitzt) auf Rahmen, Tempel und Kartusche
+const glanz = el('g', { class: 'gp-blitzer' });
+[[470, 18], [840, 76], [906, 220], [906, 468], [M.x + 60, M.y - 38], [M.x - 40, 552], [150, 540]].forEach(([x, y], n) => {
+  const g = el('g', { transform: `translate(${x} ${y})`, style: `animation-delay:${n * 0.9}s` }, glanz);
+  el('path', { d: 'M0 -7 L1.4 -1.4 L7 0 L1.4 1.4 L0 7 L-1.4 1.4 L-7 0 L-1.4 -1.4 Z', fill: '#fff' }, g);
+});
+
 // ---------- Bewegung ----------
 if (!RUHIG) {
   const laeufer = el('g', { class: 'gp-laeufer' });

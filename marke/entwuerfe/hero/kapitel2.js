@@ -170,7 +170,8 @@ function bild(jetztMs) {
   // 3D-Kaskade: nach links rücken, wenn das Panel rechts steht
   if (k3) {
     const panelBreite = ablauf.offsetWidth + innerWidth * 0.04;
-    k3.bild(zoom, explo, t, { x: neigung.x, y: neigung.y }, (panelBreite / 2) * panel, kugel);
+    // Brunnen dreht sich mit dem Scroll (eine Dreivierteldrehung über das Kapitel), wie der Shopify-Hub
+    k3.bild(zoom, explo, t, { x: neigung.x, y: neigung.y }, (panelBreite / 2) * panel, kugel, -0.75 * glatt(klemm((s - 0.08) / 0.84)));
   }
   faedenSetzen(panel);
 

@@ -123,6 +123,13 @@
 .k2-grafik .gp-ring { fill: none; stroke: #fff; stroke-width: 1.5; transform-box: fill-box; transform-origin: center; animation: gp-ring 3.3s ease-out infinite; }
 @keyframes gp-ring { from { scale: 1; opacity: .9; } to { scale: 4.4; opacity: 0; } }
 .k2-grafik .gp-laeufer { opacity: 0; transition: opacity .6s 2s; }
+.k2-grafik .gp-leg { font: 600 12px var(--font-system); fill: var(--color-text); }
+.k2-grafik .gp-kanal { fill: none; stroke: #8DB8E0; stroke-width: 2.2; stroke-linecap: round; stroke-dasharray: 6 10; opacity: .8; animation: gp-fliessen 1.4s linear infinite; }
+@keyframes gp-fliessen { to { stroke-dashoffset: -16; } }
+.k2-grafik .gp-glanz { fill: none; stroke: #fff; stroke-width: 3; stroke-dasharray: 30 300; opacity: .8; animation: gp-glanz 4s ease-in-out infinite; }
+@keyframes gp-glanz { from { stroke-dashoffset: 0; } to { stroke-dashoffset: -330; } }
+.k2-grafik .gp-blitzer g { opacity: 0; transform-box: fill-box; transform-origin: center; animation: gp-blitz 6.3s ease-in-out infinite; }
+@keyframes gp-blitz { 0%, 86%, 100% { opacity: 0; scale: .2; } 92% { opacity: 1; scale: 1; rotate: 45deg; } }
 .k2-grafik.zeigt .gp-laeufer { opacity: 1; }
 .k2-panel-text h3 { margin: 0 0 12px; font-size: clamp(32px, 4vw, 60px); letter-spacing: var(--tracking-headline); }
 .k1-karte small { font-size: 12px; color: var(--color-text-muted); margin: -6px 0 8px; }
@@ -130,7 +137,7 @@
 @media (prefers-reduced-motion: reduce) {
   .k2-bahn { height: auto; }
   .k2-buehne { position: relative; }
-  .k2-z, .k2-falter, .k2-gelehrter .haupt, .k2-grafik .gp-ring { animation: none !important; }
+  .k2-z, .k2-falter, .k2-gelehrter .haupt, .k2-grafik .gp-ring, .k2-grafik .gp-kanal, .k2-grafik .gp-glanz, .k2-grafik .gp-blitzer g { animation: none !important; }
   .k2-ergebnis, .k2-ablauf { transition-duration: .2s; }
   .k2-vorne { animation: none; }
 }

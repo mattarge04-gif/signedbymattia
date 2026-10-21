@@ -179,3 +179,13 @@ band is a flat plain light-grey background #EDEDED. No people, no text, no water
 1. Schläfer: **namenloser Gelehrter** (nicht Herr Huber).
 2. Schmetterling und „dreht sich murrend um": **drin**.
 3. Beispiel-Anfrage „Boiler tropft, Kriens": **passt**.
+
+## Umsetzung v4 [F] (22.10.2026)
+
+- Brunnen als **echtes 3D-Modell**, dreht sich beim Scrollen (Mattia: wie der Shopify POS Hub):
+  „Fountain" von jolly.sweets, Sketchfab, **Lizenz CC BY 4.0 → Nennung im Impressum Pflicht**
+  (Quelle: https://sketchfab.com/3d-models/fountain-a6b48df60d864880bdc70a8e3d35f797). In Pastell-Marmor
+  umgefärbt, in 4 Teile getrennt: `marke/entwuerfe/hero/bilder/k2-brunnen3d.glb`.
+- Dadurch 3 Schalen + Bodenbecken statt 5 eckiger Becken; Kugel fällt Schale 1 → 2 → 3 → Becken.
+- Gartenplan als Grundriss des gemalten Gartens mit Kartensymbolen, Legende, fliessendem Wasser, Glanz.
+- Offen: Hintergrund-Szenen wechseln mit dem Scroll (Garten → Pergola → Abend), 2 Bilder von Mattia.

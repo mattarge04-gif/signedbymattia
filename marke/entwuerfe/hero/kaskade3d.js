@@ -1,40 +1,47 @@
-// Kapitel II: die Kaskade im 3D-Raum, aus der gemalten Vorlage (Mattia 22.10.2026:
-// das modellierte Marmor-Modell wirkte leblos und passte nicht ins Bild).
-// Jede der 5 gemalten Stufen ist eine Bildkarte im Raum (three.js). Beim Scrollen fährt die Kamera
-// von unten heran, die Stufen fliegen auseinander und gestaffelt in die Tiefe, die Kamera schwenkt:
-// echte Parallaxe wie bei Shopify, aber im Malstil. Wasserfälle, Gischt, Kugel und Ringe sind 3D.
-import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.180.0/build/three.module.min.js';
+// Kapitel II: der Brunnen als echtes 3D-Modell, dreht sich beim Scrollen wie der POS Hub bei Shopify.
+// Modell: „Fountain" von jolly.sweets (Sketchfab, CC BY 4.0, Nennung im Impressum nötig),
+// in Pastell-Marmor umgefärbt und in 4 Teile getrennt (bilder/k2-brunnen3d.glb, Draco).
+// Dazu: Goldränder, Wasser in den Schalen, fallende Wasservorhänge, Bodenbecken, Gischt, Kugel, Ringe.
+import * as THREE from 'three';
+import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+import { DRACOLoader } from 'three/addons/loaders/DRACOLoader.js';
 
 const glatt = (t) => t * t * (3 - 2 * t);
 const lerp = (a, b, t) => a + (b - a) * t;
+const GOLD = 0xe3c58a;
 
-// Masse der freigestellten Kaskade (bilder/k2-manifest.json) und Wasser je Stufe (gemessen)
-const KW = 1591;
-const KH = 2007;
-const STUFEN = [[0, 358], [358, 668], [668, 1068], [1068, 1538], [1538, 2007]];
-const WASSER = [   // in Stufen-Pixeln: Mitte der Wasserfläche (y), Vorderkante (y), Breite (x0, x1)
-  { y: 136, lippe: 152, x0: 561, x1: 1026 },
-  { y: 61, lippe: 90, x0: 470, x1: 1133 },
-  { y: 93, lippe: 134, x0: 359, x1: 1228 },
-  { y: 118, lippe: 174, x0: 265, x1: 1326 },
-  { y: 126, lippe: 0, x0: 148, x1: 1446 },
+// Masse aus Blender (Meter, y oben): Schalen von oben nach unten, Rand-Höhe und -Radius
+const SCHALEN = [
+  { name: 'schale1', rand: 1.704, r: 0.255, wasser: 1.66 },
+  { name: 'schale2', rand: 1.345, r: 0.37, wasser: 1.3 },
+  { name: 'schale3', rand: 0.901, r: 0.6, wasser: 0.86 },
 ];
-const HOEHE = 4;                 // ganze Kaskade 4 Einheiten hoch
-const PX = HOEHE / KH;           // Einheiten pro Bildpixel
+const BECKEN = { r: 1.15, rand: 0.2, wasser: 0.15 };
+const HUB = [0.95, 0.62, 0.3, 0];       // Explosion: wie weit jede Ebene nach oben fährt (Schale1…Sockel)
 
-function schattenTextur() {
-  const c = document.createElement('canvas');
-  c.width = c.height = 128;
-  const x = c.getContext('2d');
-  const g = x.createRadialGradient(64, 64, 4, 64, 64, 64);
-  g.addColorStop(0, 'rgba(70,50,90,.55)');
-  g.addColorStop(1, 'rgba(70,50,90,0)');
-  x.fillStyle = g;
-  x.fillRect(0, 0, 128, 128);
-  return new THREE.CanvasTexture(c);
+function wasserMaterial(farbe = [0.72, 0.85, 0.97]) {
+  return new THREE.ShaderMaterial({
+    transparent: true, depthWrite: false,
+    uniforms: { uZeit: { value: 0 } },
+    vertexShader: 'varying vec3 vP; void main(){ vP = position; gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0); }',
+    fragmentShader: `
+      varying vec3 vP; uniform float uZeit;
+      float hash(vec2 p){ return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453); }
+      float rausch(vec2 p){ vec2 i = floor(p), f = fract(p); f = f * f * (3.0 - 2.0 * f);
+        return mix(mix(hash(i), hash(i + vec2(1, 0)), f.x), mix(hash(i + vec2(0, 1)), hash(i + vec2(1, 1)), f.x), f.y); }
+      void main(){
+        vec2 p = vP.xy * 7.0;
+        float r = length(vP.xy);
+        float k = rausch(p + vec2(uZeit * 0.5, uZeit * 0.3)) * 0.6 + rausch(p * 2.4 - vec2(uZeit * 0.6, 0.0)) * 0.4;
+        float wellen = 0.5 + 0.5 * sin(r * 40.0 - uZeit * 3.0);
+        vec3 c = mix(vec3(${farbe.join(', ')}), vec3(0.92, 0.97, 1.0), 0.35 + 0.45 * k);
+        c = mix(c, vec3(1.0), smoothstep(0.62, 0.9, k) * 0.6 + wellen * 0.08);
+        gl_FragColor = vec4(c, 0.9);
+      }`,
+  });
 }
 
-function fallMaterial() {
+function vorhangMaterial() {
   return new THREE.ShaderMaterial({
     transparent: true, depthWrite: false, side: THREE.DoubleSide,
     uniforms: { uZeit: { value: 0 } },
@@ -46,12 +53,11 @@ function fallMaterial() {
         return mix(mix(hash(i), hash(i + vec2(1, 0)), f.x), mix(hash(i + vec2(0, 1)), hash(i + vec2(1, 1)), f.x), f.y); }
       void main(){
         float u = vUv.x, v = 1.0 - vUv.y;
-        float rand = smoothstep(0.0, 0.12, u) * (1.0 - smoothstep(0.88, 1.0, u));
-        float st = rausch(vec2(u * 34.0, v * 3.0 - uZeit * 2.8)) * 0.6 + rausch(vec2(u * 90.0, v * 9.0 - uZeit * 3.8)) * 0.4;
-        float a = rand * (0.18 + pow(st, 2.0) * 0.7) * smoothstep(0.0, 0.05, v);
-        float schaum = smoothstep(0.84, 1.0, v) * rand * (0.5 + 0.5 * rausch(vec2(u * 50.0, uZeit * 6.0)));
-        vec3 c = mix(vec3(0.76, 0.87, 0.98), vec3(1.0), st * 0.75 + schaum);
-        gl_FragColor = vec4(c, clamp(a + schaum * 0.6, 0.0, 0.95));
+        float st = rausch(vec2(u * 140.0, v * 3.0 - uZeit * 2.6)) * 0.6 + rausch(vec2(u * 320.0, v * 8.0 - uZeit * 3.6)) * 0.4;
+        float a = (0.03 + pow(st, 2.6) * 0.5) * smoothstep(0.0, 0.08, v);
+        float schaum = smoothstep(0.82, 1.0, v) * (0.5 + 0.5 * rausch(vec2(u * 200.0, uZeit * 6.0)));
+        vec3 c = mix(vec3(0.78, 0.89, 0.99), vec3(1.0), st * 0.8 + schaum);
+        gl_FragColor = vec4(c, clamp(a + schaum * 0.5, 0.0, 0.92));
       }`,
   });
 }
@@ -60,65 +66,99 @@ export function kaskade3d(canvas) {
   const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true, powerPreference: 'high-performance' });
   renderer.setPixelRatio(Math.min(devicePixelRatio || 1, 1.75));
   renderer.outputColorSpace = THREE.SRGBColorSpace;
+  renderer.toneMapping = THREE.ACESFilmicToneMapping;
+  renderer.toneMappingExposure = 1.1;
 
   const szene = new THREE.Scene();
-  const kamera = new THREE.PerspectiveCamera(28, 1, 0.1, 100);
-  const kaskade = new THREE.Group();
-  szene.add(kaskade);
-  const laden = new THREE.TextureLoader();
-  const schatten = schattenTextur();
+  const kamera = new THREE.PerspectiveCamera(30, 1, 0.05, 60);
+  szene.add(new THREE.HemisphereLight(0xe2ecfb, 0xf6cfbf, 1.5));
+  const sonne = new THREE.DirectionalLight(0xfff0d8, 2.6);
+  sonne.position.set(-3, 6, 4);
+  szene.add(sonne);
+  const rand = new THREE.DirectionalLight(0xd9ccf5, 1.2);
+  rand.position.set(4, 2, -4);
+  szene.add(rand);
 
-  // Stufen als gemalte Karten, darunter ein weicher Schatten
-  const stufen = STUFEN.map(([y0, y1], i) => {
-    const tex = laden.load(`bilder/k2-stufe${i + 1}.webp`);
-    tex.colorSpace = THREE.SRGBColorSpace;
-    tex.anisotropy = 4;
-    const h = (y1 - y0) * PX;
-    const w = KW * PX;
-    const karte = new THREE.Mesh(new THREE.PlaneGeometry(w, h), new THREE.MeshBasicMaterial({ map: tex, transparent: true, alphaTest: 0.02, depthWrite: false }));
-    karte.renderOrder = 10 + i * 3;
-    const s = new THREE.Mesh(new THREE.PlaneGeometry(w * 0.9, w * 0.32).rotateX(-Math.PI / 2), new THREE.MeshBasicMaterial({ map: schatten, transparent: true, depthWrite: false, opacity: 0 }));
-    s.renderOrder = 9 + i * 3;
-    const g = new THREE.Group();
-    g.add(s, karte);
-    kaskade.add(g);
-    return { g, karte, schatten: s, w, h, y0 };
+  const brunnen = new THREE.Group();
+  szene.add(brunnen);
+  const ebenen = { schale1: new THREE.Group(), schale2: new THREE.Group(), schale3: new THREE.Group(), sockel: new THREE.Group() };
+  Object.values(ebenen).forEach((g) => brunnen.add(g));
+  const gold = new THREE.MeshStandardMaterial({ color: GOLD, metalness: 0.85, roughness: 0.3, emissive: 0x3a2a10, emissiveIntensity: 0.2 });
+
+  // Modell laden
+  const draco = new DRACOLoader().setDecoderPath('https://cdn.jsdelivr.net/npm/three@0.180.0/examples/jsm/libs/draco/gltf/');
+  new GLTFLoader().setDRACOLoader(draco).load('bilder/k2-brunnen3d.glb', (gltf) => {
+    const funde = [];
+    gltf.scene.traverse((o) => { if (o.isMesh) funde.push(o); });
+    funde.forEach((o) => {
+      let n = o;
+      while (n && !ebenen[n.name]) n = n.parent;
+      if (o.material) o.material.roughness = 0.5;
+      (n ? ebenen[n.name] : ebenen.sockel).add(o);
+    });
   });
 
-  // Wasserfälle von der Vorderkante der Stufe i ins Wasser der Stufe i+1
-  const faelle = [0, 1, 2, 3].map((i) => {
-    const fm = fallMaterial();
-    const f = new THREE.Mesh(new THREE.PlaneGeometry(1, 1), fm);
-    f.renderOrder = 12 + i * 3;
-    kaskade.add(f);
-    return { f, fm };
+  // Goldränder, Wasser und Vorhänge je Schale
+  const wasserMats = [];
+  const vorhaenge = [];
+  SCHALEN.forEach((s, i) => {
+    const g = ebenen[s.name];
+    const ring = new THREE.Mesh(new THREE.TorusGeometry(s.r * 1.02, 0.012 + i * 0.003, 10, 96), gold);
+    ring.rotation.x = Math.PI / 2;
+    ring.position.y = s.rand;
+    g.add(ring);
+    const wm = wasserMaterial();
+    wasserMats.push(wm);
+    const w = new THREE.Mesh(new THREE.CircleGeometry(s.r * 0.9, 64), wm);
+    w.rotation.x = -Math.PI / 2;
+    w.position.y = s.wasser;
+    g.add(w);
+    // Wasservorhang vom Rand nach unten (offener Zylinder)
+    const vm = vorhangMaterial();
+    wasserMats.push(vm);
+    const v = new THREE.Mesh(new THREE.CylinderGeometry(s.r * 1.03, s.r * 1.07, 1, 96, 1, true), vm);
+    v.renderOrder = 5;
+    brunnen.add(v);
+    vorhaenge.push({ v, s, i });
   });
+  // Bodenbecken mit Goldrand
+  const beckenWand = new THREE.Mesh(new THREE.CylinderGeometry(BECKEN.r, BECKEN.r * 1.02, BECKEN.rand, 96, 1, true), new THREE.MeshStandardMaterial({ color: 0xf6e6dc, roughness: 0.55, side: THREE.DoubleSide }));
+  beckenWand.position.y = BECKEN.rand / 2;
+  ebenen.sockel.add(beckenWand);
+  const beckenRand = new THREE.Mesh(new THREE.TorusGeometry(BECKEN.r, 0.035, 12, 120), new THREE.MeshStandardMaterial({ color: 0xfbf0e6, roughness: 0.5 }));
+  beckenRand.rotation.x = Math.PI / 2;
+  beckenRand.position.y = BECKEN.rand;
+  ebenen.sockel.add(beckenRand);
+  const beckenGold = new THREE.Mesh(new THREE.TorusGeometry(BECKEN.r * 1.012, 0.012, 8, 120), gold);
+  beckenGold.rotation.x = Math.PI / 2;
+  beckenGold.position.y = BECKEN.rand + 0.03;
+  ebenen.sockel.add(beckenGold);
+  const bw = wasserMaterial([0.68, 0.82, 0.96]);
+  wasserMats.push(bw);
+  const beckenWasser = new THREE.Mesh(new THREE.CircleGeometry(BECKEN.r * 0.98, 96), bw);
+  beckenWasser.rotation.x = -Math.PI / 2;
+  beckenWasser.position.y = BECKEN.wasser;
+  ebenen.sockel.add(beckenWasser);
 
   // Kugel, Ringe, Gischt
-  const kugel = new THREE.Mesh(new THREE.SphereGeometry(0.09, 32, 16), new THREE.MeshBasicMaterial({ color: 0xff8fc0 }));
-  const glanz = new THREE.Mesh(new THREE.SphereGeometry(0.03, 12, 8), new THREE.MeshBasicMaterial({ color: 0xffffff }));
-  glanz.position.set(-0.03, 0.035, 0.07);
-  kugel.add(glanz);
-  kugel.renderOrder = 40;
+  const kugel = new THREE.Mesh(new THREE.SphereGeometry(0.06, 32, 16), new THREE.MeshStandardMaterial({ color: 0xff9dc8, roughness: 0.2, emissive: 0xff6fae, emissiveIntensity: 0.35 }));
   kugel.visible = false;
-  kaskade.add(kugel);
+  brunnen.add(kugel);
   const ringe = [0, 1, 2].map(() => {
-    const r = new THREE.Mesh(new THREE.RingGeometry(0.08, 0.1, 48).rotateX(-Math.PI / 2), new THREE.MeshBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0, depthWrite: false }));
-    r.renderOrder = 39;
-    kaskade.add(r);
+    const r = new THREE.Mesh(new THREE.RingGeometry(0.05, 0.065, 48), new THREE.MeshBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0, depthWrite: false }));
+    r.rotation.x = -Math.PI / 2;
+    brunnen.add(r);
     return { r, t: -9, stufe: 0 };
   });
-  const ANZ = 320;
-  const gischtGeo = new THREE.BufferGeometry();
-  gischtGeo.setAttribute('position', new THREE.BufferAttribute(new Float32Array(ANZ * 3), 3));
-  const gisch = Array.from({ length: ANZ }, () => ({ s: Math.floor(Math.random() * 4), a: Math.random(), x: Math.random() - 0.5, v: 0.4 + Math.random() * 0.6 }));
-  const gischt = new THREE.Points(gischtGeo, new THREE.PointsMaterial({ color: 0xffffff, size: 0.03, transparent: true, opacity: 0.8, depthWrite: false }));
-  gischt.renderOrder = 38;
-  kaskade.add(gischt);
+  const ANZ = 360;
+  const gGeo = new THREE.BufferGeometry();
+  gGeo.setAttribute('position', new THREE.BufferAttribute(new Float32Array(ANZ * 3), 3));
+  const gisch = Array.from({ length: ANZ }, () => ({ s: Math.floor(Math.random() * 3), w: Math.random() * 6.283, a: Math.random(), v: 0.5 + Math.random() * 0.7 }));
+  brunnen.add(new THREE.Points(gGeo, new THREE.PointsMaterial({ color: 0xffffff, size: 0.018, transparent: true, opacity: 0.85, depthWrite: false })));
 
   let breite = 1;
   let hoehe = 1;
-  const lage = [];   // je Stufe: { x0 links, yOben, z }
+  const hub = [0, 0, 0, 0];
 
   function groesse(w, h) {
     breite = w; hoehe = h;
@@ -126,74 +166,52 @@ export function kaskade3d(canvas) {
     kamera.aspect = w / h;
   }
 
-  // Bildpunkt (Stufen-Pixel) → Raum
-  function punkt(i, px, py, dz = 0) {
-    const L = lage[i];
-    return new THREE.Vector3(L.x0 + px * PX, L.yOben - py * PX, L.z + dz);
-  }
-
-  function stufenSetzen(explo) {
-    for (let i = 0; i < 5; i++) {
-      const st = stufen[i];
-      const yOben = HOEHE / 2 - st.y0 * PX + (2 - i) * explo * 0.42;   // auseinander, Mitte bleibt
-      const z = (i - 2) * explo * 0.55;                                  // untere Stufen nach vorn
-      lage[i] = { x0: -KW * PX / 2, yOben, z };
-      st.g.position.set(0, yOben - st.h / 2, z);
-      st.schatten.position.set(0, -st.h / 2 + 0.02, 0.15);
-      st.schatten.material.opacity = 0.5 * explo;
-    }
-    for (let i = 0; i < 4; i++) {
-      const w = WASSER[i];
-      const oben = punkt(i, (w.x0 + w.x1) / 2, w.lippe, 0.04);
-      const unten = punkt(i + 1, (w.x0 + w.x1) / 2, WASSER[i + 1].y, 0.02);
-      const fb = (w.x1 - w.x0) * PX * 0.62;
-      const { f } = faelle[i];
-      const dy = oben.y - unten.y;
-      const dz = unten.z - oben.z;
-      f.scale.set(fb, Math.hypot(dy, dz), 1);
-      f.position.set(0, (oben.y + unten.y) / 2, (oben.z + unten.z) / 2 + 0.03);
-      f.rotation.x = Math.atan2(dz, dy);
-    }
-  }
-
+  // Wasserpunkte für die Kugel: drei Schalen, Becken, Becken vorne
   function wasserPunkt(i) {
-    const w = WASSER[i];
-    return punkt(i, (w.x0 + w.x1) / 2, w.y, 0.06);
+    if (i < 3) return new THREE.Vector3(0.05, SCHALEN[i].wasser + hub[i] + 0.04, SCHALEN[i].r * 0.45);
+    return new THREE.Vector3(0.1, BECKEN.wasser + 0.04, i === 3 ? 0.8 : 0.95);
   }
-
   function ankerAufBildschirm(i) {
-    const w = WASSER[i];
-    const p = punkt(i, w.x1 + 30, w.y + 40).applyMatrix4(kaskade.matrixWorld).project(kamera);
+    const r = i < 3 ? SCHALEN[i].r : BECKEN.r * 0.9;
+    const y = i < 3 ? SCHALEN[i].rand + hub[i] : BECKEN.rand + (i - 3) * 0.12;
+    const p = new THREE.Vector3(r, y, 0).applyMatrix4(brunnen.matrixWorld).project(kamera);
     return { x: (p.x * 0.5 + 0.5) * breite, y: (-p.y * 0.5 + 0.5) * hoehe };
   }
-
   function plumps(i, jetzt) {
     const r = ringe.find((x) => jetzt - x.t > 1.2) || ringe[0];
     r.t = jetzt;
-    r.stufe = i;
+    r.stufe = Math.min(i, 4);
   }
 
-  // z: heranfahren (0→1), explo: auseinander (0→1), maus: Neigung −1…1, versatzX: Platz für das Panel
-  function bild(z, explo, jetzt, maus, versatzX = 0, kugelZustand = null) {
-    stufenSetzen(explo);
+  // z: heranfahren (0→1), explo: auseinander (0→1), dreh: Umdrehungen durch den Scroll
+  function bild(z, explo, jetzt, maus, versatzX = 0, kugelZustand = null, dreh = 0) {
     const zz = glatt(z);
-    const dist = lerp(22, 10.5, zz) + explo * 3.6;
-    const hochWinkel = lerp(0.1, -0.1, zz) + explo * 0.16;           // erst leicht von unten: mächtig
-    const dreh = explo * 0.32 + Math.sin(jetzt * 0.22) * 0.035 * explo + maus.x * 0.08;
-    kamera.position.set(Math.sin(dreh) * dist, Math.sin(hochWinkel) * dist + maus.y * 0.25, Math.cos(dreh) * dist);
-    kamera.lookAt(0, lerp(0.6, -0.2, zz) - explo * 0.75, 0);
+    ['schale1', 'schale2', 'schale3', 'sockel'].forEach((n, i) => { hub[i] = HUB[i] * explo; ebenen[n].position.y = hub[i]; });
+    // Vorhänge zwischen Rand und nächster Wasserfläche
+    vorhaenge.forEach(({ v, s, i }) => {
+      const oben = s.rand + hub[i] - 0.005;
+      const unten = i < 2 ? SCHALEN[i + 1].wasser + hub[i + 1] : BECKEN.wasser;
+      v.scale.y = Math.max(0.01, oben - unten);
+      v.position.y = (oben + unten) / 2;
+    });
+    brunnen.rotation.y = dreh * Math.PI * 2 + maus.x * 0.15;
+    const dist = lerp(9, 4.3, zz) + explo * 3.2;
+    const winkel = lerp(0.02, 0.2, zz) + explo * 0.12 - maus.y * 0.05;   // erst fast von unten: mächtig
+    kamera.position.set(0, Math.sin(winkel) * dist + 0.9, Math.cos(winkel) * dist);
+    kamera.lookAt(0, lerp(1.25, 0.95, zz) + explo * 0.6, 0);
     if (versatzX) kamera.setViewOffset(breite, hoehe, versatzX, 0, breite, hoehe); else kamera.clearViewOffset();
     kamera.updateProjectionMatrix();
-    kaskade.updateMatrixWorld();
+    brunnen.updateMatrixWorld();
 
-    faelle.forEach(({ fm }) => { fm.uniforms.uZeit.value = jetzt; });
+    wasserMats.forEach((m) => { m.uniforms.uZeit.value = jetzt; });
 
     if (kugelZustand) {
       kugel.visible = true;
       const a = wasserPunkt(kugelZustand.von);
       const b = wasserPunkt(kugelZustand.nach);
       const k = kugelZustand.k;
-      kugel.position.set(lerp(a.x, b.x, k), lerp(a.y, b.y, k * k) + 0.06, lerp(a.z, b.z, k) + Math.sin(k * Math.PI) * 0.35);
+      const nachAussen = Math.sin(k * Math.PI) * 0.25;
+      kugel.position.set(lerp(a.x, b.x, k), lerp(a.y, b.y, k * k), lerp(a.z, b.z, k) + nachAussen);
     } else kugel.visible = false;
 
     ringe.forEach((r) => {
@@ -202,22 +220,23 @@ export function kaskade3d(canvas) {
       r.r.material.opacity = an ? (1 - alt / 1.3) * 0.95 : 0;
       if (an) {
         const p = wasserPunkt(r.stufe);
-        r.r.position.set(p.x, p.y, p.z + 0.05);
-        r.r.scale.set(1 + alt * 6, 1, 1 + alt * 2);
+        r.r.position.set(p.x, p.y - 0.035, p.z);
+        r.r.scale.setScalar(1 + alt * 5);
       }
     });
 
-    const arr = gischtGeo.attributes.position.array;
+    const arr = gGeo.attributes.position.array;
     gisch.forEach((g, n) => {
-      g.a += 0.01 * g.v;
-      if (g.a > 1) { g.a = 0; g.x = Math.random() - 0.5; g.s = Math.floor(Math.random() * 4); }
-      const w = WASSER[g.s];
-      const p = punkt(g.s + 1, (w.x0 + w.x1) / 2, WASSER[g.s + 1].y, 0.1);
-      arr[n * 3] = g.x * (w.x1 - w.x0) * PX * 0.7;
-      arr[n * 3 + 1] = p.y + Math.sin(g.a * Math.PI) * 0.28;
-      arr[n * 3 + 2] = p.z + g.a * 0.3;
+      g.a += 0.012 * g.v;
+      if (g.a > 1) { g.a = 0; g.w = Math.random() * 6.283; g.s = Math.floor(Math.random() * 3); }
+      const s = SCHALEN[g.s];
+      const unten = g.s < 2 ? SCHALEN[g.s + 1].wasser + hub[g.s + 1] : BECKEN.wasser;
+      const r = s.r * 1.06 + g.a * 0.12;
+      arr[n * 3] = Math.cos(g.w) * r;
+      arr[n * 3 + 1] = unten + Math.sin(g.a * Math.PI) * 0.12;
+      arr[n * 3 + 2] = Math.sin(g.w) * r;
     });
-    gischtGeo.attributes.position.needsUpdate = true;
+    gGeo.attributes.position.needsUpdate = true;
 
     renderer.render(szene, kamera);
   }
