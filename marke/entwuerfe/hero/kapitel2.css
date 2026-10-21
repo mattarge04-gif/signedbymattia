@@ -1,0 +1,130 @@
+/* Kapitel II Automation · Die Wasserspiele · Drehbuch website/drehbuch/12-kapitel-2.md */
+.k2 { position: relative; background: var(--color-bg); }
+.k2-bahn { position: relative; height: 620vh; }
+.k2-buehne { position: sticky; top: 0; height: 100vh; height: 100svh; overflow: hidden; background: var(--color-chapter-2); }
+.k2-buehne::before {
+  content: ""; position: absolute; inset: 0 0 auto 0; height: 18vh; z-index: 12; pointer-events: none;
+  background: linear-gradient(var(--color-bg), rgb(251 243 234 / 0));
+}
+.k2-fliegt .k2-garten, .k2-fliegt .k2-kaskade, .k2-fliegt .k2-gelehrter, .k2-fliegt .k2-brunnen, .k2-fliegt .k2-vorne { will-change: transform; }
+
+.k2-garten { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transform-origin: 50% 62%; }
+
+/* Kaskade: 5 Stufen, Lage und Abstand setzt kapitel2.js */
+.k2-kaskade { position: absolute; left: 0; top: 0; z-index: 3; transform-origin: 0 0; }
+.k2-stufe { position: absolute; left: 0; width: 100%; height: auto; display: block; pointer-events: none; }
+.k2-wasser { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 2; }
+.k2-kugel {
+  position: absolute; left: 0; top: 0; width: 7%; aspect-ratio: 1; border-radius: 50%; z-index: 3; opacity: 0; pointer-events: none;
+  background: radial-gradient(circle at 35% 30%, #fff 0 8%, #FFC3DE 22%, var(--color-accent) 58%, #E57FAE 100%);
+  box-shadow: 0 0 0 2px rgb(255 255 255 / .55), 0 8px 18px -6px rgb(229 127 174 / .8);
+}
+
+/* Schilder an den Becken: goldene Linie, Titel, Ergebnis */
+.k2-schilder { position: absolute; inset: 0; z-index: 6; pointer-events: none; }
+.k2-schild { position: absolute; left: 0; top: 0; display: grid; gap: 4px; max-width: 30ch; opacity: 0; }
+.k2-linie { position: absolute; right: 100%; top: .7em; width: 4vw; height: 1.5px; margin-right: 10px; background: var(--color-gold); transform-origin: 100% 50%; }
+.k2-schild-titel { margin: 0; font-family: var(--font-hand); font-style: italic; font-size: clamp(18px, 1.6vw, 26px); color: var(--color-text); }
+.k2-ergebnis {
+  margin: 0; display: grid; gap: 2px; padding: 8px 12px; border-radius: 10px; background: rgb(255 255 255 / .82);
+  box-shadow: 0 0 0 1px rgb(227 197 138 / .7), 0 10px 22px -14px rgb(35 27 58 / .45);
+  font-size: 14px; line-height: 1.35; opacity: 0; translate: 0 8px; scale: .96;
+  transition: opacity .3s var(--ease-ui), translate .45s var(--ease-pointe), scale .45s var(--ease-pointe);
+}
+.k2-ergebnis span { font-size: 12px; color: var(--color-text-muted); }
+.k2-schild.fertig .k2-ergebnis { opacity: 1; translate: 0 0; scale: 1; }
+.k2-schild[data-i="4"] .k2-ergebnis { background: none; box-shadow: none; padding: 0; font-family: var(--font-hand); font-style: italic; font-size: clamp(18px, 1.6vw, 26px); }
+
+/* Gelehrter, Brunnen, Vordergrund */
+.k2-gelehrter { position: absolute; left: 2vw; bottom: 3vh; width: min(27vw, 52vh); z-index: 7; transform-origin: 0 100%; }
+.k2-gelehrter img { display: block; width: 100%; height: auto; }
+.k2-gelehrter .haupt { animation: k2-atmen 3.4s ease-in-out infinite alternate; transform-origin: 50% 90%; }
+.k2-gelehrter .zustand { position: absolute; inset: 0; opacity: 0; }
+.k2-gelehrter.ist-wach .wach, .k2-gelehrter.ist-dreht .dreht { opacity: 1; }
+.k2-gelehrter.ist-wach .haupt, .k2-gelehrter.ist-dreht .haupt { opacity: 0; }
+@keyframes k2-atmen { from { scale: 1 1; } to { scale: 1.006 1.014; } }
+.k2-z {
+  position: absolute; left: 34%; top: 9%; font-family: var(--font-hand); font-style: italic; font-size: clamp(16px, 1.5vw, 24px);
+  color: var(--color-text); opacity: 0; animation: k2-z 3.6s ease-out infinite;
+}
+.k2-z:nth-of-type(2) { animation-delay: 1.2s; font-size: clamp(20px, 1.9vw, 30px); }
+.k2-z:nth-of-type(3) { animation-delay: 2.4s; font-size: clamp(24px, 2.3vw, 36px); }
+@keyframes k2-z { 0% { opacity: 0; translate: 0 0; } 20% { opacity: .8; } 100% { opacity: 0; translate: 4vw -9vh; rotate: 12deg; } }
+.k2-gelehrter.ist-wach .k2-z, .k2-gelehrter.ist-dreht .k2-z { animation: none; opacity: 0; }
+
+/* Schmetterling: kommt ab und zu, setzt sich auf die Schlafmaske, fliegt weiter */
+.k2-falter { position: absolute; left: 22%; top: 2%; width: 7%; opacity: 0; animation: k2-falter 14s ease-in-out infinite 3s; }
+.k2-falter .fl-l, .k2-falter .fl-r { transform-origin: 20px 15px; animation: k2-fluegel .18s ease-in-out infinite alternate; }
+@keyframes k2-fluegel { from { scale: 1 1; } to { scale: .35 1; } }
+@keyframes k2-falter {
+  0% { opacity: 0; translate: -30vw -30vh; }
+  6% { opacity: 1; }
+  22%, 48% { opacity: 1; translate: 0 0; }
+  62% { opacity: 1; translate: 25vw -35vh; }
+  63%, 100% { opacity: 0; translate: 25vw -35vh; }
+}
+
+.k2-wecken { position: absolute; left: 6vw; bottom: 12vh; width: 18vw; height: 34vh; z-index: 8; border: 0; background: none; cursor: pointer; border-radius: 30px; }
+.k2-wecken:focus-visible { outline: 2px solid var(--color-text); outline-offset: 4px; }
+
+.k2-brunnen { position: absolute; right: 6vw; bottom: 5vh; width: min(14vw, 30vh); z-index: 5; }
+.k2-brunnen img { display: block; width: 100%; height: auto; }
+.k2-strahl { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; pointer-events: none; z-index: 9; }
+.k2-strahl path {
+  fill: none; stroke: #CFE6F8; stroke-width: 7; stroke-linecap: round; opacity: 0;
+  filter: drop-shadow(0 0 3px rgb(255 255 255 / .9));
+}
+.k2-strahl path.spritzt { opacity: .95; }
+
+.k2-vorne { position: absolute; left: -4%; width: 108%; bottom: -2vh; z-index: 10; pointer-events: none; transform-origin: 50% 100%; }
+
+/* Anfrage-Karte „Probier es" */
+.k2-karte {
+  position: absolute; left: 0; top: 0; z-index: 11; width: min(300px, 26vw); padding: 16px 18px; border-radius: 14px;
+  background: var(--color-bg); opacity: 0; pointer-events: none;
+  box-shadow: 0 0 0 1.5px var(--color-gold), 0 0 0 5px var(--color-bg), 0 0 0 6.5px var(--color-gold), 0 22px 40px -22px rgb(35 27 58 / .5);
+  transition: opacity .35s var(--ease-ui), scale .5s var(--ease-farbe), border-radius .5s var(--ease-farbe);
+}
+.k2-karte.da { opacity: 1; pointer-events: auto; }
+.k2-karte.rollt { scale: .08; border-radius: 50%; opacity: 0; pointer-events: none; }
+.k2-karte-kopf { margin: 0 0 6px; font-size: 12px; letter-spacing: .02em; color: var(--color-text-muted); }
+.k2-karte-text { margin: 0 0 12px; font-family: var(--font-hand); font-size: 20px; line-height: 1.25; }
+.k2-karte-text span { display: block; margin-top: 4px; font-family: var(--font-system); font-size: 12px; color: var(--color-text-muted); }
+.k2-senden {
+  min-height: 44px; padding: 0 20px; border: 0; border-radius: 99px; background: var(--color-accent); color: var(--color-text);
+  font: 700 15px var(--font-system); box-shadow: var(--outline-button); cursor: pointer;
+  transition: transform .16s var(--ease-ui), filter .2s var(--ease-ui);
+}
+.k2-senden:active { transform: scale(.97); }
+.k2-senden:focus-visible { outline: 2px solid var(--color-text); outline-offset: 3px; }
+@media (hover: hover) and (pointer: fine) { .k2-senden:hover { filter: brightness(1.05); } }
+.k2-karte-hinweis { margin: 10px 0 0; font-size: 12px; color: var(--color-text-muted); }
+
+/* Kapitelwort (M1) wie Kapitel I */
+.k2-text { position: absolute; left: 6vw; top: 0; z-index: 13; max-width: 46ch; }
+.k2-text h2 { margin: 0; font-weight: 800; font-size: clamp(72px, 12vw, 200px); line-height: .88; letter-spacing: var(--tracking-headline); }
+
+/* Papier mit Grafik und Tarot-Karte II */
+.k2-panel { position: relative; z-index: 14; background: var(--color-bg); padding: 12vh 6vw 14vh; }
+.k2-inhalt { display: grid; grid-template-columns: 1.6fr 1fr; gap: 4vw; align-items: center; max-width: 1200px; margin: 0 auto; }
+.k2-grafik { grid-column: 1 / -1; width: 100%; height: auto; overflow: visible; }
+.k2-grafik path { fill: none; stroke: var(--color-chapter-1); stroke-width: 1.6; stroke-dasharray: 1; stroke-dashoffset: 1; transition: stroke-dashoffset 1.6s var(--ease-farbe); }
+.k2-grafik .antwort { stroke: var(--color-gold); stroke-width: 2.2; transition-delay: 1.2s; }
+.k2-grafik.zeigt path { stroke-dashoffset: 0; }
+.k2-grafik .punkt { fill: var(--color-accent); }
+.k2-grafik .quelle { fill: var(--color-chapter-1); stroke: var(--color-text); stroke-width: 1; }
+.k2-grafik .k2-eingang { fill: var(--color-bg); stroke: var(--color-gold); stroke-width: 2.5; }
+.k2-grafik text { font: 600 13px var(--font-system); fill: var(--color-text); }
+.k2-panel-text h3 { margin: 0 0 12px; font-size: clamp(32px, 4vw, 60px); letter-spacing: var(--tracking-headline); }
+.k1-karte small { font-size: 12px; color: var(--color-text-muted); margin: -6px 0 8px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .k2-bahn { height: auto; }
+  .k2-buehne { position: relative; }
+  .k2-z, .k2-falter, .k2-gelehrter .haupt { animation: none !important; }
+  .k2-ergebnis, .k2-karte { transition-duration: .2s; }
+}
+@media (max-width: 720px) {
+  .k2-inhalt { grid-template-columns: 1fr; }
+  .k2-karte { width: 70vw; }
+}

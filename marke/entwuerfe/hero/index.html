@@ -18,6 +18,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&display=swap">
 <link rel="stylesheet" href="hero.css">
 <link rel="stylesheet" href="kapitel1.css">
+<link rel="stylesheet" href="kapitel2.css">
 <link rel="preload" as="image" href="bilder/kuppel-1600.webp" imagesrcset="bilder/kuppel-800.webp 800w, bilder/kuppel-1600.webp 1600w, bilder/kuppel.webp 2400w" imagesizes="100vw" fetchpriority="high">
 <script>document.documentElement.classList.add('js')</script>
 </head>
@@ -213,6 +214,70 @@
     </div>
   </div>
 </section>
+
+<section class="k2" id="kapitel-2" aria-labelledby="k2-titel">
+  <div class="k2-bahn" id="k2Bahn">
+  <div class="k2-buehne" id="k2Buehne">
+    <img class="k2-garten" id="k2Garten" src="bilder/k2-garten-1600.webp" srcset="bilder/k2-garten-800.webp 800w, bilder/k2-garten-1600.webp 1600w, bilder/k2-garten.webp 2400w" sizes="100vw" alt="" aria-hidden="true" loading="lazy" decoding="async">
+
+    <div class="k2-kaskade" id="k2Kaskade" aria-hidden="true">
+      <img class="k2-stufe" data-i="0" src="bilder/k2-stufe1.webp" alt="" decoding="async"><img class="k2-stufe" data-i="1" src="bilder/k2-stufe2.webp" alt="" decoding="async"><img class="k2-stufe" data-i="2" src="bilder/k2-stufe3.webp" alt="" decoding="async"><img class="k2-stufe" data-i="3" src="bilder/k2-stufe4.webp" alt="" decoding="async"><img class="k2-stufe" data-i="4" src="bilder/k2-stufe5.webp" alt="" decoding="async">
+      <canvas class="k2-wasser" id="k2Wasser"></canvas>
+      <span class="k2-kugel" id="k2Kugel"></span>
+    </div>
+    <div class="k2-schilder" id="k2Schilder" aria-live="polite"><div class="k2-schild" data-i="0"><i class="k2-linie"></i><p class="k2-schild-titel">Anfrage kommt an</p><p class="k2-ergebnis"><b>E-Mail erkannt</b><span>Frau Meier · heute 21:47</span></p></div><div class="k2-schild" data-i="1"><i class="k2-linie"></i><p class="k2-schild-titel">wird sortiert</p><p class="k2-ergebnis"><b>Notfall · Sanitär · Kriens</b><span>Priorität hoch</span></p></div><div class="k2-schild" data-i="2"><i class="k2-linie"></i><p class="k2-schild-titel">Antwort geht raus</p><p class="k2-ergebnis"><b>„Guten Tag Frau Meier, wir kommen morgen um 8 Uhr.“</b><span>automatisch formuliert, von Ihnen freigegeben</span></p></div><div class="k2-schild" data-i="3"><i class="k2-linie"></i><p class="k2-schild-titel">Termin steht</p><p class="k2-ergebnis"><b>Do 08:00 · Meier, Kriens · Boiler</b><span>im Kalender eingetragen</span></p></div><div class="k2-schild" data-i="4"><i class="k2-linie"></i><p class="k2-schild-titel">Und Sie?</p><p class="k2-ergebnis"><b>… haben geschlafen.</b></p></div></div>
+
+    <div class="k2-gelehrter" id="k2Gelehrter" aria-hidden="true">
+      <img class="haupt" src="bilder/k2-gelehrter-550.webp" srcset="bilder/k2-gelehrter-550.webp 550w, bilder/k2-gelehrter.webp 1100w" sizes="26vw" alt="" loading="lazy" decoding="async">
+      <img class="zustand wach" src="bilder/k2-gelehrter-wach-550.webp" srcset="bilder/k2-gelehrter-wach-550.webp 550w, bilder/k2-gelehrter-wach.webp 1100w" sizes="26vw" alt="" loading="lazy" decoding="async">
+      <img class="zustand dreht" src="bilder/k2-gelehrter-dreht-550.webp" srcset="bilder/k2-gelehrter-dreht-550.webp 550w, bilder/k2-gelehrter-dreht.webp 1100w" sizes="26vw" alt="" loading="lazy" decoding="async">
+      <span class="k2-z">z</span><span class="k2-z">z</span><span class="k2-z">Z</span>
+      <svg class="k2-falter" viewBox="0 0 40 30"><path class="fl-l" d="M20 15C14 2 2 2 4 10c1 5 8 7 16 5z" fill="#FFD6C2" stroke="#E3C58A"/><path class="fl-r" d="M20 15c6-13 18-13 16-5-1 5-8 7-16 5z" fill="#D9CCF5" stroke="#E3C58A"/><path d="M20 10v12" stroke="#231B3A" stroke-width="1.4" stroke-linecap="round"/></svg>
+    </div>
+    <button class="k2-wecken" id="k2Wecken" type="button" aria-label="Den Gelehrten stupsen"></button>
+
+    <div class="k2-brunnen" id="k2Brunnen" aria-hidden="true">
+      <img src="bilder/k2-brunnen-550.webp" srcset="bilder/k2-brunnen-550.webp 550w, bilder/k2-brunnen.webp 1100w" sizes="16vw" alt="" loading="lazy" decoding="async">
+    </div>
+
+    <svg class="k2-strahl" id="k2Strahl" aria-hidden="true"><path id="k2StrahlPfad" d=""/></svg>
+
+    <img class="k2-vorne" id="k2Vorne" src="bilder/k2-vordergrund-1600.webp" srcset="bilder/k2-vordergrund-1600.webp 1600w, bilder/k2-vordergrund.webp 2400w" sizes="100vw" alt="" aria-hidden="true" loading="lazy" decoding="async">
+
+    <form class="k2-karte" id="k2Karte" onsubmit="return false">
+      <p class="k2-karte-kopf">Anfrage an Himmelblau Haustechnik</p>
+      <p class="k2-karte-text">„Boiler tropft in der Küche, Kriens. Morgen möglich?“<span>Frau Meier</span></p>
+      <button class="k2-senden" id="k2Senden" type="submit">Absenden</button>
+      <p class="k2-karte-hinweis">Beispiel. Es wird nichts gesendet.</p>
+    </form>
+
+    <div class="k2-text" id="k2Text">
+      <p class="k1-kicker"><span class="nr">II</span> Kapitel</p>
+      <h2 id="k2-titel">Automation</h2>
+      <p class="k1-satz">[Platzhalter: Erzählsatz zu Kapitel II, schreibt Mattia im Textinterview.]</p>
+    </div>
+  </div>
+  </div>
+
+  <div class="k2-panel">
+    <div class="k2-inhalt">
+      <svg class="k2-grafik" id="k2Grafik" viewBox="0 0 900 360" aria-labelledby="k2GrafikTitel" role="img">
+        <title id="k2GrafikTitel">Viele Anfragen aus E-Mail, Formular und Telefon laufen in einen Eingang und kommen geordnet als Antworten heraus.</title>
+        <g class="k2-quellen"></g>
+        <circle class="k2-eingang" cx="450" cy="180" r="26"/>
+        <g class="k2-antworten"></g>
+      </svg>
+      <div class="k2-panel-text">
+        <h3>Was Ihnen abgenommen wird</h3>
+        <p class="k1-hinweis">[Platzhalter: Was automatisiert wird und wo die Grenzen sind, folgt aus dem Textinterview.]</p>
+      </div>
+      <div class="k1-karte">
+        <span class="nr">II</span><b>Das Rad</b><span>Automation</span><strong>ab CHF 500</strong><small>+ CHF 400 je weiterer Ablauf</small>
+        <a class="button-edition knopf" href="#atelier">Ins Atelier legen</a>
+      </div>
+    </div>
+  </div>
+</section>
 </main>
 
 <div class="wolkenflug" id="wolkenflug" aria-hidden="true"><canvas id="wfCanvas"></canvas></div>
@@ -225,5 +290,6 @@
 <script type="module" src="licht.js"></script>
 <script type="module" src="kapitel1.js"></script>
 <script type="module" src="wolkenflug.js"></script>
+<script type="module" src="kapitel2.js"></script>
 </body>
 </html>
