@@ -1,6 +1,6 @@
 # Drehbuch 12: Kapitel II Automation · Die Wasserspiele
 
-Stand: 21.10.2026 · Status: **Entwurf [A], zur Abnahme durch Mattia** · Grundlage:
+Stand: 21.10.2026 · Status: **Drehbuch abgenommen [F] (Mattia, 21.10.2026), Bilder offen** · Grundlage:
 `10-startseite.md` §12, `12-16-naechste-kapitel.md` §12, `00-grammatik.md` (Werte),
 `03-bildstil.md` (Stil-Bibel)
 
@@ -17,7 +17,7 @@ Stand: 21.10.2026 · Status: **Entwurf [A], zur Abnahme durch Mattia** · Grundl
 
 ## Die Idee in einem Satz
 
-Während der Inhaber schläft, arbeitet sein Garten: Eine Anfrage fällt als pinke Kugel durch vier
+Während der Gelehrte schläft, arbeitet sein Garten: Eine Anfrage fällt als pinke Kugel durch vier
 Becken und kommt als fertiger Termin unten an.
 
 ## Figuren und Ebenen (2.5D, von hinten nach vorne)
@@ -27,7 +27,7 @@ Becken und kommt als fertiger Termin unten an.
 | E0 Garten | Barockgarten in Pastell: Heckenbögen, Kieswege, ein Pavillon, Himmel mit Wolken. Mitte frei für die Kaskade | steht, leichte Tiefe mit der Maus |
 | E1 Kaskade | Treppenkaskade aus Pastell-Marmor mit **4 Becken übereinander**, die Becken voll stillem Wasser, **ohne fallendes Wasser** dazwischen | Explosionsansicht: Becken schweben auseinander |
 | E1w Wasser | Shader: Wasserfälle zwischen den Becken, Glitzern, Wellen | läuft immer; die Kugel zieht Ringe |
-| E2 Schläfer | **Herr Huber, Inhaber von Himmelblau**, als Barock-Gelehrter im Liegestuhl, pinke Schlafmaske, schläft mit offenem Mund [A] | atmet; Zwei-Bild-Wechsel beim Aufwachen |
+| E2 Schläfer | **namenloser Barock-Gelehrter** im Liegestuhl, pinke Schlafmaske, schläft mit offenem Mund [F] | atmet; Zwei-Bild-Wechsel beim Aufwachen |
 | E3 Scherzbrunnen | Kleiner Putto aus Stein auf einem Sockel, spitzt den Mund | spritzt einen Wasserstrahl (Shader) |
 | E4 Vordergrund | Unscharfer Heckenrand und Rosen | zieht schneller vorbei (Parallaxe) |
 
@@ -36,7 +36,7 @@ Becken und kommt als fertiger Termin unten an.
 **Übergang davor:** Kapitel I endet mit „Anfrage gesendet". Ölfarben-Auflösung (M8) in den Garten [A].
 
 1. **Auftakt (s 0–0.15):** Das Kapitelwort „Automation" steigt durchs Bild (M1). Darunter ein Satz
-   `[Platzhalter Erzählsatz]`. Im Garten schnarcht Herr Huber, über ihm steigen drei kleine „z" auf.
+   `[Platzhalter Erzählsatz]`. Im Garten schnarcht der Gelehrte, über ihm steigen drei kleine „z" auf.
 2. **Kamerafahrt (s 0.15–0.32):** Die Kamera gleitet am Schläfer vorbei auf die Kaskade zu. Die Becken
    plätschern leise (nur Bild, kein Ton).
 3. **Explosionsansicht (s 0.32–0.5):** Die 4 Becken schweben auseinander (Becken 1 oben, 4 unten), an
@@ -52,7 +52,7 @@ Becken und kommt als fertiger Termin unten an.
      **Notfall · Sanitär · Kriens**.
    - Becken 2 → 3: Ein Brief steigt auf: *„Guten Tag Frau Meier, wir kommen morgen um 8 Uhr."*
    - Becken 3 → 4: Ein Kalenderblatt klappt auf: **Do 08:00 · Meier, Kriens · Boiler**.
-   - Pointe: Der Scherzbrunnen spritzt Herrn Huber ins Gesicht. Er schreckt hoch (nass, Maske
+   - Pointe: Der Scherzbrunnen spritzt dem Gelehrten ins Gesicht. Er schreckt hoch (nass, Maske
      verrutscht), schaut auf das Kalenderblatt, nickt zufrieden und schläft weiter.
    - Klickt niemand, läuft das Ganze ab s 0.7 von selbst ab.
    - Hinweis klein darunter: *Beispiel. Es wird nichts gesendet.*
@@ -64,13 +64,13 @@ Becken und kommt als fertiger Termin unten an.
 ## Lebt (auch im Stillstand)
 
 - Wasser fällt, glitzert und zieht Ringe.
-- Herr Huber atmet, die „z" steigen alle paar Sekunden.
-- Ein Schmetterling setzt sich ab und zu auf die Schlafmaske [A].
+- Der Gelehrte atmet, die „z" steigen alle paar Sekunden.
+- Ein Schmetterling setzt sich ab und zu auf die Schlafmaske [F].
 
 ## Maus und Finger
 
 - Maus: leichte Tiefe der Ebenen wie im Hero; über dem Wasser zieht die Maus feine Ringe.
-- Klick auf Herrn Huber: Er dreht sich murrend auf die andere Seite (Zwei-Bild-Wechsel) [A].
+- Klick auf den Gelehrten: Er dreht sich murrend auf die andere Seite (Zwei-Bild-Wechsel) [F].
 - Tastatur: „Absenden" ist ein echter Knopf; die Abfolge läuft auch per Enter.
 
 ## Ruhige Variante (`prefers-reduced-motion`)
@@ -94,20 +94,86 @@ Ablage `marke/assets/erster-wurf/`.
 |---|---|---|---|
 | 1 | `k2-garten-v1.jpg` | 16:9 | Barockgarten, Mitte frei |
 | 2 | `k2-kaskade-v1.jpg` | 3:4 | Kaskade, 4 Becken, kein fallendes Wasser, grauer Grund |
-| 3 | `k2-huber-v1.jpg` | 1:1 | Herr Huber schläft im Liegestuhl, grauer Grund |
-| 4 | `k2-huber-wach-v1.jpg` | 1:1 | Bearbeitung von 3: wach, nass, Maske verrutscht |
+| 3 | `k2-gelehrter-v1.jpg` | 1:1 | Gelehrter schläft im Liegestuhl, grauer Grund |
+| 4 | `k2-gelehrter-wach-v1.jpg` | 1:1 | Bearbeitung von 3: wach, nass, Maske verrutscht |
 | 5 | `k2-brunnen-v1.jpg` | 3:4 | Putto-Scherzbrunnen auf Sockel, grauer Grund |
-| 6 | `k2-vordergrund-v1.jpg` | 16:9 | Heckenrand und Rosen unten, Rest grau (optional) |
+| 6 | `k2-gelehrter-dreht-v1.jpg` | 1:1 | Bearbeitung von 3: murrend auf die andere Seite gedreht |
+| 7 | `k2-vordergrund-v1.jpg` | 16:9 | Heckenrand und Rosen unten, Rest grau (optional) |
 
-Die genauen Prompts kommen nach der Abnahme dieses Drehbuchs.
+### Prompts (so in Gemini einfügen)
+
+Für alle Bilder als Stilbezug `amor-v1.jpg` anhängen und dazuschreiben: *"Same painting style, palette
+and light as the attached image."* Ausnahme: Bearbeitungen (4 und 6) hängen nur ihr Ausgangsbild an.
+
+**1 · Garten** → `k2-garten-v1.jpg` (16:9)
+```
+A Baroque pleasure garden seen from a slightly elevated viewpoint, painted like an 18th-century Venetian
+ceiling fresco in soft luminous oil (Tiepolo light from the top left). Pastel palette only: sky blue
+#CFE3F7, lilac #D9CCF5, peach #FFD6C2, cream #FBF3EA, pale gold #E3C58A. Clipped hedge arches, pale
+gravel paths, a small round pavilion in the distance, a soft sky with fluffy pastel clouds. The CENTER
+of the image is an empty open lawn terrace (space for a fountain to be added later). No people, no
+fountain, no water, no text, no frame, no watermark. Never brown, never dark.
+```
+
+**2 · Kaskade** → `k2-kaskade-v1.jpg` (3:4)
+```
+A Baroque garden water cascade carved from pastel marble (cream with lilac and peach veining, pale gold
+ornaments), shown frontally: exactly FOUR shallow basins stacked as steps, each basin slightly wider
+than the one above, with clear empty gaps between the basins. Each basin is filled with calm still
+water, but there is NO falling water between the basins (the waterfalls will be added digitally).
+Soft luminous oil painting like a Tiepolo fresco, light from the top left. The whole cascade fully
+visible, isolated on a flat plain light-grey background #EDEDED, no shadow on the background, no
+plants, no people, no text, no watermark.
+```
+
+**3 · Gelehrter schläft** → `k2-gelehrter-v1.jpg` (1:1)
+```
+A plump Baroque scholar in an 18th-century powdered wig and a lilac silk coat, fast asleep in a modern
+striped deckchair (pastel peach and cream stripes), head tilted back, mouth slightly open, a book
+sliding off his lap. On his forehead sits a smooth glossy PINK sleep mask (#FF9DC8), rendered crisp and
+flat like a vector graphic, contrasting with the oil painting. Cheeky, warm, never grotesque. Soft
+luminous oil painting like a Tiepolo fresco, light from the top left. Whole figure and deckchair
+visible, isolated on a flat plain light-grey background #EDEDED, no shadow on the background, no text,
+no watermark.
+```
+
+**4 · Gelehrter wach und nass** → `k2-gelehrter-wach-v1.jpg` (Bild 3 anhängen)
+```
+Edit the attached image. Keep the same scholar, deckchair, colours, framing, size and position, same
+flat light-grey background. Change only: he is startled awake, eyes wide open, face and wig dripping
+wet with a few water droplets flying, the pink sleep mask has slipped down over one ear.
+```
+
+**5 · Scherzbrunnen** → `k2-brunnen-v1.jpg` (3:4)
+```
+A small Baroque garden fountain statue: a chubby stone putto made of pale cream marble on a short
+ornamented pedestal with pale gold details, cheeks puffed and lips pursed as if about to spit water to
+the LEFT side. Mischievous grin. Soft luminous oil painting like a Tiepolo fresco, light from the top
+left. No water visible (added digitally). Whole statue visible, isolated on a flat plain light-grey
+background #EDEDED, no shadow on the background, no text, no watermark.
+```
+
+**6 · Gelehrter dreht sich murrend um** → `k2-gelehrter-dreht-v1.jpg` (Bild 3 anhängen)
+```
+Edit the attached image. Keep the same scholar, deckchair, colours, framing, size and position, same
+flat light-grey background. Change only: still asleep, he has grumpily turned onto his side towards the
+right, eyebrows frowning, lips pouting, one hand pulling the pink sleep mask down over his eyes.
+```
+
+**7 · Vordergrund (optional)** → `k2-vordergrund-v1.jpg` (16:9)
+```
+Only the bottom edge of the image: a soft, slightly blurred band of clipped pastel hedges and pale pink
+roses, painted like a Tiepolo fresco in soft oil, light from the top left. Everything above the hedge
+band is a flat plain light-grey background #EDEDED. No people, no text, no watermark.
+```
 
 ## Aufwand [A]
 
 - Mattia: Bilder ca. 45 min, Abnahme ca. 15 min
 - Claude: Freistellen und Bau ca. 4 h (Wasser-Shader ca. 1 h davon)
 
-## Offen [?] (Mattia)
+## Entscheide [F] (Mattia, 21.10.2026, Nachtrag)
 
-1. Ist der Schläfer **Herr Huber von Himmelblau** (roter Faden) oder ein namenloser Gelehrter?
-2. Schmetterling und „Huber dreht sich murrend um": drin lassen oder weg?
-3. Passt die Beispiel-Anfrage (Boiler tropft, Kriens)?
+1. Schläfer: **namenloser Gelehrter** (nicht Herr Huber).
+2. Schmetterling und „dreht sich murrend um": **drin**.
+3. Beispiel-Anfrage „Boiler tropft, Kriens": **passt**.
