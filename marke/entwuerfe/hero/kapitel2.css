@@ -6,34 +6,58 @@
   content: ""; position: absolute; inset: 0 0 auto 0; height: 18vh; z-index: 12; pointer-events: none;
   background: linear-gradient(var(--color-bg), rgb(251 243 234 / 0));
 }
-.k2-fliegt .k2-garten, .k2-fliegt .k2-kaskade, .k2-fliegt .k2-gelehrter, .k2-fliegt .k2-brunnen, .k2-fliegt .k2-vorne { will-change: transform; }
+.k2-fliegt .k2-gartenhuelle, .k2-fliegt .k2-gelehrter, .k2-fliegt .k2-brunnen, .k2-fliegt .k2-vorne { will-change: transform; }
 
-.k2-garten { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transform-origin: 50% 62%; }
+.k2-gartenhuelle { position: absolute; inset: 0; transform-origin: 50% 62%; }
+.k2-garten { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.k2-leben { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
 
-/* Kaskade: 5 Stufen, Lage und Abstand setzt kapitel2.js */
-.k2-kaskade { position: absolute; left: 0; top: 0; z-index: 3; transform-origin: 0 0; }
-.k2-stufe { position: absolute; left: 0; width: 100%; height: auto; display: block; pointer-events: none; }
-.k2-wasser { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 2; }
-.k2-kugel {
-  position: absolute; left: 0; top: 0; width: 7%; aspect-ratio: 1; border-radius: 50%; z-index: 3; opacity: 0; pointer-events: none;
-  background: radial-gradient(circle at 35% 30%, #fff 0 8%, #FFC3DE 22%, var(--color-accent) 58%, #E57FAE 100%);
-  box-shadow: 0 0 0 2px rgb(255 255 255 / .55), 0 8px 18px -6px rgb(229 127 174 / .8);
+/* Kaskade in 3D (kaskade3d.js) und Fäden vom Ablauf zu den Becken */
+.k2-3d { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 4; pointer-events: none; }
+.k2-faeden { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 12; pointer-events: none; overflow: visible; }
+.k2-faeden path { fill: none; stroke: var(--color-gold); stroke-width: 1.6; opacity: .25; transition: opacity .3s var(--ease-ui); }
+.k2-faeden path.aktiv { opacity: 1; stroke-width: 2; }
+.k2-faeden circle { fill: var(--color-gold); }
+
+/* Ablauf-Panel rechts: Anfrage + fünf Schritte, gut lesbar auf Creme */
+.k2-ablauf {
+  position: absolute; right: 4vw; top: 50%; z-index: 13; width: min(380px, 30vw); max-height: 88vh; overflow: auto;
+  padding: 20px 22px 18px; border-radius: 18px; background: rgb(251 243 234 / .96);
+  box-shadow: 0 0 0 1.5px var(--color-gold), 0 0 0 6px rgb(251 243 234 / .96), 0 0 0 7.5px var(--color-gold), 0 30px 60px -30px rgb(35 27 58 / .55);
+  opacity: 0; translate: 6vw -50%; transition: opacity .5s var(--ease-farbe), translate .7s var(--ease-farbe);
 }
-
-/* Schilder an den Becken: goldene Linie, Titel, Ergebnis */
-.k2-schilder { position: absolute; inset: 0; z-index: 6; pointer-events: none; }
-.k2-schild { position: absolute; left: 0; top: 0; display: grid; gap: 4px; max-width: 30ch; opacity: 0; }
-.k2-linie { position: absolute; right: 100%; top: .7em; width: 4vw; height: 1.5px; margin-right: 10px; background: var(--color-gold); transform-origin: 100% 50%; }
-.k2-schild-titel { margin: 0; font-family: var(--font-hand); font-style: italic; font-size: clamp(18px, 1.6vw, 26px); color: var(--color-text); }
-.k2-ergebnis {
-  margin: 0; display: grid; gap: 2px; padding: 8px 12px; border-radius: 10px; background: rgb(255 255 255 / .82);
-  box-shadow: 0 0 0 1px rgb(227 197 138 / .7), 0 10px 22px -14px rgb(35 27 58 / .45);
-  font-size: 14px; line-height: 1.35; opacity: 0; translate: 0 8px; scale: .96;
-  transition: opacity .3s var(--ease-ui), translate .45s var(--ease-pointe), scale .45s var(--ease-pointe);
+.k2-ablauf.da { opacity: 1; translate: 0 -50%; }
+.k2-ablauf-kopf { margin: 0 0 12px; font-family: var(--font-hand); font-style: italic; font-size: 24px; line-height: 1.1; }
+.k2-anfrage { padding: 12px 14px; border-radius: 12px; background: #fff; box-shadow: inset 0 0 0 1px rgb(227 197 138 / .7); margin-bottom: 14px; transition: opacity .35s, scale .5s var(--ease-farbe); transform-origin: 30% 80%; }
+.k2-anfrage.rollt { opacity: .35; scale: .97; }
+.k2-anfrage-von { margin: 0 0 4px; font-size: 12px; color: var(--color-text-muted); }
+.k2-anfrage-text { margin: 0 0 10px; font-family: var(--font-hand); font-size: 20px; line-height: 1.2; }
+.k2-anfrage-text span { display: block; margin-top: 3px; font-family: var(--font-system); font-size: 12px; color: var(--color-text-muted); }
+.k2-senden {
+  min-height: 44px; padding: 0 20px; border: 0; border-radius: 99px; background: var(--color-accent); color: var(--color-text);
+  font: 700 15px var(--font-system); box-shadow: var(--outline-button); cursor: pointer; transition: transform .16s var(--ease-ui), filter .2s var(--ease-ui);
 }
+.k2-senden:active { transform: scale(.97); }
+.k2-senden:disabled { opacity: .5; cursor: default; }
+.k2-senden:focus-visible { outline: 2px solid var(--color-text); outline-offset: 3px; }
+@media (hover: hover) and (pointer: fine) { .k2-senden:not(:disabled):hover { filter: brightness(1.05); } }
+.k2-anfrage-hinweis { margin: 8px 0 0; font-size: 12px; color: var(--color-text-muted); }
+.k2-schritte { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+.k2-schritt { display: grid; grid-template-columns: 30px 1fr; gap: 10px; align-items: start; padding: 8px 10px; border-radius: 12px; transition: background-color .3s var(--ease-ui); }
+.k2-nr {
+  width: 30px; height: 30px; border-radius: 50%; display: grid; place-items: center; font-family: var(--font-hand); font-size: 15px;
+  box-shadow: inset 0 0 0 1.5px var(--color-gold); color: var(--color-text); background: var(--color-bg); transition: background-color .3s, box-shadow .3s;
+}
+.k2-schritt-titel { margin: 4px 0 0; font-weight: 700; font-size: 15px; }
+.k2-ergebnis { margin: 0; display: grid; gap: 1px; font-size: 13.5px; line-height: 1.35; max-height: 0; overflow: hidden; opacity: 0; transition: max-height .5s var(--ease-farbe), opacity .35s .1s, margin .3s; }
 .k2-ergebnis span { font-size: 12px; color: var(--color-text-muted); }
-.k2-schild.fertig .k2-ergebnis { opacity: 1; translate: 0 0; scale: 1; }
-.k2-schild[data-i="4"] .k2-ergebnis { background: none; box-shadow: none; padding: 0; font-family: var(--font-hand); font-style: italic; font-size: clamp(18px, 1.6vw, 26px); }
+.k2-schritt.aktiv { background: rgb(255 157 200 / .14); }
+.k2-schritt.aktiv .k2-nr { background: var(--color-accent); box-shadow: 0 0 0 4px rgb(255 157 200 / .3); }
+.k2-schritt.fertig .k2-nr { background: var(--color-gold); }
+.k2-schritt.fertig .k2-ergebnis { max-height: 6em; opacity: 1; margin-top: 4px; }
+.k2-schritt[data-i="4"].fertig .k2-ergebnis { font-family: var(--font-hand); font-style: italic; font-size: 20px; }
+
+
 
 /* Gelehrter, Brunnen, Vordergrund */
 .k2-gelehrter { position: absolute; left: 2vw; bottom: 3vh; width: min(27vw, 52vh); z-index: 7; transform-origin: 0 100%; }
@@ -76,29 +100,8 @@
 }
 .k2-strahl path.spritzt { opacity: .95; }
 
-.k2-vorne { position: absolute; left: -4%; width: 108%; bottom: -2vh; z-index: 10; pointer-events: none; transform-origin: 50% 100%; }
-
-/* Anfrage-Karte „Probier es" */
-.k2-karte {
-  position: absolute; left: 0; top: 0; z-index: 11; width: min(300px, 26vw); padding: 16px 18px; border-radius: 14px;
-  background: var(--color-bg); opacity: 0; pointer-events: none;
-  box-shadow: 0 0 0 1.5px var(--color-gold), 0 0 0 5px var(--color-bg), 0 0 0 6.5px var(--color-gold), 0 22px 40px -22px rgb(35 27 58 / .5);
-  transition: opacity .35s var(--ease-ui), scale .5s var(--ease-farbe), border-radius .5s var(--ease-farbe);
-}
-.k2-karte.da { opacity: 1; pointer-events: auto; }
-.k2-karte.rollt { scale: .08; border-radius: 50%; opacity: 0; pointer-events: none; }
-.k2-karte-kopf { margin: 0 0 6px; font-size: 12px; letter-spacing: .02em; color: var(--color-text-muted); }
-.k2-karte-text { margin: 0 0 12px; font-family: var(--font-hand); font-size: 20px; line-height: 1.25; }
-.k2-karte-text span { display: block; margin-top: 4px; font-family: var(--font-system); font-size: 12px; color: var(--color-text-muted); }
-.k2-senden {
-  min-height: 44px; padding: 0 20px; border: 0; border-radius: 99px; background: var(--color-accent); color: var(--color-text);
-  font: 700 15px var(--font-system); box-shadow: var(--outline-button); cursor: pointer;
-  transition: transform .16s var(--ease-ui), filter .2s var(--ease-ui);
-}
-.k2-senden:active { transform: scale(.97); }
-.k2-senden:focus-visible { outline: 2px solid var(--color-text); outline-offset: 3px; }
-@media (hover: hover) and (pointer: fine) { .k2-senden:hover { filter: brightness(1.05); } }
-.k2-karte-hinweis { margin: 10px 0 0; font-size: 12px; color: var(--color-text-muted); }
+.k2-vorne { position: absolute; left: -4%; width: 108%; bottom: -2vh; z-index: 10; pointer-events: none; transform-origin: 50% 100%; animation: k2-wind 5.5s ease-in-out infinite alternate; }
+@keyframes k2-wind { from { rotate: -.35deg; scale: 1 1; } to { rotate: .35deg; scale: 1.004 1.012; } }
 
 /* Kapitelwort (M1) wie Kapitel I */
 .k2-text { position: absolute; left: 6vw; top: 0; z-index: 13; max-width: 46ch; }
@@ -107,24 +110,31 @@
 /* Papier mit Grafik und Tarot-Karte II */
 .k2-panel { position: relative; z-index: 14; background: var(--color-bg); padding: 12vh 6vw 14vh; }
 .k2-inhalt { display: grid; grid-template-columns: 1.6fr 1fr; gap: 4vw; align-items: center; max-width: 1200px; margin: 0 auto; }
-.k2-grafik { grid-column: 1 / -1; width: 100%; height: auto; overflow: visible; }
-.k2-grafik path { fill: none; stroke: var(--color-chapter-1); stroke-width: 1.6; stroke-dasharray: 1; stroke-dashoffset: 1; transition: stroke-dashoffset 1.6s var(--ease-farbe); }
-.k2-grafik .antwort { stroke: var(--color-gold); stroke-width: 2.2; transition-delay: 1.2s; }
-.k2-grafik.zeigt path { stroke-dashoffset: 0; }
-.k2-grafik .punkt { fill: var(--color-accent); }
-.k2-grafik .quelle { fill: var(--color-chapter-1); stroke: var(--color-text); stroke-width: 1; }
-.k2-grafik .k2-eingang { fill: var(--color-bg); stroke: var(--color-gold); stroke-width: 2.5; }
-.k2-grafik text { font: 600 13px var(--font-system); fill: var(--color-text); }
+.k2-plan { grid-column: 1 / -1; margin: 0; }
+.k2-grafik { width: 100%; height: auto; display: block; overflow: visible; }
+.k2-grafik .gp-titel { font: italic 26px var(--font-hand); fill: var(--color-text); }
+.k2-grafik .gp-name { font: 600 14px var(--font-system); fill: var(--color-text); }
+.k2-grafik .gp-klein { font: italic 14px var(--font-hand); fill: #8C7650; }
+.k2-grafik .gp-weg { fill: none; stroke: #EADBC4; stroke-width: 7; stroke-linecap: round; stroke-dasharray: 1; stroke-dashoffset: 1; transition: stroke-dashoffset 1.8s var(--ease-farbe); }
+.k2-grafik .gp-allee { fill: none; stroke: #E3C58A; stroke-width: 9; stroke-linecap: round; stroke-linejoin: round; opacity: .85; stroke-dasharray: 1; stroke-dashoffset: 1; transition: stroke-dashoffset 1.4s var(--ease-farbe) 1s; }
+.k2-grafik.zeigt .gp-weg, .k2-grafik.zeigt .gp-allee { stroke-dashoffset: 0; }
+.k2-grafik .gp-baum { fill: #C5D8BE; stroke: #9DB396; stroke-width: .8; opacity: 0; transition: opacity .6s 1.6s; }
+.k2-grafik.zeigt .gp-baum { opacity: 1; }
+.k2-grafik .gp-ring { fill: none; stroke: #fff; stroke-width: 1.5; transform-box: fill-box; transform-origin: center; animation: gp-ring 3.3s ease-out infinite; }
+@keyframes gp-ring { from { scale: 1; opacity: .9; } to { scale: 4.4; opacity: 0; } }
+.k2-grafik .gp-laeufer { opacity: 0; transition: opacity .6s 2s; }
+.k2-grafik.zeigt .gp-laeufer { opacity: 1; }
 .k2-panel-text h3 { margin: 0 0 12px; font-size: clamp(32px, 4vw, 60px); letter-spacing: var(--tracking-headline); }
 .k1-karte small { font-size: 12px; color: var(--color-text-muted); margin: -6px 0 8px; }
 
 @media (prefers-reduced-motion: reduce) {
   .k2-bahn { height: auto; }
   .k2-buehne { position: relative; }
-  .k2-z, .k2-falter, .k2-gelehrter .haupt { animation: none !important; }
-  .k2-ergebnis, .k2-karte { transition-duration: .2s; }
+  .k2-z, .k2-falter, .k2-gelehrter .haupt, .k2-grafik .gp-ring { animation: none !important; }
+  .k2-ergebnis, .k2-ablauf { transition-duration: .2s; }
+  .k2-vorne { animation: none; }
 }
 @media (max-width: 720px) {
   .k2-inhalt { grid-template-columns: 1fr; }
-  .k2-karte { width: 70vw; }
+  .k2-ablauf { width: 86vw; right: 7vw; }
 }

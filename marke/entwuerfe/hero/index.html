@@ -218,14 +218,13 @@
 <section class="k2" id="kapitel-2" aria-labelledby="k2-titel">
   <div class="k2-bahn" id="k2Bahn">
   <div class="k2-buehne" id="k2Buehne">
-    <img class="k2-garten" id="k2Garten" src="bilder/k2-garten-1600.webp" srcset="bilder/k2-garten-800.webp 800w, bilder/k2-garten-1600.webp 1600w, bilder/k2-garten.webp 2400w" sizes="100vw" alt="" aria-hidden="true" loading="lazy" decoding="async">
-
-    <div class="k2-kaskade" id="k2Kaskade" aria-hidden="true">
-      <img class="k2-stufe" data-i="0" src="bilder/k2-stufe1.webp" alt="" decoding="async"><img class="k2-stufe" data-i="1" src="bilder/k2-stufe2.webp" alt="" decoding="async"><img class="k2-stufe" data-i="2" src="bilder/k2-stufe3.webp" alt="" decoding="async"><img class="k2-stufe" data-i="3" src="bilder/k2-stufe4.webp" alt="" decoding="async"><img class="k2-stufe" data-i="4" src="bilder/k2-stufe5.webp" alt="" decoding="async">
-      <canvas class="k2-wasser" id="k2Wasser"></canvas>
-      <span class="k2-kugel" id="k2Kugel"></span>
+    <div class="k2-gartenhuelle" id="k2Garten">
+    <img class="k2-garten" src="bilder/k2-garten-1600.webp" srcset="bilder/k2-garten-800.webp 800w, bilder/k2-garten-1600.webp 1600w, bilder/k2-garten.webp 2400w" sizes="100vw" alt="" aria-hidden="true" loading="lazy" decoding="async">
+      <canvas class="k2-leben" id="k2Leben" aria-hidden="true"></canvas>
     </div>
-    <div class="k2-schilder" id="k2Schilder" aria-live="polite"><div class="k2-schild" data-i="0"><i class="k2-linie"></i><p class="k2-schild-titel">Anfrage kommt an</p><p class="k2-ergebnis"><b>E-Mail erkannt</b><span>Frau Meier · heute 21:47</span></p></div><div class="k2-schild" data-i="1"><i class="k2-linie"></i><p class="k2-schild-titel">wird sortiert</p><p class="k2-ergebnis"><b>Notfall · Sanitär · Kriens</b><span>Priorität hoch</span></p></div><div class="k2-schild" data-i="2"><i class="k2-linie"></i><p class="k2-schild-titel">Antwort geht raus</p><p class="k2-ergebnis"><b>„Guten Tag Frau Meier, wir kommen morgen um 8 Uhr.“</b><span>automatisch formuliert, von Ihnen freigegeben</span></p></div><div class="k2-schild" data-i="3"><i class="k2-linie"></i><p class="k2-schild-titel">Termin steht</p><p class="k2-ergebnis"><b>Do 08:00 · Meier, Kriens · Boiler</b><span>im Kalender eingetragen</span></p></div><div class="k2-schild" data-i="4"><i class="k2-linie"></i><p class="k2-schild-titel">Und Sie?</p><p class="k2-ergebnis"><b>… haben geschlafen.</b></p></div></div>
+
+    <canvas class="k2-3d" id="k2Drei" aria-hidden="true"></canvas>
+    <svg class="k2-faeden" id="k2Faeden" aria-hidden="true"></svg>
 
     <div class="k2-gelehrter" id="k2Gelehrter" aria-hidden="true">
       <img class="haupt" src="bilder/k2-gelehrter-550.webp" srcset="bilder/k2-gelehrter-550.webp 550w, bilder/k2-gelehrter.webp 1100w" sizes="26vw" alt="" loading="lazy" decoding="async">
@@ -244,12 +243,16 @@
 
     <img class="k2-vorne" id="k2Vorne" src="bilder/k2-vordergrund-1600.webp" srcset="bilder/k2-vordergrund-1600.webp 1600w, bilder/k2-vordergrund.webp 2400w" sizes="100vw" alt="" aria-hidden="true" loading="lazy" decoding="async">
 
-    <form class="k2-karte" id="k2Karte" onsubmit="return false">
-      <p class="k2-karte-kopf">Anfrage an Himmelblau Haustechnik</p>
-      <p class="k2-karte-text">„Boiler tropft in der Küche, Kriens. Morgen möglich?“<span>Frau Meier</span></p>
-      <button class="k2-senden" id="k2Senden" type="submit">Absenden</button>
-      <p class="k2-karte-hinweis">Beispiel. Es wird nichts gesendet.</p>
-    </form>
+    <aside class="k2-ablauf" id="k2Ablauf" aria-labelledby="k2AblaufTitel">
+      <p class="k2-ablauf-kopf" id="k2AblaufTitel">So läuft eine Anfrage durch</p>
+      <form class="k2-anfrage" id="k2Karte" onsubmit="return false">
+        <p class="k2-anfrage-von">Anfrage an Himmelblau Haustechnik</p>
+        <p class="k2-anfrage-text">„Boiler tropft in der Küche, Kriens. Morgen möglich?“<span>Frau Meier</span></p>
+        <button class="k2-senden" id="k2Senden" type="submit">Absenden</button>
+        <p class="k2-anfrage-hinweis">Beispiel. Es wird nichts gesendet.</p>
+      </form>
+      <ol class="k2-schritte" aria-live="polite"><li class="k2-schritt" data-i="0"><span class="k2-nr">I</span><div><p class="k2-schritt-titel">Anfrage kommt an</p><p class="k2-ergebnis"><b>E-Mail erkannt</b><span>Frau Meier · heute 21:47</span></p></div></li><li class="k2-schritt" data-i="1"><span class="k2-nr">II</span><div><p class="k2-schritt-titel">wird sortiert</p><p class="k2-ergebnis"><b>Notfall · Sanitär · Kriens</b><span>Priorität hoch</span></p></div></li><li class="k2-schritt" data-i="2"><span class="k2-nr">III</span><div><p class="k2-schritt-titel">Antwort geht raus</p><p class="k2-ergebnis"><b>„Guten Tag Frau Meier, wir kommen morgen um 8 Uhr.“</b><span>automatisch formuliert, von Ihnen freigegeben</span></p></div></li><li class="k2-schritt" data-i="3"><span class="k2-nr">IV</span><div><p class="k2-schritt-titel">Termin steht</p><p class="k2-ergebnis"><b>Do 08:00 · Meier, Kriens · Boiler</b><span>im Kalender eingetragen</span></p></div></li><li class="k2-schritt" data-i="4"><span class="k2-nr">V</span><div><p class="k2-schritt-titel">Und Sie?</p><p class="k2-ergebnis"><b>… haben geschlafen.</b></p></div></li></ol>
+    </aside>
 
     <div class="k2-text" id="k2Text">
       <p class="k1-kicker"><span class="nr">II</span> Kapitel</p>
@@ -261,12 +264,11 @@
 
   <div class="k2-panel">
     <div class="k2-inhalt">
-      <svg class="k2-grafik" id="k2Grafik" viewBox="0 0 900 360" aria-labelledby="k2GrafikTitel" role="img">
-        <title id="k2GrafikTitel">Viele Anfragen aus E-Mail, Formular und Telefon laufen in einen Eingang und kommen geordnet als Antworten heraus.</title>
-        <g class="k2-quellen"></g>
-        <circle class="k2-eingang" cx="450" cy="180" r="26"/>
-        <g class="k2-antworten"></g>
-      </svg>
+      <figure class="k2-plan">
+        <svg class="k2-grafik" id="k2Grafik" viewBox="0 0 1000 540" role="img" aria-labelledby="k2GrafikTitel">
+          <title id="k2GrafikTitel">Gartenplan: Anfragen aus E-Mail, Formular und Telefon laufen über viele Wege zum Brunnen in der Mitte und gehen als geordnete Alleen zu Antwort, Termin, Offerte, Rückruf und Rechnung.</title>
+        </svg>
+      </figure>
       <div class="k2-panel-text">
         <h3>Was Ihnen abgenommen wird</h3>
         <p class="k1-hinweis">[Platzhalter: Was automatisiert wird und wo die Grenzen sind, folgt aus dem Textinterview.]</p>
@@ -291,5 +293,6 @@
 <script type="module" src="kapitel1.js"></script>
 <script type="module" src="wolkenflug.js"></script>
 <script type="module" src="kapitel2.js"></script>
+<script type="module" src="gartenplan.js"></script>
 </body>
 </html>
