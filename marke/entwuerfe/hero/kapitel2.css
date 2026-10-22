@@ -1,6 +1,6 @@
 /* Kapitel II Automation · Die Wasserspiele · Drehbuch website/drehbuch/12-kapitel-2.md */
 .k2 { position: relative; background: var(--color-bg); }
-.k2-bahn { position: relative; height: 620vh; }
+.k2-bahn { position: relative; height: 760vh; }
 .k2-buehne { position: sticky; top: 0; height: 100vh; height: 100svh; overflow: hidden; background: var(--color-chapter-2); }
 .k2-buehne::before {
   content: ""; position: absolute; inset: 0 0 auto 0; height: 18vh; z-index: 12; pointer-events: none;
@@ -8,12 +8,15 @@
 }
 .k2-fliegt .k2-gartenhuelle, .k2-fliegt .k2-gelehrter, .k2-fliegt .k2-brunnen, .k2-fliegt .k2-vorne { will-change: transform; }
 
-.k2-gartenhuelle { position: absolute; inset: 0; transform-origin: 50% 62%; }
+.k2-himmel { position: absolute; inset: -6%; width: 112%; height: 112%; object-fit: cover; }
+.k2-gartenhuelle { position: absolute; inset: -6%; transform-origin: 51.7% 63.6%; }
+.k2-ebene { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.k2-flug { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 12; pointer-events: none; }
 .k2-garten { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 .k2-abend { opacity: 0; }
 /* Szene 2: Blick nach oben durch die Rosen-Pergola, dreht langsam mit */
 .k2-pergola { position: absolute; inset: -12%; width: 124%; height: 124%; object-fit: cover; z-index: 1; opacity: 0; pointer-events: none; }
-.k2-leben { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+.k2-leben { position: absolute; z-index: 1; inset: 0; width: 100%; height: 100%; pointer-events: none; }
 
 /* Kaskade in 3D (kaskade3d.js) und Fäden vom Ablauf zu den Becken */
 .k2-3d { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 4; pointer-events: none; }

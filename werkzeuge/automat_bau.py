@@ -21,7 +21,7 @@ def mat(name, rgb, metal=0.0, rough=0.4):
     b.inputs['Base Color'].default_value = (*rgb, 1); b.inputs['Metallic'].default_value = metal; b.inputs['Roughness'].default_value = rough
     return m
 MAR = mat_marmor()
-GOLD = mat('Gold', (0.95, 0.70, 0.32), 1.0, 0.2)
+GOLD = mat('Gold', (0.98, 0.68, 0.26), 1.0, 0.18)
 ROSA = mat('Rosa', (1.0, 0.48, 0.70), 0.0, 0.22)
 
 def neu(name, m):
@@ -59,7 +59,24 @@ for i in range(4):
 for o in s: anwenden(o)
 sock = vereinen(s, 'sockel')
 bpy.ops.mesh.primitive_torus_add(major_radius=0.57, minor_radius=0.014, location=(0, 0, 0.36)); weich(neu('sockel_band', GOLD))
-teile['sockel'] = [sock, bpy.data.objects['sockel_band']]
+orn = [bpy.data.objects['sockel_band']]
+for i in range(8):
+    a = i * math.pi / 4 + math.pi / 8
+    # Muschel-Fächer auf jeder Sockelseite
+    for k in range(7):
+        w = (k / 6) * math.pi
+        bpy.ops.mesh.primitive_cylinder_add(vertices=6, radius=0.007, depth=0.075, location=(0, 0, 0))
+        o = neu('rippe_m', GOLD)
+        lx, lz = math.cos(w) * 0.035, math.sin(w) * 0.035 + 0.22
+        o.location = (math.cos(a) * 0.57 + math.cos(a + math.pi / 2) * lx, math.sin(a) * 0.57 + math.sin(a + math.pi / 2) * lx, lz)
+        o.rotation_euler = (0, w - math.pi / 2, a + math.pi / 2)
+        o.rotation_mode = 'XYZ'
+        anwenden(o); orn.append(o)
+    bpy.ops.mesh.primitive_uv_sphere_add(radius=0.014, location=(math.cos(a) * 0.575, math.sin(a) * 0.575, 0.215)); orn.append(anwenden(neu('perle', GOLD)))
+    # Goldvolute an den Kanten
+    bpy.ops.mesh.primitive_torus_add(major_radius=0.035, minor_radius=0.008, location=(math.cos(a - math.pi / 8) * 0.6, math.sin(a - math.pi / 8) * 0.6, 0.3), rotation=(math.pi / 2, 0, a - math.pi / 8 + math.pi / 2))
+    orn.append(anwenden(weich(neu('volute', GOLD))))
+teile['sockel'] = [sock, vereinen(orn, 'sockel_gold')]
 
 # ---------- Gehäuse: 8 Säulen, Ringe unten und oben ----------
 g = []
@@ -129,9 +146,9 @@ def zahnrad(name, r, zaehne, dicke, ort, achse='y'):
     nabe = neu(name + '_nabe', ROSA)
     for oo in (o, nabe): anwenden(oo)
     return [o, nabe]
-teile['zahnrad1'] = zahnrad('zahnrad1', 0.24, 24, 0.035, (0, -0.02, 0.98))
-teile['zahnrad2'] = zahnrad('zahnrad2', 0.15, 16, 0.035, (0.31, -0.02, 0.86))
-teile['zahnrad3'] = zahnrad('zahnrad3', 0.11, 12, 0.035, (-0.29, -0.02, 1.07))
+teile['zahnrad1'] = zahnrad('zahnrad1', 0.27, 28, 0.04, (0, -0.22, 0.95))
+teile['zahnrad2'] = zahnrad('zahnrad2', 0.17, 18, 0.04, (0.33, -0.2, 0.8))
+teile['zahnrad3'] = zahnrad('zahnrad3', 0.13, 14, 0.04, (-0.31, -0.2, 1.08))
 
 # ---------- Feder (Spirale, liegend) ----------
 kurve = bpy.data.curves.new('feder', 'CURVE'); kurve.dimensions = '3D'

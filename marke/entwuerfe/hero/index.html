@@ -218,9 +218,10 @@
 <section class="k2" id="kapitel-2" aria-labelledby="k2-titel">
   <div class="k2-bahn" id="k2Bahn">
   <div class="k2-buehne" id="k2Buehne">
+    <img class="k2-himmel" id="k2Himmel" src="bilder/k2-garten-1600.webp" srcset="bilder/k2-garten-800.webp 800w, bilder/k2-garten-1600.webp 1600w, bilder/k2-garten.webp 2400w" sizes="100vw" alt="" aria-hidden="true" loading="lazy" decoding="async">
     <div class="k2-gartenhuelle" id="k2Garten">
-    <img class="k2-garten" src="bilder/k2-garten-1600.webp" srcset="bilder/k2-garten-800.webp 800w, bilder/k2-garten-1600.webp 1600w, bilder/k2-garten.webp 2400w" sizes="100vw" alt="" aria-hidden="true" loading="lazy" decoding="async">
-      <img class="k2-garten k2-abend" id="k2Abend" src="bilder/k2-abend-1600.webp" srcset="bilder/k2-abend-800.webp 800w, bilder/k2-abend-1600.webp 1600w, bilder/k2-abend.webp 2400w" sizes="100vw" alt="" aria-hidden="true" loading="lazy" decoding="async">
+      <img class="k2-ebene" src="bilder/k2-garten-ebene-1600.webp" srcset="bilder/k2-garten-ebene-1600.webp 1600w, bilder/k2-garten-ebene.webp 2400w" sizes="100vw" alt="" aria-hidden="true" loading="lazy" decoding="async">
+      <img class="k2-ebene k2-abend" id="k2Abend" src="bilder/k2-abend-1600.webp" srcset="bilder/k2-abend-800.webp 800w, bilder/k2-abend-1600.webp 1600w, bilder/k2-abend.webp 2400w" sizes="100vw" alt="" aria-hidden="true" loading="lazy" decoding="async">
       <canvas class="k2-leben" id="k2Leben" aria-hidden="true"></canvas>
     </div>
     <img class="k2-pergola" id="k2Pergola" src="bilder/k2-pergola-1600.webp" srcset="bilder/k2-pergola-800.webp 800w, bilder/k2-pergola-1600.webp 1600w, bilder/k2-pergola.webp 2400w" sizes="100vw" alt="" aria-hidden="true" loading="lazy" decoding="async">
@@ -247,14 +248,15 @@
 
     <aside class="k2-ablauf" id="k2Ablauf" aria-labelledby="k2AblaufTitel">
       <p class="k2-ablauf-kopf" id="k2AblaufTitel">So läuft eine Anfrage durch</p>
-      <form class="k2-anfrage" id="k2Karte" onsubmit="return false">
-        <p class="k2-anfrage-von">Anfrage an Himmelblau Haustechnik</p>
+      <div class="k2-anfrage" id="k2Karte">
+        <p class="k2-anfrage-von">Anfrage an Himmelblau Haustechnik · 21:47</p>
         <p class="k2-anfrage-text">„Boiler tropft in der Küche, Kriens. Morgen möglich?“<span>Frau Meier</span></p>
-        <button class="k2-senden" id="k2Senden" type="submit">Absenden</button>
-        <p class="k2-anfrage-hinweis">Beispiel. Es wird nichts gesendet.</p>
-      </form>
+        <p class="k2-anfrage-hinweis">Beispiel. Scrollen Sie, der Automat erledigt den Rest.</p>
+      </div>
       <ol class="k2-schritte" aria-live="polite"><li class="k2-schritt" data-i="0"><span class="k2-nr">I</span><div><p class="k2-schritt-titel">Anfrage kommt an</p><p class="k2-ergebnis"><b>E-Mail erkannt</b><span>Frau Meier · heute 21:47</span></p></div></li><li class="k2-schritt" data-i="1"><span class="k2-nr">II</span><div><p class="k2-schritt-titel">wird sortiert</p><p class="k2-ergebnis"><b>Notfall · Sanitär · Kriens</b><span>Priorität hoch</span></p></div></li><li class="k2-schritt" data-i="2"><span class="k2-nr">III</span><div><p class="k2-schritt-titel">Antwort geht raus</p><p class="k2-ergebnis"><b>„Guten Tag Frau Meier, wir kommen morgen um 8 Uhr.“</b><span>automatisch formuliert, von Ihnen freigegeben</span></p></div></li><li class="k2-schritt" data-i="3"><span class="k2-nr">IV</span><div><p class="k2-schritt-titel">Termin steht</p><p class="k2-ergebnis"><b>Do 08:00 · Meier, Kriens · Boiler</b><span>im Kalender eingetragen</span></p></div></li><li class="k2-schritt" data-i="4"><span class="k2-nr">V</span><div><p class="k2-schritt-titel">Und Sie?</p><p class="k2-ergebnis"><b>… haben geschlafen.</b></p></div></li></ol>
     </aside>
+
+    <canvas class="k2-flug" id="k2Flug" aria-hidden="true"></canvas>
 
     <div class="k2-text" id="k2Text">
       <p class="k1-kicker"><span class="nr">II</span> Kapitel</p>

@@ -31,7 +31,7 @@ export function kaskade3d(canvas) {
   renderer.setPixelRatio(Math.min(devicePixelRatio || 1, 1.75));
   renderer.outputColorSpace = THREE.SRGBColorSpace;
   renderer.toneMapping = THREE.ACESFilmicToneMapping;
-  renderer.toneMappingExposure = 0.85;
+  renderer.toneMappingExposure = 0.8;
 
   const szene = new THREE.Scene();
   const kamera = new THREE.PerspectiveCamera(30, 1, 0.05, 60);
@@ -70,7 +70,7 @@ export function kaskade3d(canvas) {
         if (!o.isMesh) return;
         o.material = o.material.clone();
         if (o.material.metalness > 0.5) { o.material.envMapIntensity = 1.6; o.material.roughness = 0.2; o.material.color.setRGB(0.95, 0.66, 0.26); }
-        else { o.material.envMapIntensity = 0.35; if (o.material.map) o.material.color.setRGB(1.0, 0.94, 0.95); }
+        else { o.material.envMapIntensity = 0.25; o.material.roughness = 0.55; if (o.material.map) o.material.color.setRGB(0.84, 0.72, 0.86); }
         if (o.material.emissive) leuchten[g.name].push(o.material);
       });
       automat.add(g);
@@ -84,6 +84,29 @@ export function kaskade3d(canvas) {
   const funken = new THREE.Points(fGeo, new THREE.PointsMaterial({ color: 0xffe7b0, size: 0.03, transparent: true, opacity: 0, depthWrite: false, blending: THREE.AdditiveBlending }));
   automat.add(funken);
   const fDaten = Array.from({ length: ANZ }, () => ({ w: Math.random() * 6.28, r: 0.15 + Math.random() * 0.25, h: (Math.random() - 0.5) * 0.4, v: 0.5 + Math.random() }));
+
+  function karteTextur(zeilen, farbe) {
+    const c = document.createElement('canvas'); c.width = 512; c.height = 340;
+    const x = c.getContext('2d');
+    x.fillStyle = '#FBF3EA'; x.fillRect(0, 0, 512, 340);
+    x.strokeStyle = '#E3C58A'; x.lineWidth = 10; x.strokeRect(14, 14, 484, 312);
+    x.lineWidth = 3; x.strokeRect(30, 30, 452, 280);
+    x.fillStyle = farbe; x.textAlign = 'center';
+    x.font = 'italic 46px Georgia, serif'; x.fillText(zeilen[0], 256, 130);
+    x.font = '600 34px system-ui, sans-serif'; x.fillStyle = '#231B3A';
+    zeilen.slice(1).forEach((z, i) => x.fillText(z, 256, 200 + i * 48));
+    const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; t.anisotropy = 4;
+    return t;
+  }
+  function karte(zeilen, farbe) {
+    const m = new THREE.Mesh(new THREE.PlaneGeometry(0.42, 0.28), new THREE.MeshBasicMaterial({ map: karteTextur(zeilen, farbe), transparent: true, side: THREE.DoubleSide, toneMapped: false }));
+    m.visible = false;
+    automat.add(m);
+    return m;
+  }
+  const brief = karte(['Anfrage', 'Boiler tropft, Kriens'], '#C2557F');
+  const antwort = karte(['Antwort', 'Morgen um 8 Uhr'], '#8C7650');
+  const kalender = karte(['Do 08:00', 'Meier, Kriens · Boiler'], '#C2557F');
 
   let breite = 1;
   let hoehe = 1;
@@ -108,7 +131,7 @@ export function kaskade3d(canvas) {
   function plumps(i, jetzt) { aktiv = Math.min(i, 3); aktivSeit = jetzt; }
 
   // z: heranfahren, explo: auseinander, dreh: Umdrehungen
-  function bild(z, explo, jetzt, maus, versatzX = 0, _kugel = null, dreh = 0) {
+  function bild(z, explo, jetzt, maus, versatzX = 0, _kugel = null, dreh = 0, auftauchen = 1) {
     const zz = glatt(z);
     const e = glatt(explo);
     for (const [name, g] of Object.entries(teile)) {
@@ -148,10 +171,22 @@ export function kaskade3d(canvas) {
     fGeo.attributes.position.needsUpdate = true;
     funken.material.opacity = aktiv >= 0 ? 0.9 * Math.max(0, 1 - Math.max(0, seit - 1.6)) : 0;
 
+    // Karten: Brief fällt in die Walze (Station 1), Antwort steigt auf (3), Kalender beim Putto (4)
+    const zeig = (m, an, pos, rotY = 0) => { m.visible = an > 0.01; m.material.opacity = an; m.position.copy(pos); m.rotation.set(0, rotY, 0); };
+    const w = teile.walze ? automat.worldToLocal(weltPunkt('walze')) : new THREE.Vector3(0, 0.66, 0);
+    const k = teile.kamm ? automat.worldToLocal(weltPunkt('kamm')) : new THREE.Vector3(0, 0.6, 0);
+    const pu = teile.putto ? automat.worldToLocal(weltPunkt('putto')) : new THREE.Vector3(0, 1.9, 0);
+    const f0 = aktiv === 0 ? Math.min(1, seit / 1.4) : 0;
+    zeig(brief, aktiv === 0 ? 1 - Math.max(0, f0 - 0.8) * 5 : 0, new THREE.Vector3(w.x, w.y + 0.7 - f0 * 0.6, w.z + 0.2), -automat.rotation.y);
+    const f2 = aktiv === 2 ? Math.min(1, seit / 2) : 0;
+    zeig(antwort, aktiv === 2 ? Math.min(1, f2 * 3) : 0, new THREE.Vector3(k.x, k.y + 0.2 + f2 * 0.8, k.z + 0.3), -automat.rotation.y + Math.sin(jetzt * 2) * 0.15);
+    zeig(kalender, aktiv === 3 ? Math.min(1, seit * 1.5) : 0, new THREE.Vector3(pu.x + 0.28, pu.y + 0.05, pu.z + 0.1), -automat.rotation.y);
+    automat.position.y = -2.4 * (1 - glatt(auftauchen));
+
     // Inszenierte Kamera: weit und von unten → nah → zurück und etwas höher für die Explosion
     automat.rotation.y = dreh * Math.PI * 2 + maus.x * 0.12;
-    const dist = lerp(8.5, 4.4, zz) + e * 3.0;
-    const winkel = lerp(0.02, 0.16, zz) + e * 0.1 - maus.y * 0.04;
+    const dist = lerp(9, 5.4, zz) + e * 2.4;
+    const winkel = lerp(0.06, 0.14, zz) + e * 0.08 - maus.y * 0.04;
     kamera.position.set(0, Math.sin(winkel) * dist + 0.9, Math.cos(winkel) * dist);
     kamera.lookAt(0, lerp(1.1, 0.95, zz) + e * 0.25, 0);
     kamera.fov = lerp(34, 30, zz) + e * 2;
