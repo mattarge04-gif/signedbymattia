@@ -1,0 +1,3 @@
+Pruefung 30.09.2026 lokal (echte GPU, 1440x900), nach Wiederherstellung aus dem Laufprotokoll:
+bausteine/demo.html: 0 Konsolenfehler/-warnungen, 11 Scroll-Bilder
+kapitel-wasserspiele/: 0 Konsolenfehler/-warnungen, 24 Scroll-Bilder

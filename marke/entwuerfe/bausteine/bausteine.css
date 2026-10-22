@@ -1,0 +1,181 @@
+/*
+ * Bausteine M1, M7, M9 · ENTWURF · Stand: 30.09.2026
+ * Werte aus marke/tokens.css (vorher einbinden) und website/drehbuch/00-grammatik.md.
+ * Nur transform und opacity werden animiert. Hover nur bei Maus.
+ */
+
+:root {
+  --ease-ui: cubic-bezier(.23, 1, .32, 1);        /* Bedienung */
+  --ease-pointe: cubic-bezier(.34, 1.56, .64, 1); /* Pointe */
+  --ease-farbe: cubic-bezier(.77, 0, .175, 1);    /* Bühne */
+  /* feines Korn, als Hintergrundbild für Papier und Leinwand */
+  --b-korn: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .14 0 0 0 0 .1 0 0 0 0 .23 0 0 0 .55 -.2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ---------- Text erscheint beim ersten Sehen (Grammatik „Text") ---------- */
+.b-erscheint { opacity: 0; transform: translateY(.4em); transition: opacity .5s var(--ease-ui), transform .5s var(--ease-ui); }
+.b-erscheint.ist-sichtbar { opacity: 1; transform: none; }
+html:not(.js) .b-erscheint { opacity: 1; transform: none; }
+
+/* ---------- M1 Kapitel-Auftakt ---------- */
+.b-auftakt {
+  position: relative;
+  min-height: 170vh;
+  overflow: clip;              /* das steigende Wort erzeugt keinen Seiten-Scroll */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 0 clamp(20px, 5vw, 72px) 18vh;
+}
+.b-auftakt__wort {
+  margin: 0;
+  font-family: var(--font-system);
+  font-weight: 800;
+  line-height: .9;
+  letter-spacing: var(--tracking-headline);
+  font-size: clamp(4.5rem, 19vw, 20rem);
+  color: var(--color-text);
+  will-change: transform;
+  text-wrap: balance;
+  overflow-wrap: anywhere;
+  margin-bottom: 38vh;         /* Luft, damit das Wort vor dem Satz durchs Bild zieht */
+}
+.b-auftakt__satz {
+  max-width: 34rem;
+  margin: 0;
+  padding: 22px 26px 24px;
+  font-family: var(--font-hand);
+  font-size: clamp(1.35rem, 2.2vw, 1.75rem);
+  line-height: 1.3;
+  color: var(--color-text);
+  background: color-mix(in srgb, var(--color-bg) 88%, transparent);
+  border-radius: 4px;
+  box-shadow: var(--frame-gold);
+}
+
+/* Schmuck-Initiale (B2): SVG ist Schmuck, der echte Buchstabe bleibt im Text */
+.b-initiale {
+  float: left;
+  position: relative;
+  width: 2.9em;
+  height: 2.9em;
+  margin: .12em .35em 0 0;
+}
+.b-initiale img { display: block; width: 100%; height: 100%; }
+.b-initiale__buchstabe {        /* für Vorlesen, Suche und Kopieren; sichtbar ist das SVG */
+  position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap;
+}
+.b-auftakt__satz .b-initiale { transform: scale(.95); opacity: 0; transition: transform .7s var(--ease-ui), opacity .7s var(--ease-ui); }
+.b-auftakt__satz.ist-sichtbar .b-initiale { transform: none; opacity: 1; }
+
+/* ---------- M7 Gerissenes Papier ---------- */
+.b-papier {
+  position: relative;
+  z-index: 2;
+  background-color: var(--color-bg);
+  background-image: var(--b-korn);
+  color: var(--color-text);
+  padding: clamp(40px, 6vw, 88px) clamp(20px, 5vw, 72px) clamp(64px, 8vw, 120px);
+}
+.b-papier__rand {
+  position: absolute;
+  left: calc(var(--b-kante) * -0.5);
+  bottom: calc(100% - 2px);    /* Kante sitzt auf dem Panel, die Szene bleibt darüber sichtbar */
+  height: calc(var(--b-kante) + 2px);
+  pointer-events: none;
+  will-change: transform;
+}
+.b-papier__kante { display: block; overflow: visible; }
+
+/* ---------- M9 Karte weckt sich (B5: Produkt-UI auf gemaltem Grund) ---------- */
+.b-karten {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+  gap: clamp(16px, 2.4vw, 32px);
+}
+.b-karte {
+  --grund: var(--color-chapter-1);
+  position: relative;
+  display: grid;
+  grid-template-rows: 1fr auto;
+  gap: 18px;
+  min-height: 380px;
+  padding: 22px;
+  border-radius: 6px;
+  color: var(--color-text);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  /* gemalter Pastell-Grund: Korn, Leinwandgewebe, zwei Farbwolken in derselben Farbe */
+  background:
+    var(--b-korn),
+    repeating-linear-gradient(0deg, rgb(255 255 255 / .09) 0 1px, transparent 1px 3px),
+    repeating-linear-gradient(90deg, rgb(35 27 58 / .035) 0 1px, transparent 1px 3px),
+    radial-gradient(110% 80% at 18% 12%, color-mix(in srgb, var(--grund) 55%, white), transparent 62%),
+    radial-gradient(90% 80% at 88% 92%, color-mix(in srgb, var(--grund) 88%, var(--color-text)), transparent 70%),
+    var(--grund);
+  box-shadow: var(--frame-gold);
+}
+.b-karte[data-farbe="2"] { --grund: var(--color-chapter-2); }
+.b-karte[data-farbe="3"] { --grund: var(--color-chapter-3); }
+
+.b-karte__buehne { display: grid; align-items: center; }
+.b-karte__eingabe, .b-karte__ergebnis {
+  grid-area: 1 / 1;             /* beide Zustände liegen übereinander, nichts springt */
+  background: color-mix(in srgb, white 82%, transparent);
+  border-radius: 10px;
+  padding: 16px 18px;
+  box-shadow: 0 1px 0 rgb(35 27 58 / .08), 0 14px 30px -18px rgb(35 27 58 / .45);
+  font-size: .95rem;
+  line-height: 1.4;
+}
+.b-karte__eingabe { transition: opacity 160ms var(--ease-ui), transform 160ms var(--ease-ui); }
+.b-karte__ergebnis {
+  opacity: 0;
+  transform: translateY(10px) scale(.96);
+  transform-origin: 50% 100%;
+  transition: opacity 160ms var(--ease-ui), transform 160ms var(--ease-ui);  /* zurück: 160 ms */
+}
+.b-karte.ist-wach .b-karte__eingabe { opacity: .25; transform: scale(.97); transition-duration: 220ms; }
+.b-karte.ist-wach .b-karte__ergebnis { opacity: 1; transform: none; transition-duration: 220ms; }   /* auf: 220 ms */
+.b-karte.b-sofort .b-karte__eingabe, .b-karte.b-sofort .b-karte__ergebnis,
+.b-karte.b-sofort .b-karte__zeile { transition: none; }                     /* Tastatur: nie animiert */
+
+.b-karte__titel { margin: 0 0 10px; font: 700 .78rem/1.2 var(--font-system); letter-spacing: .06em; text-transform: uppercase; color: var(--color-text-muted); }
+.b-karte__feld { display: block; margin: 0 0 8px; padding: 9px 11px; border-radius: 6px; background: var(--color-bg); box-shadow: inset 0 0 0 1px rgb(35 27 58 / .18); }
+.b-karte__feld small { display: block; font-size: .72rem; color: var(--color-text-muted); }
+.b-karte__liste { margin: 0; padding: 0; list-style: none; }
+.b-karte__zeile {
+  display: flex; justify-content: space-between; gap: 12px;
+  padding: 8px 0; border-bottom: 1px solid rgb(35 27 58 / .12);
+  opacity: 0; transform: translateY(6px);
+  transition: opacity 160ms var(--ease-ui), transform 160ms var(--ease-ui);
+}
+.b-karte.ist-wach .b-karte__zeile { opacity: 1; transform: none; transition-duration: 220ms; }
+.b-karte.ist-wach .b-karte__zeile:nth-child(2) { transition-delay: 40ms; }
+.b-karte.ist-wach .b-karte__zeile:nth-child(3) { transition-delay: 80ms; }
+.b-karte.ist-wach .b-karte__zeile:nth-child(4) { transition-delay: 120ms; }
+.b-karte__marke { display: inline-block; padding: 1px 8px; border-radius: 999px; background: var(--color-accent); box-shadow: var(--outline-button); font-weight: 600; font-size: .8rem; }
+
+.b-karte__fuss { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.b-karte__name { margin: 0; font: 700 1.2rem/1.15 var(--font-system); letter-spacing: var(--tracking-headline); }
+.b-karte__knopf {
+  flex: none;
+  padding: 10px 16px;
+  font-size: .9rem;
+  cursor: pointer;
+  transition: transform 160ms var(--ease-ui);
+}
+.b-karte__knopf:active { transform: scale(.97); }
+.b-karte__knopf:focus-visible { outline: 2px solid var(--color-text); outline-offset: 3px; }
+
+@media (hover: hover) and (pointer: fine) {
+  .b-karte { transition: transform 200ms var(--ease-ui); }
+  .b-karte:hover { transform: translateY(-2px); }
+}
+
+/* ---------- Ruhige Variante: keine Bewegung, nur Einblenden 0.2 s ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .b-erscheint, .b-auftakt__satz .b-initiale { transform: none !important; transition: opacity .2s linear; }
+  .b-auftakt__wort, .b-papier__rand { transform: none !important; }
+  .b-karte, .b-karte:hover, .b-karte__eingabe, .b-karte__ergebnis, .b-karte__zeile { transform: none !important; transition: opacity .2s linear !important; transition-delay: 0s !important; }
+}

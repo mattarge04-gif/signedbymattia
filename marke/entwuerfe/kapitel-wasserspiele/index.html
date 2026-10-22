@@ -1,0 +1,227 @@
+<!doctype html>
+<!--
+  Kapitel II „Wasserspiele" (Automation) · ENTWURF, Prototyp · Stand: 30.09.2026
+  Drehbuch: website/drehbuch/10-startseite.md §12 · Mechaniken M1, M2, M3, M7, M9, M13
+  Bausteine aus ../bausteine/. 3D-Kaskade aus eigenem Code (three.js), keine fremden Modelle.
+  Alle Werbesätze sind [Platzhalter]. Nichts wird gesendet.
+-->
+<html lang="de-CH">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kapitel II Wasserspiele · signedbymattia (Entwurf)</title>
+  <meta name="robots" content="noindex">
+  <link rel="stylesheet" href="../../tokens.css">
+  <link rel="stylesheet" href="../bausteine/bausteine.css">
+  <script>document.documentElement.classList.add('js');</script>
+  <script type="importmap">
+    { "imports": {
+        "three": "https://cdn.jsdelivr.net/npm/three@0.172.0/build/three.module.js",
+        "lenis": "https://cdn.jsdelivr.net/npm/lenis@1.3.4/dist/lenis.mjs"
+    } }
+  </script>
+  <style>
+    * { box-sizing: border-box; }
+    html { background: var(--color-bg); }
+    body { margin: 0; color: var(--color-text); font-family: var(--font-system); font-size: 1.125rem; line-height: 1.55; }
+    .entwurf {
+      position: fixed; right: 12px; bottom: 12px; z-index: 20;
+      font: 600 12px/1 var(--font-system); letter-spacing: .04em; text-transform: uppercase;
+      background: var(--color-bg); padding: 8px 10px; border-radius: 999px; box-shadow: var(--outline-button);
+    }
+
+    .kapitel { position: relative; }
+
+    /* Bühne: steht still (sticky), der Scroll-Fortschritt steuert die Stationen */
+    .buehne { position: sticky; top: 0; height: 100vh; height: 100svh; overflow: hidden; background: var(--color-chapter-2); }
+    .garten { position: absolute; inset: -6% -4%; will-change: transform; }
+    .garten img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .garten--hinten img { object-position: 50% 30%; }
+    .garten--vorne { -webkit-mask-image: linear-gradient(to bottom, transparent 58%, #000 74%); mask-image: linear-gradient(to bottom, transparent 58%, #000 74%); }
+    .garten--vorne img { object-position: 50% 100%; transform: scale(1.12); transform-origin: 50% 100%; }
+    /* Himmelsschleier in Kapitelfarbe: das dunkle Ölbild wird pastellig, oben stärker */
+    .schleier { position: absolute; inset: 0; background: linear-gradient(to bottom, var(--color-chapter-2) 0%, color-mix(in srgb, var(--color-chapter-2) 55%, transparent) 45%, color-mix(in srgb, var(--color-bg) 25%, transparent) 100%); will-change: opacity; }
+    #kaskade { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+
+    /* der schlafende Gelehrte: Ausschnitt mit weicher Kante, pinke Schlafmaske als eigenes Element */
+    .schlaefer {
+      position: absolute; right: clamp(8px, 4vw, 64px); bottom: clamp(8px, 4vh, 48px);
+      width: clamp(150px, 22vw, 320px); aspect-ratio: 600 / 720; will-change: transform;
+    }
+    .schlaefer__atem { position: absolute; inset: 0; transform-origin: 50% 100%; animation: atmen 4.2s cubic-bezier(.77,0,.175,1) infinite alternate; }
+    .schlaefer img {
+      width: 100%; height: 100%; display: block;
+      -webkit-mask-image: radial-gradient(closest-side, #000 72%, transparent 100%);
+      mask-image: radial-gradient(closest-side, #000 72%, transparent 100%);
+    }
+    .maske {
+      position: absolute; left: 39%; top: 21%; width: 20%; translate: -50% -50%;
+      transform: rotate(18deg); transform-origin: 50% 50%;
+      transition: transform 450ms cubic-bezier(.34,1.56,.64,1);
+    }
+    .maske svg { display: block; width: 100%; height: auto; overflow: visible; }
+    .schlaefer.ist-nass .maske { transform: rotate(-8deg) translate(-8%, -38%); }
+    @keyframes atmen { from { transform: scale(1); } to { transform: scale(1.01); } }
+
+    /* Beschriftungen der Becken (M3): im DOM, per JS an die 3D-Position gebunden */
+    .labels { list-style: none; margin: 0; padding: 0; position: absolute; inset: 0; pointer-events: none; }
+    .label {
+      position: absolute; left: 0; top: 0; will-change: transform, opacity;
+      display: flex; align-items: center; gap: 10px; white-space: nowrap;
+      opacity: 0; transition: opacity 220ms cubic-bezier(.23,1,.32,1);
+    }
+    .label::before { content: ""; width: 42px; height: 1.5px; background: var(--color-text); flex: none; }
+    .label span {
+      font: 400 clamp(1.05rem, 1.6vw, 1.4rem)/1.1 var(--font-hand); font-style: italic; letter-spacing: var(--tracking-hand);
+      background: var(--color-bg); padding: 6px 12px 7px; border-radius: 999px; box-shadow: var(--frame-gold);
+    }
+    .label small { font: 700 .72rem/1 var(--font-system); letter-spacing: .06em; margin-right: 6px; font-style: normal; color: var(--color-text-muted); }
+    .buehne.zeigt-labels .label { opacity: 1; }
+
+    /* Station 4: Probier es (M9-Karte) */
+    .probier {
+      position: absolute; left: clamp(12px, 5vw, 72px); top: 50%; width: min(360px, calc(100% - 24px));
+      translate: 0 -50%;
+      opacity: 0; transform: translateY(16px) scale(.97); pointer-events: none;
+      transition: opacity .8s cubic-bezier(.77,0,.175,1), transform .8s cubic-bezier(.77,0,.175,1);
+    }
+    .buehne.zeigt-probier .probier { opacity: 1; transform: none; pointer-events: auto; }
+    .probier .b-karte { min-height: 330px; cursor: default; }
+    .probier .b-karte:hover { transform: none; }
+    .probier__knoepfe { display: flex; gap: 8px; }
+    .spritzer { position: absolute; left: 0; top: 0; width: 9px; height: 12px; border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%; background: color-mix(in srgb, var(--color-chapter-2) 70%, white); box-shadow: inset 0 0 0 1px rgb(35 27 58 / .35); pointer-events: none; }
+
+    .kapitel > .lauf { position: relative; margin-top: -100vh; margin-top: -100svh; height: 650vh; pointer-events: none; }
+    .lauf .b-auftakt { pointer-events: auto; }
+    .lauf .b-auftakt__wort { color: var(--color-text); }
+
+
+    /* Papier mit Kartenwolke (Platzhalter) und Putto */
+    .b-papier h2 { margin: 0 0 8px; font-weight: 800; line-height: .95; letter-spacing: var(--tracking-headline); font-size: clamp(2.2rem, 5vw, 4rem); }
+    .b-papier .unterzeile { margin: 0 0 clamp(28px, 4vw, 48px); max-width: 38rem; font-family: var(--font-hand); font-size: 1.4rem; line-height: 1.3; color: var(--color-text-muted); }
+    .wolke { position: relative; }
+    .putto { position: absolute; right: -2%; top: -150px; width: clamp(120px, 16vw, 230px); mix-blend-mode: multiply; transform: rotate(-8deg); pointer-events: none; }
+    .ende { padding: 80px clamp(20px, 5vw, 72px); color: var(--color-text-muted); font-size: .95rem; }
+
+    /* ohne WebGL: Stationen als ruhige Liste */
+    html.ohne-webgl #kaskade { display: none; }
+    html.ohne-webgl .labels { position: absolute; inset: auto 0 auto 0; top: 30%; display: grid; justify-items: center; gap: 14px; }
+    html.ohne-webgl .label { position: static; opacity: 1; transform: none !important; }
+
+    @media (max-width: 720px) {
+      .schlaefer { width: 34vw; right: 8px; bottom: auto; top: 12px; }
+      .probier { top: auto; bottom: 12px; left: 12px; translate: none; }
+      .probier .b-karte { min-height: 0; padding: 16px; gap: 12px; }
+      .label::before { width: 22px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .garten, .schlaefer, .schlaefer__atem { animation: none; transform: none !important; }
+      .maske { transition: opacity .2s linear; }
+      .probier { transition: opacity .2s linear; transform: none !important; }
+    }
+  </style>
+</head>
+<body>
+  <span class="entwurf">Entwurf · Kapitel II</span>
+
+  <main>
+    <div class="kapitel" id="kapitel">
+      <div class="buehne" id="buehne">
+        <div class="garten garten--hinten" aria-hidden="true"><img src="bilder/met-436319.jpg" alt="" width="1200" height="1600"></div>
+        <div class="garten garten--vorne" aria-hidden="true"><img src="bilder/met-436319.jpg" alt="" width="1200" height="1600"></div>
+        <div class="schleier" aria-hidden="true"></div>
+        <canvas id="kaskade" aria-hidden="true"></canvas>
+
+        <div class="schlaefer" id="schlaefer" aria-hidden="true">
+          <div class="schlaefer__atem">
+            <img src="bilder/schlaefer.jpg" alt="" width="600" height="720">
+            <div class="maske">
+              <svg viewBox="0 0 120 52" aria-hidden="true">
+                <path d="M2 22 C20 14 36 12 60 16 C84 12 100 14 118 22" fill="none" stroke="var(--color-text)" stroke-width="2"/>
+                <path d="M14 18 C14 6 34 2 50 8 C56 10 58 14 60 18 C62 14 64 10 70 8 C86 2 106 6 106 18 C106 36 90 46 74 42 C66 40 62 34 60 30 C58 34 54 40 46 42 C30 46 14 36 14 18 Z" fill="var(--color-accent)" stroke="var(--color-text)" stroke-width="2"/>
+                <path d="M26 28 C32 33 40 34 46 30 M74 30 C80 34 88 33 94 28" fill="none" stroke="var(--color-text)" stroke-width="1.6" stroke-linecap="round"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <ol class="labels" id="labels" aria-label="Ablauf der Kaskade">
+          <li class="label"><span><small>I</small>Anfrage kommt</span></li>
+          <li class="label"><span><small>II</small>wird sortiert</span></li>
+          <li class="label"><span><small>III</small>Antwort geht raus</span></li>
+          <li class="label"><span><small>IV</small>Termin steht</span></li>
+        </ol>
+
+        <div class="probier" id="probier">
+          <article class="b-karte" data-farbe="2" aria-label="Beispiel-Offertanfrage (es wird nichts gesendet)">
+            <div class="b-karte__buehne">
+              <div class="b-karte__eingabe">
+                <p class="b-karte__titel">Beispiel · Offertanfrage</p>
+                <span class="b-karte__feld"><small>Name</small>[Beispiel]</span>
+                <span class="b-karte__feld"><small>Anliegen</small>Offerte · [Beispiel]</span>
+              </div>
+              <div class="b-karte__ergebnis" aria-live="polite">
+                <p class="b-karte__titel">Eingang, sortiert</p>
+                <ul class="b-karte__liste">
+                  <li class="b-karte__zeile"><span>[Beispiel] · Offertanfrage</span><span class="b-karte__marke">sortiert</span></li>
+                  <li class="b-karte__zeile"><span>Antwort gesendet (Beispiel)</span><span>✓</span></li>
+                  <li class="b-karte__zeile"><span>Termin</span><span>[Beispiel]</span></li>
+                </ul>
+              </div>
+            </div>
+            <div class="b-karte__fuss">
+              <p class="b-karte__name">Probier es</p>
+              <button class="b-karte__knopf button-edition" id="absenden" type="button">Absenden</button>
+            </div>
+          </article>
+        </div>
+      </div>
+
+      <div class="lauf" id="lauf">
+        <!-- Station 1: M1 Kapitel-Auftakt -->
+        <section class="b-auftakt" aria-labelledby="wort">
+          <h2 class="b-auftakt__wort" id="wort">Automation</h2>
+          <p class="b-auftakt__satz b-erscheint">
+            <span class="b-initiale"><img src="../initialen/K.svg" alt="" aria-hidden="true" width="200" height="200"><span class="b-initiale__buchstabe">K</span></span>apitel II · [Platzhalter: Erzählsatz zur Frage „Welche Arbeit nimmt mir das ab?", Mattia schreibt]
+          </p>
+        </section>
+      </div>
+
+      <!-- danach: M7 Papier mit Platzhalter-Kartenwolke -->
+      <section class="b-papier" aria-labelledby="papier-titel">
+        <h2 id="papier-titel">[Platzhalter Titel]</h2>
+        <p class="unterzeile">[Platzhalter: Unterzeile]</p>
+        <div class="wolke">
+          <img class="putto" src="bilder/met-340149.jpg" alt="" aria-hidden="true" width="1345" height="1600">
+          <div class="b-karten">
+            <article class="b-karte" data-farbe="2">
+              <div class="b-karte__buehne">
+                <div class="b-karte__eingabe"><p class="b-karte__titel">Beispiel · Anfrage</p><span class="b-karte__feld"><small>Nachricht</small>[Beispiel]</span></div>
+                <div class="b-karte__ergebnis"><p class="b-karte__titel">Automatische Antwort</p><ul class="b-karte__liste"><li class="b-karte__zeile"><span>[Beispiel]</span><span class="b-karte__marke">gesendet</span></li></ul></div>
+              </div>
+              <div class="b-karte__fuss"><p class="b-karte__name">[Platzhalter]</p><button class="b-karte__knopf button-edition" type="button">Ergebnis zeigen</button></div>
+            </article>
+            <article class="b-karte" data-farbe="1">
+              <div class="b-karte__buehne">
+                <div class="b-karte__eingabe"><p class="b-karte__titel">Beispiel · Eingang</p><span class="b-karte__feld"><small>Neu</small>[Beispiel]</span><span class="b-karte__feld"><small>Neu</small>[Beispiel]</span></div>
+                <div class="b-karte__ergebnis"><p class="b-karte__titel">Sortiert</p><ul class="b-karte__liste"><li class="b-karte__zeile"><span>[Beispiel]</span><span>Offerte</span></li><li class="b-karte__zeile"><span>[Beispiel]</span><span>Termin</span></li></ul></div>
+              </div>
+              <div class="b-karte__fuss"><p class="b-karte__name">[Platzhalter]</p><button class="b-karte__knopf button-edition" type="button">Ergebnis zeigen</button></div>
+            </article>
+            <article class="b-karte" data-farbe="3">
+              <div class="b-karte__buehne">
+                <div class="b-karte__eingabe"><p class="b-karte__titel">Beispiel · Termin</p><span class="b-karte__feld"><small>Wunsch</small>[Beispiel]</span></div>
+                <div class="b-karte__ergebnis"><p class="b-karte__titel">Termin steht</p><ul class="b-karte__liste"><li class="b-karte__zeile"><span>[Beispiel]</span><span class="b-karte__marke">bestätigt</span></li></ul></div>
+              </div>
+              <div class="b-karte__fuss"><p class="b-karte__name">[Platzhalter]</p><button class="b-karte__knopf button-edition" type="button">Ergebnis zeigen</button></div>
+            </article>
+          </div>
+        </div>
+      </section>
+    </div>
+    <p class="ende">Ende Kapitel II (Entwurf) · Stationen und Stellschrauben: README.md</p>
+  </main>
+
+  <script type="module" src="wasserspiele.js"></script>
+</body>
+</html>
