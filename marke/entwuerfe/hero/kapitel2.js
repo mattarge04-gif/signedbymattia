@@ -3,7 +3,7 @@
 // Wie bei Shopify spult der Scroll eine inszenierte Sequenz ab: Anflug (Veo-Video, Bild für Bild),
 // dann 5 Stationen. Bei jeder dreht sich der Automat weiter, die Garten-Ebenen gleiten in die Tiefe
 // und am Automaten passiert etwas Neues. Das Ablauf-Panel folgt dem Scroll.
-import { kaskade3d } from './automat3d.js';
+import { automat25d } from './automat25d.js';
 
 const RUHIG = matchMedia('(prefers-reduced-motion: reduce)').matches;
 const MAUS = matchMedia('(hover: hover) and (pointer: fine)').matches;
@@ -22,7 +22,9 @@ const garten = $('#k2Garten');
 const abend = $('#k2Abend');
 const pergola = $('#k2Pergola');
 const leben = $('#k2Leben');
-const drei = $('#k2Drei');
+const amHuelle = $('#k2Automat');
+const hecke = $('#k2Hecke');
+const balustrade = $('#k2Balustrade');
 const flug = $('#k2Flug');
 const faeden = $('#k2Faeden');
 const ablauf = $('#k2Ablauf');
@@ -79,13 +81,12 @@ function flugZeichnen(k) {
 
 // ---------- 3D-Automat ----------
 let k3 = null;
-try { k3 = kaskade3d(drei); } catch (fehler) { console.warn('Automat 3D:', fehler); }
+automat25d(amHuelle).then((a) => { k3 = a; }).catch((f) => console.warn('Automat:', f));
 let breite = 0;
 let hoehe = 0;
 function groesse() {
   breite = buehne.clientWidth;
   hoehe = buehne.clientHeight;
-  if (k3) k3.groesse(breite, hoehe);
   const dpr = Math.min(devicePixelRatio || 1, 2);
   leben.width = breite * 1.12 * dpr;
   leben.height = hoehe * 1.12 * dpr;
@@ -220,11 +221,11 @@ function bild(jetztMs) {
   const explo = glatt(teil(s, [0.31, 0.42])) * (1 - glatt(teil(s, [0.84, 0.93])));
   const panel = glatt(teil(s, [0.14, 0.2])) * (1 - glatt(teil(s, [0.97, 1.0])));
   ablauf.classList.toggle('da', panel > 0.5);
-  if (k3) {
-    const pb = ablauf.offsetWidth + innerWidth * 0.04;
-    if (station !== letzteStation) { k3.plumps(Math.max(-1, Math.min(station, 3)), t); letzteStation = station; }
-    k3.bild(nah, explo, t, { x: neigung.x, y: neigung.y }, (pb / 2) * panel, null, dreh, glatt(teil(s, [0.1, 0.2])));
-  }
+  const pb = ablauf.offsetWidth + innerWidth * 0.04;
+  if (k3) k3.bild({ nah, explo, t, maus: neigung, versatzX: (pb / 2) * panel, station: Math.max(0, station), st, auftauchen: teil(s, [0.1, 0.2]) });
+  hecke.style.transform = `translate(calc(${schwenk * -8 - nah * 8}vw + ${neigung.x * 30}px), ${hochSehen * 30}vh) scale(${1 + 0.15 * nah})`;
+  balustrade.style.transform = `translate(calc(${schwenk * -6}vw + ${neigung.x * 50}px), ${hochSehen * 30 + nah * 6}vh) scale(${0.9 + 0.1 * nah})`;
+  hecke.style.opacity = String(1 - hochSehen);
 
   // Panel: Schritte folgen den Stationen
   schritte.forEach((li, i) => {
@@ -232,8 +233,8 @@ function bild(jetztMs) {
     li.classList.toggle('fertig', station > i || (i === station && st[i] > 0.45));
   });
   if (k3 && station >= 0 && panel > 0.5) {
-    const a = k3.ankerAufBildschirm(station);
     const br = buehne.getBoundingClientRect();
+    const a = k3.ankerAufBildschirm(station, br);
     const r = schritte[station].getBoundingClientRect();
     const zx = r.left - br.left - 6;
     const zy = r.top - br.top + 22;
