@@ -2,7 +2,7 @@
 // Drehbuch: website/drehbuch/12-kapitel-2.md · Werte: website/drehbuch/00-grammatik.md
 // Garten gemalt (Gemini) mit lebendem Gras, Kaskade als echtes 3D-Modell (kaskade3d.js),
 // „Probier es": eine Anfrage fällt als Kugel durch 5 Becken, rechts das Ablauf-Panel.
-import { kaskade3d } from './kaskade3d.js';
+import { kaskade3d } from './automat3d.js';
 
 const RUHIG = matchMedia('(prefers-reduced-motion: reduce)').matches;
 const MAUS = matchMedia('(hover: hover) and (pointer: fine)').matches;
