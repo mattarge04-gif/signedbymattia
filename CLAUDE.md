@@ -51,7 +51,7 @@ Budgets und Kostenfreigaben bleiben in `agency-automation-os/projects/lead-engin
 
 ## Aktueller Stand und nächste Schritte
 
-Stand: 22.10.2026. Zeitplan: Vault `Zielplan.md`, Aufgabenliste `plan/aufgaben-bis-live.md`. Phase **Fundament**
+Stand: 23.10.2026. Zeitplan: Vault `Zielplan.md`, Aufgabenliste `plan/aufgaben-bis-live.md`. Phase **Fundament**
 (KW 39–42) endete am 18.10.2026; Zeitplan wegen verschobener Punkte prüfen [?].
 
 **Sitzungsabschluss 28.09.:** Claude erreichte am 27.09. um 23:59 das
@@ -178,6 +178,32 @@ frei und baut ein. Chrome/Gemini steuert Claude nicht mehr.
   exportieren, im Prototyp vom Scroll spulen lassen. Aufwand ca. 1–1,5 Abende [A].
 - Offen weiter: Pinsel-Bild, Abnahmen Kapitel I und II, Textinterview,
   Handy-Version neu (nach Desktop).
+
+**Sitzungsabschluss 22./23.10. [F]:** Kapitel II umgestellt auf **barocken
+Automaten, gemalt in 2.5D** (Commits bis `8ad349c`).
+
+- 3D-Brunnen und selbst gebauter 3D-Automat verworfen (Mattia: sieht billig aus,
+  Qualität weit unter dem Hero). Skybox AI verworfen. Gemini kann keine 360°- oder
+  Rundum-Ansichten.
+- Vorhanden: gemalter Automat ganz (`k2-automat-ganz.jpg`, leichter Nebel) und
+  zerlegt (`k2-automat-teile.jpg`) → 8 Teile per `werkzeuge/k2_ebenen.py`
+  (`bilder/k2-am-*.webp`, `k2-am.json`); Heckenbogen und Balustrade als
+  Vordergrund; Garten ohne Himmel; Veo-Anflug `k2-flug-v1.mp4` als Bildfolge.
+  Prototyp `automat25d.js` + `kapitel2.js`. Lizenz-Pflichten im Impressum: Brunnen
+  (jolly.sweets) nur falls wieder genutzt, Putto-Statue (ZeusAlmighty) nur im
+  3D-Automaten, beide CC BY.
+- Mattia sieht bei sich beim Scrollen keine Bewegung in Kapitel II ([?] Console
+  prüfen, Cache).
+- **Neues Vorgehen [F] (Mattia):** 5 Stationen + 4 Übergangsvideos, **Station für
+  Station**: Szene planen → 2.5D-Bilder → Standbild-Animationen und Text festlegen
+  → bauen, abnehmen → Veo-Übergang → nächste Station.
+- **Beim Wiedereinstieg zuerst:** (1) Console-Screenshot von Mattia, warum sich
+  nichts bewegt. (2) **Station 1 „Anfrage kommt an"** ist geplant und von Mattia
+  abgenommen (Garten früher Abend, Automat geschlossen gross in der Mitte,
+  Gelehrter links, Balustrade vorne; Brief fliegt in Briefschlitz, Walze dreht;
+  Text „Automation" + Karte „I · Anfrage kommt an"; Übergang: Kamera fährt heran,
+  Kuppel öffnet sich). Offene Detailfragen: Brief per Taube? Panel oder nur Karte?
+  Dann Bild-Prompts für Station 1 (Automat ohne Nebel, Briefschlitz einzeln).
 
 **Erledigt [F]:**
 
