@@ -1,6 +1,6 @@
 // Fortschritts-Video des Prototyps: scrollt mit dem Mausrad natürlich durch die Seite und nimmt per
 // CDP-Screencast auf (echte Bildzeiten), danach ffmpeg. Aufruf:
-//   NODE_PATH=./node_modules node video.cjs <url> <ausgabe.mp4>
+//   NODE_PATH=./node_modules node video.cjs <url> <ausgabe.mp4> [hero]   (hero = nur Hero, weich)
 const { chromium } = require('playwright');
 const fs = require('fs');
 const path = require('path');
@@ -31,13 +31,21 @@ const TMP = path.join(path.dirname(AUS), '_frames');
   await p.waitForTimeout(1200);
   await p.mouse.click(1150, 300);                   // Pfeil
   await p.waitForTimeout(1500);
-  const hoehe = await p.evaluate(() => document.documentElement.scrollHeight - innerHeight);
-  // in Schüben scrollen, wie jemand mit dem Mausrad
-  let y = 0;
-  while (y < hoehe - 50) {
-    for (let k = 0; k < 5; k++) { await p.mouse.wheel(0, 55); await p.waitForTimeout(30); }
-    y = await p.evaluate(() => scrollY);
-    await p.waitForTimeout(330);
+  const nurHero = process.argv[4] === 'hero';
+  if (nurHero) {
+    // weich mit Lenis durch den Hero bis in die Wolken (ohne Mausrad-Ruckeln)
+    const ziel = await p.evaluate(() => { const h = document.getElementById('hero'); return h.offsetHeight - innerHeight + innerHeight * 0.55; });
+    await p.mouse.move(1000, 380, { steps: 30 });
+    await p.evaluate((ziel) => window.lenis.scrollTo(ziel, { duration: 9, easing: (t) => (t < 0.5 ? 4 * t * t * t : 1 - (-2 * t + 2) ** 3 / 2) }), ziel);
+    await p.waitForTimeout(10500);
+  } else {
+    const hoehe = await p.evaluate(() => document.documentElement.scrollHeight - innerHeight);
+    let y = 0;
+    while (y < hoehe - 50) {
+      for (let k = 0; k < 5; k++) { await p.mouse.wheel(0, 55); await p.waitForTimeout(30); }
+      y = await p.evaluate(() => scrollY);
+      await p.waitForTimeout(330);
+    }
   }
   await p.waitForTimeout(2500);
   await cdp.send('Page.stopScreencast');
@@ -53,7 +61,7 @@ const TMP = path.join(path.dirname(AUS), '_frames');
   });
   fs.writeFileSync(path.join(TMP, 'liste.txt'), liste);
   execFileSync('ffmpeg', ['-v', 'error', '-y', '-f', 'concat', '-safe', '0', '-i', path.join(TMP, 'liste.txt'),
-    '-vf', 'fps=30,format=yuv420p', '-c:v', 'libx264', '-crf', '20', '-preset', 'slow', '-movflags', '+faststart', AUS]);
+    '-vf', 'fps=60,format=yuv420p', '-c:v', 'libx264', '-crf', '20', '-preset', 'slow', '-movflags', '+faststart', AUS]);
   fs.rmSync(TMP, { recursive: true, force: true });
   console.log('bilder', bilder.length, '→', AUS);
 })();
