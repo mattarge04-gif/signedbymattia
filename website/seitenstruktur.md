@@ -1,11 +1,13 @@
 # Seitenstruktur der eigenen Website
 
-Stand: 29.09.2026 · Status: **entschieden [F]** (Interview 27.09.2026, baut auf
+Stand: 28.10.2026 · Status: **entschieden [F]** (Interview 27.09.2026, baut auf
 der Identität „Edition“ auf) · Zielplan KW 41 („Seitenstruktur festlegen: welche
 Seiten, in welcher Reihenfolge, ein Ziel pro Seite“) · gebaut wird in
 `signedbymattia-website`
 
-## Seiten zum Livegang am 22.11.2026 [F]
+## Seiten zum Livegang am 17.12.2026 [F]
+
+Livegang verschoben vom 22.11. auf den 17.12.2026 (Entscheid 28.10.).
 
 ```mermaid
 flowchart LR

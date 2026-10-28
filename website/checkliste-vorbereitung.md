@@ -1,6 +1,6 @@
 # Checkliste: Was Mattia vorbereiten muss, damit die Website gebaut werden kann
 
-Stand: 28.09.2026 · Livegang geplant 22.11.2026 (Vault `Zielplan.md`) · Bauen
+Stand: 28.10.2026 · Livegang geplant 17.12.2026 (vorher 22.11., Entscheid 28.10., `plan/aufgaben-bis-live.md`) · Bauen
 ab KW 43 (19.10.2026). **Du** = Mattia liefert, **ich** = Claude erledigt, **wir** =
 gemeinsam im Interview.
 

@@ -50,3 +50,4 @@ stehen im Vault (`40_Entscheide/`) oder im jeweiligen Repo.
 | 30.09.2026 | Bilder wie Shopify ausliefern: Original hoch aufgelöst im Archiv, auf der Seite AVIF/WebP/KTX2 in Gerätegrössen, Skizze zuerst, kapitelweise nachladen, CDN, messen | `website/drehbuch/00-grammatik.md` |
 | 30.09.2026 | Bilder neu mit KI: Google AI Pro (privates Konto, CHF 17/Monat) für Stil und Vorlagen, Gemini API für die Masse im Tageslauf; Met-Freisteller verworfen | `website/drehbuch/03-bildstil.md` |
 | 01.10.2026 | Übergang Szene → Lese-Panel: Wolkenband statt gerissenem Papier; Variante 2 goldener Barockrahmen; Grafiken später erstellen | `website/drehbuch/01-bausteine.md` B4, `03-bildstil.md` |
+| 28.10.2026 | Livegang der eigenen Website neu am 17.12.2026 statt 22.11.; pro Teil eine Woche, höchstens ein Neuanfang; Zugänge bis 15.11.; Streichliste: Editionen-Seite, Handy nur anpassen, Werke + Zwischenspiel zusammen | `plan/aufgaben-bis-live.md` |

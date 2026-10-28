@@ -51,8 +51,8 @@ Budgets und Kostenfreigaben bleiben in `agency-automation-os/projects/lead-engin
 
 ## Aktueller Stand und nächste Schritte
 
-Stand: 23.10.2026. Zeitplan: Vault `Zielplan.md`, Aufgabenliste `plan/aufgaben-bis-live.md`. Phase **Fundament**
-(KW 39–42) endete am 18.10.2026; Zeitplan wegen verschobener Punkte prüfen [?].
+Stand: 28.10.2026. Zeitplan: Vault `Zielplan.md`, Aufgabenliste `plan/aufgaben-bis-live.md`. Phase **Fundament**
+(KW 39–42) endete am 18.10.2026. **Livegang neu 17.12.2026** (Entscheid 28.10.).
 
 **Sitzungsabschluss 28.09.:** Claude erreichte am 27.09. um 23:59 das
 Sitzungslimit. Git und lokale Sitzungsdateien sind vorhanden; kein belegter
@@ -150,7 +150,7 @@ frei und baut ein. Chrome/Gemini steuert Claude nicht mehr.
   37 h [A]); `website/drehbuch/12-16-naechste-kapitel.md` (Kapitel II–Abschluss
   mit Wows, roter Faden Himmelblau [A], 3 Entscheide [?]).
 - [?] Offen: Pinsel-Bild (`pinsel-v1.jpg`), Abnahme Kapitel I, Textinterview
-  (Meilenstein 18.10. verpasst, 22.11. knapp [A]).
+  (Meilenstein 18.10. verpasst; neu in KW 45, siehe 28.10.).
 - *(Wiedereinstieg überholt durch 21./22.10.)*
 
 **Sitzungsabschluss 21./22.10. [F]:** Kapitel II (Wasserspiele) gebaut, Commits
@@ -204,6 +204,21 @@ Automaten, gemalt in 2.5D** (Commits bis `8ad349c`).
   Text „Automation" + Karte „I · Anfrage kommt an"; Übergang: Kamera fährt heran,
   Kuppel öffnet sich). Offene Detailfragen: Brief per Taube? Panel oder nur Karte?
   Dann Bild-Prompts für Station 1 (Automat ohne Nebel, Briefschlitz einzeln).
+- *(Wiedereinstieg überholt durch 28.10.)*
+
+**Sitzungsabschluss 24.10. und 28.10. [F]:**
+
+- 24.10.: Videos vom Stand aufgenommen (`plan/videos/stand-2026-10-24.mp4`,
+  `plan/videos/hero-2026-10-24.mp4`), Skript `werkzeuge/video.cjs`.
+- 28.10.: Bei bisherigem Tempo (rund ein Teil der Startseite pro Woche) wäre
+  der Livegang erst Mitte Januar 2027 gewesen [A]. Mattia setzt das Ziel
+  **17.12.2026**. Neuer Wochenplan KW 44–51 mit Regeln in
+  `plan/aufgaben-bis-live.md`: pro Teil eine Woche, höchstens ein Neuanfang;
+  Texte laufen jede Woche mit; Zugänge bis 15.11.; Streichliste bei Engpass.
+  Vault `Zielplan.md` noch auf 22.11. [?] (ausserhalb dieses Repos).
+- **Beim Wiedereinstieg zuerst:** (1) Console-Screenshot Kapitel II.
+  (2) Station 1 Detailfragen (Taube? Panel oder Karte?). (3) Bild-Prompts
+  Stationen 1–5. Kapitel II muss bis 01.11. fertig sein.
 
 **Erledigt [F]:**
 
