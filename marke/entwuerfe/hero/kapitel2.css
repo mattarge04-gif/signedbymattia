@@ -32,6 +32,14 @@
   box-shadow: 0 0 0 1.5px var(--color-gold), 0 0 0 6px rgb(251 243 234 / .96), 0 0 0 7.5px var(--color-gold), 0 30px 60px -30px rgb(35 27 58 / .55);
   opacity: 0; translate: 6vw -50%; transition: opacity .5s var(--ease-farbe), translate .7s var(--ease-farbe);
 }
+.k2-s1-karte {
+  position: absolute; right: 6vw; top: 50%; z-index: 12; width: min(340px, 30vw); padding: 18px 20px; border-radius: 10px;
+  background: var(--color-bg); box-shadow: 0 0 0 1.5px var(--color-gold), 0 0 0 5px var(--color-bg), 0 0 0 6.5px var(--color-gold), 0 24px 40px -18px rgb(35 27 58 / .45);
+  opacity: 0; translate: 0 -44%; transition: opacity .5s var(--ease-ui), translate .7s var(--ease-ui);
+}
+.k2-s1-karte.da { opacity: 1; translate: 0 -50%; }
+.k2-s1-nr { margin: 0 0 10px; font-family: var(--font-hand); font-style: italic; font-size: 24px; line-height: 1.1; }
+.k2-s1-nr span { display: inline-grid; place-items: center; width: 1.5em; height: 1.5em; margin-right: 6px; border-radius: 50%; box-shadow: 0 0 0 1.5px var(--color-gold); font-size: .8em; font-style: normal; }
 .k2-ablauf.da { opacity: 1; translate: 0 -50%; }
 .k2-ablauf-kopf { margin: 0 0 12px; font-family: var(--font-hand); font-style: italic; font-size: 24px; line-height: 1.1; }
 .k2-anfrage { padding: 12px 14px; border-radius: 12px; background: #fff; box-shadow: inset 0 0 0 1px rgb(227 197 138 / .7); margin-bottom: 14px; transition: opacity .35s, scale .5s var(--ease-farbe); transform-origin: 30% 80%; }
@@ -163,6 +171,15 @@
   position: absolute; left: 0; top: 0; display: grid; gap: 2px; padding: 10px 14px; border-radius: 8px; opacity: 0; white-space: nowrap;
   background: var(--color-bg); box-shadow: 0 0 0 1.5px var(--color-gold), 0 0 0 4px var(--color-bg), 0 0 0 5.5px var(--color-gold), 0 14px 26px -12px rgb(35 27 58 / .45);
   font-size: 13px; transform-origin: 0 0;
+}
+/* Station 1: Taube, loser Brief, laufende Walze */
+.am-taube { position: absolute; left: 0; top: 0; z-index: 3; pointer-events: none; will-change: transform; filter: drop-shadow(0 18px 14px rgb(80 60 110 / .22)); }
+.am-taube img { display: block; width: 100%; height: auto; }
+.am-taube .taube-ab { position: absolute; left: 0; top: 0; width: calc(100% * 1620 / 1523); translate: calc(-100% * 96 / 1620) 0; }
+.am-loserbrief { position: absolute; left: 0; top: 0; z-index: 4; opacity: 0; transform-origin: 50% 50%; will-change: transform; pointer-events: none; }
+.am-walzelauf {
+  position: absolute; border-radius: 14% / 30%; opacity: 0; pointer-events: none; mix-blend-mode: soft-light;
+  background: repeating-linear-gradient(180deg, rgb(255 255 255 / 0) 0 18px, rgb(255 255 255 / .9) 26px, rgb(255 255 255 / 0) 34px, rgb(120 40 80 / .35) 46px, rgb(255 255 255 / 0) 56px);
 }
 .am-karte b { font-family: var(--font-hand); font-style: italic; font-weight: 400; font-size: 19px; color: #C2557F; }
 /* Vordergrund-Ebenen für die Tiefe */

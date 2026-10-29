@@ -198,8 +198,8 @@ Kuppel öffnet sich.
 
 Detailentscheide [F] (Mattia, 29.10.2026):
 
-1. Den Brief bringt eine **Brieftaube**: fliegt von links ein, lässt den Brief in den Schlitz fallen,
-   fliegt nach rechts oben weg.
+1. Den Brief bringt eine **Brieftaube**: fliegt von rechts ein (sie schaut nach links, Bild S1-3/S1-4),
+   lässt den Brief in den Schlitz fallen, fliegt nach links oben über den Gelehrten weg.
 2. Text: **nur Kapitelwort „Automation“ + Karte „I · Anfrage kommt an“** mit Frau Meiers Satz. Das Panel
    mit allen 5 Schritten kommt in Station 1 nicht vor.
 
@@ -256,6 +256,30 @@ slightly from above, tilted about 15 degrees, sealed with a glossy PINK wax seal
 crisp and flat like a vector graphic. No writing on it. Soft luminous oil painting like a Tiepolo
 fresco, light from the top left. Isolated on a flat plain light-grey background #EDEDED, no shadow,
 no text, no watermark.
+```
+
+### Stand Bau Station 1 [F] (29.10.2026)
+
+- Bilder S1-1 bis S1-5 erzeugt und freigestellt mit `werkzeuge/k2_station1.py` (→ `bilder/k2-s1-*.webp`,
+  `k2-s1.json`). Gemini hat in S1-3 Putto-Beine und in S1-5 einen Putto hinter den Brief gemalt; beides
+  im Skript weggeschnitten. Auf dem Messingschild stehen Fantasiebuchstaben (klein, bleibt [A]).
+- Gebaut in `automat25d.js` und `kapitel2.js`: Taube kommt von rechts, Klappe öffnet, Brief fällt in den
+  Schlitz, Walze läuft (Lichtbänder), Kamera fährt erst danach heran; Karte „I · Anfrage kommt an“, Panel
+  erst ab Station 2. Keine Konsolenfehler.
+- Offen: Die Taube hält den Brief nach dem Abwerfen noch im Schnabel. Dafür 2 Bilder:
+
+**S1-6 · Taube ohne Brief, Flügel oben** → `k2-s1-taube-leer-v1.jpg` (Bild S1-3 anhängen)
+```
+Edit the attached image. Keep the same pigeon, colours, size, position, pose and background. Change
+only: remove the envelope completely, the beak is now empty and slightly open, as if it just let go.
+Also remove the chubby baby legs below the pigeon. Nothing else changes.
+```
+
+**S1-7 · Taube ohne Brief, Flügel unten** → `k2-s1-taube-leer-ab-v1.jpg` (Bild S1-4 anhängen)
+```
+Edit the attached image. Keep the same pigeon, colours, size, position, pose and background. Change
+only: remove the envelope completely, the beak is now empty and slightly open, as if it just let go.
+Nothing else changes.
 ```
 
 Stationen 2–5: Szene planen erst nach Abnahme von Station 1 (Vorgehen Station für Station, 22./23.10.).

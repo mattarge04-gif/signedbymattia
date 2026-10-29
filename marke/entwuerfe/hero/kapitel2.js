@@ -35,6 +35,7 @@ const brunnen = $('#k2Brunnen');
 const strahl = $('#k2StrahlPfad');
 const vorne = $('#k2Vorne');
 const text = $('#k2Text');
+const s1Karte = $('#k2S1Karte');
 
 let s = 0;
 const neigung = { x: 0, y: 0 };
@@ -202,7 +203,8 @@ function bild(jetztMs) {
   // Drehung des Automaten (eine ganze Umdrehung über alle Stationen) und Schwenk der Welt
   const dreh = -glatt(teil(s, [STATIONEN[0][0], 1]));
   const schwenk = Math.sin(dreh * Math.PI * 2);
-  const nah = glatt(st[0]) * (1 - glatt(st[4]) * 0.6);
+  // Kamera fährt erst heran, wenn der Brief im Schlitz ist (Station 1 braucht den ganzen Sockel im Bild)
+  const nah = glatt(teil(st[0], [0.66, 1])) * (1 - glatt(st[4]) * 0.6);
   const hochSehen = glatt(st[2]) * (1 - glatt(teil(s, [0.6, 0.66])));
   himmel.style.transform = `translate(${schwenk * -2 + neigung.x * 6}px, ${hochSehen * 6}vh) scale(${1.02 + 0.06 * nah})`;
   garten.style.transform = `translate(calc(${schwenk * -4}vw + ${neigung.x * 14}px), ${hochSehen * 14 + neigung.y * 6}px) scale(${1 + 0.14 * nah})`;
@@ -217,9 +219,11 @@ function bild(jetztMs) {
   abend.style.opacity = String(abendlicht);
   leben.style.opacity = String((1 - 0.5 * abendlicht) * (1 - hochSehen));
 
-  // 3D: Explosion ab Station 2, zusammen in Station 5; Panel macht rechts Platz
+  // 3D: Explosion ab Station 2, zusammen in Station 5; Panel macht ab Station 2 rechts Platz,
+  // in Station 1 steht nur die Karte „I · Anfrage kommt an“ (Entscheid 29.10.)
   const explo = glatt(teil(s, [0.31, 0.42])) * (1 - glatt(teil(s, [0.84, 0.93])));
-  const panel = glatt(teil(s, [0.14, 0.2])) * (1 - glatt(teil(s, [0.97, 1.0])));
+  const panel = glatt(teil(s, [0.31, 0.36])) * (1 - glatt(teil(s, [0.97, 1.0])));
+  s1Karte.classList.toggle('da', s > 0.15 && s < 0.3);
   ablauf.classList.toggle('da', panel > 0.5);
   const pb = ablauf.offsetWidth + innerWidth * 0.04;
   if (k3) k3.bild({ nah, explo, t, maus: neigung, versatzX: (pb / 2) * panel, station: Math.max(0, station), st, auftauchen: teil(s, [0.1, 0.2]) });
