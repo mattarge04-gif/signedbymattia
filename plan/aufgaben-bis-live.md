@@ -18,9 +18,9 @@ Bisheriges Tempo (28.10.): rund ein Teil der Startseite pro Woche Bauzeit (Hero,
 
 | # | Aufgabe | Wer | Zeit |
 |---|---|---|---|
-| 1 | Console-Screenshot Kapitel II (warum bewegt sich nichts) | Du | 5 min |
-| 2 | Station 1 Detailfragen klären (Brief per Taube? Panel oder nur Karte?) | Wir | 10 min |
-| 3 | Bild-Prompts Stationen 1–5 (Automat ohne Nebel, Briefschlitz einzeln …) | Ich | 30 min |
+| 1 | ~~Console Kapitel II~~ erledigt 29.10.: läuft ohne Fehler, Ursache bei Mattia vermutlich `file://` [A] | Ich | – |
+| 2 | ~~Station 1 Detailfragen~~ erledigt 29.10.: Taube, nur Karte | Wir | – |
+| 3 | Bild-Prompts: Station 1 erledigt 29.10. (`12-kapitel-2.md`), Stationen 2–5 je nach Abnahme | Ich | 20 min |
 | 4 | Bilder Stationen 1–5 in Gemini erzeugen | Du | 1 h |
 | 5 | Stationen 1–5 bauen | Ich | 4 h |
 | 6 | 4 Veo-Übergänge erzeugen | Du | 45 min |

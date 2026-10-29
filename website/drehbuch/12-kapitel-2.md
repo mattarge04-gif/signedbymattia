@@ -1,6 +1,6 @@
 # Drehbuch 12: Kapitel II Automation · Die Wasserspiele
 
-Stand: 21.10.2026 · Status: **Drehbuch abgenommen [F] (Mattia, 21.10.2026), Bilder offen** · Grundlage:
+Stand: 29.10.2026 · Status: **Drehbuch abgenommen [F] (Mattia, 21.10.2026), Bilder offen** · Grundlage:
 `10-startseite.md` §12, `12-16-naechste-kapitel.md` §12, `00-grammatik.md` (Werte),
 `03-bildstil.md` (Stil-Bibel)
 
@@ -189,3 +189,73 @@ band is a flat plain light-grey background #EDEDED. No people, no text, no water
 - Dadurch 3 Schalen + Bodenbecken statt 5 eckiger Becken; Kugel fällt Schale 1 → 2 → 3 → Becken.
 - Gartenplan als Grundriss des gemalten Gartens mit Kartensymbolen, Legende, fliessendem Wasser, Glanz.
 - Offen: Hintergrund-Szenen wechseln mit dem Scroll (Garten → Pergola → Abend), 2 Bilder von Mattia.
+
+## Station 1 „Anfrage kommt an“: Detailentscheide und Bild-Prompts (29.10.2026)
+
+Szene [F] (abgenommen 22./23.10.): Garten früher Abend, Automat geschlossen gross in der Mitte, Gelehrter
+links, Balustrade vorne. Brief fliegt in den Briefschlitz, Walze dreht. Übergang: Kamera fährt heran,
+Kuppel öffnet sich.
+
+Detailentscheide [F] (Mattia, 29.10.2026):
+
+1. Den Brief bringt eine **Brieftaube**: fliegt von links ein, lässt den Brief in den Schlitz fallen,
+   fliegt nach rechts oben weg.
+2. Text: **nur Kapitelwort „Automation“ + Karte „I · Anfrage kommt an“** mit Frau Meiers Satz. Das Panel
+   mit allen 5 Schritten kommt in Station 1 nicht vor.
+
+Wiederverwendet (keine neuen Bilder): Garten/Abend (`k2-abend`), Gelehrter (alle Zustände), Balustrade,
+Vordergrund. Die Walze dreht per Code (Teil `walze` aus `k2-am.json`).
+
+### Neue Bilder für Station 1 (Gemini 3.1 Pro, Ablage `marke/assets/erster-wurf/`)
+
+| # | Datei | Format | Anhang | Inhalt |
+|---|---|---|---|---|
+| S1-1 | `k2-s1-automat-v1.jpg` | wie Vorlage | `k2-automat-ganz.jpg` | Automat ohne Nebel, mit Briefschlitz, Klappe zu |
+| S1-2 | `k2-s1-automat-offen-v1.jpg` | wie Vorlage | S1-1 | gleich, Klappe offen (Zwei-Bild-Wechsel) |
+| S1-3 | `k2-s1-taube-v1.jpg` | 1:1 | `amor-v1.jpg` | Taube mit Brief, Flügel oben |
+| S1-4 | `k2-s1-taube-ab-v1.jpg` | 1:1 | S1-3 | gleiche Taube, Flügel unten |
+| S1-5 | `k2-s1-brief-v1.jpg` | 1:1 | `amor-v1.jpg` | Brief allein (fällt in den Schlitz) |
+
+**S1-1 · Automat ohne Nebel, mit Briefschlitz** (`k2-automat-ganz.jpg` anhängen)
+```
+Edit the attached image. Keep the exact same Baroque automaton (marble pedestal, columns, golden
+filigree dome, putto on top, golden gears and pink roller inside), same colours, same size, same
+position, same flat light-grey background. Change only: remove ALL mist and haze, every part is crisp
+and clearly visible. Add an ornate pale-gold LETTER SLOT on the front of the hexagonal marble pedestal,
+centred just above the shell ornament: a narrow horizontal slot with a small hinged golden flap,
+the flap is CLOSED. Above the slot a tiny engraved golden plaque, without any readable text.
+```
+
+**S1-2 · Klappe offen** (Bild S1-1 anhängen)
+```
+Edit the attached image. Keep everything exactly the same: automaton, colours, size, position,
+background. Change only: the small golden flap of the letter slot on the pedestal is now OPEN, tilted
+inwards, showing a dark gap inside the slot.
+```
+
+**S1-3 · Brieftaube, Flügel oben** (`amor-v1.jpg` als Stilbezug anhängen, 1:1)
+```
+Same painting style, palette and light as the attached image. A plump, elegant white carrier pigeon in
+flight, seen from the side, flying to the RIGHT, both wings raised high. In its beak it holds a cream
+envelope sealed with a glossy PINK wax seal (#FF9DC8), the seal rendered crisp and flat like a vector
+graphic, contrasting with the oil painting. A tiny pale-gold ribbon around its neck. Cheeky, proud
+expression. Soft luminous oil painting like a Tiepolo fresco, light from the top left. Whole bird
+visible, isolated on a flat plain light-grey background #EDEDED, no shadow, no text, no watermark.
+```
+
+**S1-4 · Brieftaube, Flügel unten** (Bild S1-3 anhängen)
+```
+Edit the attached image. Keep the same pigeon, envelope, colours, size, position and background.
+Change only: both wings are in the downstroke, pointing down below the body.
+```
+
+**S1-5 · Brief allein** (`amor-v1.jpg` als Stilbezug anhängen, 1:1)
+```
+Same painting style, palette and light as the attached image. A single cream paper envelope seen
+slightly from above, tilted about 15 degrees, sealed with a glossy PINK wax seal (#FF9DC8) rendered
+crisp and flat like a vector graphic. No writing on it. Soft luminous oil painting like a Tiepolo
+fresco, light from the top left. Isolated on a flat plain light-grey background #EDEDED, no shadow,
+no text, no watermark.
+```
+
+Stationen 2–5: Szene planen erst nach Abnahme von Station 1 (Vorgehen Station für Station, 22./23.10.).
