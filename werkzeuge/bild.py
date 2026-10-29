@@ -24,6 +24,7 @@ import pathlib
 import shutil
 import subprocess
 import sys
+import time
 import urllib.error
 import urllib.request
 
@@ -108,11 +109,17 @@ def main():
            f'/publishers/google/models/{modell}:generateContent')
     anfrage = urllib.request.Request(url, data=json.dumps(koerper).encode(), headers={
         'Authorization': f'Bearer {token()}', 'Content-Type': 'application/json'})
-    try:
-        with urllib.request.urlopen(anfrage, timeout=300) as r:
-            antwort = json.load(r)
-    except urllib.error.HTTPError as e:
-        sys.exit(f'Fehler {e.code}: {e.read().decode()[:800]}')
+    # Ratenlimit (429): bis zu 5 Versuche mit wachsender Pause, kostet nichts
+    for versuch in range(5):
+        try:
+            with urllib.request.urlopen(anfrage, timeout=300) as r:
+                antwort = json.load(r)
+            break
+        except urllib.error.HTTPError as e:
+            if e.code == 429 and versuch < 4:
+                time.sleep(20 * (versuch + 1))
+                continue
+            sys.exit(f'Fehler {e.code}: {e.read().decode()[:800]}')
 
     bilder = [t['inlineData'] for k in antwort.get('candidates', [])
               for t in k.get('content', {}).get('parts', []) if 'inlineData' in t]

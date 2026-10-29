@@ -1,2 +1,23 @@
 datum,modell,groesse,usd,datei,prompt
 2026-10-29T22:21:50,gemini-nano-banana-2.1,2K,0.14,C:/Users/matta/AppData/Local/Temp/claude/C--web-agency-signedbymattia/1af03ff6-81b8-4e52-8d2f-0a84ab057b49/scratchpad/api-s1-automat.jpg,"Edit the attached image. Keep the exact same Baroque automaton (marble pedestal, columns, golden filigree dome, putto on"
+2026-10-29T22:47:39,gemini-nano-banana-2.1,4K,0.24,marke/assets/k2/master-nacht-v1.png,"Same painting style, palette and light quality as the attached image (soft luminous Tiepolo-like oil painting, pastel, n"
+2026-10-29T22:47:39,gemini-nano-banana-2.1,4K,0.24,marke/assets/k2/master-nacht-v2.png,"Same painting style, palette and light quality as the attached image (soft luminous Tiepolo-like oil painting, pastel, n"
+2026-10-29T22:47:40,gemini-nano-banana-2.1,4K,0.24,marke/assets/k2/master-nacht-v3.png,"Same painting style, palette and light quality as the attached image (soft luminous Tiepolo-like oil painting, pastel, n"
+2026-10-29T23:04:35,gemini-nano-banana-2.1,4K,0.24,marke/assets/k2/master-nacht-v4.png,"Edit the attached painting. Keep the same room, the same frontal viewpoint, the same painting style, palette, desk, wind"
+2026-10-29T23:06:02,gemini-nano-banana-2.1,4K,0.24,marke/assets/k2/master-nacht-v5.png,"Edit the attached painting. Keep everything the same (room, frontal viewpoint, desk, chair, candle, pink smartphone, ink"
+2026-10-29T23:07:53,gemini-nano-banana-2.1,4K,0.24,marke/assets/k2/master-nacht-v6.png,Edit only the lighting and colour grading of the attached painting: lift the interior midtones and shadows into luminous
+2026-10-29T23:09:31,gemini-nano-banana-2.1,4K,0.24,marke/assets/k2/master-nacht-v7.png,"Edit the attached painting. Keep absolutely everything the same (composition, colours, light, every object and its posit"
+2026-10-29T23:10:56,gemini-nano-banana-2.1,4K,0.24,marke/assets/k2/e1-schlafen-v1.png,"Edit the first attached painting. Keep absolutely everything the same: composition, colours, light, every object and its"
+2026-10-29T23:12:22,gemini-nano-banana-2.1,4K,0.24,marke/assets/k2/e2-wach-v1.png,"Edit the first attached painting. The four sleeping cherubs in the shelf wake up: they sit up in their compartments, bli"
+2026-10-29T23:13:25,gemini-nano-banana-2.1,4K,0.24,marke/assets/k2/e5-v1.png,Edit the first attached painting. The cherub from the bottom row second compartment has climbed down and now sits cross-
+2026-10-29T23:13:29,gemini-nano-banana-2.1,4K,0.24,marke/assets/k2/e3-v1.png,Edit the first attached painting. The cherub from the top row first compartment has climbed down onto the desk: standing
+2026-10-29T23:14:36,gemini-nano-banana-2.1,4K,0.24,marke/assets/k2/e4-v1.png,Edit the first attached painting. The cherub in the top row third compartment leans out of its compartment and catches a
+2026-10-29T23:15:24,gemini-nano-banana-2.1,4K,0.24,marke/assets/k2/e6-v1.png,"Edit the first attached painting. The big calendar book on the right of the desk is now lying OPEN, showing two cream pa"
+2026-10-29T23:16:46,gemini-nano-banana-2.1,4K,0.24,marke/assets/k2/m1-morgen-v1.png,Edit the attached painting. Turn the night into early MORNING: soft pale golden-pink morning sunlight streams in through
+2026-10-29T23:18:24,gemini-nano-banana-2.1,4K,0.24,marke/assets/k2/e2-v2.png,Edit the first attached painting. Add four small chubby cherubs sitting awake inside four compartments of the shelf: top
+2026-10-29T23:19:11,gemini-nano-banana-2.1,4K,0.24,marke/assets/k2/e3-v2.png,Edit the first attached painting. Add ONE small chubby cherub standing on the desk right next to the pink smartphone: it
+2026-10-29T23:20:08,gemini-nano-banana-2.1,4K,0.24,marke/assets/k2/e4-v2.png,"Edit the first attached painting. Add ONE small chubby cherub inside the top row third compartment, leaning out of it: w"
+2026-10-29T23:21:05,gemini-nano-banana-2.1,4K,0.24,marke/assets/k2/e5-v2.png,Edit the first attached painting. Add ONE small chubby cherub sitting cross-legged on the desk between the inkwell and t
+2026-10-29T23:22:01,gemini-nano-banana-2.1,4K,0.24,marke/assets/k2/e6-v2.png,"Edit the first attached painting. The big calendar book on the right of the desk now lies OPEN in the same place, showin"
+2026-10-29T23:22:50,gemini-nano-banana-2.1,4K,0.24,marke/assets/k2/m2-kaffee-v1.png,Edit the first attached painting (a morning scene). Add four small chubby cherubs curled up fast asleep inside four comp
+2026-10-29T23:25:14,gemini-nano-banana-2.1,4K,0.24,marke/assets/k2/e3-v3.png,Edit the first attached painting. Add ONE small chubby cherub standing on the desk right behind the pink smartphone: it 

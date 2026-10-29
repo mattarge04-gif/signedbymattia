@@ -1,277 +1,288 @@
-// Kapitel II Automation · Der Automat im Garten.
-// Drehbuch: website/drehbuch/12-kapitel-2.md · Teardown: marke/teardown-shopify-pos-szene.md
-// Wie bei Shopify spult der Scroll eine inszenierte Sequenz ab: Anflug (Veo-Video, Bild für Bild),
-// dann 5 Stationen. Bei jeder dreht sich der Automat weiter, die Garten-Ebenen gleiten in die Tiefe
-// und am Automaten passiert etwas Neues. Das Ablauf-Panel folgt dem Scroll.
-import { automat25d } from './automat25d.js';
-
+// Kapitel II Automation · Die Nachtschicht. Drehbuch: website/drehbuch/12-kapitel-2.md
+// Eine Schreibstube bei Nacht, der Meister ist weg, vier Putti erledigen über die Rohrpost eine Anfrage.
+// Alle Figuren stammen aus Bearbeitungen desselben Masterbilds (werkzeuge/k2_nacht_ebenen.py) und liegen
+// im Rahmen 4000 × 2233. Der Scroll spult ab und zurück; Uhr, Büchse, Nachrichten und Kerze per Code.
 const RUHIG = matchMedia('(prefers-reduced-motion: reduce)').matches;
 const MAUS = matchMedia('(hover: hover) and (pointer: fine)').matches;
 const $ = (s) => document.querySelector(s);
 const klemm = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
 const glatt = (t) => t * t * (3 - 2 * t);
-
-// Regie: Anteil der Kapitelstrecke je Abschnitt
-const ANFLUG = [0.0, 0.14];
-const STATIONEN = [[0.14, 0.31], [0.31, 0.48], [0.48, 0.65], [0.65, 0.82], [0.82, 1.0]];
-
-const sektion = $('#k2Bahn');
-const buehne = $('#k2Buehne');
-const himmel = $('#k2Himmel');
-const garten = $('#k2Garten');
-const abend = $('#k2Abend');
-const pergola = $('#k2Pergola');
-const leben = $('#k2Leben');
-const amHuelle = $('#k2Automat');
-const hecke = $('#k2Hecke');
-const balustrade = $('#k2Balustrade');
-const flug = $('#k2Flug');
-const faeden = $('#k2Faeden');
-const ablauf = $('#k2Ablauf');
-const schritte = [...document.querySelectorAll('.k2-schritt')];
-const gelehrter = $('#k2Gelehrter');
-const wecken = $('#k2Wecken');
-const brunnen = $('#k2Brunnen');
-const strahl = $('#k2StrahlPfad');
-const vorne = $('#k2Vorne');
-const text = $('#k2Text');
-const s1Karte = $('#k2S1Karte');
-
-let s = 0;
-let freigabe = 0;
-const neigung = { x: 0, y: 0 };
-let maus = { x: 0.5, y: 0.5, da: false };
-if (MAUS) addEventListener('pointermove', (e) => { maus = { x: e.clientX / innerWidth, y: e.clientY / innerHeight, da: true }; });
-
-let bahnOben = 0;
-function fortschritt() {
-  const r = sektion.getBoundingClientRect();
-  bahnOben = r.top;
-  return klemm(-r.top / (r.height - innerHeight));
-}
-// Fortschritt innerhalb eines Abschnitts
 const teil = (x, [a, b]) => klemm((x - a) / (b - a));
+const W = 4000;
+const H = 2233;
 
-// ---------- Anflug: Video Bild für Bild am Scroll ----------
-const FLUG_BILDER = 80;
-const flugBilder = [];
-let flugGeladen = false;
-function flugLaden() {
-  if (flugGeladen) return;
-  flugGeladen = true;
-  for (let i = 1; i <= FLUG_BILDER; i++) {
+const bahn = $('#k2Bahn');
+const welt = $('#k2Welt');
+const figuren = $('#k2Figuren');
+const morgen = $('#k2Morgen');
+const kerze = $('#k2Kerze');
+const zeichen = $('#k2Zeichen');
+const nachricht = $('#k2Nachricht');
+const text = $('#k2Text');
+const stationText = $('#k2Station');
+
+// Regie (Fortschritt s der Bahn, 0–1)
+const ST = {
+  auftakt: [0, 0.1], anfrage: [0.1, 0.24], lesen: [0.24, 0.38], sortieren: [0.38, 0.52],
+  antworten: [0.52, 0.66], termin: [0.66, 0.78], ruhe: [0.78, 0.83], morgen: [0.83, 0.97],
+};
+const TEXTE = [
+  ['auftakt', '', '', ''],
+  ['anfrage', 'I', 'Anfrage kommt an', '21:47. Niemand ist im Büro.'],
+  ['lesen', 'II', 'Gelesen', 'Die Nachricht geht in die Rohrpost.'],
+  ['sortieren', 'III', 'Sortiert: dringend', 'Boiler tropft, also kommt sie nach oben.'],
+  ['antworten', 'IV', 'Beantwortet', 'Sofort, mit dem Text, den Sie vorher festgelegt haben.'],
+  ['termin', 'V', 'Termin steht', 'Do 08:00, Boiler. Im Kalender.'],
+  ['ruhe', '', '', ''],
+  ['morgen', '', 'Erledigt, während Sie weg waren.', 'Der Meister ist zurück. Der Kaffee auch.'],
+];
+// Kamera je Station: Blickpunkt im Bild (Anteil) und Nähe. Die Bilder haben 4000 px, gezeigt werden rund
+// 1600 px: bis Nähe 2.2 bleibt alles scharf. Der Blickpunkt landet bei 60 % der Breite (links steht Text).
+const KAMERA = {
+  auftakt: [0.5, 0.5, 1], ruhe: [0.5, 0.5, 1], anfrage: [0.62, 0.6, 1.7], lesen: [0.61, 0.6, 1.55], sortieren: [0.63, 0.42, 1.55],
+  antworten: [0.6, 0.6, 1.6], termin: [0.7, 0.6, 1.55], morgen: [0.74, 0.55, 1.35],
+};
+
+// ---------- Figuren ----------
+const fig = {};
+fetch('bilder/k2n/k2n.json').then((r) => r.json()).then((j) => {
+  for (const [name, i] of Object.entries(j)) {
+    if (name === 'rahmen') continue;
     const im = new Image();
+    im.src = `bilder/k2n/${name}.webp`;
+    im.alt = '';
     im.decoding = 'async';
-    im.src = `bilder/k2-flug/f${String(i).padStart(3, '0')}.webp`;
-    flugBilder.push(im);
+    im.className = 'k2-figur';
+    Object.assign(im.style, { left: `${(i.x / W) * 100}%`, top: `${(i.y / H) * 100}%`, width: `${(i.w / W) * 100}%` });
+    figuren.appendChild(im);
+    fig[name] = im;
   }
-}
-const fctx = flug.getContext('2d');
-let letztesBild = -1;
-function flugZeichnen(k) {
-  const i = Math.round(k * (FLUG_BILDER - 1));
-  if (i === letztesBild) return;
-  let im = flugBilder[i];
-  for (let n = i; n >= 0 && !(im && im.complete && im.naturalWidth); n--) im = flugBilder[n];
-  if (!im || !im.complete || !im.naturalWidth) return;
-  letztesBild = i;
-  const w = flug.width;
-  const h = flug.height;
-  const sk = Math.max(w / im.naturalWidth, h / im.naturalHeight);
-  fctx.drawImage(im, (w - im.naturalWidth * sk) / 2, (h - im.naturalHeight * sk) / 2, im.naturalWidth * sk, im.naturalHeight * sk);
-}
+});
+// Haltungen wechseln an festen Punkten mit kurzer Überblendung (CSS), nie halb durchsichtig stehen bleiben
+const zeig = (name, o, dy = 0) => {
+  const f = fig[name];
+  if (!f) return;
+  f.classList.toggle('an', o > 0.5);
+  f.style.transform = dy ? `translateY(${dy}%)` : '';
+};
 
-// ---------- 3D-Automat ----------
-let k3 = null;
-automat25d(amHuelle).then((a) => { k3 = a; }).catch((f) => console.warn('Automat:', f));
-let breite = 0;
-let hoehe = 0;
-function groesse() {
-  breite = buehne.clientWidth;
-  hoehe = buehne.clientHeight;
-  const dpr = Math.min(devicePixelRatio || 1, 2);
-  leben.width = breite * 1.12 * dpr;
-  leben.height = hoehe * 1.12 * dpr;
-  leben.getContext('2d').setTransform(dpr, 0, 0, dpr, 0, 0);
-  flug.width = Math.round(breite * Math.min(dpr, 1.5));
-  flug.height = Math.round(hoehe * Math.min(dpr, 1.5));
-  letztesBild = -1;
-  halmeVerteilen();
-}
-addEventListener('resize', groesse);
-
-// ---------- Leben: Gras auf dem Rasen, treibende Blütenblätter ----------
-const lctx = leben.getContext('2d');
-const BILD = [2400, 1340];
-const RASEN = { x: 0.517, y: 0.636, rx: 0.17, ry: 0.078 };
-let halme = [];
-const blaetter = Array.from({ length: 22 }, () => ({ x: Math.random(), y: Math.random(), v: 0.4 + Math.random() * 0.8, p: Math.random() * 6.28, r: 3 + Math.random() * 4, f: Math.random() < 0.5 ? '#FFC9B5' : '#F6D3E6' }));
-function bildZuHuelle(px, py) {
-  // Gartenhülle ist 112 % gross (inset −6 %), Bild darin mit cover
-  const W = breite * 1.12;
-  const H = hoehe * 1.12;
-  const k = Math.max(W / BILD[0], H / BILD[1]);
-  return { x: (W - BILD[0] * k) / 2 + px * BILD[0] * k, y: (H - BILD[1] * k) / 2 + py * BILD[1] * k, k };
-}
-function halmeVerteilen() {
-  halme = [];
-  for (let n = 0; n < 900; n++) {
-    const a = Math.random() * 6.283;
-    const r = Math.sqrt(Math.random());
-    const p = bildZuHuelle(RASEN.x + Math.cos(a) * RASEN.rx * r, RASEN.y + Math.sin(a) * RASEN.ry * r);
-    halme.push({ x: p.x, y: p.y, h: (5 + Math.random() * 7) * p.k * 2.2, f: Math.random() < 0.5 ? 'rgba(182,208,170,.85)' : 'rgba(214,232,196,.8)', p: Math.random() * 6.28 });
-  }
-}
-function lebenZeichnen(t) {
-  lctx.clearRect(0, 0, breite * 1.2, hoehe * 1.2);
-  lctx.lineWidth = 1.3;
-  lctx.lineCap = 'round';
-  for (const h of halme) {
-    const wind = Math.sin(t * 1.6 - h.x * 0.012 + h.p * 0.3) * 0.5 + Math.sin(t * 3.1 + h.p) * 0.15;
-    lctx.strokeStyle = h.f;
-    lctx.beginPath();
-    lctx.moveTo(h.x, h.y);
-    lctx.quadraticCurveTo(h.x + wind * h.h * 0.3, h.y - h.h * 0.6, h.x + wind * h.h * 0.8, h.y - h.h);
-    lctx.stroke();
-  }
-  for (const b of blaetter) {
-    b.x += 0.00045 * b.v;
-    b.y += 0.00022 * b.v + Math.sin(t + b.p) * 0.0002;
-    if (b.x > 1.05 || b.y > 1.05) { b.x = -0.05; b.y = Math.random() * 0.7; }
-    lctx.save();
-    lctx.translate(b.x * breite, b.y * hoehe);
-    lctx.rotate(t * b.v + b.p);
-    lctx.scale(1, 0.55 + 0.45 * Math.sin(t * 2 * b.v + b.p));
-    lctx.fillStyle = b.f;
-    lctx.globalAlpha = 0.85;
-    lctx.beginPath();
-    lctx.ellipse(0, 0, b.r, b.r * 0.6, 0, 0, 6.283);
-    lctx.fill();
-    lctx.restore();
-  }
-  lctx.globalAlpha = 1;
-}
-
-// ---------- Faden vom aktiven Schritt zum arbeitenden Teil ----------
+// ---------- Zeichen: Uhrzeiger, Handyschein, Etikett, Rohrpost-Büchse ----------
 const NS = 'http://www.w3.org/2000/svg';
-const faden = document.createElementNS(NS, 'path');
-const fadenPunkt = document.createElementNS(NS, 'circle');
-fadenPunkt.setAttribute('r', '4');
-faden.classList.add('aktiv');
-faeden.append(faden, fadenPunkt);
+const el = (tag, attr, eltern = zeichen) => {
+  const e = document.createElementNS(NS, tag);
+  for (const [k, v] of Object.entries(attr)) e.setAttribute(k, v);
+  eltern.appendChild(e);
+  return e;
+};
+const defs = el('defs', {});
+const unschaerfe = el('filter', { id: 'k2Weich', x: '-50%', y: '-50%', width: '200%', height: '200%' }, defs);
+el('feGaussianBlur', { stdDeviation: 26 }, unschaerfe);
+const schein = el('ellipse', { cx: 2540, cy: 1492, rx: 190, ry: 70, fill: '#FF9DC8', filter: 'url(#k2Weich)', transform: 'rotate(14 2540 1492)', opacity: 0 });
 
-// ---------- Pointe in Station 5: Scherzbrunnen weckt den Gelehrten ----------
-function strahlSetzen(k) {
-  const br = buehne.getBoundingClientRect();
-  const b = brunnen.getBoundingClientRect();
-  const g = gelehrter.getBoundingClientRect();
-  const mund = { x: b.left - br.left + b.width * 0.25, y: b.top - br.top + b.height * 0.116 };
-  const gesicht = { x: g.left - br.left + g.width * 0.32, y: g.top - br.top + g.height * 0.15 };
-  const hoch = Math.min(mund.y, gesicht.y) - br.height * 0.22;
-  strahl.setAttribute('d', `M${mund.x} ${mund.y} Q${(mund.x + gesicht.x) / 2} ${hoch} ${gesicht.x} ${gesicht.y}`);
-  const len = strahl.getTotalLength() || 1;
-  strahl.style.strokeDasharray = `${len * 0.35} ${len}`;
-  strahl.style.strokeDashoffset = `${len * 0.35 - k * len * 1.35}`;
-  strahl.classList.toggle('spritzt', k > 0.02 && k < 0.98);
+const UHR = { x: 2537, y: 206 };
+const stunde = el('line', { x1: UHR.x, y1: UHR.y, x2: UHR.x, y2: UHR.y - 40, stroke: '#3B2E52', 'stroke-width': 7, 'stroke-linecap': 'round' });
+const minute = el('line', { x1: UHR.x, y1: UHR.y, x2: UHR.x, y2: UHR.y - 62, stroke: '#3B2E52', 'stroke-width': 4.5, 'stroke-linecap': 'round' });
+el('circle', { cx: UHR.x, cy: UHR.y, r: 7, fill: '#C9A45E' });
+
+// Zettel am leeren Stuhl (vermessen am Master): sagt, dass der Meister weg ist
+const zettel = el('g', { transform: 'translate(3024 1712) rotate(-3)', fill: '#3B2E52', 'text-anchor': 'middle', style: 'font: italic 31px var(--font-hand)' });
+el('text', { x: 0, y: 0 }, zettel).textContent = 'Bin ab 7 Uhr';
+el('text', { x: 0, y: 44 }, zettel).textContent = 'zurück.';
+
+// Eintrag im Kalenderbuch (Station Termin), schräg wie die Buchseite
+const eintrag = el('text', { x: 0, y: 0, opacity: 0, fill: '#C2557F', 'text-anchor': 'middle', transform: 'translate(3105 1452) rotate(-7) skewX(-18)', style: 'font: italic 30px var(--font-hand)' });
+eintrag.textContent = 'Do 08:00 · Boiler';
+
+const etikett = el('g', { opacity: 0, transform: 'translate(2668 838) rotate(-5)' });
+el('rect', { x: -78, y: -24, width: 156, height: 48, rx: 6, fill: '#FBF3EA', stroke: '#E3C58A', 'stroke-width': 3 }, etikett);
+el('text', { x: 0, y: 11, 'text-anchor': 'middle', fill: '#C2557F', style: 'font: italic 34px var(--font-hand)' }, etikett).textContent = 'Dringend';
+
+// Weg der Büchse: Mündung am Pult → rechts hoch → Mittelstange nach links → links hoch → oben herum →
+// Trichterrohr hinunter → Öffnung über Fach oben 3 (vermessen am Master, Rahmen 4000 × 2233)
+const weg = el('path', {
+  d: 'M2645 1380 L2645 1320 Q2645 1278 2690 1278 L2990 1228 Q3033 1220 3033 1180 L3033 930 Q3033 886 2990 886 '
+   + 'L2020 886 Q1972 886 1972 840 L1972 560 Q1972 512 2020 512 L2830 512 Q2878 512 2878 560 L2878 590 '
+   + 'Q2878 617 2850 617 L2690 617 Q2656 617 2656 650 L2656 703',
+  fill: 'none', stroke: 'none',
+});
+const wegLaenge = weg.getTotalLength();
+// Schweif hinter der Büchse, damit man ihrem Weg folgen kann
+const schweif = el('path', { fill: 'none', stroke: '#FF9DC8', 'stroke-width': 26, 'stroke-linecap': 'round', 'stroke-linejoin': 'round', opacity: 0 });
+const buechse = el('g', { opacity: 0 });
+el('circle', { r: 80, fill: '#FF9DC8', opacity: 0.35, filter: 'url(#k2Weich)' }, buechse);
+el('rect', { x: -56, y: -27, width: 112, height: 54, rx: 27, fill: '#FF9DC8', stroke: '#C2557F', 'stroke-width': 4 }, buechse);
+el('rect', { x: -38, y: -16, width: 48, height: 10, rx: 5, fill: '#fff', opacity: 0.85 }, buechse);
+el('line', { x1: 30, y1: -27, x2: 30, y2: 27, stroke: '#C2557F', 'stroke-width': 3 }, buechse);
+const buechsePos = { x: 0, y: 0 };
+function buechseAuf(k, rueckwaerts) {
+  // k 0 = Pult, 1 = Fach; gedreht in Fahrtrichtung
+  const l = klemm(k) * wegLaenge;
+  const p = weg.getPointAtLength(l);
+  const q = weg.getPointAtLength(Math.min(wegLaenge, l + 4));
+  let winkel = (Math.atan2(q.y - p.y, q.x - p.x) * 180) / Math.PI;
+  if (rueckwaerts) winkel += 180;
+  buechse.setAttribute('transform', `translate(${p.x} ${p.y}) rotate(${winkel})`);
+  const pkt = [];
+  for (let i = 0; i <= 12; i++) {
+    const li = klemm(l + (rueckwaerts ? 1 : -1) * i * 28, 0, wegLaenge);
+    const w = weg.getPointAtLength(li);
+    pkt.push(`${w.x.toFixed(0)} ${w.y.toFixed(0)}`);
+  }
+  schweif.setAttribute('d', `M${pkt.join(' L')}`);
+  buechsePos.x = p.x / W;
+  buechsePos.y = p.y / H;
+}
+
+// ---------- Nachrichten über dem Handy ----------
+let letzteNachricht = '';
+function nachrichtSetzen(art, o) {
+  if (art !== letzteNachricht) {
+    letzteNachricht = art;
+    nachricht.classList.toggle('antwort', art === 'antwort');
+    // Anfrage direkt über dem Handy; Antwort rechts über dem Kalenderbuch, wo dann niemand arbeitet
+    nachricht.style.left = `${((art === 'antwort' ? 2930 : 2540) / W) * 100}%`;
+    nachricht.style.top = `${((art === 'antwort' ? 1330 : 1420) / H) * 100}%`;
+    nachricht.innerHTML = art === 'antwort'
+      ? '<small>Antwort · gesendet 21:51</small>„Guten Tag Frau Meier, wir kommen morgen um 8 Uhr.“'
+      : '<small>Neue Anfrage · 21:47</small>„Boiler tropft in der Küche. Morgen möglich?“';
+  }
+  nachricht.style.opacity = String(o);
+  nachricht.style.transform = `scale(${0.92 + 0.08 * o})`;
+}
+
+// ---------- Text unten links ----------
+let letzteStation = '';
+function stationSetzen(name) {
+  if (name === letzteStation) return;
+  letzteStation = name;
+  const [, nr, titel, satz] = TEXTE.find((x) => x[0] === name);
+  stationText.classList.add('wechselt');
+  setTimeout(() => {
+    stationText.querySelector('.nr').textContent = nr;
+    stationText.querySelector('b').textContent = titel;
+    stationText.querySelector('.satz').textContent = satz;
+    stationText.classList.remove('wechselt');
+    stationText.classList.toggle('leer', !titel);
+  }, RUHIG ? 0 : 220);
+}
+
+// ---------- Uhr: 21:47 bis 21:53 in der Nacht, dann vorspulen bis 07:00 ----------
+const NACHT = [[0.1, 21 * 60 + 47], [0.24, 21 * 60 + 48], [0.38, 21 * 60 + 49], [0.52, 21 * 60 + 51], [0.66, 21 * 60 + 52], [0.78, 21 * 60 + 53]];
+function uhrzeit(x) {
+  if (x <= NACHT[0][0]) return NACHT[0][1];
+  for (let i = 1; i < NACHT.length; i++) {
+    if (x <= NACHT[i][0]) {
+      const [a, ta] = NACHT[i - 1];
+      const [b, tb] = NACHT[i];
+      return ta + (tb - ta) * teil(x, [a, b]);
+    }
+  }
+  return 21 * 60 + 53 + glatt(teil(x, [0.79, 0.86])) * (9 * 60 + 7); // bis 07:00
+}
+function uhrSetzen(min) {
+  minute.setAttribute('transform', `rotate(${(min % 60) * 6} ${UHR.x} ${UHR.y})`);
+  stunde.setAttribute('transform', `rotate(${((min / 60) % 12) * 30} ${UHR.x} ${UHR.y})`);
 }
 
 // ---------- Hauptschleife ----------
-let letzteStation = -2;
-function bild(jetztMs) {
-  const t = jetztMs / 1000;
-  const ziel = RUHIG ? 0.9 : fortschritt();
-  s += (ziel - s) * (RUHIG ? 1 : 0.14);
+let s = 0;
+const neigung = { x: 0, y: 0 };
+let maus = { x: 0.5, y: 0.5, da: false };
+if (MAUS) addEventListener('pointermove', (e) => { maus = { x: e.clientX / innerWidth, y: e.clientY / innerHeight, da: true }; });
+const kam = { x: 0.5, y: 0.5, z: 1 };
+
+function fortschritt() {
+  const r = bahn.getBoundingClientRect();
+  return klemm(-r.top / (r.height - innerHeight));
+}
+
+function bild(ms) {
+  const t = ms / 1000;
+  const ziel = fortschritt();
+  s = RUHIG ? ziel : s + (ziel - s) * 0.14;
   if (Math.abs(ziel - s) < 0.0004) s = ziel;
-  buehne.classList.toggle('k2-fliegt', s > 0.02 && s < 0.98);
+  const p = Object.fromEntries(Object.entries(ST).map(([k, ab]) => [k, teil(s, ab)]));
+  const station = Object.keys(ST).find((k) => s < ST[k][1]) || 'morgen';
 
+  // Rohrpost: hin in Station Lesen (ins Fach Dringend), zurück in Station Antworten
+  const hin = teil(p.lesen, [0.3, 0.98]);
+  const zurueck = teil(p.antworten, [0.02, 0.6]);
+  const zurueckAktiv = s >= ST.antworten[0];
+  const unterwegs = zurueckAktiv ? zurueck > 0 && zurueck < 1 : s < ST.sortieren[0] && hin > 0 && hin < 1;
+  buechse.setAttribute('opacity', unterwegs ? '1' : '0');
+  schweif.setAttribute('opacity', unterwegs ? '0.4' : '0');
+  if (unterwegs) buechseAuf(zurueckAktiv ? 1 - glatt(zurueck) : glatt(hin), zurueckAktiv);
+
+  // Kamera: Zielpunkt der Station oder der fahrenden Büchse, weich nachgeführt
+  let [kx, ky, kz] = KAMERA[station];
+  if (unterwegs) [kx, ky, kz] = [buechsePos.x, buechsePos.y, 1.4];
+  const f = RUHIG ? 1 : 0.05;
+  kam.x += (kx - kam.x) * f;
+  kam.y += (ky - kam.y) * f;
+  kam.z += (kz - kam.z) * f;
   if (MAUS && !RUHIG) {
-    neigung.x += ((maus.da ? (0.5 - maus.x) * 2 : 0) - neigung.x) * 0.05;
-    neigung.y += ((maus.da ? (0.5 - maus.y) * 2 : 0) - neigung.y) * 0.05;
+    neigung.x += ((maus.da ? 0.5 - maus.x : 0) - neigung.x) * 0.05;
+    neigung.y += ((maus.da ? 0.5 - maus.y : 0) - neigung.y) * 0.05;
   }
+  // Blickpunkt auf 60 % Breite / 50 % Höhe des Bildschirms legen, ohne dass ein Rand sichtbar wird
+  const ww = welt.offsetWidth;
+  const wh = welt.offsetHeight;
+  const links = (innerWidth - ww) / 2;
+  const oben = (innerHeight - wh) / 2;
+  const mitteX = innerWidth * (kam.z > 1.05 ? 0.6 : 0.5);
+  let tx = mitteX - links - kam.z * kam.x * ww + neigung.x * 14;
+  let ty = innerHeight * 0.5 - oben - kam.z * kam.y * wh + neigung.y * 10;
+  tx = klemm(tx, innerWidth - links - kam.z * ww, -links);
+  ty = klemm(ty, innerHeight - oben - kam.z * wh, -oben);
+  welt.style.transform = `translate(${tx}px, ${ty}px) scale(${kam.z})`;
 
-  // Anflug: Video spult mit, blendet am Ende in die Bühne über
-  const af = teil(s, ANFLUG);
-  if (!RUHIG) flugZeichnen(af);
-  flug.style.opacity = String(RUHIG ? 0 : 1 - glatt(klemm((af - 0.82) / 0.18)));
-  text.style.transform = `translateY(${(0.65 - 1.4 * klemm(af / 0.7)) * hoehe}px)`;
-  text.style.opacity = String(1 - klemm((af - 0.55) / 0.25));
+  // Kapitelwort nur im Auftakt
+  text.style.opacity = String(1 - glatt(teil(s, [0.07, 0.12])));
+  text.style.transform = `translateY(${-glatt(teil(s, [0.07, 0.12])) * 4}vh)`;
+  stationSetzen(station);
 
-  // Stationen: welche, wie weit
-  const st = STATIONEN.map((ab) => teil(s, ab));
-  let station = STATIONEN.findIndex(([a, b]) => s >= a && s < b);
-  if (s >= 1) station = 4;
+  // Putti: schlafen → wach (Anfrage) → einzelne arbeiten → wieder schlafen (Morgen)
+  const wach = glatt(teil(p.anfrage, [0.35, 0.7])) * (1 - glatt(teil(p.ruhe, [0, 0.5])));
+  const ein = (k) => glatt(teil(p[k], [0, 0.18]));
+  const aus = (k, a = 0, b = 0.18) => 1 - glatt(teil(p[k], [a, b]));
+  const atem = (n) => (RUHIG ? 0 : Math.sin(t * 1.7 + n) * 0.6);
+  const lesen = s < ST.sortieren[0] ? ein('lesen') : aus('sortieren');
+  const sortieren = s < ST.antworten[0] ? ein('sortieren') : aus('antworten');
+  const antworten = s < ST.termin[0] ? ein('antworten') : aus('termin');
+  const termin = s < ST.ruhe[0] ? glatt(teil(p.termin, [0.12, 0.3])) : aus('ruhe', 0, 0.3);
+  const arbeit = { o1: lesen, o3: sortieren, u2: antworten, u4: termin };
+  for (const [n, k] of [['o1', 0], ['o3', 1.3], ['u2', 2.1], ['u4', 3.4]]) {
+    zeig(`schlaf-${n}`, 1 - wach, atem(k));
+    zeig(`wach-${n}`, wach * (1 - arbeit[n]));
+  }
+  zeig('lesen', lesen);
+  zeig('sortieren', sortieren);
+  zeig('antworten', antworten);
+  zeig('termin', termin);
 
-  // Drehung des Automaten (eine ganze Umdrehung über alle Stationen) und Schwenk der Welt
-  const dreh = -glatt(teil(s, [STATIONEN[0][0], 1]));
-  const schwenk = Math.sin(dreh * Math.PI * 2);
-  // Kamera fährt erst heran, wenn der Brief im Schlitz ist; weich nachgeführt, damit der Zoom nicht springt
-  freigabe += ((k3 ? k3.s1Fertig() : 0) - freigabe) * 0.06;
-  // Ab Station 2 folgt die Nähe wieder nur dem Scroll, sonst zoomt es nach dem Anhalten noch nach
-  const nah = glatt(Math.max(teil(st[0], [0.5, 1]) * freigabe, teil(s, [0.31, 0.38]))) * (1 - glatt(st[4]) * 0.6);
-  const hochSehen = glatt(st[2]) * (1 - glatt(teil(s, [0.6, 0.66])));
-  himmel.style.transform = `translate(${schwenk * -2 + neigung.x * 6}px, ${hochSehen * 6}vh) scale(${1.02 + 0.06 * nah})`;
-  garten.style.transform = `translate(calc(${schwenk * -4}vw + ${neigung.x * 14}px), ${hochSehen * 14 + neigung.y * 6}px) scale(${1 + 0.14 * nah})`;
-  vorne.style.transform = `translate(calc(${schwenk * -9}vw + ${neigung.x * 40}px), ${8 + hochSehen * 22}vh) scale(${1 + 0.08 * nah})`;
-  gelehrter.style.transform = `translate(calc(${schwenk * -6}vw + ${-6 * nah}vw), ${hochSehen * 18}vh) scale(${1 - 0.25 * nah})`;
-  brunnen.style.transform = `translate(calc(${schwenk * -6}vw + ${6 * nah}vw), ${hochSehen * 18}vh) scale(${1 - 0.1 * nah})`;
+  // Handy: leuchtet, bis es gelesen ist; Nachrichten darüber
+  const ungelesen = glatt(teil(p.anfrage, [0, 0.2])) * (1 - glatt(teil(p.lesen, [0.2, 0.45])));
+  schein.setAttribute('opacity', String(ungelesen * (0.55 + 0.35 * Math.sin(t * 4))));
+  // Anfrage nur, solange niemand am Handy arbeitet; Antwort, wenn die Büchse zurück ist
+  const anfrageText = glatt(teil(p.anfrage, [0.15, 0.35])) * (1 - glatt(teil(s, [ST.lesen[0] - 0.01, ST.lesen[0] + 0.015])));
+  const antwortText = glatt(teil(p.antworten, [0.6, 0.75])) * (1 - glatt(teil(p.termin, [0, 0.12])));
+  if (antwortText > 0.01) nachrichtSetzen('antwort', antwortText);
+  else nachrichtSetzen('anfrage', anfrageText);
 
-  // Licht: Pergola in Station 3, Abend ab Station 4
-  pergola.style.opacity = String(hochSehen * 0.92);
-  pergola.style.transform = `rotate(${(s - 0.56) * 50}deg) scale(1.12)`;
-  const abendlicht = glatt(teil(s, [0.64, 0.74]));
-  abend.style.opacity = String(abendlicht);
-  leben.style.opacity = String((1 - 0.5 * abendlicht) * (1 - hochSehen));
+  etikett.setAttribute('opacity', String(glatt(teil(p.sortieren, [0.35, 0.55])) * aus('ruhe', 0.2, 0.6)));
 
-  // 3D: Explosion ab Station 2, zusammen in Station 5; Panel macht ab Station 2 rechts Platz,
-  // in Station 1 steht nur die Karte „I · Anfrage kommt an“ (Entscheid 29.10.)
-  const explo = glatt(teil(s, [0.31, 0.42])) * (1 - glatt(teil(s, [0.84, 0.93])));
-  const panel = glatt(teil(s, [0.31, 0.36])) * (1 - glatt(teil(s, [0.97, 1.0])));
-  s1Karte.classList.toggle('da', s > 0.15 && s < 0.3);
-  ablauf.classList.toggle('da', panel > 0.5);
-  const pb = ablauf.offsetWidth + innerWidth * 0.04;
-  if (k3) k3.bild({ nah, explo, t, maus: neigung, versatzX: (pb / 2) * panel, station: Math.max(0, station), st, auftauchen: teil(s, [0.1, 0.2]) });
-  hecke.style.transform = `translate(calc(${schwenk * -8 - nah * 8}vw + ${neigung.x * 30}px), ${hochSehen * 30}vh) scale(${1 + 0.15 * nah})`;
-  balustrade.style.transform = `translate(calc(${schwenk * -6}vw + ${neigung.x * 50}px), ${hochSehen * 30 + nah * 6}vh) scale(${0.9 + 0.1 * nah})`;
-  hecke.style.opacity = String(1 - hochSehen);
+  // Uhr, Kerze, Morgen
+  uhrSetzen(uhrzeit(s));
+  kerze.style.opacity = String(1 - glatt(teil(p.ruhe, [0.4, 0.9])));
+  if (MAUS && !RUHIG) kerze.style.translate = `calc(-50% + ${(maus.x - 0.5) * 30}px) calc(-50% + ${(maus.y - 0.5) * 18}px)`;
+  morgen.style.opacity = String(glatt(teil(p.morgen, [0, 0.15])));
+  eintrag.setAttribute('opacity', String(glatt(teil(p.termin, [0.45, 0.65])) * aus('ruhe', 0, 0.3)));
 
-  // Panel: Schritte folgen den Stationen
-  schritte.forEach((li, i) => {
-    li.classList.toggle('aktiv', i === station);
-    li.classList.toggle('fertig', station > i || (i === station && st[i] > 0.45));
-  });
-  if (k3 && station >= 0 && panel > 0.5) {
-    const br = buehne.getBoundingClientRect();
-    const a = k3.ankerAufBildschirm(station, br);
-    const r = schritte[station].getBoundingClientRect();
-    const zx = r.left - br.left - 6;
-    const zy = r.top - br.top + 22;
-    const mx = (a.x + zx) / 2;
-    faden.setAttribute('d', `M${a.x} ${a.y} C ${mx} ${a.y}, ${mx} ${zy}, ${zx} ${zy}`);
-    fadenPunkt.setAttribute('cx', a.x);
-    fadenPunkt.setAttribute('cy', a.y);
-    faeden.style.opacity = String(panel);
-  } else faeden.style.opacity = '0';
-
-  // Station 5: Wasserstrahl, Gelehrter wacht kurz auf
-  const p5 = st[4];
-  strahlSetzen(glatt(klemm((p5 - 0.25) / 0.25)));
-  gelehrter.classList.toggle('ist-wach', p5 > 0.45 && p5 < 0.85);
-
-  if (!RUHIG) lebenZeichnen(t);
-  if (!RUHIG) buehne.style.visibility = bahnOben > innerHeight ? 'hidden' : 'visible';
   if (laeuft) requestAnimationFrame(bild);
 }
 
-// Gelehrten stupsen: dreht sich murrend um
-wecken.addEventListener('click', () => {
-  if (gelehrter.classList.contains('ist-wach')) return;
-  gelehrter.classList.add('ist-dreht');
-  setTimeout(() => gelehrter.classList.remove('ist-dreht'), RUHIG ? 900 : 1800);
-});
-
 let laeuft = false;
-groesse();
 new IntersectionObserver(([e]) => {
-  if (e.isIntersecting && !laeuft) { laeuft = true; flugLaden(); requestAnimationFrame(bild); }
+  if (e.isIntersecting && !laeuft) { laeuft = true; requestAnimationFrame(bild); }
   else if (!e.isIntersecting) laeuft = false;
-}, { rootMargin: '60% 0px' }).observe(sektion);
+}, { rootMargin: '40% 0px' }).observe(bahn);

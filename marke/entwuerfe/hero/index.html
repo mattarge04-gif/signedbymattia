@@ -218,68 +218,31 @@
 <section class="k2" id="kapitel-2" aria-labelledby="k2-titel">
   <div class="k2-bahn" id="k2Bahn">
   <div class="k2-buehne" id="k2Buehne">
-    <img class="k2-himmel" id="k2Himmel" src="bilder/k2-garten-1600.webp" srcset="bilder/k2-garten-800.webp 800w, bilder/k2-garten-1600.webp 1600w, bilder/k2-garten.webp 2400w" sizes="100vw" alt="" aria-hidden="true" loading="lazy" decoding="async">
-    <div class="k2-gartenhuelle" id="k2Garten">
-      <img class="k2-ebene" src="bilder/k2-garten-ebene-1600.webp" srcset="bilder/k2-garten-ebene-1600.webp 1600w, bilder/k2-garten-ebene.webp 2400w" sizes="100vw" alt="" aria-hidden="true" loading="lazy" decoding="async">
-      <img class="k2-ebene k2-abend" id="k2Abend" src="bilder/k2-abend-1600.webp" srcset="bilder/k2-abend-800.webp 800w, bilder/k2-abend-1600.webp 1600w, bilder/k2-abend.webp 2400w" sizes="100vw" alt="" aria-hidden="true" loading="lazy" decoding="async">
-      <canvas class="k2-leben" id="k2Leben" aria-hidden="true"></canvas>
+    <div class="k2-welt" id="k2Welt" aria-hidden="true">
+      <img class="k2-grund" src="bilder/k2n/nacht-1600.webp" srcset="bilder/k2n/nacht-1600.webp 1600w, bilder/k2n/nacht-2752.webp 2752w, bilder/k2n/nacht-4000.webp 4000w" sizes="max(100vw, 179vh)" alt="" decoding="async">
+      <div class="k2-figuren" id="k2Figuren"></div>
+      <div class="k2-kerze" id="k2Kerze"></div>
+      <svg class="k2-zeichen" id="k2Zeichen" viewBox="0 0 4000 2233"></svg>
+      <img class="k2-grund k2-morgen" id="k2Morgen" src="bilder/k2n/morgen-1600.webp" srcset="bilder/k2n/morgen-1600.webp 1600w, bilder/k2n/morgen-2752.webp 2752w, bilder/k2n/morgen-4000.webp 4000w" sizes="max(100vw, 179vh)" alt="" loading="lazy" decoding="async">
+      <div class="k2-nachricht" id="k2Nachricht"></div>
     </div>
-    <img class="k2-pergola" id="k2Pergola" src="bilder/k2-pergola-1600.webp" srcset="bilder/k2-pergola-800.webp 800w, bilder/k2-pergola-1600.webp 1600w, bilder/k2-pergola.webp 2400w" sizes="100vw" alt="" aria-hidden="true" loading="lazy" decoding="async">
-
-    <img class="k2-hecke" id="k2Hecke" src="bilder/k2-hecke-vorne.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
-    <div class="k2-am" id="k2Automat" aria-hidden="true"></div>
-    <svg class="k2-faeden" id="k2Faeden" aria-hidden="true"></svg>
-
-    <div class="k2-gelehrter" id="k2Gelehrter" aria-hidden="true">
-      <img class="haupt" src="bilder/k2-gelehrter-550.webp" srcset="bilder/k2-gelehrter-550.webp 550w, bilder/k2-gelehrter.webp 1100w" sizes="26vw" alt="" loading="lazy" decoding="async">
-      <img class="zustand wach" src="bilder/k2-gelehrter-wach-550.webp" srcset="bilder/k2-gelehrter-wach-550.webp 550w, bilder/k2-gelehrter-wach.webp 1100w" sizes="26vw" alt="" loading="lazy" decoding="async">
-      <img class="zustand dreht" src="bilder/k2-gelehrter-dreht-550.webp" srcset="bilder/k2-gelehrter-dreht-550.webp 550w, bilder/k2-gelehrter-dreht.webp 1100w" sizes="26vw" alt="" loading="lazy" decoding="async">
-      <span class="k2-z">z</span><span class="k2-z">z</span><span class="k2-z">Z</span>
-      <svg class="k2-falter" viewBox="0 0 40 30"><path class="fl-l" d="M20 15C14 2 2 2 4 10c1 5 8 7 16 5z" fill="#FFD6C2" stroke="#E3C58A"/><path class="fl-r" d="M20 15c6-13 18-13 16-5-1 5-8 7-16 5z" fill="#D9CCF5" stroke="#E3C58A"/><path d="M20 10v12" stroke="#231B3A" stroke-width="1.4" stroke-linecap="round"/></svg>
-    </div>
-    <button class="k2-wecken" id="k2Wecken" type="button" aria-label="Den Gelehrten stupsen"></button>
-
-    <div class="k2-brunnen" id="k2Brunnen" aria-hidden="true">
-      <img src="bilder/k2-brunnen-550.webp" srcset="bilder/k2-brunnen-550.webp 550w, bilder/k2-brunnen.webp 1100w" sizes="16vw" alt="" loading="lazy" decoding="async">
-    </div>
-
-    <svg class="k2-strahl" id="k2Strahl" aria-hidden="true"><path id="k2StrahlPfad" d=""/></svg>
-
-    <img class="k2-balustrade" id="k2Balustrade" src="bilder/k2-balustrade.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
-    <img class="k2-vorne" id="k2Vorne" src="bilder/k2-vordergrund-1600.webp" srcset="bilder/k2-vordergrund-1600.webp 1600w, bilder/k2-vordergrund.webp 2400w" sizes="100vw" alt="" aria-hidden="true" loading="lazy" decoding="async">
-
-    <div class="k2-s1-karte" id="k2S1Karte">
-      <p class="k2-s1-nr"><span>I</span> Anfrage kommt an</p>
-      <p class="k2-anfrage-von">Anfrage an Himmelblau Haustechnik · 21:47</p>
-      <p class="k2-anfrage-text">„Boiler tropft in der Küche, Kriens. Morgen möglich?“<span>Frau Meier</span></p>
-      <p class="k2-anfrage-hinweis">Beispiel. Es wird nichts gesendet.</p>
-    </div>
-
-    <aside class="k2-ablauf" id="k2Ablauf" aria-labelledby="k2AblaufTitel">
-      <p class="k2-ablauf-kopf" id="k2AblaufTitel">So läuft eine Anfrage durch</p>
-      <div class="k2-anfrage" id="k2Karte">
-        <p class="k2-anfrage-von">Anfrage an Himmelblau Haustechnik · 21:47</p>
-        <p class="k2-anfrage-text">„Boiler tropft in der Küche, Kriens. Morgen möglich?“<span>Frau Meier</span></p>
-        <p class="k2-anfrage-hinweis">Beispiel. Scrollen Sie, der Automat erledigt den Rest.</p>
-      </div>
-      <ol class="k2-schritte" aria-live="polite"><li class="k2-schritt" data-i="0"><span class="k2-nr">I</span><div><p class="k2-schritt-titel">Anfrage kommt an</p><p class="k2-ergebnis"><b>E-Mail erkannt</b><span>Frau Meier · heute 21:47</span></p></div></li><li class="k2-schritt" data-i="1"><span class="k2-nr">II</span><div><p class="k2-schritt-titel">wird sortiert</p><p class="k2-ergebnis"><b>Notfall · Sanitär · Kriens</b><span>Priorität hoch</span></p></div></li><li class="k2-schritt" data-i="2"><span class="k2-nr">III</span><div><p class="k2-schritt-titel">Antwort geht raus</p><p class="k2-ergebnis"><b>„Guten Tag Frau Meier, wir kommen morgen um 8 Uhr.“</b><span>automatisch formuliert, von Ihnen freigegeben</span></p></div></li><li class="k2-schritt" data-i="3"><span class="k2-nr">IV</span><div><p class="k2-schritt-titel">Termin steht</p><p class="k2-ergebnis"><b>Do 08:00 · Meier, Kriens · Boiler</b><span>im Kalender eingetragen</span></p></div></li><li class="k2-schritt" data-i="4"><span class="k2-nr">V</span><div><p class="k2-schritt-titel">Und Sie?</p><p class="k2-ergebnis"><b>… haben geschlafen.</b></p></div></li></ol>
-    </aside>
-
-    <canvas class="k2-flug" id="k2Flug" aria-hidden="true"></canvas>
 
     <div class="k2-text" id="k2Text">
       <p class="k1-kicker"><span class="nr">II</span> Kapitel</p>
       <h2 id="k2-titel">Automation</h2>
       <p class="k1-satz">[Platzhalter: Erzählsatz zu Kapitel II, schreibt Mattia im Textinterview.]</p>
     </div>
+
+    <p class="k2-station" id="k2Station" aria-live="polite"><span class="nr"></span><b></b><span class="satz"></span></p>
+    <p class="k2-beispiel">Beispiel. Es wird nichts gesendet.</p>
   </div>
   </div>
 
   <div class="k2-panel">
     <div class="k2-inhalt">
       <figure class="k2-plan">
-        <svg class="k2-grafik" id="k2Grafik" viewBox="0 0 1000 540" role="img" aria-labelledby="k2GrafikTitel">
-          <title id="k2GrafikTitel">Gartenplan: Anfragen aus E-Mail, Formular und Telefon laufen über viele Wege zum Brunnen in der Mitte und gehen als geordnete Alleen zu Antwort, Termin, Offerte, Rückruf und Rechnung.</title>
+        <svg class="k2-grafik" id="k2Grafik" viewBox="0 0 1000 560" role="img" aria-labelledby="k2GrafikTitel">
+          <title id="k2GrafikTitel">Plan der Rohrpost-Zentrale: Anfragen aus E-Mail, Formular und Telefon laufen durch Rohre in die Zentrale und kommen geordnet als Antwort, Termin, Offerte, Rückruf und Rechnung heraus, in höchstens einer Nacht.</title>
         </svg>
       </figure>
       <div class="k2-panel-text">
@@ -307,6 +270,6 @@
 <script type="module" src="kapitel1.js"></script>
 <script type="module" src="wolkenflug.js"></script>
 <script type="module" src="kapitel2.js"></script>
-<script type="module" src="gartenplan.js"></script>
+<script type="module" src="rohrpost.js"></script>
 </body>
 </html>
