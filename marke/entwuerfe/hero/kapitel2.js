@@ -38,6 +38,7 @@ const text = $('#k2Text');
 const s1Karte = $('#k2S1Karte');
 
 let s = 0;
+let freigabe = 0;
 const neigung = { x: 0, y: 0 };
 let maus = { x: 0.5, y: 0.5, da: false };
 if (MAUS) addEventListener('pointermove', (e) => { maus = { x: e.clientX / innerWidth, y: e.clientY / innerHeight, da: true }; });
@@ -203,8 +204,10 @@ function bild(jetztMs) {
   // Drehung des Automaten (eine ganze Umdrehung über alle Stationen) und Schwenk der Welt
   const dreh = -glatt(teil(s, [STATIONEN[0][0], 1]));
   const schwenk = Math.sin(dreh * Math.PI * 2);
-  // Kamera fährt erst heran, wenn der Brief im Schlitz ist (Station 1 braucht den ganzen Sockel im Bild)
-  const nah = glatt(teil(st[0], [0.66, 1])) * (1 - glatt(st[4]) * 0.6);
+  // Kamera fährt erst heran, wenn der Brief im Schlitz ist; weich nachgeführt, damit der Zoom nicht springt
+  freigabe += ((k3 ? k3.s1Fertig() : 0) - freigabe) * 0.06;
+  // Ab Station 2 folgt die Nähe wieder nur dem Scroll, sonst zoomt es nach dem Anhalten noch nach
+  const nah = glatt(Math.max(teil(st[0], [0.5, 1]) * freigabe, teil(s, [0.31, 0.38]))) * (1 - glatt(st[4]) * 0.6);
   const hochSehen = glatt(st[2]) * (1 - glatt(teil(s, [0.6, 0.66])));
   himmel.style.transform = `translate(${schwenk * -2 + neigung.x * 6}px, ${hochSehen * 6}vh) scale(${1.02 + 0.06 * nah})`;
   garten.style.transform = `translate(calc(${schwenk * -4}vw + ${neigung.x * 14}px), ${hochSehen * 14 + neigung.y * 6}px) scale(${1 + 0.14 * nah})`;

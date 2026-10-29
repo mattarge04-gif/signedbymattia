@@ -54,7 +54,7 @@ export async function automat25d(huelle) {
   const taube = document.createElement('div');
   taube.className = 'am-taube';
   const taubeBild = {};
-  for (const n of ['taube-auf', 'taube-ab']) {
+  for (const n of ['taube-auf', 'taube-ab', 'taube-leer-auf', 'taube-leer-ab'].filter((x) => s1[x])) {
     const img = new Image();
     img.src = `bilder/k2-s1-${n}.webp`;
     img.alt = '';
@@ -81,6 +81,8 @@ export async function automat25d(huelle) {
   const antwort = karte('am-antwort', 'Antwort', 'Morgen um 8 Uhr');
   const kalender = karte('am-kalender', 'Do 08:00', 'Meier, Kriens · Boiler');
 
+  let s1Start = null;
+  let s1Fertig = 0;
   function bild({ nah, explo, t, maus, versatzX, station, st, auftauchen }) {
     // Grösse und Lage: steht mittig auf dem Rasen, wächst beim Heranfahren
     const h = huelle.clientHeight;
@@ -113,40 +115,47 @@ export async function automat25d(huelle) {
     });
     el.ganz.classList.toggle('glueht', station === 4);
 
-    // Station 1: Taube bringt den Brief (p = Fortschritt der Station)
+    // Station 1: Taube bringt den Brief. Der Anflug folgt dem Scroll (p bis 0.35); ist sie da, läuft das
+    // Abwerfen als feste Abfolge von rund 2.5 s (q in Sekunden), damit man es auch bei schnellem Scrollen sieht.
     const p = station === 0 ? st[0] : (station > 0 ? 1 : 0);
+    if (p >= 0.35 && s1Start === null) s1Start = station > 0 ? t - 99 : t;
+    if (p < 0.2) s1Start = null;
+    const q = s1Start === null ? 0 : t - s1Start;
+    s1Fertig = klemm((q - 2.2) / 0.6);
     const sx = SCHLITZ[0] * breite;
     const sy = SCHLITZ[1] * hoehe;
     const tw = hoehe * 0.34;
-    const flugEin = glatt(klemm(p / 0.4));
-    const flugAus = glatt(klemm((p - 0.58) / 0.36));
+    const flugEin = glatt(klemm(p / 0.35));
+    const flugAus = glatt(klemm((q - 1.25) / 0.8));
     const schwebt = flugEin >= 1 && flugAus <= 0;
     const ab = Math.sin(t * (schwebt ? 22 : 30)) > 0;
+    // Nach dem Abwerfen ohne Brief im Schnabel, sobald die Bilder S1-6/S1-7 da sind
+    const leer = q > 0.55 && taubeBild['taube-leer-auf'];
+    const sichtbar = `${leer ? 'taube-leer' : 'taube'}-${ab ? 'ab' : 'auf'}`;
+    for (const [n, img] of Object.entries(taubeBild)) img.style.opacity = n === sichtbar ? '1' : '0';
     // Beide Flügelbilder stammen aus demselben Rahmen, das Siegel liegt in beiden gleich: Lage nach taube-auf
     const ti = s1['taube-auf'];
-    taubeBild['taube-ab'].style.opacity = ab ? '1' : '0';
-    taubeBild['taube-auf'].style.opacity = ab ? '0' : '1';
     // Siegel der Taube über dem Schlitz. Die Taube schaut nach links: Anflug von rechts oben im Bogen,
     // Abflug nach links oben über den Gelehrten
     const hx = sx - tw * 0.05;
     const hy = sy - hoehe * 0.1;
-    let zx = hx + (1 - flugEin) * hoehe * 1.3 - flugAus * hoehe * 1.5;
+    const zx = hx + (1 - flugEin) * hoehe * 1.3 - flugAus * hoehe * 1.5;
     let zy = hy - Math.sin((1 - flugEin) * 1.4) * hoehe * 0.55 - flugAus * flugAus * hoehe * 0.9;
-    zy += Math.sin(t * 2.2) * hoehe * 0.008 + (schwebt ? glatt(klemm((p - 0.42) / 0.08)) * (1 - glatt(klemm((p - 0.52) / 0.06))) * hoehe * 0.05 : 0);
+    zy += Math.sin(t * 2.2) * hoehe * 0.008 + glatt(klemm(q / 0.4)) * (1 - glatt(klemm((q - 0.7) / 0.5))) * hoehe * 0.05;
     const taubeDa = p > 0.001 && flugAus < 1;
     taube.style.width = `${tw}px`;
     taube.style.opacity = taubeDa ? '1' : '0';
     taube.style.transform = `translate(${zx - ti.siegel[0] * tw}px, ${zy - ti.siegel[1] * tw * (ti.h / ti.w)}px) rotate(${(1 - flugEin) * -8 + flugAus * 14}deg)`;
     // Brief löst sich beim Schweben und fällt in den Schlitz; bis dahin trägt die Taube ihn
-    const fall = glatt(klemm((p - 0.48) / 0.12));
+    const fall = glatt(klemm((q - 0.5) / 0.75));
     const briefW = tw * 0.36;
     loserBrief.style.width = `${briefW}px`;
     loserBrief.style.opacity = String(fall > 0 && fall < 1 ? 1 - klemm((fall - 0.75) / 0.25) : 0);
     loserBrief.style.transform = `translate(${sx - briefW * 0.5}px, ${hy + (sy - hy) * fall - briefW * 0.4}px) rotate(${25 * (1 - fall)}deg) scale(${1 - 0.35 * fall}, ${1 - 0.6 * fall * fall})`;
     // Klappe offen, solange der Brief fällt; danach läuft die Walze an
-    const klappe = klemm((p - 0.44) / 0.04) * (1 - klemm((p - 0.64) / 0.04));
+    const klappe = klemm((q - 0.3) / 0.12) * (1 - klemm((q - 1.4) / 0.12));
     el['klappe-offen'].style.opacity = String(klappe * (1 - zerlegt));
-    const laeuft = station === 0 ? klemm((p - 0.62) / 0.08) : 0;
+    const laeuft = station === 0 ? klemm((q - 1.4) / 0.3) : 0;
     walzeLauf.style.opacity = String(laeuft * (1 - zerlegt));
     walzeLauf.style.backgroundPositionY = `${t * 260}px`;
     if (laeuft > 0) el.ganz.style.transform = `translate(${Math.sin(t * 50) * 0.8 * laeuft}px, ${Math.cos(t * 43) * 0.6 * laeuft}px)`;
@@ -168,5 +177,6 @@ export async function automat25d(huelle) {
     return { x: r.left + r.width * 0.75 - bezug.left, y: r.top + r.height * 0.4 - bezug.top };
   }
 
-  return { bild, ankerAufBildschirm };
+  // 0 → 1, sobald der Brief drin ist: erst dann darf die Kamera heranfahren
+  return { bild, ankerAufBildschirm, s1Fertig: () => s1Fertig };
 }

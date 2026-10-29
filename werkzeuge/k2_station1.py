@@ -68,6 +68,13 @@ speichern(rgb, a, 'taube-auf')
 rgb, a = frei('k2-s1-taube-ab-v1.jpg')
 speichern(rgb, a, 'taube-ab')
 
+# ---------- Taube ohne Brief (S1-6/S1-7), sobald vorhanden ----------
+import os
+for datei, name in [('k2-s1-taube-leer-v1.jpg', 'taube-leer-auf'), ('k2-s1-taube-leer-ab-v1.jpg', 'taube-leer-ab')]:
+    if os.path.exists(R + datei):
+        rgb, a = frei(datei)
+        speichern(rgb, a, name)
+
 # ---------- Brief: Gemini hat einen Putto dahinter gemalt, nur das Viereck des Umschlags behalten ----------
 rgb, a = frei('k2-s1-brief-v1.jpg')
 m = Image.new('L', (rgb.shape[1], rgb.shape[0]), 0)

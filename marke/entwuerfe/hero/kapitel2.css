@@ -1,6 +1,6 @@
 /* Kapitel II Automation · Die Wasserspiele · Drehbuch website/drehbuch/12-kapitel-2.md */
 .k2 { position: relative; background: var(--color-bg); }
-.k2-bahn { position: relative; height: 760vh; }
+.k2-bahn { position: relative; height: 880vh; }
 .k2-buehne { position: sticky; top: 0; height: 100vh; height: 100svh; overflow: hidden; background: var(--color-chapter-2); }
 .k2-buehne::before {
   content: ""; position: absolute; inset: 0 0 auto 0; height: 18vh; z-index: 12; pointer-events: none;
@@ -178,8 +178,8 @@
 .am-taube .taube-ab { position: absolute; left: 0; top: 0; width: calc(100% * 1620 / 1523); translate: calc(-100% * 96 / 1620) 0; }
 .am-loserbrief { position: absolute; left: 0; top: 0; z-index: 4; opacity: 0; transform-origin: 50% 50%; will-change: transform; pointer-events: none; }
 .am-walzelauf {
-  position: absolute; border-radius: 14% / 30%; opacity: 0; pointer-events: none; mix-blend-mode: soft-light;
-  background: repeating-linear-gradient(180deg, rgb(255 255 255 / 0) 0 18px, rgb(255 255 255 / .9) 26px, rgb(255 255 255 / 0) 34px, rgb(120 40 80 / .35) 46px, rgb(255 255 255 / 0) 56px);
+  position: absolute; border-radius: 14% / 30%; opacity: 0; pointer-events: none; mix-blend-mode: screen;
+  background: repeating-linear-gradient(180deg, rgb(255 255 255 / 0) 0 18px, rgb(255 240 248 / .75) 24px, rgb(255 255 255 / 0) 32px, rgb(255 255 255 / 0) 46px, rgb(255 255 255 / 0) 56px);
 }
 .am-karte b { font-family: var(--font-hand); font-style: italic; font-weight: 400; font-size: 19px; color: #C2557F; }
 /* Vordergrund-Ebenen für die Tiefe */
