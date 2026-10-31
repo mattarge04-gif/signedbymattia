@@ -81,11 +81,18 @@ function masse() {
 // Die ersten 90vh gehören dem Wolkenflug (wolkenflug.js), erst danach beginnt die Choreografie
 const WOLKEN_VH = 0.9;
 let bahnOben = 0;
+// Pause: die fertige Seite steht kurz still (ca. 2 s Scrollen), bevor sie zum Handy wird
+const PAUSE_BEI = 0.68;
+const PAUSE_VH = 0.9;
 function fortschritt() {
   const rect = sektion.getBoundingClientRect();
   bahnOben = rect.top;
   const vor = WOLKEN_VH * innerHeight;
-  return klemm((-rect.top - vor) / (rect.height - innerHeight - vor));
+  const pause = PAUSE_VH * innerHeight;
+  const lang = rect.height - innerHeight - vor - pause;   // Strecke ohne Pause
+  const weg = -rect.top - vor;
+  const p = weg < PAUSE_BEI * lang ? weg : Math.max(PAUSE_BEI * lang, weg - pause);
+  return klemm(p / lang);
 }
 
 function bild() {

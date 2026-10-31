@@ -1,7 +1,7 @@
 /* Kapitel I Website · Trompe-l'œil · Werte aus website/drehbuch/00-grammatik.md */
 .k1 { position: relative; z-index: 2; margin-top: -100vh; }
 @media (prefers-reduced-motion: reduce) { .k1 { margin-top: 0; } }
-.k1-bahn { position: relative; height: 720vh; }
+.k1-bahn { position: relative; height: 810vh; }   /* 720vh + 90vh Pause vor dem Handy (kapitel1.js PAUSE_VH) */
 /* Wolkenflug (wolkenflug.js): fest über allem, nur rund um den Übergang sichtbar */
 .wolkenflug { position: fixed; inset: 0; z-index: 30; pointer-events: none; visibility: hidden; }
 .wolkenflug canvas { width: 100%; height: 100%; display: block; }
