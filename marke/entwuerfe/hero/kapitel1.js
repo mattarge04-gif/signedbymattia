@@ -28,6 +28,7 @@ const farbKnopf = $('.hb-farbe .hb-knopf.haupt');
 const zeiger = $('#k1Zeiger');
 const toast = $('#k1Toast');
 const muster = $('#k1Muster');
+const billig = $('.hb-billig');
 const tuer = tuerAnlegen(buehne, wand);
 
 // Lage eines Elements in der Seite (unabhängig von Zoom und Transform), gecacht je Fenstergrösse
@@ -133,6 +134,8 @@ function bild() {
   muster.classList.toggle('da', s > 0.28 && s < 0.98);
 
   // K1-B2 · Unter der Tür liegt die billige Baukasten-Seite (statisch, nur HTML/CSS)
+  // erst im Blitz sichtbar, nicht schon durch die Löcher der bröckelnden Tür (Spitze 0.21, aus 0.27)
+  billig.style.opacity = String(glatt(klemm((s - 0.22) / 0.04)));
   // Farbe: der Roller-Putto malt die neue Seite darüber (ziehbar; K1-B3 ersetzt das durch Putti wischen)
   const rollerDa = s > 0.42 && s < 0.71;
   roller.classList.toggle('da', rollerDa);
