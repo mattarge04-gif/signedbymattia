@@ -138,8 +138,9 @@ export function tuerAnlegen(buehne, wand) {
     const fest = [], lose = [];
     for (const sc of schollen) (s < sc.start ? fest : lose).push(sc);
 
-    // 1 · Hinter der Tür: die Sonne. Sichtbar, wo schon Brocken fehlen; nach dem Blitz weg
-    const hinterLicht = s < TAKT.blitzSpitze ? 1 : 1 - blitz;
+    // 1 · Hinter der Tür: die Sonne. Sichtbar, wo schon Brocken fehlen; auf der Blitzspitze weg
+    // (der Bildschirm ist dann ganz weiss), sonst liegt sie als heller Kasten über dem wachsenden Browser
+    const hinterLicht = s < TAKT.blitzSpitze ? 1 : 0;
     if (lose.length && hinterLicht > 0) {
       const g = ch.createRadialGradient(ox, oy, 0, ox, oy, R.h * 0.7);
       g.addColorStop(0, `rgba(255, 255, 250, ${hinterLicht})`);
