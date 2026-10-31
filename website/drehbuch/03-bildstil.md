@@ -1,6 +1,6 @@
 # Drehbuch 03: Bildstil und Prompts
 
-Stand: 17.10.2026 · Status: **Werkzeug entschieden [F], Stil im Test [A]** · Grundlage:
+Stand: 31.10.2026 · Status: **Werkzeug entschieden [F], Stil im Test [A]** · Grundlage:
 `marke/DESIGN.md` §1, §2, §6; `marke/tokens.css`; `website/drehbuch/10-startseite.md` (Stil „Barock +
 frecher Bruch"); `00-grammatik.md` („Bilder ohne Ladeprobleme")
 
@@ -225,3 +225,28 @@ no ground shadow, no text, no watermark. Square format.
 ```
 
 Tipp: K1-4 und K1-5 im **selben Chat** wie K1-3 erzeugen, damit der Putto gleich aussieht.
+
+## Kapitel I Überarbeitung: Fresko im Torbogen [A] (31.10.2026)
+
+Baustein K1-B1 (`10-startseite.md`, „Überarbeitung Kapitel I“). Das Fresko füllt die Öffnung im
+Torbogen von `k1-wand-v1.jpg` (hochkant, etwa 9:16) und blättert beim Zoomen ab. Stil-Vorlagen anhängen:
+`erster-wurf/k1-wand-v1.jpg` (Palette, Licht) und `erster-wurf/amor-ohne-pfeil-v1.jpg` (Figuren).
+
+**K1-6 Fresko der Himmelblau-Werkstatt** (9:16) → `k1-fresko-v1.jpg`
+```
+Using the attached images as a reference for painting style, brushwork and pastel palette:
+a baroque fresco painted on plaster in the luminous style of a Tiepolo, portrait format, filling the
+whole image edge to edge (no frame, no arch, no wall around it). Scene: an allegory of a craftsman's
+workshop in the sky. A dignified plumber in 18th-century working clothes with a powder-blue apron kneels
+on a soft cloud and repairs an ornate golden water pipe that winds up through the clouds; a small
+baroque fountain basin at the bottom, clear water sparkling. Two chubby putti help him: one holds a
+golden wrench, one carries a small copper boiler like a precious treasure. Exactly one modern object:
+the plumber wears a crisp glossy pink smartwatch (#FF9DC8), rendered sharp like a product render.
+Light from the upper left. It should look like an old fresco: very fine hairline craquelure all over,
+slightly chalky matte surface, but still bright and fresh. Pastel palette only: powder blue (#CFE3F7),
+lilac (#D9CCF5), peach (#FFD6C2), cream (#FBF3EA), pale gold (#E3C58A). No brown, no dark shadows, no
+text, no letters, no watermark. 9:16, high detail.
+```
+
+Tipp: Wenn die Komposition nicht in die hohe Öffnung passt, im selben Chat nachschieben: „Same fresco,
+keep the plumber in the middle third, more sky above, the fountain at the very bottom.“

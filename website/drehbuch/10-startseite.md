@@ -1,6 +1,6 @@
 # Drehbuch 10–16: Startseite
 
-Stand: 29.09.2026 · Status: **Ordnung entschieden [F], Motive Vorschlag v3 [A]** · Grundlage:
+Stand: 31.10.2026 · Status: **Ordnung entschieden [F], Motive Vorschlag v3 [A]** · Grundlage:
 `00-grammatik.md` (Werte), `01-bausteine.md` (B1–B15), `02-mechaniken.md` (M1–M14),
 `website/seitenstruktur.md`, `marke/DESIGN.md` §7
 
@@ -203,3 +203,27 @@ Offen:
 | K3 | Fertige Seite zeigt Platzhalter; Beispielinhalt aus echter Edition | Mattia |
 | K4 | Übergang Hero → Kapitel I: heller Leerraum nach dem Himmelsflug (hängt an H1, H6) | Code |
 | K5 | Erzählsatz und Ablauf in 3 Schritten | Textinterview |
+
+## Überarbeitung Kapitel I [F] (Mattia, 31.10.2026)
+
+Aufbau (Palastwand, Torbogen, Browser, Roller-Putto, Handy, Live-Klick) bleibt. Der **Wolkenflug
+bleibt unverändert** („perfekt, nicht anfassen“). Verbessert werden einzelne Stellen:
+
+- Befund Mattia: Beim Reinzoomen fehlt ein Wow, und die Website ist im Bogen schon vor dem Zoomen
+  sichtbar.
+- Geschichte der Website: **vorher eine billige Baukasten-Seite** (wie ein Standard-WordPress-Thema,
+  aber ohne fremdes Logo), **nach den Putti eine coole UI-Seite**: Abstände und Spacing stimmen, und
+  vor allem hat sie Leben.
+- Neuer Ablauf: Fresko → billige Seite → Putti wischen → coole Seite → Handy → Live-Klick. Die
+  Schritte Skizze (Wireframe) und Inhalte fallen weg.
+
+| Nr. | Baustein | Inhalt | Aufwand [A] |
+| --- | --- | --- | --- |
+| K1-B1 | Fresko im Torbogen | Im Bogen ein gemaltes Barock-Fresko der Himmelblau-Werkstatt (Prompt K1-6 in `03-bildstil.md`). Beim Zoomen reisst die Farbe und blättert in Schollen ab (WebGL), darunter der Browser. | 1 Abend |
+| K1-B2 | Billige Baukasten-Seite | Standardschrift, gequetschte Abstände, Stockfoto-Slider, Seitenleiste „Kategorien“, statisch | ½ Abend |
+| K1-B3 | Putti wischen | Roller- und Wisch-Putto ziehen die neue Seite Streifen für Streifen über die alte; Roller bleibt ziehbarer Regler | ½–1 Abend |
+| K1-B4 | Neue Seite lebt | Abstandsraster; langsamer Bild-Zoom, Notfall-Punkt pulsiert, Bewertungen zählen hoch, Abzeichen „37 Jahre“ dreht, Termin-Knopf glänzt | 1 Abend |
+| K1-B5 | Übergang K1 → K2 | heller Tag → Nacht der Schreibstube (eigener Baustein, später planen) | offen |
+
+Damit sind K1 (Wireframe) und K2 (Bauhelm-Putto schraubt) oben überholt. Gesamt ca. 3–3,5 Abende [A];
+verschiebt den Wochenplan zusätzlich, Ausgleich über die Streichliste.
