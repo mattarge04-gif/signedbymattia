@@ -21,3 +21,9 @@ datum,modell,groesse,usd,datei,prompt
 2026-10-29T23:22:01,gemini-nano-banana-2.1,4K,0.24,marke/assets/k2/e6-v2.png,"Edit the first attached painting. The big calendar book on the right of the desk now lies OPEN in the same place, showin"
 2026-10-29T23:22:50,gemini-nano-banana-2.1,4K,0.24,marke/assets/k2/m2-kaffee-v1.png,Edit the first attached painting (a morning scene). Add four small chubby cherubs curled up fast asleep inside four comp
 2026-10-29T23:25:14,gemini-nano-banana-2.1,4K,0.24,marke/assets/k2/e3-v3.png,Edit the first attached painting. Add ONE small chubby cherub standing on the desk right behind the pink smartphone: it 
+2026-10-31T12:37:05,gemini-nano-banana-2.1,4K,0.24,marke/assets/k2/stiltest/wand-v1.png,"Same painting style, palette and light as the attached images: a luminous Tiepolo-like pastel oil fresco in sky blue, li"
+2026-10-31T12:37:53,gemini-nano-banana-2.1,4K,0.24,marke/assets/k2/stiltest/wand-v2.png,"Same painting style, palette and light as the attached images: a luminous Tiepolo-like pastel oil fresco in sky blue, li"
+2026-10-31T12:38:50,gemini-nano-banana-2.1,4K,0.24,marke/assets/k2/stiltest/wand-v3.png,"Same painting style, palette and light as the attached images: a luminous Tiepolo-like pastel oil fresco in sky blue, li"
+2026-10-31T12:39:20,gemini-nano-banana-2.1,2K,0.14,marke/assets/k2/stiltest/putto-v1.png,"Same painting style, palette and light as the attached images: a luminous Tiepolo-like pastel oil fresco in sky blue, li"
+2026-10-31T12:39:48,gemini-nano-banana-2.1,2K,0.14,marke/assets/k2/stiltest/putto-v2.png,"Same painting style, palette and light as the attached images: a luminous Tiepolo-like pastel oil fresco in sky blue, li"
+2026-10-31T12:40:14,gemini-nano-banana-2.1,2K,0.14,marke/assets/k2/stiltest/putto-v3.png,"Same painting style, palette and light as the attached images: a luminous Tiepolo-like pastel oil fresco in sky blue, li"

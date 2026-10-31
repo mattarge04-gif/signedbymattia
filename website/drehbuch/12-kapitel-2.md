@@ -22,28 +22,42 @@ flach, wenig Leben, kein Wow, KI-Look. Darum gilt ab jetzt dasselbe Vorgehen wie
 **Arbeit läuft, während Sie weg sind.** Gebaut nach dem Prinzip des Heros: eine Welt, ein Blickwinkel,
 ein Witz, eine Pointe. Reihenfolge: Geschichte → Ablauf → Bilder → Animationen.
 
-## Geschichte [F]
+## Geschichte [F] (Fassung 2, Mattia 31.10.2026)
 
-1. **Abend.** Barocke Schreibstube, frontal aufs Pult, Kerzenlicht. Der Stuhl ist leer, daran ein Zettel
-   „Bin ab 7 Uhr zurück“. Wanduhr 21:47. Regal mit Fächern, dazwischen Messingrohre einer Rohrpost.
-   In den Fächern schlafen 4 Putti.
-2. **Anfrage.** Auf dem Pult leuchtet ein **pinkes Handy** (der freche Bruch): „Boiler tropft in der
-   Küche. Morgen möglich?“ Die Putti blinzeln.
-3. **Die Kette über die Rohrpost:**
-   1. Lesen: Ein Putto hebt das schwere Handy an und liest, die Nachricht fährt als **pinke Büchse**
-      mit leuchtendem Schweif durchs Rohr.
-   2. Sortieren: Ein Putto fängt die Büchse, Zettel ins Fach „Dringend“, weiter durchs Rohr.
-   3. Antworten: Ein Putto schreibt mit der Feder, die Büchse zischt zurück, das Handy zeigt „Wir kommen
-      morgen um 8 Uhr.“ Die Antwort geht **sofort** raus [F]; klein: „Text vorher mit Ihnen festgelegt“.
-   4. Termin: Ein Putto trägt „Do 08:00 · Boiler“ ins Kalenderbuch ein.
-4. **Ruhe.** Putti zurück in die Fächer, Kerze aus.
-5. **Pointe.** Morgenlicht, Tür geht auf, Schatten des Meisters, alles erledigt, ein Putto hält ihm
-   verschlafen den Kaffee hin. „Erledigt, während Sie weg waren.“ [Platzhalter]
-6. **Papier + Grafik.** „Plan der Rohrpost-Zentrale“ (SVG, Umbau des Gartenplans): links E-Mail,
-   Formular, Telefon → Zentrale → rechts Antwort, Termin, Offerte, Rückruf, Rechnung; Massstab
-   „0–1 Nacht“. Tarot-Karte II „Das Rad“, ab CHF 500, + CHF 400 je weiterer Ablauf.
+Grund der Überarbeitung: Kunde verstand nicht, **was Automation konkret tut**, und die **Pointe** sagte nicht
+klar „Zeit gewonnen, keinen Kunden verloren“.
 
-## Ablauf beim Scrollen [F]
+- **Das Handy ist der Hauptdarsteller.** Ein pinkes Handy steht aufrecht in einem kleinen goldenen
+  Barockrahmen auf dem Pult, frontal (der freche Bruch). Auf dem Display steht gestochen scharf, was die
+  Automation tut, in den Worten des Kunden:
+  1. *Neue Anfrage · 21:47 · „Boiler tropft in der Küche, Kriens. Morgen möglich?“*
+  2. *Eingeordnet: Notfall*
+  3. *Antwort gesendet ✓✓ · „Wir kommen morgen um 8 Uhr.“* (Text vorher mit Ihnen festgelegt)
+  4. *Termin eingetragen · Do 08:00 · Boiler*
+- **Die Putti und die Rohrpost** sind die unsichtbaren Helfer im Hintergrund: Sie arbeiten, das Ergebnis
+  jedes Schritts erscheint auf dem Handy.
+- **Pointe: Sperrbildschirm am Morgen.** Morgenlicht, die Tür geht auf, das Handy zeigt den Sperrbildschirm
+  07:00 mit drei erledigten Meldungen (Antwort ✓, Termin ✓, Offerte ✓). Satz: **„Sie haben geschlafen.
+  Ihr Betrieb nicht.“** Ein verschlafener Putto hält den Kaffee hin (Lächeln).
+- Danach Papier: „Plan der Rohrpost-Zentrale“ und Tarot-Karte II.
+
+## Tiefenplan [A] (31.10.2026, Abnahme mit dem Stiltest)
+
+| Ebene (hinten → vorne) | Inhalt | Maus-Tiefe | lebt |
+|---|---|---|---|
+| E0 Nachthimmel | hinter dem Fenster: Sterne, Mondsichel, Wolkenschleier | 4 px | Wolken ziehen, Sterne funkeln |
+| E1 Rückwand | Stuck, Fenster als Öffnung, Uhr, Tür | 8 px | Uhrzeiger |
+| E2 Regal | Fächer und Messingrohre | 14 px | Rohre glänzen, wo die Büchse fährt |
+| E3 Putti im Regal | je Putto eine Ebene | 16 px | atmen, Flügel zucken (Zwei-Bild) |
+| E4 Pult | Kerze, Tintenfass, Kalenderbuch, **Handy im Goldrahmen** | 24 px | Flamme, Display |
+| E5 Putti am Pult | lesen, schreiben, eintragen | 26 px | Zwei-Bild-Bewegungen |
+| E6 Stuhl | mit Zettel „Bin ab 7 Uhr zurück.“ | 34 px | – |
+| E7 Vordergrund | Samtvorhang oben links, Vase mit Rosen, unscharf | 50 px | Vorhang weht |
+| Licht | WebGL: Nachtblau, Kerzenschein, Mondstrahl mit Staub; am Morgen Sonnenstrahlen | – | Staub tanzt |
+
+Stiltest 31.10.: `marke/assets/k2/stiltest/` (3 Wände, 3 Putti).
+
+## Ablauf beim Scrollen (Fassung 1, wird nach dem Stiltest neu geschrieben)
 
 - Bühne sticky, Scroll spult ab und zurück, nie gekapert. **Scrollweg 1000vh**, je Station ca. 140vh (29.10.: Büchsenfahrt war zu kurz).
 - **Ein Blickwinkel.** Die Kamera fährt pro Station nah an die Handlung (Nähe bis 1.9) und folgt der
@@ -69,7 +83,7 @@ ein Witz, eine Pointe. Reihenfolge: Geschichte → Ablauf → Bilder → Animati
 - **Maus:** Kerzenflamme neigt sich zur Maus; Klick auf schlafenden Putto: dreht sich murrend um.
 - **Ruhig** (`prefers-reduced-motion`): Standbild je Station, Überblenden 0.2 s.
 
-## Bilder: alles aus einem Masterbild [F]
+## Bilder: alles aus einem Masterbild (Fassung 1, überholt durch die Hero-Methode)
 
 Jede Figur entsteht als Bearbeitung **desselben** Masterbilds und wird per Unterschied zum Master
 freigestellt (rembg). So stimmen Perspektive, Licht, Massstab und Lage. Erzeugt mit `werkzeuge/bild.py`
