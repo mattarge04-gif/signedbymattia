@@ -27,3 +27,8 @@ datum,modell,groesse,usd,datei,prompt
 2026-10-31T12:39:20,gemini-nano-banana-2.1,2K,0.14,marke/assets/k2/stiltest/putto-v1.png,"Same painting style, palette and light as the attached images: a luminous Tiepolo-like pastel oil fresco in sky blue, li"
 2026-10-31T12:39:48,gemini-nano-banana-2.1,2K,0.14,marke/assets/k2/stiltest/putto-v2.png,"Same painting style, palette and light as the attached images: a luminous Tiepolo-like pastel oil fresco in sky blue, li"
 2026-10-31T12:40:14,gemini-nano-banana-2.1,2K,0.14,marke/assets/k2/stiltest/putto-v3.png,"Same painting style, palette and light as the attached images: a luminous Tiepolo-like pastel oil fresco in sky blue, li"
+2026-10-31T12:42:38,gemini-nano-banana-2.1,2K,0.14,marke/assets/k2/ebenen/e0-nachthimmel-v1.png,"Painted in the same style and palette as the attached image: a luminous Tiepolo-like pastel night sky, deep but soft blu"
+2026-10-31T12:43:28,gemini-nano-banana-2.1,4K,0.24,marke/assets/k2/ebenen/e2-regal-v1.png,"Painted in exactly the same style, palette and light as the attached images: a luminous Tiepolo-like pastel oil painting"
+2026-10-31T12:44:23,gemini-nano-banana-2.1,4K,0.24,marke/assets/k2/ebenen/e4-pult-v1.png,"Painted in exactly the same style, palette and light as the attached images: a luminous Tiepolo-like pastel oil painting"
+2026-10-31T12:45:05,gemini-nano-banana-2.1,2K,0.14,marke/assets/k2/ebenen/e6-stuhl-v1.png,"Painted in exactly the same style, palette and light as the attached images: a luminous Tiepolo-like pastel oil painting"
+2026-10-31T12:45:52,gemini-nano-banana-2.1,4K,0.24,marke/assets/k2/ebenen/e7-vordergrund-v1.png,"Painted in exactly the same style, palette and light as the attached images: a luminous Tiepolo-like pastel oil painting"

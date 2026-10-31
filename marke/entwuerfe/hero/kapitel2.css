@@ -12,37 +12,43 @@
 /* weicher Schleier links, damit der Text auch bei naher Kamera lesbar bleibt */
 .k2-buehne::after {
   content: ''; position: absolute; inset: 0 auto 0 0; width: 42vw; z-index: 12; pointer-events: none;
-  background: linear-gradient(90deg, rgb(217 204 245 / .78), rgb(217 204 245 / .45) 55%, transparent);
+  background: linear-gradient(90deg, rgb(217 204 245 / .7), rgb(217 204 245 / .35) 55%, transparent);
+  opacity: var(--schleier, 1);
 }
-.k2-grund { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
-.k2-morgen { opacity: 0; z-index: 6; }
-.k2-figuren { position: absolute; inset: 0; z-index: 2; }
-.k2-figur { position: absolute; display: block; opacity: 0; will-change: opacity, transform; transition: opacity .3s var(--ease-ui); }
-.k2-figur.an { opacity: 1; }
-.k2-zeichen { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 3; overflow: visible; }
+/* Ebenen (Hero-Methode): jede Ebene deckt den ganzen Rahmen, Tiefe und Kameraflug per transform */
+.k2-ebene { position: absolute; inset: 0; will-change: transform; }
+.k2-voll { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+.k2-teil { position: absolute; display: block; }
+.k2-himmel { position: absolute; display: block; animation: k2-ziehen 70s ease-in-out infinite alternate; }
+@keyframes k2-ziehen { from { translate: -1.5% 0; } to { translate: 1.5% -.6%; } }
+.k2-sterne, .k2-staub { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+.k2-zeichen { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
 
-/* Kerze: warmer Schein, der atmet und flackert */
-.k2-kerze {
-  position: absolute; z-index: 1; left: calc(1965 / 4000 * 100%); top: calc(1140 / 2233 * 100%);
-  width: 34%; aspect-ratio: 1; translate: -50% -50%; border-radius: 50%; pointer-events: none;
-  background: radial-gradient(closest-side, rgb(255 214 150 / .34), rgb(255 190 150 / .12) 55%, transparent);
+/* Nacht: kühles Blau über allem, warmer Kerzenschein, Mondstrahl vom Fenster aufs Pult */
+.k2-nacht {
+  position: absolute; inset: 0; pointer-events: none;
+  /* Nachtblau (multiplizieren), am Fenster und an der Kerze heller */
+  background:
+    radial-gradient(circle at calc(1346 / 4000 * 100%) calc(1255 / 2233 * 100%), #fff 0, rgb(255 236 214) 9%, transparent 30%),
+    radial-gradient(ellipse 30% 55% at calc(2850 / 4000 * 100%) 42%, rgb(226 228 255) 0, transparent 70%),
+    linear-gradient(rgb(150 156 214), rgb(160 150 210));
+  mix-blend-mode: multiply;
+}
+.k2-nacht::after {
+  content: ''; position: absolute; inset: 0;
+  background:
+    radial-gradient(circle at calc(1346 / 4000 * 100%) calc(1235 / 2233 * 100%), rgb(255 200 130 / .55), rgb(255 190 140 / .16) 10%, transparent 24%),
+    linear-gradient(118deg, transparent 50%, rgb(220 228 255 / .16) 58%, rgb(220 228 255 / .24) 65%, transparent 74%);
   mix-blend-mode: screen; animation: k2-flackern 2.6s ease-in-out infinite alternate;
 }
-@keyframes k2-flackern { 0% { opacity: .85; scale: 1; } 40% { opacity: 1; scale: 1.03; } 70% { opacity: .9; scale: .99; } 100% { opacity: 1; scale: 1.02; } }
-
-/* Nachricht über dem Handy: knapp, flach, pink wie das Handy */
-.k2-nachricht {
-  position: absolute; z-index: 5; left: calc(2540 / 4000 * 100%); top: calc(1410 / 2233 * 100%);
-  translate: -50% -100%; width: max-content; max-width: 30ch; padding: .7em 1em; border-radius: 1em 1em 1em .25em;
-  background: var(--color-bg); color: var(--color-text); font: 500 clamp(6px, .45vw, 9px)/1.3 var(--font-system);
-  box-shadow: 0 0 0 .8px var(--color-gold), 0 0 0 2.4px var(--color-bg), 0 0 0 3.2px var(--color-gold), 0 8px 18px -8px rgb(35 27 58 / .45); opacity: 0; transform-origin: 30% 100%;
-}
-.k2-nachricht small { display: block; margin-bottom: .2em; font-size: .78em; color: #C2557F; letter-spacing: .02em; }
-.k2-nachricht.antwort { border-radius: 1em 1em 1em .25em; }
+@keyframes k2-flackern { 0% { opacity: .75; } 40% { opacity: 1; } 70% { opacity: .85; } 100% { opacity: .95; } }
+.k2-vorne { transform-origin: 50% 50%; }
+.k2-vorne .k2-voll { animation: k2-wehen 7s ease-in-out infinite alternate; transform-origin: 0 0; }
+@keyframes k2-wehen { from { rotate: 0deg; } to { rotate: .25deg; } }
 
 /* Text-Raster: Kapitelwort im Auftakt, danach immer unten links die Station */
 .k2-text { position: absolute; left: 6vw; top: 14vh; z-index: 13; max-width: 30vw; }
-.k2-text h2 { margin: 0; font-weight: 800; font-size: clamp(52px, 6.4vw, 116px); line-height: .88; letter-spacing: var(--tracking-headline); }
+.k2-text h2 { margin: 0; font-weight: 800; font-size: clamp(44px, 4.8vw, 92px); line-height: .88; letter-spacing: var(--tracking-headline); }
 .k2-station {
   position: absolute; left: 4vw; bottom: 8vh; z-index: 13; max-width: 26vw; margin: 0; padding: 16px 22px 18px;
   background: var(--color-bg); border-radius: 10px; box-shadow: 0 0 0 1.5px var(--color-gold), 0 0 0 5px var(--color-bg), 0 0 0 6.5px var(--color-gold), 0 20px 36px -18px rgb(35 27 58 / .5);
@@ -54,7 +60,7 @@
 .k2-station .satz { font-family: var(--font-hand); font-size: clamp(16px, 1.3vw, 21px); line-height: 1.3; }
 .k2-station > * { transition: opacity .35s var(--ease-ui), translate .5s var(--ease-ui); }
 .k2-station.wechselt > * { opacity: 0; translate: 0 .4em; }
-.k2-station.leer { opacity: 0; }
+.k2-station.leer, .k2-station:has(b:empty) { opacity: 0; }
 .k2-beispiel { position: absolute; right: 2vw; bottom: 2vh; z-index: 13; margin: 0; font-size: 11px; color: rgb(35 27 58 / .55); }
 
 /* Papier mit Grafik und Tarot-Karte II */
