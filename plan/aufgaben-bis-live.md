@@ -1,6 +1,6 @@
 # Aufgaben bis live (17.12.2026)
 
-Stand: 28.10.2026. Chronologisch, jede Aufgabe einzeln. **Du** = Mattia, **Ich** = Claude, **Wir** = zusammen.
+Stand: 31.10.2026. Chronologisch, jede Aufgabe einzeln. **Du** = Mattia, **Ich** = Claude, **Wir** = zusammen.
 Zeiten sind Schätzungen [A]. Quellen: Vault `Zielplan.md`, `website/checkliste-vorbereitung.md`, Sitzungen 20.10. und 28.10.
 Reihenfolge entschieden: erst Desktop fertig, dann Handy komplett neu (20.10.).
 Zieltermin neu **17.12.2026** statt 22.11. (Entscheid 28.10., `entscheide.md`).
@@ -15,6 +15,11 @@ Zieltermin neu **17.12.2026** statt 22.11. (Entscheid 28.10., `entscheide.md`).
 Bisheriges Tempo (28.10.): rund ein Teil der Startseite pro Woche Bauzeit (Hero, Wolkenflug, Kapitel I in gut 2 Wochen ohne Ferien) [A].
 
 ## KW 44 · 26.10.–01.11. · Kapitel II fertig
+
+> **31.10. [F]:** Kapitel II wird nach Hero-Methode neu gebaut (Entscheid 31.10., Qualität vor Termin).
+> Baustein 1 (Bühne) und 2 (Anfrage, Handy) abgenommen; Stationen II–V, Morgen und Übergang folgen,
+> geschätzt 4–6 Abende [A]. Die Wochen danach verschieben sich um ca. 1 Woche; Ausgleich über die
+> Streichliste (Regel 4). Die Zeilen unten sind der alte Plan.
 
 | # | Aufgabe | Wer | Zeit |
 |---|---|---|---|

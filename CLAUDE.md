@@ -65,7 +65,7 @@ Budgets und Kostenfreigaben bleiben in `agency-automation-os/projects/lead-engin
 
 ## Aktueller Stand und nächste Schritte
 
-Stand: 28.10.2026. Zeitplan: Vault `Zielplan.md`, Aufgabenliste `plan/aufgaben-bis-live.md`. Phase **Fundament**
+Stand: 31.10.2026. Zeitplan: Vault `Zielplan.md`, Aufgabenliste `plan/aufgaben-bis-live.md`. Phase **Fundament**
 (KW 39–42) endete am 18.10.2026. **Livegang neu 17.12.2026** (Entscheid 28.10.).
 
 **Sitzungsabschluss 28.09.:** Claude erreichte am 27.09. um 23:59 das
@@ -230,9 +230,37 @@ Automaten, gemalt in 2.5D** (Commits bis `8ad349c`).
   `plan/aufgaben-bis-live.md`: pro Teil eine Woche, höchstens ein Neuanfang;
   Texte laufen jede Woche mit; Zugänge bis 15.11.; Streichliste bei Engpass.
   Vault `Zielplan.md` noch auf 22.11. [?] (ausserhalb dieses Repos).
-- **Beim Wiedereinstieg zuerst:** (1) Console-Screenshot Kapitel II.
-  (2) Station 1 Detailfragen (Taube? Panel oder Karte?). (3) Bild-Prompts
-  Stationen 1–5. Kapitel II muss bis 01.11. fertig sein.
+- *(Wiedereinstieg überholt durch 29.–31.10.)*
+
+**Sitzungsabschluss 29.–31.10. [F]:** Kapitel II komplett neu, nach Hero-Methode.
+
+- Werkzeuge neu: **Codex als Prüfer** (`werkzeuge/pruefen.sh`, `pruefliste.md`, ChatGPT-Abo,
+  prüft nur Technik); **Bilder selbst über Vertex AI** (`werkzeuge/bild.py`, Projekt
+  `signedbymattia-bilder`, Guthaben aus Google AI Pro USD 10/Monat, Budget-Warnung CHF 9, Stopp
+  USD 8; Oktober aufgebraucht 7.88); Scroll-Prüfung `werkzeuge/scroll-pruefen.cjs`.
+- Zwei Fehlversuche verworfen (Brieftaube/Automat; „Nachtschicht“ aus einem Masterbild, Codex 5/10,
+  Mattia: Qualität ungenügend). Entscheid 31.10.: **Hero-Methode, Qualität vor Termin**
+  (Tiefenplan → Stiltest → einzeln gemalte Ebenen → Baustein für Baustein mit Video-Abnahme).
+- Geschichte **Fassung 2** abgenommen: Schreibstube bei Nacht, Putti + Rohrpost als Helfer, **Handy
+  im Goldrahmen** zeigt jeden Schritt, Pointe Sperrbildschirm „Sie haben geschlafen. Ihr Betrieb
+  nicht.“ (`website/drehbuch/12-kapitel-2.md`).
+- **Baustein 1 abgenommen** („passt sehr gut“): Bühne aus Ebenen (`werkzeuge/k2_buehne.py`,
+  `bilder/k2b/`), Tiefe mit Maus, Nachtlicht, Mondstaub, Sterne, Vorhang-Auftakt. Video
+  `plan/videos/k2-baustein1-2026-10-31.mp4`.
+- **Baustein 2 abgenommen:** 4 schlafende Putti (atmen, schnarchen), **Handy wie Apple in Pink**
+  (CSS, Rosé-Metall, Dynamic Island, Hero-Himmel als Sperrbildschirm), **Eintauchen ins Display**
+  mittig, Nachricht als echte iPhone-Mitteilung. Referenzen `marke/referenzen/k2-handy/`. Video
+  `plan/videos/k2-baustein2-v3-2026-10-31.mp4`. Letzter Commit `b1d0a2a`.
+- Regel 11 Tokens sparen (siehe oben).
+- Vorschau lokal: `python -m http.server 8766` in der Repo-Wurzel, dann
+  `localhost:8766/marke/entwuerfe/hero/index.html`.
+- **Beim Wiedereinstieg zuerst:** (1) Ab 01.11. ist das Bild-Guthaben neu: 4 **wache Putti**
+  erzeugen (gleiche Haltungen wie `marke/assets/k2/ebenen/putto-schlaf1–4`, Stil `stiltest/putto-v3`),
+  freistellen, in `k2_buehne.py` einbauen. (2) **Station II** bauen: Putti wachen auf, einer liest das
+  Handy, pinke Büchse fährt durch die Rohrpost; Video an Mattia. (3) [?] **VPS als Vorschau-Server**:
+  Mattia liefert Anbieter, OS, RAM, SSH-Zugang (selbst eingerichtet) und ob DNS für
+  `vorschau.signedbymattia.ch` geht. (4) Zeitplan: Kapitel II verschiebt den Wochenplan um ca. 1 Woche
+  (`plan/aufgaben-bis-live.md`), Ausgleich über die Streichliste.
 
 **Erledigt [F]:**
 
