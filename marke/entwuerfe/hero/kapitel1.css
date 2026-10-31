@@ -199,7 +199,7 @@
 
 /* K1-B5a · Pinkes iPhone (Gerät aus kapitel2.css, .k2-geraet: 1em = Handybreite / 21), Display als Container */
 .k1-iphone { left: 0; top: 0; z-index: 3; visibility: hidden; opacity: 0; pointer-events: none; }
-.k1-display { position: relative; height: 100%; border-radius: 2.15em; overflow: hidden; container-type: size; background: #FCFCFA; }
+.k1-display { position: relative; height: 100%; border-radius: 2.15em; overflow: hidden; container-type: size; background: #FCFCFA; clip-path: inset(0 round 2.15em); }
 .k1-display .k2-insel { z-index: 5; }
 .k1-status { position: absolute; top: 1.3em; left: 2.1em; right: 1.9em; z-index: 5; margin: 0; display: flex; justify-content: space-between; align-items: center; font: 600 .78em var(--font-system); color: #142A40; }
 .k1-akku { width: 1.9em; height: .95em; padding: .12em; border-radius: .3em; box-shadow: inset 0 0 0 .1em rgb(20 42 64 / .45); }
