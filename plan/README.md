@@ -9,7 +9,7 @@ Ausführlich: `aufgaben-bis-live.md` (Wochenplan), `CLAUDE.md` (Sitzungsabschlü
 | --- | --- | --- |
 | Hero | gebaut, Mattia „10 von 10“, Abnahme formell offen | – |
 | Wolkenflug | gebaut, „perfekt“ | – |
-| **Kapitel I Website** | **Überarbeitung: K1-B1 Tür gebaut** (31.10. abends), Plan K1-B1 bis B5 abgenommen | K1-B2 billige Baukasten-Seite, dann B3–B5 |
+| **Kapitel I Website** | **Überarbeitung: K1-B1 Tür und K1-B2 Baukasten-Seite abgenommen** (31.10. spätabends), Plan K1-B1 bis B5 abgenommen | K1-B3 Putti wischen, dann B4–B5 |
 | Kapitel II Automation | Hero-Methode: Baustein 1 + 2 abgenommen, Station II gebaut | Abnahme Station II, dann Station III |
 | Kapitel III Sichtbar | Drehbuch grob | nach Kapitel II |
 | Zwischenspiel, Werke, Abschluss | Drehbuch grob | Streichliste: Werke + Zwischenspiel zusammen |
@@ -20,7 +20,7 @@ Ausführlich: `aufgaben-bis-live.md` (Wochenplan), `CLAUDE.md` (Sitzungsabschlü
 | Thema | Stand |
 | --- | --- |
 | Texte (Interview) | offen, Meilenstein 18.10. verpasst |
-| Zugänge (Hosting, DNS, E-Mail, Google-Konto) | bis 15.11.; Vorschau auf VPS erledigt 31.10. (vorschau.signedbymattia.ch), Hosting der Live-Seite offen [?] |
+| Zugänge (Hosting, DNS, E-Mail, Google-Konto) | bis 15.11.; Vorschau auf VPS erledigt 31.10. (vorschau.signedbymattia.ch; Cache-Control-Header offen), Hosting der Live-Seite offen [?] |
 | Werkzeuge | Codex-Prüfer, Bilder über Vertex AI (USD 10/Monat), Scroll-Prüfung |
 
 ## Ältere Dateien

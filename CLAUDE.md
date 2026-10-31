@@ -309,13 +309,43 @@ Automaten, gemalt in 2.5D** (Commits bis `8ad349c`).
   `http.server 8766` (PID 34280) beendet – Helfern sagen, nur eigene Prozesse zu beenden.
   Playwright-Chromium fehlt lokal; Helfer nutzen Google Chrome (`executablePath`).
 - Commits: `5c932fa`, `56034c5`, `742b800`, `c39ec7d`, `79ed88c`.
-- **Beim Wiedereinstieg zuerst:** (1) **K1-B2 billige Baukasten-Seite** bauen: liegt unter der Tür,
+- *(Wiedereinstieg überholt durch 31.10. spätabends)* **Beim Wiedereinstieg zuerst:** (1) **K1-B2 billige Baukasten-Seite** bauen: liegt unter der Tür,
   nach dem Blitz sichtbar statt des leeren grauen Browsers; Standardschrift, gequetschte Abstände,
   Stockfoto-Slider, Seitenleiste „Kategorien“, statisch, wie ein Standard-WordPress-Thema ohne
   fremdes Logo; ersetzt Wireframe-Skizze und Inhalte-Schritt (`kapitel1.js` Schritte 1–2,
   `.hb-grau`). (2) Danach K1-B3 Putti wischen, K1-B4 Seite lebt, K1-B5 Übergang K1→K2.
   (3) Abnahme Station II Kapitel II weiterhin offen. (4) Zeitplan (`plan/aufgaben-bis-live.md`)
   prüfen.
+
+**Sitzungsabschluss 31.10. spätabends [F]:** Kapitel I Baustein 2 gebaut und abgenommen.
+
+- **K1-B2 billige Baukasten-Seite abgenommen** (Mattia: „passt weiter“): `.hb-billig` in
+  `marke/entwuerfe/hero/index.html`, Stil `kapitel1.css`. 2. Fassung „um 2019“ (erste Fassung zu
+  alt): Systemschrift, Logo-Tropfen, oranger Knopf „Jetzt anrufen!“, blaue Navigation, Slider mit
+  Stockfoto, 3 Lorem-Boxen, Seitenleiste (Kategorien, Beiträge, Archiv, Facebook „Gefällt mir 87“),
+  Cookie-Banner. Ersetzt Skizze, Inhalte-Schritt und Bauhelm-Putto (Code entfernt). Roller malt
+  früher (Scroll 0.46–0.60).
+- Stockfoto K1-8 (Monteur mit Daumen hoch) von Mattia in Gemini erzeugt: Original
+  `marke/assets/erster-wurf/k1-stockfoto-v1.jpg`, Web `bilder/k1-stockfoto-600.webp`; Prompt K1-8 in
+  `website/drehbuch/03-bildstil.md`.
+- Fixes Übergang Tür → Website: Baukasten-Seite erst ab dem Blitz sichtbar; Palastwand und Gerüst
+  verschwinden unter dem Blitz; Sonne hinter der Tür (`tuer.js`, hinterLicht) verschwindet auf der
+  Blitzspitze; Browser ohne `will-change` (sonst rastert Chrome ihn klein, Seite unscharf).
+  [A] Ruckeln beim Zoom auf schwachen Rechnern ungetestet.
+- Befund Cache: Mattia sah den hellen Kasten noch, im Inkognito-Fenster sauber → Browser-Cache.
+  [A] Caddy liefert vermutlich ohne Cache-Control. Bis zum Fix: Strg+F5 oder Inkognito.
+- [?] Ein 404 beim Laden der Seite (vermutlich favicon), ungeprüft.
+- Werkzeug: Playwright liegt in `node_modules` der Repo-Wurzel; Skripte von dort laufen lassen,
+  Chrome per `executablePath`.
+- Commits: `9ba279d`, `ee1af80`, `d9897a8`, `c2a3e7e`, `dd9231c`, `a3d2dd3`, `14cbc47`, `8cf59d8`.
+  Alles online auf https://vorschau.signedbymattia.ch.
+- **Beim Wiedereinstieg zuerst:** (1) **K1-B3 Putti wischen** planen und bauen: Roller- und
+  Wisch-Putto ziehen die neue Seite Streifen für Streifen über die Baukasten-Seite; Roller bleibt
+  ziehbarer Regler; zuerst Mattia den Plan zeigen und klären, ob neue Putto-Bilder nötig sind
+  (Prompts in die Zwischenablage). (2) Caddy: im eigenen Block von `vorschau.signedbymattia.ch`
+  `header Cache-Control "no-cache"` setzen (Mattia führt Server-Befehle mit `!` aus, nur den eigenen
+  Block anfassen). (3) Danach K1-B4 Seite lebt, K1-B5 Übergang. (4) Abnahme Station II Kapitel II
+  weiterhin offen. (5) Zeitplan `plan/aufgaben-bis-live.md` prüfen.
 
 **Erledigt [F]:**
 
