@@ -9,6 +9,7 @@
 .k1-buehne { position: sticky; top: 0; height: 100vh; height: 100svh; overflow: hidden; }
 .k1-hinten { position: absolute; inset: 0; background: linear-gradient(180deg, var(--color-chapter-2), var(--color-chapter-1)); }
 
+.k1-fresko { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
 .k1-wand, .k1-geruest, .k1-schraube { position: absolute; pointer-events: none; }
 .k1-wand { inset: 0; width: 100%; height: 100%; object-fit: cover; transform-origin: 50% 70%; z-index: 3; }
 .k1-geruest { left: 5%; bottom: -4%; height: 62vh; z-index: 4; }
@@ -43,7 +44,6 @@
 .br-seite { position: absolute; inset: 66px 0 0 0; overflow: hidden; border-radius: 0 0 10px 10px; transition: filter .6s var(--ease-ui); }
 .k1-browser { transition: border-radius .3s; }
 #k1Seite { container-type: size; }
-.k1-browser.gemalt .br-seite { filter: sepia(.35) saturate(.7) blur(1.2px); }
 /* Musterseite „Himmelblau Haustechnik GmbH" (erfunden). Zwei gleiche Ebenen:
    grau (Skizze + Inhalte, noch ungemalt) und farbig (der Roller malt sie frei).
    Container-Queries: wird das Fenster zum Handy, ordnet sich die Seite selbst neu an. */

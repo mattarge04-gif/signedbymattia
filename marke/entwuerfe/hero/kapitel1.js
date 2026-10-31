@@ -1,5 +1,7 @@
 // Kapitel I Website · Trompe-l'œil: der gemalte Torbogen wird ein echter Browser.
 // Drehbuch: website/drehbuch/10-startseite.md (11) · Werte: website/drehbuch/00-grammatik.md
+import { freskoAnlegen } from './fresko.js';
+
 const RUHIG = matchMedia('(prefers-reduced-motion: reduce)').matches;
 const $ = (s) => document.querySelector(s);
 const klemm = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
@@ -31,6 +33,7 @@ const skizze = $('#k1Skizze');
 const zeiger = $('#k1Zeiger');
 const toast = $('#k1Toast');
 const muster = $('#k1Muster');
+const fresko = freskoAnlegen(buehne, wand);
 
 // ---------- Kohleskizze: aus den echten Teilen der Seite gezeichnet ----------
 const SVGNS = 'http://www.w3.org/2000/svg';
@@ -172,7 +175,12 @@ function bild() {
   const fx = mx - (bw * sc) / 2;
   const fy = my - (bh * sc) / 2;
   browser.style.transform = `translate(${fx}px, ${fy}px) scale(${sc})`;
-  browser.classList.toggle('gemalt', mix < 0.6);
+
+  // K1-B1 · Fresko im Bogen blättert beim Zoomen ab (fresko.js)
+  fresko(s, {
+    x: cx + (m.loch.x0 - cx) * z, y: cy + (m.loch.y0 - cy) * z,
+    w: (m.loch.x1 - m.loch.x0) * z, h: (m.loch.y1 - m.loch.y0) * z,
+  });
 
   // Schritt 1 · Skizze: Kohlestriche zeichnen die echte Seite vor
   if (s > 0.28 && hp === 0) skizzeBauen();
