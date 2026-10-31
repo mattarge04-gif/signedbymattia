@@ -7,7 +7,6 @@ const $ = (s) => document.querySelector(s);
 const klemm = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
 const glatt = (t) => t * t * (3 - 2 * t);
 const aus = (t) => 1 - (1 - t) ** 3;
-const pointe = (t) => { const c1 = 1.70158, c3 = c1 + 1; return 1 + c3 * (t - 1) ** 3 + c1 * (t - 1) ** 2; };
 
 // Öffnung im Wandbild (Anteil), gemessen beim Freistellen (bilder/k1-manifest.json)
 const LOCH = [0.4197, 0.4141, 0.5799, 1.0];
@@ -21,23 +20,16 @@ const geruest = $('#k1Geruest');
 const browser = $('#k1Browser');
 const fertig = $('#k1Fertig');
 const roller = $('#k1Roller');
-const schraube = $('#k1Schraube');
 const text = $('#k1Text');
 const tipp = $('#k1Tipp');
 const seite = $('#k1Seite');
 const leiste = $('.br-leiste');
-const grauTeile = [...document.querySelectorAll('.hb-grau .hb-teil')];
-const grauKnopf = $('.hb-grau .hb-knopf.haupt');
 const farbKnopf = $('.hb-farbe .hb-knopf.haupt');
-const skizze = $('#k1Skizze');
 const zeiger = $('#k1Zeiger');
 const toast = $('#k1Toast');
 const muster = $('#k1Muster');
 const tuer = tuerAnlegen(buehne, wand);
 
-// ---------- Kohleskizze: aus den echten Teilen der Seite gezeichnet ----------
-const SVGNS = 'http://www.w3.org/2000/svg';
-let skizzenSchluessel = '';
 // Lage eines Elements in der Seite (unabhängig von Zoom und Transform), gecacht je Fenstergrösse
 const lagen = new Map();
 function lageIn(el) {
@@ -50,50 +42,6 @@ function lageIn(el) {
   lagen.set(el, neu);
   return neu;
 }
-let striche = [];
-function wackel(n) { const x = Math.sin(n * 12.9898) * 43758.5453; return (x - Math.floor(x) - 0.5) * 2; }
-function linie(x0, y0, x1, y1, n) {
-  const mx = (x0 + x1) / 2 + wackel(n) * 2;
-  const my = (y0 + y1) / 2 + wackel(n + 1) * 2;
-  return `M${x0 + wackel(n + 2) * 1.5} ${y0 + wackel(n + 3) * 1.5} Q${mx} ${my} ${x1 + wackel(n + 4) * 1.5} ${y1 + wackel(n + 5) * 1.5}`;
-}
-function skizzeBauen() {
-  const schluessel = `${seite.offsetWidth}x${seite.offsetHeight}`;
-  if (schluessel === skizzenSchluessel || !seite.offsetWidth) return;
-  skizzenSchluessel = schluessel;
-  skizze.replaceChildren();
-  striche = [];
-  // offset* statt getBoundingClientRect: unabhängig von Zoom und vom Fall-Versatz der Teile
-  grauTeile.forEach((el, i) => {
-    const x = el.offsetLeft;
-    const y = el.offsetTop;
-    const w = el.offsetWidth;
-    const h = el.offsetHeight;
-    const art = el.dataset.skizze;
-    const d = [];
-    if (art === 'zeile' || art === 'zeilen') {
-      const n = art === 'zeile' ? 1 : Math.max(1, Math.min(4, Math.round(h / 22)));
-      for (let z = 0; z < n; z++) {
-        const yy = y + (h * (z + 0.5)) / n;
-        d.push(linie(x, yy, x + w * (z === n - 1 && n > 1 ? 0.65 : 1), yy, i * 9 + z));
-      }
-    } else {
-      d.push(linie(x, y, x + w, y, i * 7 + 2), linie(x + w, y, x + w, y + h, i * 7 + 3),
-        linie(x + w, y + h, x, y + h, i * 7 + 4), linie(x, y + h, x, y, i * 7 + 5));
-      if (art === 'bild') d.push(linie(x, y, x + w, y + h, i * 7 + 6), linie(x + w, y, x, y + h, i * 7 + 8));
-    }
-    d.forEach((dd) => {
-      const pfad = document.createElementNS(SVGNS, 'path');
-      pfad.setAttribute('d', dd);
-      skizze.appendChild(pfad);
-      const len = pfad.getTotalLength();
-      pfad.style.strokeDasharray = `${len}`;
-      pfad.style.strokeDashoffset = `${len}`;
-      striche.push({ pfad, len, i });
-    });
-  });
-}
-
 let s = 0;
 let r = 0;            // wie viel der fertigen Seite der Roller schon gemalt hat (0–100)
 let gezogen = false;  // hat der Besucher selbst gezogen?
@@ -182,40 +130,16 @@ function bild() {
     w: (m.loch.x1 - m.loch.x0) * z, h: (m.loch.y1 - m.loch.y0) * z,
   });
 
-  // Schritt 1 · Skizze: Kohlestriche zeichnen die echte Seite vor
-  if (s > 0.28 && hp === 0) skizzeBauen();
-  for (const st of striche) {
-    const t = klemm((s - 0.32 - st.i * 0.008) / 0.05);
-    st.pfad.style.strokeDashoffset = String(st.len * (1 - t));
-  }
-  skizze.style.opacity = String(1 - klemm((s - 0.5) / 0.06));
-  muster.classList.toggle('da', s > 0.32 && s < 0.98);
+  muster.classList.toggle('da', s > 0.28 && s < 0.98);
 
-  // Schritt 2 · Inhalte fallen an ihren Platz (noch ungemalt)
-  grauTeile.forEach((el, i) => {
-    const t = klemm((s - 0.42 - i * 0.012) / 0.05);
-    el.style.transform = `translateY(${(1 - pointe(t)) * -28}px)`;
-    el.style.opacity = String(klemm(t * 2.5));
-  });
-  // Bauhelm-Putto schraubt den Knopf fest
-  const sp = klemm((s - 0.5) / 0.03) * (1 - klemm((s - 0.58) / 0.03));
-  if (sp > 0) {
-    const kb = lageIn(grauKnopf);
-    const w = schraube.offsetWidth;
-    const rechts = fx + (kb.x + kb.w) * sc;
-    const oben = fy + (seiteOben + kb.y) * sc;
-    const wack = Math.sin(performance.now() / 90) * 3 * sp;
-    schraube.style.transform = `translate(${rechts - w * 0.42}px, ${oben - w * 0.55}px) rotate(${wack}deg)`;
-  }
-  schraube.style.opacity = String(sp);
-
-  // Schritt 3 · Farbe: der Roller-Putto malt die Seite (ziehbar)
-  const rollerDa = s > 0.56 && s < 0.71;
+  // K1-B2 · Unter der Tür liegt die billige Baukasten-Seite (statisch, nur HTML/CSS)
+  // Farbe: der Roller-Putto malt die neue Seite darüber (ziehbar; K1-B3 ersetzt das durch Putti wischen)
+  const rollerDa = s > 0.42 && s < 0.71;
   roller.classList.toggle('da', rollerDa);
-  if (!gezogen) r = 100 * glatt(klemm((s - 0.58) / 0.12));
+  if (!gezogen) r = 100 * glatt(klemm((s - 0.46) / 0.14));
   if (s > 0.7) { r += (100 - r) * 0.2; gezogen = false; }   // vor dem Handy fertig malen
   setzeR(r);
-  tipp.classList.toggle('da', s > 0.64 && s < 0.71 && !gezogen);
+  tipp.classList.toggle('da', s > 0.6 && s < 0.71 && !gezogen);
 
   // Schritt 5 · Live: ein Zeiger klickt „Termin anfragen“, die Anfrage geht raus
   const zp = glatt(klemm((s - 0.84) / 0.05));

@@ -10,10 +10,9 @@
 .k1-hinten { position: absolute; inset: 0; background: linear-gradient(180deg, var(--color-chapter-2), var(--color-chapter-1)); }
 
 .k1-tuer { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
-.k1-wand, .k1-geruest, .k1-schraube { position: absolute; pointer-events: none; }
+.k1-wand, .k1-geruest { position: absolute; pointer-events: none; }
 .k1-wand { inset: 0; width: 100%; height: 100%; object-fit: cover; transform-origin: 50% 70%; z-index: 3; }
 .k1-geruest { left: 5%; bottom: -4%; height: 62vh; z-index: 4; }
-.k1-schraube { width: min(15vw, 26vh); z-index: 8; opacity: 0; left: 0; top: 0; }
 .k1-fliegt .k1-wand, .k1-fliegt .k1-browser, .k1-fliegt .k1-geruest { will-change: transform, opacity; }
 
 /* Browser im Torbogen */
@@ -44,8 +43,8 @@
 .br-seite { position: absolute; inset: 66px 0 0 0; overflow: hidden; border-radius: 0 0 10px 10px; transition: filter .6s var(--ease-ui); }
 .k1-browser { transition: border-radius .3s; }
 #k1Seite { container-type: size; }
-/* Musterseite „Himmelblau Haustechnik GmbH" (erfunden). Zwei gleiche Ebenen:
-   grau (Skizze + Inhalte, noch ungemalt) und farbig (der Roller malt sie frei).
+/* Musterseite „Himmelblau Haustechnik GmbH" (erfunden), fertige Ebene über der billigen (.hb-billig):
+   der Roller malt sie frei.
    Container-Queries: wird das Fenster zum Handy, ordnet sich die Seite selbst neu an. */
 .hb {
   --hb-blau: #2C6EA6; --hb-himmel: #D7EAF8; --hb-tinte: #142A40; --hb-gelb: #F4C443; --hb-linie: #D5E2EE;
@@ -124,13 +123,52 @@
   .hb-held { grid-template-rows: 30cqh auto; }
 }
 
-/* Ungemalte Ebene: Papier, Graustufen; die Teile kommen einzeln */
-.hb-grau { background: #F6F3EE; filter: grayscale(1) contrast(.85) brightness(1.05); }
-.js .hb-grau .hb-teil { opacity: 0; }
+/* K1-B2 · Billige Baukasten-Seite (vorher): Standardschrift, gequetschte Abstände,
+   Stockfoto-Slider, Seitenleiste. Bewusst schlecht, aber glaubwürdig. */
+.hb-billig {
+  position: absolute; inset: 0; overflow: hidden; display: flex; flex-direction: column;
+  background: #E9E9E9; color: #333; font-family: Arial, Helvetica, sans-serif; font-size: 1.12cqw; line-height: 1.25;
+}
+.hb-billig p, .hb-billig h1, .hb-billig h2, .hb-billig ul { margin: 0; }
+.bb-kopf { padding: 1.4cqh 2cqw .8cqh; background: #fff; border-bottom: 1px solid #ccc; }
+.bb-name { font-family: "Times New Roman", Times, serif; font-size: 2.5cqw; font-weight: bold; color: #1a0dab; text-decoration: underline; }
+.bb-motto { font-size: .95em; color: #777; font-style: italic; }
+.bb-nav { display: flex; background: linear-gradient(#5a5a5a, #3c3c3c); border-bottom: 3px solid #1e73be; }
+.bb-nav span { padding: .55em .9em; color: #eee; font-size: .95em; border-right: 1px solid #2c2c2c; }
+.bb-nav .an { background: #1e73be; color: #fff; }
+.bb-nav .bb-suche { margin: .25em .4em .25em auto; padding: .25em .5em; min-width: 10em; background: #fff; color: #999; border: 1px inset #999; }
+.bb-mitte { flex: 1; min-height: 0; display: flex; gap: 1cqw; padding: 1cqh 1.2cqw; background: #fff; margin: 0 1.2cqw; }
+.bb-haupt { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: .7cqh; }
+.bb-slider {
+  position: relative; flex: 0 0 50%; border: 1px solid #999;
+  /* Stockfoto, verzerrt gestreckt und übersättigt */
+  background: url("bilder/k1-musterfoto-600.webp") 0 0 / 100% 100%; filter: saturate(1.7) contrast(1.15);
+}
+.bb-pfeil { position: absolute; top: 50%; translate: 0 -50%; padding: 0 .35em; font-size: 2.4em; line-height: 1; color: #fff; background: rgb(0 0 0 / .45); }
+.bb-pfeil.links { left: 0; } .bb-pfeil.rechts { right: 0; }
+.bb-caption { position: absolute; left: 0; right: 0; bottom: 0; padding: .4em .8em; background: rgb(0 0 0 / .6); color: #fff; font-family: "Comic Sans MS", "Comic Sans", cursive; font-size: 1.25em; }
+.bb-punkte { position: absolute; right: .8em; bottom: .6em; display: flex; gap: .35em; }
+.bb-punkte i { width: .6em; height: .6em; border-radius: 50%; background: #fff; opacity: .55; }
+.bb-punkte i.an { opacity: 1; }
+.bb-titel { font-family: "Times New Roman", Times, serif; font-size: 1.9em; color: #c00; }
+.bb-text { text-align: justify; font-size: .95em; }
+.bb-mehr { color: #1a0dab; font-size: .9em; }
+.bb-aktion { margin-top: .4cqh; padding: .5em .8em; background: #ff0; border: 2px solid #c00; color: #c00; font-weight: bold; text-align: center; }
+.bb-aktion small { font-weight: normal; font-size: .75em; color: #333; }
+.bb-update { margin-top: auto; font-size: .8em; color: #999; font-style: italic; }
+.bb-seite { flex: 0 0 24%; display: flex; flex-direction: column; gap: .8cqh; font-size: .9em; }
+.bb-seite h2 { padding: .25em .5em; background: #1e73be; color: #fff; font-size: 1em; }
+.bb-seite ul { padding: .3em 0 0 1.4em; color: #1a0dab; text-decoration: underline; }
+.bb-zaehler { margin-top: auto; padding: .3em; border: 1px dashed #999; text-align: center; font-size: .9em; }
+.bb-zaehler b { font-family: "Courier New", monospace; background: #000; color: #3f3; padding: 0 .3em; letter-spacing: .1em; }
+.bb-fuss { padding: .7cqh 1cqw; background: #3c3c3c; color: #aaa; font-size: .8em; text-align: center; }
+@container (max-width: 560px) {
+  .hb-billig { font-size: 3cqw; }
+  .bb-name { font-size: 5.4cqw; }
+  .bb-nav span:not(.an) { display: none; }
+  .bb-seite { display: none; }
+}
 .js .hb-farbe { clip-path: inset(0 100% 0 0); }
-/* Kohleskizze über der grauen Ebene */
-.hb-skizze { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1; overflow: visible; }
-.hb-skizze path { fill: none; stroke: #5E566B; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; opacity: .8; }
 .hb-farbe { z-index: 2; }
 /* Mauszeiger für den Live-Moment */
 .k1-zeiger { position: absolute; left: 0; top: 0; width: 22px; z-index: 4; opacity: 0; pointer-events: none; filter: drop-shadow(0 2px 3px rgb(0 0 0 / .25)); }
