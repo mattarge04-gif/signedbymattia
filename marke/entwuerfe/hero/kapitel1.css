@@ -145,7 +145,7 @@
 .bb-mitte { flex: 1; min-height: 0; display: flex; gap: 1.6cqw; padding: 1.4cqh 2.4cqw; }
 .bb-haupt { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 1cqh; padding: 1.2cqh 1.2cqw; background: #fff; }
 .bb-slider {
-  position: relative; flex: 0 0 56%;
+  position: relative; flex: 1 1 0; min-height: 0;
   /* Standard-Stockfoto (K1-8), leicht übersättigt */
   background: url("bilder/k1-stockfoto-600.webp") 50% 50% / cover, url("bilder/k1-musterfoto-600.webp") 50% 50% / cover; filter: saturate(1.2);
 }
@@ -161,7 +161,7 @@
 .bb-punkte i.an { opacity: 1; }
 .bb-titel { font-size: 1.6em; font-weight: 600; color: #333; }
 .bb-text { font-size: .95em; }
-.bb-boxen { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1cqw; margin-top: auto; }
+.bb-boxen { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1cqw; }
 .bb-boxen div { display: grid; justify-items: center; gap: .2em; padding: .8em .5em; border: 1px solid #e5e5e5; text-align: center; font-size: .9em; }
 .bb-boxen svg { width: 2em; fill: var(--bb-blau); }
 .bb-boxen b { color: #333; }
