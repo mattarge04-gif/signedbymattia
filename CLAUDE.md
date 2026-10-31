@@ -339,13 +339,40 @@ Automaten, gemalt in 2.5D** (Commits bis `8ad349c`).
   Chrome per `executablePath`.
 - Commits: `9ba279d`, `ee1af80`, `d9897a8`, `c2a3e7e`, `dd9231c`, `a3d2dd3`, `14cbc47`, `8cf59d8`.
   Alles online auf https://vorschau.signedbymattia.ch.
-- **Beim Wiedereinstieg zuerst:** (1) **K1-B3 Putti wischen** planen und bauen: Roller- und
+- *(Wiedereinstieg überholt durch 31.10. nachts)* **Beim Wiedereinstieg zuerst:** (1) **K1-B3 Putti wischen** planen und bauen: Roller- und
   Wisch-Putto ziehen die neue Seite Streifen für Streifen über die Baukasten-Seite; Roller bleibt
   ziehbarer Regler; zuerst Mattia den Plan zeigen und klären, ob neue Putto-Bilder nötig sind
   (Prompts in die Zwischenablage). (2) Caddy: im eigenen Block von `vorschau.signedbymattia.ch`
   `header Cache-Control "no-cache"` setzen (Mattia führt Server-Befehle mit `!` aus, nur den eigenen
   Block anfassen). (3) Danach K1-B4 Seite lebt, K1-B5 Übergang. (4) Abnahme Station II Kapitel II
   weiterhin offen. (5) Zeitplan `plan/aufgaben-bis-live.md` prüfen.
+
+**Sitzungsabschluss 31.10. nachts [F]:** Kapitel I Baustein 3 gebaut und abgenommen.
+
+- **K1-B3 Putti wischen abgenommen** (Mattia: „passt“): 4 senkrechte Bahnen wie Tapete. Wisch-Putto
+  mit Abzieher (neu, Prompts K1-9a/b, von Mattia in Gemini erzeugt, Originale
+  `marke/assets/erster-wurf/k1-putto-wischt-a-v1.jpg` / `-b-v1.jpg`, freigestellt mit neuem Skript
+  `werkzeuge/k1_wischputto.py` (rembg `isnet-general-use`), Web `bilder/k1-putto-wischt-a/b(-600).webp`)
+  zieht die alte Seite Bahn für Bahn weg: sie verschwimmt wie nasses Glas, nasse Kante, Seifenblasen
+  in CSS. Roller-Putto rollt eine halbe Bahn dahinter die neue Seite auf (Treppen-`clip-path`), bleibt
+  ziehbar, „Oops“ bleibt. Zwei-Bild-Wechsel beim Wisch-Putto.
+- Technik-Befund: Chrome beschneidet `backdrop-filter` nicht auf eine Treppen-`clip-path`-Maske (nur
+  auf den Umriss) → je Bahn ein eigenes Element (`#k1Grund i`).
+- **Pause vor dem Handy** (Mattia): fertige Seite steht ca. 2 s still; Bahn 720vh → 810vh,
+  `PAUSE_BEI = 0.68`, `PAUSE_VH = 0.9` in `kapitel1.js`. [A] 90vh ≈ 2 s Scrollen.
+- [?] Prompts K1-9a/b noch nicht in `website/drehbuch/03-bildstil.md` eingetragen (stehen nur im
+  Chat; Inhalt: gleicher Putto mit pinkem Bauhelm, goldener Fensterabzieher, a wischt, b holt aus).
+- Prompt-Wünsche: Gemini-Prompts weiterhin in die Zwischenablage legen.
+- Commits: `82c755a`, `32042e1`. Online auf https://vorschau.signedbymattia.ch.
+- **Beim Wiedereinstieg zuerst:** (1) **K1-B4 „Neue Seite lebt“** in der Pause vor dem Handy. Auftrag
+  Mattia: Die neue Himmelblau-Seite steht für Mattias eigene Arbeit → **UI der neuen Seite besser
+  machen** und **UX und Animationen als Showoff zeigen, mit coolen Hinweisen darauf** (z. B.
+  handschriftliche Anmerkungen mit Pfeilen, Abstandsraster wie Figma; Ideen: Bild-Zoom, Notfall-Punkt
+  pulsiert, Bewertungen zählen hoch, „37 Jahre“ dreht, Termin-Knopf glänzt). Zuerst mit
+  impeccable/taste-skill die Seite prüfen, Mattia den Plan mit 2–3 Varianten der Hinweise zeigen,
+  dann bauen. (2) Danach K1-B5 Übergang K1→K2. (3) Caddy `Cache-Control "no-cache"` im eigenen Block
+  (Mattia führt mit `!` aus). (4) Abnahme Station II Kapitel II offen. (5) Zeitplan
+  `plan/aufgaben-bis-live.md` prüfen.
 
 **Erledigt [F]:**
 

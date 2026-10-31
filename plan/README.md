@@ -9,7 +9,7 @@ Ausführlich: `aufgaben-bis-live.md` (Wochenplan), `CLAUDE.md` (Sitzungsabschlü
 | --- | --- | --- |
 | Hero | gebaut, Mattia „10 von 10“, Abnahme formell offen | – |
 | Wolkenflug | gebaut, „perfekt“ | – |
-| **Kapitel I Website** | **Überarbeitung: K1-B1 Tür und K1-B2 Baukasten-Seite abgenommen** (31.10. spätabends), Plan K1-B1 bis B5 abgenommen | K1-B3 Putti wischen, dann B4–B5 |
+| **Kapitel I Website** | **Überarbeitung: K1-B1 Tür, K1-B2 Baukasten-Seite, K1-B3 Putti wischen abgenommen** (31.10. nachts), Plan K1-B1 bis B5 abgenommen | K1-B4 Neue Seite lebt (Showoff mit Hinweisen), dann B5 |
 | Kapitel II Automation | Hero-Methode: Baustein 1 + 2 abgenommen, Station II gebaut | Abnahme Station II, dann Station III |
 | Kapitel III Sichtbar | Drehbuch grob | nach Kapitel II |
 | Zwischenspiel, Werke, Abschluss | Drehbuch grob | Streichliste: Werke + Zwischenspiel zusammen |
