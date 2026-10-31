@@ -197,6 +197,56 @@
   .hb-held { grid-template-rows: 30cqh auto; }
 }
 
+/* K1-B5a · Pinkes iPhone (Gerät aus kapitel2.css, .k2-geraet: 1em = Handybreite / 21), Display als Container */
+.k1-iphone { left: 0; top: 0; z-index: 3; visibility: hidden; opacity: 0; pointer-events: none; }
+.k1-display { position: relative; height: 100%; border-radius: 2.15em; overflow: hidden; container-type: size; background: #FCFCFA; }
+.k1-display .k2-insel { z-index: 5; }
+.k1-status { position: absolute; top: 1.3em; left: 2.1em; right: 1.9em; z-index: 5; margin: 0; display: flex; justify-content: space-between; align-items: center; font: 600 .78em var(--font-system); color: #142A40; }
+.k1-akku { width: 1.9em; height: .95em; padding: .12em; border-radius: .3em; box-shadow: inset 0 0 0 .1em rgb(20 42 64 / .45); }
+.k1-akku i { display: block; width: 78%; height: 100%; border-radius: .16em; background: #142A40; }
+/* Home-Balken über der Anruf-Leiste */
+.k1-display::after { content: ""; position: absolute; left: 50%; bottom: .45em; z-index: 5; width: 7em; height: .28em; translate: -50% 0; border-radius: 99px; background: rgb(255 255 255 / .85); }
+
+/* Handy-Layout: eine Spalte ohne Loch, Leistungen als Liste mit Pfeilen, Notfall als Anruf-Leiste unten */
+.hb.hb-handy { display: flex; flex-direction: column; row-gap: 0; padding: 18cqw 0 0; font-size: 3.9cqw; }
+.hb-handy .hb-kopf { gap: 0; padding: 0 5.5cqw 3.4cqw; }
+.hb-handy .hb-marke b { font-size: 1.75em; }
+.hb-handy .hb-nav { display: none; }
+.hb-burger { display: none; }
+.hb-handy .hb-burger { display: grid; gap: 1.2cqw; width: 6cqw; margin-left: auto; }
+.hb-handy .hb-burger i { height: .65cqw; border-radius: 1cqw; background: var(--hb-tinte); }
+.hb-handy .hb-held { display: flex; flex-direction: column; gap: 0; min-height: auto; }
+.hb-handy .hb-foto { order: -1; flex: none; height: 44cqw; margin: 0; border-radius: 0; }
+.hb-handy .hb-stempel { left: auto; right: 5.5cqw; bottom: -8cqw; width: 21cqw; }
+.hb-handy .hb-stempel b { font-size: 5.8cqw; }
+.hb-handy .hb-stempel small { font-size: 1.9cqw; }
+.hb-handy .hb-text { gap: 4.4cqw; padding: 6.5cqw 5.5cqw 0; }
+.hb-handy .hb-titel { font-size: 10.6cqw; margin-bottom: .6cqw; }
+.hb-handy .hb-lead { font-size: 1em; max-width: 30ch; }
+.hb-handy .hb-knoepfe { gap: 4.5cqw; }
+.hb-handy .hb-bewertung { display: flex; font-size: .82em; }
+.hb-handy .hb-leistungen { margin: 6cqw 0 0; grid-template-columns: 1fr; }
+.hb-handy .hb-leistungen li { display: flex; align-items: center; padding: 3.4cqw 5.5cqw; border-left: 0; border-top: 1px solid var(--hb-linie); }
+.hb-handy .hb-leistungen li:first-child { border-top: 0; }
+.hb-handy .hb-leistungen b { font-size: 1.15em; }
+.hb-handy .hb-leistungen span { display: none; }
+.hb-handy .hb-leistungen li::after { content: "›"; margin-left: auto; font-size: 1.5em; line-height: 1; color: var(--hb-blau); }
+.hb-handy .hb-notruf {
+  position: absolute; left: 0; right: 0; bottom: 0; z-index: 2; justify-content: center; gap: .55em;
+  padding: 3.4cqw 5.5cqw 7cqw; background: var(--hb-tinte); color: #fff; font-size: .92em;
+}
+.hb-handy .hb-notruf i { width: 2.2cqw; height: 2.2cqw; animation: hb-puls 1.4s cubic-bezier(.16, 1, .3, 1) infinite; }
+.hb-handy .hb-notruf b { color: var(--hb-gelb); }
+.hb-handy .hb-toast { left: 5.5cqw; right: 5.5cqw; bottom: 21cqw; translate: 0 30%; white-space: normal; line-height: 1.3; }
+.hb-handy .hb-toast.da { translate: 0 0; }
+/* während des Flugs: Originale weg, die Kopien in .k1-flug fliegen */
+.teile-weg .k1-teil { visibility: hidden; }
+.k1-flug { position: absolute; inset: 0; z-index: 6; pointer-events: none; }
+.k1-raum { position: absolute; container-type: size; }
+.k1-flug .k1-raum > .hb { display: block; overflow: visible; padding: 0; background: none; }
+.k1-flug .k1-flieger { position: absolute; margin: 0; transform-origin: 0 0; box-sizing: border-box; will-change: transform, opacity; }
+@media (prefers-reduced-motion: reduce) { .hb-handy .hb-notruf i { animation: none; } }
+
 /* K1-B2 · Billige Baukasten-Seite (vorher), Stand etwa 2019: Standard-Thema, Systemschrift,
    gequetschte Abstände, Stockfoto-Slider, Seitenleiste, Cookie-Banner. Schwach, aber glaubwürdig. */
 .hb-billig {

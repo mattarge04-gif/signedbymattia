@@ -2,6 +2,7 @@
 // Drehbuch: website/drehbuch/10-startseite.md (11) · Werte: website/drehbuch/00-grammatik.md
 import { tuerAnlegen } from './tuer.js';
 import { zeigenAnlegen } from './zeigen.js';
+import { handyAnlegen } from './handy.js';
 
 const RUHIG = matchMedia('(prefers-reduced-motion: reduce)').matches;
 const $ = (s) => document.querySelector(s);
@@ -24,10 +25,7 @@ const roller = $('#k1Roller');
 const text = $('#k1Text');
 const tipp = $('#k1Tipp');
 const seite = $('#k1Seite');
-const leiste = $('.br-leiste');
-const farbKnopf = $('.hb-farbe .hb-knopf.haupt');
 const zeiger = $('#k1Zeiger');
-const toast = $('#k1Toast');
 const muster = $('#k1Muster');
 const billig = $('.hb-billig');
 const wischer = $('#k1Wischer');
@@ -35,6 +33,10 @@ const grund = $('#k1Grund');
 const kante = $('#k1Kante');
 const tuer = tuerAnlegen(buehne, wand);
 const zeigen = zeigenAnlegen(buehne, browser);
+// K1-B5a · pinkes iPhone: der Live-Klick passiert dort
+const handy = handyAnlegen(buehne);
+const { knopf: farbKnopf, toast } = handy;
+handy.display.append(zeiger);
 
 // K1-B3 · Putti wischen: die Seite wird Bahn für Bahn neu gemacht wie eine Tapete.
 // Der Wisch-Putto zieht eine Bahn vor, der Roller-Putto rollt dahinter die neue Seite auf.
@@ -49,7 +51,7 @@ const lage = { roller: null, wischer: null };
 // Lage eines Elements in der Seite (unabhängig von Zoom und Transform), gecacht je Fenstergrösse
 const lagen = new Map();
 function lageIn(el) {
-  const schluessel = `${seite.offsetWidth}x${seite.offsetHeight}`;
+  const schluessel = `${innerWidth}x${innerHeight}`;
   const alt = lagen.get(el);
   if (alt && alt.k === schluessel) return alt;
   let x = 0, y = 0, n = el;
@@ -132,24 +134,21 @@ function bild() {
   const lcx = cx;
   const lcy = cy;
   const mix = glatt(klemm((s - 0.22) / 0.1));
-  // Schritt 4 · Handy: das Fenster faltet sich zum Smartphone, die Seite ordnet sich selbst neu (Container-Query)
-  const hp = glatt(klemm((s - 0.72) / 0.1));
-  const pw = Math.min(m.vw * 0.8, 340, m.tw);
-  const ph = Math.min(m.vh * 0.8, pw * 2.05);
-  const bw = m.tw + (pw - m.tw) * hp;
-  const bh = m.th + (ph - m.th) * hp;
+  // K1-B5a · Handy: das Fenster verblasst, die Teile fliegen ins pinke iPhone (handy.js)
+  const hp = klemm((s - 0.71) / 0.12);
+  const bf = glatt(klemm((hp - 0.05) / 0.35));
+  const bw = m.tw;
+  const bh = m.th;
   const imLoch = Math.max(lw / bw, lh / bh);
-  const sc = imLoch + (1 - imLoch) * mix;
+  const sc = (imLoch + (1 - imLoch) * mix) * (1 - 0.06 * bf);
   const mx = lcx + (m.vw / 2 - lcx) * mix;
   const my = lcy + (m.vh * 0.53 - lcy) * mix;
   browser.style.width = `${bw}px`;
   browser.style.height = `${bh}px`;
-  browser.style.borderRadius = `${10 + 26 * hp}px`;
-  leiste.style.opacity = String(1 - klemm(hp * 2));
-  const seiteOben = 66 - 54 * hp;
-  seite.style.top = `${seiteOben}px`;
-  fenster = { w: bw, h: bh, oben: seiteOben };
-  seite.style.borderRadius = `${10 + 22 * hp}px`;
+  browser.style.opacity = String(1 - bf);
+  browser.style.visibility = bf >= 1 ? 'hidden' : 'visible';
+  seite.style.top = '66px';
+  fenster = { w: bw, h: bh, oben: 66 };
   browser.style.transformOrigin = '0 0';
   const fx = mx - (bw * sc) / 2;
   const fy = my - (bh * sc) / 2;
@@ -185,6 +184,7 @@ function bild() {
 
   // K1-B4 · Die Seite lebt: Masse, Notizen von Hand, Bewegungen (zeigen.js)
   zeigen(pz);
+  handy.bild(hp);
 
   // Schritt 5 · Live: ein Zeiger klickt „Termin anfragen“, die Anfrage geht raus
   const zp = glatt(klemm((s - 0.84) / 0.05));
@@ -192,8 +192,8 @@ function bild() {
     const kb = lageIn(farbKnopf);
     const zx = kb.x + kb.w * 0.6;
     const zy = kb.y + kb.h * 0.6;
-    const sx = seite.offsetWidth * 0.85;
-    const sy = seite.offsetHeight * 0.95;
+    const sx = handy.display.offsetWidth * 0.85;
+    const sy = handy.display.offsetHeight * 0.95;
     zeiger.style.transform = `translate(${sx + (zx - sx) * zp}px, ${sy + (zy - sy) * zp}px) scale(${s > 0.89 && s < 0.91 ? 0.85 : 1})`;
   }
   zeiger.style.opacity = String(klemm((s - 0.82) / 0.02));
