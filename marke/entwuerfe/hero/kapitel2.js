@@ -167,11 +167,13 @@ function bild(ms) {
   }
   vorne.style.opacity = String(1 - glatt(klemm((s - 0.06) / 0.05)));
 
-  // Station I: das Display geht an, die Kamera fliegt aufs Handy, das gemalte Handy wird zum echten
+  // Station I: das Handy wacht auf, die Kamera fährt heran und taucht ins Display ein (wie Apples Fahrt ins Objektiv)
   const pa = teil(s, ST.anfrage);
-  display.style.opacity = String(glatt(teil(pa, [0, 0.12])));
-  const nah = RUHIG ? 0 : glatt(teil(pa, [0.08, 0.42])) * (1 - glatt(teil(pa, [0.8, 1])));
-  const kz = 1 + 1.35 * nah;
+  const licht = 0.12 + 0.88 * glatt(teil(pa, [0, 0.1]));
+  display.style.setProperty('--licht', licht);
+  handy.style.setProperty('--licht', licht);
+  const nah = RUHIG ? 0 : glatt(teil(pa, [0.08, 0.42])) * (1 - glatt(teil(pa, [0.82, 1])));
+  const kz = 1 + 1.4 * nah;
   const ww = welt.offsetWidth;
   const wh = welt.offsetHeight;
   const links = (innerWidth - ww) / 2;
@@ -182,21 +184,28 @@ function bild(ms) {
   ty = klemm(ty, innerHeight - oben - kz * wh, -oben) * nah;
   welt.style.transformOrigin = '0 0';
   welt.style.transform = `translate(${tx}px, ${ty}px) scale(${kz})`;
-  const gross = RUHIG ? glatt(teil(pa, [0.3, 0.4])) * (1 - glatt(teil(pa, [0.85, 0.95]))) : glatt(teil(pa, [0.36, 0.56])) * (1 - glatt(teil(pa, [0.78, 0.92])));
-  if (gross > 0.001) {
+  // Eintauchen: die scharfe Kopie liegt zuerst genau auf dem Handy im Bild und wächst bis zum ganzen Bildschirm
+  const ein = RUHIG ? glatt(teil(pa, [0.3, 0.4])) * (1 - glatt(teil(pa, [0.86, 0.95]))) : glatt(teil(pa, [0.38, 0.54])) * (1 - glatt(teil(pa, [0.76, 0.9])));
+  const sichtbar = RUHIG ? ein > 0.01 : pa > 0.36 && pa < 0.92;
+  if (sichtbar) {
+    // gleiches Seitenverhältnis: wächst, bis das Display die ganze Breite füllt; der Bereich mit Uhrzeit
+    // und Meldung (ca. 32 % der Höhe) landet in der Bildschirmmitte. Schrift höchstens 24 px (echte Grösse).
     const r = display.getBoundingClientRect();
-    const zh = innerHeight * 0.74;
-    const zw = zh * (124 / 209);
-    const zx = innerWidth / 2 - zw / 2;
-    const zy = innerHeight / 2 - zh / 2;
-    const w = r.width + (zw - r.width) * gross;
-    handy.style.width = `${w}px`;
-    handy.style.fontSize = `${w / 19}px`;
-    handy.style.transform = `translate(${r.left + (zx - r.left) * gross}px, ${r.top + (zy - r.top) * gross}px)`;
-    handy.style.opacity = String(klemm(gross * 4));
+    const voll = (innerWidth * 1.08) / r.width;
+    const k = 1 + (voll - 1) * ein;
+    const w = r.width * k;
+    const h = r.height * k;
+    const x = r.left + (innerWidth / 2 - w / 2 - r.left) * ein;
+    const y = r.top + (innerHeight * 0.42 - h * 0.3 - r.top) * ein;
+    const fs = Math.min(w / 21, 24 + (w / 21 - 24) * (1 - ein));
+    const oben = fs * 8.5 + ((innerHeight * 0.2 - y - h * 0.03) - fs * 8.5) * ein;
+    Object.assign(handy.style, { width: `${w}px`, height: `${h}px`, fontSize: `${w / 21}px`, transform: `translate(${x}px, ${y}px)`, opacity: '1' });
+    const sperre = handy.querySelector('.k2-sperre');
+    sperre.style.fontSize = `${fs / (w / 21)}em`;
+    sperre.style.paddingTop = `${oben}px`;
   } else handy.style.opacity = '0';
-  welt.style.filter = gross > 0.01 ? `brightness(${1 - 0.3 * gross}) saturate(${1 - 0.2 * gross})` : '';
-  meldung.classList.toggle('da', pa > 0.5 && pa < 0.86);
+  welt.style.filter = ein > 0.01 ? `blur(${ein * 6}px)` : '';
+  meldung.classList.toggle('da', pa > 0.5 && pa < 0.82);
   const stationAn = pa > 0.02 && pa < 0.98;
   if (stationAn && !stationText.querySelector('b').textContent) {
     stationText.querySelector('.nr').textContent = 'I';
