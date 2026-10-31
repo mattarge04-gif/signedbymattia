@@ -29,7 +29,20 @@ const zeiger = $('#k1Zeiger');
 const toast = $('#k1Toast');
 const muster = $('#k1Muster');
 const billig = $('.hb-billig');
+const wischer = $('#k1Wischer');
+const grund = $('#k1Grund');
+const kante = $('#k1Kante');
 const tuer = tuerAnlegen(buehne, wand);
+
+// K1-B3 · Putti wischen: die Seite wird Bahn für Bahn neu gemacht wie eine Tapete.
+// Der Wisch-Putto zieht eine Bahn vor, der Roller-Putto rollt dahinter die neue Seite auf.
+const BAHNEN = 4;
+const WISCH_VOR = 0.35;   // Vorsprung des Abziehers, in Bahnen
+const WISCH_DAUER = 0.85; // so lange braucht der Abzieher für eine Bahn
+const U_ENDE = BAHNEN - 1 + WISCH_VOR + 1;
+let fenster = { w: 1, h: 1, oben: 66 };
+const soll = { roller: { x: 0, y: 0 }, wischer: { x: 0, y: 0 } };
+const lage = { roller: null, wischer: null };
 
 // Lage eines Elements in der Seite (unabhängig von Zoom und Transform), gecacht je Fenstergrösse
 const lagen = new Map();
@@ -119,6 +132,7 @@ function bild() {
   leiste.style.opacity = String(1 - klemm(hp * 2));
   const seiteOben = 66 - 54 * hp;
   seite.style.top = `${seiteOben}px`;
+  fenster = { w: bw, h: bh, oben: seiteOben };
   seite.style.borderRadius = `${10 + 22 * hp}px`;
   browser.style.transformOrigin = '0 0';
   const fx = mx - (bw * sc) / 2;
@@ -136,12 +150,21 @@ function bild() {
   // K1-B2 · Unter der Tür liegt die billige Baukasten-Seite (statisch, nur HTML/CSS)
   // erst im Blitz sichtbar, nicht schon durch die Löcher der bröckelnden Tür (Spitze 0.21, aus 0.27)
   billig.style.opacity = String(glatt(klemm((s - 0.22) / 0.04)));
-  // Farbe: der Roller-Putto malt die neue Seite darüber (ziehbar; K1-B3 ersetzt das durch Putti wischen)
+  // K1-B3 · Putti wischen: Abzieher und Roller machen die Seite Bahn für Bahn neu (Roller ziehbar)
   const rollerDa = s > 0.42 && s < 0.71;
   roller.classList.toggle('da', rollerDa);
-  if (!gezogen) r = 100 * glatt(klemm((s - 0.46) / 0.14));
-  if (s > 0.7) { r += (100 - r) * 0.2; gezogen = false; }   // vor dem Handy fertig malen
+  wischer.classList.toggle('da', rollerDa);
+  if (!gezogen) r = 100 * klemm((s - 0.45) / 0.22);
+  if (s > 0.7) { r += (100 - r) * 0.2; gezogen = false; }   // vor dem Handy fertig
   setzeR(r);
+  for (const k of ['roller', 'wischer']) {
+    const z = soll[k];
+    const l = lage[k] || (lage[k] = { ...z });
+    const f = RUHIG ? 1 : 0.28;   // nachziehen: der Wechsel zur nächsten Bahn wird ein kurzer Flug
+    l.x += (z.x - l.x) * f;
+    l.y += (z.y - l.y) * f;
+    (k === 'roller' ? roller : wischer).style.transform = `translate(${l.x}px, ${l.y}px)`;
+  }
   tipp.classList.toggle('da', s > 0.6 && s < 0.71 && !gezogen);
 
   // Schritt 5 · Live: ein Zeiger klickt „Termin anfragen“, die Anfrage geht raus
@@ -163,10 +186,46 @@ function bild() {
   if (laeuft) requestAnimationFrame(bild);
 }
 
+// Treppen-Maske: Bahn i ist von oben bis hoehen[i] (0–1) sichtbar
+function treppe(hoehen) {
+  const p = ['0 0', '100% 0'];
+  for (let i = BAHNEN - 1; i >= 0; i--) {
+    const y = `${(hoehen[i] * 100).toFixed(2)}%`;
+    p.push(`${((i + 1) * 100) / BAHNEN}% ${y}`, `${(i * 100) / BAHNEN}% ${y}`);
+  }
+  return `polygon(${p.join(',')})`;
+}
+
 function setzeR(wert) {
   r = klemm(wert, 0, 100);
-  fertig.style.clipPath = `inset(0 ${100 - r}% 0 0)`;
-  roller.style.left = `${r}%`;
+  const u = (r / 100) * U_ENDE;
+  const gewischt = [];
+  const gerollt = [];
+  for (let i = 0; i < BAHNEN; i++) {
+    gewischt.push(klemm((u - i) / WISCH_DAUER));
+    gerollt.push(klemm(u - i - WISCH_VOR));
+  }
+  gewischt.forEach((v, i) => { grund.children[i].style.height = `${v * 100}%`; });
+  fertig.style.clipPath = treppe(gerollt);
+
+  // Lage der Putti im Fenster: Anker an der Kante ihrer Bahn
+  const bahnB = fenster.w / BAHNEN;
+  const hoch = fenster.h - fenster.oben;
+  const wb = gewischt.findIndex((v) => v < 1);
+  const wv = wb < 0 ? 1 : gewischt[wb];
+  if (wb < 0) soll.wischer = { x: fenster.w + bahnB, y: fenster.oben - hoch * 0.25 };   // fertig: fliegt weg
+  else soll.wischer = { x: (wb + 0.5) * bahnB, y: fenster.oben + wv * hoch };
+  const rb = gerollt.findIndex((v) => v < 1);
+  const ri = rb < 0 ? BAHNEN - 1 : rb;
+  soll.roller = { x: (ri + 0.5) * bahnB, y: fenster.oben + gerollt[ri] * hoch };
+  if (r === 0 || (ri === 0 && gerollt[0] === 0)) soll.roller.x -= bahnB * 0.8;   // wartet links, bis die erste Bahn nass ist
+
+  // Zwei-Bild-Wechsel: ausholen am Anfang jeder Bahn und kurz zwischen den Zügen
+  const wischt = wb >= 0 && wv > 0;
+  wischer.classList.toggle('holt', !wischt || wv < 0.08 || (wv * 4) % 1 > 0.84);
+  wischer.classList.toggle('wischt', wischt);
+  kante.classList.toggle('da', wischt);
+  if (wischt) kante.style.transform = `translate(${wb * 100}%, ${wv * hoch}px)`;
   roller.setAttribute('aria-valuenow', String(Math.round(r)));
 }
 
