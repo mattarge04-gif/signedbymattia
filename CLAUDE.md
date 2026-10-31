@@ -364,7 +364,7 @@ Automaten, gemalt in 2.5D** (Commits bis `8ad349c`).
   Chat; Inhalt: gleicher Putto mit pinkem Bauhelm, goldener Fensterabzieher, a wischt, b holt aus).
 - Prompt-Wünsche: Gemini-Prompts weiterhin in die Zwischenablage legen.
 - Commits: `82c755a`, `32042e1`. Online auf https://vorschau.signedbymattia.ch.
-- **Beim Wiedereinstieg zuerst:** (1) **K1-B4 „Neue Seite lebt“** in der Pause vor dem Handy. Auftrag
+- *(Wiedereinstieg überholt durch 31.10. spätnachts)* **Beim Wiedereinstieg zuerst:** (1) **K1-B4 „Neue Seite lebt“** in der Pause vor dem Handy. Auftrag
   Mattia: Die neue Himmelblau-Seite steht für Mattias eigene Arbeit → **UI der neuen Seite besser
   machen** und **UX und Animationen als Showoff zeigen, mit coolen Hinweisen darauf** (z. B.
   handschriftliche Anmerkungen mit Pfeilen, Abstandsraster wie Figma; Ideen: Bild-Zoom, Notfall-Punkt
@@ -373,6 +373,26 @@ Automaten, gemalt in 2.5D** (Commits bis `8ad349c`).
   dann bauen. (2) Danach K1-B5 Übergang K1→K2. (3) Caddy `Cache-Control "no-cache"` im eigenen Block
   (Mattia führt mit `!` aus). (4) Abnahme Station II Kapitel II offen. (5) Zeitplan
   `plan/aufgaben-bis-live.md` prüfen.
+
+**Sitzungsabschluss 31.10. spätnachts [F]:** Kapitel I Baustein 4 gebaut.
+
+- **K1-B4 „Neue Seite lebt“** (`marke/entwuerfe/hero/zeigen.js`): Mauszeiger hovert in der Pause vor dem
+  Handy von Station zu Station, je Station eine Bewegung und **eine** Notiz von Hand mit Pfeil (Figma-Masse
+  exakt per `text-box-trim`, Tropfen in Schleife, Notfall pulsiert, Bewertungen zählen hoch, Stempel dreht,
+  Knopf hebt sich und glänzt, Foto zoomt). Pause 360vh (Bahn 1080vh). Details und Stationen in
+  `website/drehbuch/10-startseite.md` (K1-B4). Notiz-Texte [A] Platzhalter. Mausrad-Prüfung durch Helfer
+  ohne Fehler. [A] abgenommen (Mattia kommentierte danach nur das Handy).
+- Neu im Header der Musterseite: „Notfall 24 h 041 000 00 00“ (offensichtlich unecht, Entscheid Mattia).
+- Hinweis-Stil entschieden (Mattia): **Mix** aus Figma-Massen und Notizen von Hand; Referenzen waren
+  roughnotation.com und Excalidraw (Screenshots nur im Scratchpad).
+- Commits: `c3ef6d4`, `5d53213`. Online auf https://vorschau.signedbymattia.ch.
+- [?] Das Falten zum Handy dauerte schon vorher nur ca. 0,25 s (wirkt evtl. wie Schnappen), wird mit K1-B5a ersetzt.
+- **Beim Wiedereinstieg zuerst:** (1) **K1-B5a Handy neu + Übergang „Teile fliegen“** (Entscheid Mattia):
+  Plan und Befund in `website/drehbuch/10-startseite.md` (Zeile K1-B5a). Pinkes iPhone aus Kapitel II
+  wiederverwenden (dort Code suchen), FLIP je Teil am Scroll, Burger-Menü, Anruf-Leiste, Handy-Layout ohne
+  Loch, Toast im Display. Danach hochladen und „ist online“ melden. (2) Danach K1-B5 Übergang K1→K2.
+  (3) Caddy `Cache-Control "no-cache"` im eigenen Block (Mattia führt mit `!` aus). (4) Abnahme Station II
+  Kapitel II offen. (5) Zeitplan `plan/aufgaben-bis-live.md` prüfen.
 
 **Erledigt [F]:**
 
