@@ -264,3 +264,9 @@ from the upper left. Pastel palette only: powder blue (#CFE3F7), lilac (#D9CCF5)
 cream (#FBF3EA), pale gold (#E3C58A). No brown, no dark shadows, no figures, no text, no watermark.
 9:16, high detail.
 ```
+
+**K1-8 Stockfoto der billigen Seite** (16:9) → `k1-stockfoto-v1.jpg` [F] (Mattia, 31.10.2026: ein
+typisches Standard-Stockbild statt des Musterfotos; Baukasten-Seite ca. 2019). Ohne Stil-Vorlage.
+```
+A generic commercial stock photo, the kind used on cheap small-business websites: a smiling male plumber in his forties in a navy work polo shirt and grey work trousers, standing in a bright, freshly renovated Swiss bathroom next to a white wall-hung boiler and chrome pipes, giving a thumbs up to the camera. Over-lit, flat studio lighting, slightly too much saturation, very clean and staged, shallow depth of field, typical microstock look from around 2019. Wide landscape format 16:9, subject a bit off-center to the right, plain space on the left. Photorealistic. No text, no logo, no watermark.
+```

@@ -123,50 +123,64 @@
   .hb-held { grid-template-rows: 30cqh auto; }
 }
 
-/* K1-B2 · Billige Baukasten-Seite (vorher): Standardschrift, gequetschte Abstände,
-   Stockfoto-Slider, Seitenleiste. Bewusst schlecht, aber glaubwürdig. */
+/* K1-B2 · Billige Baukasten-Seite (vorher), Stand etwa 2019: Standard-Thema, Systemschrift,
+   gequetschte Abstände, Stockfoto-Slider, Seitenleiste, Cookie-Banner. Schwach, aber glaubwürdig. */
 .hb-billig {
+  --bb-blau: #1E73BE; --bb-orange: #F39C12;
   position: absolute; inset: 0; overflow: hidden; display: flex; flex-direction: column;
-  background: #E9E9E9; color: #333; font-family: Arial, Helvetica, sans-serif; font-size: 1.12cqw; line-height: 1.25;
+  background: #F1F1F1; color: #555; font-family: "Open Sans", "Segoe UI", Arial, sans-serif; font-size: 1.05cqw; line-height: 1.35;
 }
 .hb-billig p, .hb-billig h1, .hb-billig h2, .hb-billig ul { margin: 0; }
-.bb-kopf { padding: 1.4cqh 2cqw .8cqh; background: #fff; border-bottom: 1px solid #ccc; }
-.bb-name { font-family: "Times New Roman", Times, serif; font-size: 2.5cqw; font-weight: bold; color: #1a0dab; text-decoration: underline; }
-.bb-motto { font-size: .95em; color: #777; font-style: italic; }
-.bb-nav { display: flex; background: linear-gradient(#5a5a5a, #3c3c3c); border-bottom: 3px solid #1e73be; }
-.bb-nav span { padding: .55em .9em; color: #eee; font-size: .95em; border-right: 1px solid #2c2c2c; }
-.bb-nav .an { background: #1e73be; color: #fff; }
-.bb-nav .bb-suche { margin: .25em .4em .25em auto; padding: .25em .5em; min-width: 10em; background: #fff; color: #999; border: 1px inset #999; }
-.bb-mitte { flex: 1; min-height: 0; display: flex; gap: 1cqw; padding: 1cqh 1.2cqw; background: #fff; margin: 0 1.2cqw; }
-.bb-haupt { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: .7cqh; }
+.hb-billig svg { display: block; }
+.bb-kopf { display: flex; align-items: center; gap: .8cqw; padding: 1.3cqh 2.4cqw; background: #fff; }
+.bb-logo { width: 2.6cqw; aspect-ratio: 1; display: grid; place-items: center; border-radius: 3px; background: var(--bb-blau); }
+.bb-logo svg { width: 70%; fill: #fff; }
+.bb-name { display: grid; font-size: 1.6em; font-weight: 700; color: #333; line-height: 1.1; }
+.bb-name small { font-size: .5em; font-weight: 400; color: #999; }
+.bb-anruf { margin-left: auto; padding: .6em 1.2em; border-radius: 3px; background: var(--bb-orange); color: #fff; font-weight: 700; text-transform: uppercase; font-size: .85em; }
+.bb-nav { display: flex; align-items: center; padding: 0 2.4cqw; background: var(--bb-blau); }
+.bb-nav span { padding: .8em 1em; color: #fff; font-size: .85em; font-weight: 600; text-transform: uppercase; letter-spacing: .02em; }
+.bb-nav .an { background: rgb(0 0 0 / .15); }
+.bb-lupe { margin-left: auto; width: 1.1em; fill: none; stroke: #fff; stroke-width: 2; }
+.bb-mitte { flex: 1; min-height: 0; display: flex; gap: 1.6cqw; padding: 1.4cqh 2.4cqw; }
+.bb-haupt { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 1cqh; padding: 1.2cqh 1.2cqw; background: #fff; }
 .bb-slider {
-  position: relative; flex: 0 0 50%; border: 1px solid #999;
-  /* Stockfoto, verzerrt gestreckt und übersättigt */
-  background: url("bilder/k1-musterfoto-600.webp") 0 0 / 100% 100%; filter: saturate(1.7) contrast(1.15);
+  position: relative; flex: 0 0 56%;
+  /* Standard-Stockfoto (K1-8), leicht übersättigt */
+  background: url("bilder/k1-stockfoto-600.webp") 50% 50% / cover, url("bilder/k1-musterfoto-600.webp") 50% 50% / cover; filter: saturate(1.2);
 }
-.bb-pfeil { position: absolute; top: 50%; translate: 0 -50%; padding: 0 .35em; font-size: 2.4em; line-height: 1; color: #fff; background: rgb(0 0 0 / .45); }
-.bb-pfeil.links { left: 0; } .bb-pfeil.rechts { right: 0; }
-.bb-caption { position: absolute; left: 0; right: 0; bottom: 0; padding: .4em .8em; background: rgb(0 0 0 / .6); color: #fff; font-family: "Comic Sans MS", "Comic Sans", cursive; font-size: 1.25em; }
-.bb-punkte { position: absolute; right: .8em; bottom: .6em; display: flex; gap: .35em; }
-.bb-punkte i { width: .6em; height: .6em; border-radius: 50%; background: #fff; opacity: .55; }
+.bb-slider::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgb(0 0 0 / .45), rgb(0 0 0 / 0) 70%); }
+.bb-pfeil { position: absolute; top: 50%; z-index: 1; translate: 0 -50%; width: 1.4em; height: 1.4em; display: grid; place-items: center; border-radius: 50%; font-size: 1.8em; line-height: 1; color: #fff; background: rgb(0 0 0 / .3); }
+.bb-pfeil.links { left: .5em; } .bb-pfeil.rechts { right: .5em; }
+.bb-caption { position: absolute; left: 7%; top: 50%; translate: 0 -50%; z-index: 1; display: grid; justify-items: start; gap: .4em; color: #fff; text-shadow: 0 1px 3px rgb(0 0 0 / .5); }
+.bb-caption b { font-size: 2.1em; line-height: 1.1; }
+.bb-caption span { font-size: 1.05em; }
+.bb-caption i { margin-top: .4em; padding: .5em 1.1em; border-radius: 3px; background: var(--bb-orange); font-style: normal; font-weight: 700; font-size: .85em; text-transform: uppercase; text-shadow: none; }
+.bb-punkte { position: absolute; left: 50%; bottom: .7em; z-index: 1; translate: -50% 0; display: flex; gap: .4em; }
+.bb-punkte i { width: .55em; height: .55em; border-radius: 50%; background: #fff; opacity: .5; }
 .bb-punkte i.an { opacity: 1; }
-.bb-titel { font-family: "Times New Roman", Times, serif; font-size: 1.9em; color: #c00; }
-.bb-text { text-align: justify; font-size: .95em; }
-.bb-mehr { color: #1a0dab; font-size: .9em; }
-.bb-aktion { margin-top: .4cqh; padding: .5em .8em; background: #ff0; border: 2px solid #c00; color: #c00; font-weight: bold; text-align: center; }
-.bb-aktion small { font-weight: normal; font-size: .75em; color: #333; }
-.bb-update { margin-top: auto; font-size: .8em; color: #999; font-style: italic; }
-.bb-seite { flex: 0 0 24%; display: flex; flex-direction: column; gap: .8cqh; font-size: .9em; }
-.bb-seite h2 { padding: .25em .5em; background: #1e73be; color: #fff; font-size: 1em; }
-.bb-seite ul { padding: .3em 0 0 1.4em; color: #1a0dab; text-decoration: underline; }
-.bb-zaehler { margin-top: auto; padding: .3em; border: 1px dashed #999; text-align: center; font-size: .9em; }
-.bb-zaehler b { font-family: "Courier New", monospace; background: #000; color: #3f3; padding: 0 .3em; letter-spacing: .1em; }
-.bb-fuss { padding: .7cqh 1cqw; background: #3c3c3c; color: #aaa; font-size: .8em; text-align: center; }
+.bb-titel { font-size: 1.6em; font-weight: 600; color: #333; }
+.bb-text { font-size: .95em; }
+.bb-boxen { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1cqw; margin-top: auto; }
+.bb-boxen div { display: grid; justify-items: center; gap: .2em; padding: .8em .5em; border: 1px solid #e5e5e5; text-align: center; font-size: .9em; }
+.bb-boxen svg { width: 2em; fill: var(--bb-blau); }
+.bb-boxen b { color: #333; }
+.bb-seite { flex: 0 0 22%; display: flex; flex-direction: column; gap: 1cqh; font-size: .9em; }
+.bb-seite section { padding: .8em 1em; background: #fff; }
+.bb-seite h2 { margin-bottom: .4em; padding-bottom: .3em; border-bottom: 2px solid var(--bb-blau); color: #333; font-size: 1em; text-transform: uppercase; }
+.bb-seite ul { padding: 0; list-style: none; color: var(--bb-blau); }
+.bb-seite li { padding: .25em 0; border-bottom: 1px solid #eee; }
+.bb-auswahl { padding: .3em .5em; border: 1px solid #ccc; color: #777; }
+.bb-auswahl::after { content: " ▾"; float: right; }
+.bb-like { display: inline-block; padding: .3em .7em; border-radius: 3px; background: #4267B2; color: #fff; font-weight: 700; }
+.bb-fuss { padding: .9cqh 2.4cqw; background: #333; color: #999; font-size: .8em; }
+.bb-cookie { position: absolute; left: 0; right: 0; bottom: 0; padding: .9em 2.4cqw; background: rgb(30 30 30 / .94); color: #ddd; font-size: .9em; }
+.bb-cookie i { margin-left: 1em; padding: .35em 1.2em; border-radius: 3px; background: #6AB04C; color: #fff; font-style: normal; font-weight: 700; }
+.bb-cookie u { margin-left: .8em; color: #aaa; }
 @container (max-width: 560px) {
   .hb-billig { font-size: 3cqw; }
-  .bb-name { font-size: 5.4cqw; }
-  .bb-nav span:not(.an) { display: none; }
-  .bb-seite { display: none; }
+  .bb-logo { width: 7cqw; }
+  .bb-anruf, .bb-nav span:not(.an), .bb-seite, .bb-boxen { display: none; }
 }
 .js .hb-farbe { clip-path: inset(0 100% 0 0); }
 .hb-farbe { z-index: 2; }
