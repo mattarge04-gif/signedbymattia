@@ -33,7 +33,18 @@ def frei(name):
     a = remove(im, session=ses, post_process_mask=True).getchannel('A')
     rgba = im.copy()
     rgba.putalpha(a)
-    return rgba.crop(rgba.getbbox())
+    _boxen[name] = rgba.getbbox()
+    return rgba.crop(_boxen[name])
+
+
+def frei_box(name):
+    # Freistell-Rahmen im Original (links, oben, rechts, unten), aus dem letzten frei()
+    if name not in _boxen:
+        frei(name)
+    return _boxen[name]
+
+
+_boxen = {}
 
 
 info = {'rahmen': [W, H]}
@@ -102,11 +113,40 @@ for name, quelle, fach in PUTTI:
     if hoehe > maxh:
         breite = round(breite * maxh / hoehe)
         hoehe = maxh
+    k = breite / im.width  # Massstab Original → Rahmen
+    box = oeffnen(quelle).size, frei_box(quelle)
     im = im.resize((breite, hoehe), Image.LANCZOS)
     im.save(A / f'{name}.webp', quality=88, method=6)
     x = rg['x'] + round(((x0 + x1) / 2) * k_regal - breite / 2)
     y = rg['y'] + round((boden - 6) * k_regal) - hoehe
     info['putti'][name] = {'x': x, 'y': y, 'w': breite, 'h': hoehe}
+    ebenen[name] = im
+    # Station II: die wache Haltung ist eine Gemini-Bearbeitung des schlafenden Bilds (gleicher Ausschnitt).
+    # Darum gleicher Massstab und gleiche Lage des ganzen Originals, nur der Freistell-Rahmen ist anders.
+    wach = quelle.replace('schlaf', 'wach')
+    if (R / f'{wach}.png').exists() or (R / f'{wach}.jpg').exists():
+        (gw, gh), (sl, st, _, _) = box
+        wi = frei(wach)
+        ww, wh = oeffnen(wach).size
+        wl, wt, _, _ = frei_box(wach)
+        kw = k * gw / ww  # falls Gemini die Auflösung geändert hat
+        wb, whh = round(wi.width * kw), round(wi.height * kw)
+        wi.resize((wb, whh), Image.LANCZOS).save(A / f'{name.replace("schlaf", "wach")}.webp', quality=88, method=6)
+        info['putti'][name.replace('schlaf', 'wach')] = {
+            'x': x + round(wl * kw - sl * k), 'y': y + round(wt * kw - st * k), 'w': wb, 'h': whh}
+
+# Station II: zwei Putti am Pult links und rechts vom Handy im Goldrahmen (Display x 1860–2002, Fuss y ≈ 1500)
+PULT_PUTTI = [('pult-links', 'ebenen/putto-pult-links-v1', 1845, 'rechts'), ('pult-rechts', 'ebenen/putto-pult-rechts-v1', 2017, 'links')]
+for name, quelle, kante, seite in PULT_PUTTI:
+    if not ((R / f'{quelle}.png').exists() or (R / f'{quelle}.jpg').exists()):
+        continue
+    im = frei(quelle)
+    hoehe = 300
+    breite = round(im.width * hoehe / im.height)
+    im = im.resize((breite, hoehe), Image.LANCZOS)
+    im.save(A / f'{name}.webp', quality=88, method=6)
+    x = kante - breite if seite == 'rechts' else kante
+    info['putti'][name] = {'x': x, 'y': 1500 - hoehe, 'w': breite, 'h': hoehe}
     ebenen[name] = im
 
 json.dump(info, open(A / 'k2b.json', 'w'), indent=1)

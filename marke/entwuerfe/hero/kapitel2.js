@@ -2,7 +2,8 @@
 // Baustein 1 (Hero-Methode, 31.10.2026): Bühne aus einzeln gemalten Ebenen (werkzeuge/k2_buehne.py,
 // bilder/k2b/k2b.json, Rahmen 4000 × 2233). Wie im Hero: jede Ebene hat ihre Tiefe für die Maus und ihren
 // Anteil am Kameraflug; der Vorhang fliegt im Auftakt an der Kamera vorbei. Lebt: Sterne, ziehender Himmel,
-// Kerze, Mondstaub, Uhr. Die Handlung (Handy, Putti, Rohrpost) folgt in Baustein 2.
+// Kerze, Mondstaub, Uhr. Baustein 2: Station I (Handy, schlafende Putti, Eintauchen).
+// Baustein 3: Station II „gelesen“ (Putti wachen auf, Display „Gelesen“, Büchse fährt durchs Rohr).
 const RUHIG = matchMedia('(prefers-reduced-motion: reduce)').matches;
 const MAUS = matchMedia('(hover: hover) and (pointer: fine)').matches;
 const $ = (s) => document.querySelector(s);
@@ -29,7 +30,20 @@ const display = $('#k2Display');
 const handy = $('#k2Handy');
 const meldung = $('#k2Meldung');
 const stationText = $('#k2Station');
-const ST = { auftakt: [0, 0.1], anfrage: [0.1, 0.3] };
+const ST = { auftakt: [0, 0.1], anfrage: [0.1, 0.3], lesen: [0.3, 0.44] };
+// Station II: wann welcher Putto aufwacht (Anteil der Station); der Schnarcher (oben 3) zuletzt
+const WECKEN = { 'schlaf-o1': 0.06, 'schlaf-u4': 0.12, 'schlaf-u2': 0.18, 'schlaf-o3': 0.26 };
+const rohrWeg = $('#k2RohrWeg');
+const rohrGlanz = $('#k2RohrGlanz');
+const glut = $('#k2Glut');
+const buechse = $('#k2Buechse');
+const ROHR_LANG = rohrWeg.getTotalLength();
+rohrGlanz.style.strokeDasharray = `140 ${ROHR_LANG + 200}`;
+const START = { x: 1931, y: 1175 }; // Oberkante des Handys im Goldrahmen
+const EINWURF = rohrWeg.getPointAtLength(0);
+const putti = [];
+const pultPutti = [];
+const zs = [];
 const teil = (x, [a, b]) => klemm((x - a) / (b - a));
 
 // ---------- Teile platzieren ----------
@@ -40,13 +54,22 @@ fetch('bilder/k2b/k2b.json').then((r) => r.json()).then((j) => {
   document.querySelectorAll('.k2-teil').forEach((el) => lege(el, j[el.dataset.teil]));
   lege($('#k2Himmel'), j.himmel);
   // Putti in den Fächern; der schnarchende (oben 3) bekommt aufsteigende „z“
-  for (const [name, i] of Object.entries(j.putti)) {
+  const bildFuer = (name, i, klasse, eltern) => {
     const im = new Image();
     im.src = `bilder/k2b/${name}.webp`;
     im.alt = '';
-    im.className = 'k2-putto';
+    im.className = klasse;
     lege(im, i);
-    puttiEbene.appendChild(im);
+    eltern.appendChild(im);
+    return im;
+  };
+  for (const [name, i] of Object.entries(j.putti)) {
+    if (name.startsWith('pult-')) pultPutti.push(bildFuer(name, i, 'k2-pult-putto', display.parentElement));
+    if (!name.startsWith('schlaf-')) continue;
+    const wachName = name.replace('schlaf', 'wach');
+    const schlaf = bildFuer(name, i, `k2-putto schlaf-bild${j.putti[wachName] ? '' : ' allein'}`, puttiEbene);
+    const wach = j.putti[wachName] ? bildFuer(wachName, j.putti[wachName], 'k2-putto wach-bild', puttiEbene) : null;
+    putti.push({ ab: WECKEN[name] ?? 0.1, bilder: wach ? [schlaf, wach] : [schlaf] });
   }
   const sn = j.putti['schlaf-o3'];
   for (let n = 0; n < 3; n++) {
@@ -55,6 +78,7 @@ fetch('bilder/k2b/k2b.json').then((r) => r.json()).then((j) => {
     z.textContent = 'z';
     Object.assign(z.style, { left: `${((sn.x + sn.w * 0.62) / W) * 100}%`, top: `${((sn.y + sn.h * 0.12) / H) * 100}%` });
     puttiEbene.appendChild(z);
+    zs.push(z);
   }
   uhrBauen(j.uhr);
   groesse();
@@ -182,8 +206,25 @@ function bild(ms) {
     HANDY.x = (rr.left + rr.width / 2 - wr.left) / wr.width;
     HANDY.y = (rr.top + rr.height / 2 - wr.top) / wr.height;
   }
-  const nah = RUHIG ? 0 : sanft(teil(pa, [0.04, 0.46])) * (1 - sanft(teil(pa, [0.86, 1])));
-  const blick = { x: 0.5 + (HANDY.x - 0.5) * nah, y: 0.5 + (HANDY.y - 0.5) * nah, z: 1 + 1.5 * nah };
+  const pl = teil(s, ST.lesen);
+  const rohr = station2(pl);
+  let blick;
+  if (s < ST.lesen[0]) {
+    const nah = RUHIG ? 0 : sanft(teil(pa, [0.04, 0.46])) * (1 - sanft(teil(pa, [0.86, 1])));
+    blick = { x: 0.5 + (HANDY.x - 0.5) * nah, y: 0.5 + (HANDY.y - 0.5) * nah, z: 1 + 1.5 * nah };
+  } else {
+    // Station II: zuerst Handy und Regal mit den Putti im Blick, dann folgt die Kamera der Büchse im Rohr
+    const nah = RUHIG ? 0 : sanft(teil(pl, [0, 0.22])) * (1 - sanft(teil(pl, [0.88, 1])));
+    const folgen = sanft(teil(pl, [0.42, 0.6]));
+    const zielX = 0.44 + (rohr.x / W - 0.44) * folgen;
+    const zielY = 0.5 + (rohr.y / H - 0.5) * folgen;
+    blick = { x: 0.5 + (zielX - 0.5) * nah, y: 0.5 + (zielY - 0.5) * nah, z: 1 + 0.85 * nah };
+  }
+  // nie über den Rand der Welt hinaus schauen (Welt ist mindestens so gross wie der Bildschirm)
+  const randX = innerWidth / (2 * blick.z * welt.offsetWidth);
+  const randY = innerHeight / (2 * blick.z * welt.offsetHeight);
+  blick.x = klemm(blick.x, randX, 1 - randX);
+  blick.y = klemm(blick.y, randY + 0.02, 1 - randY);
   const f = RUHIG ? 1 : 0.08;
   kam.x += (blick.x - kam.x) * f;
   kam.y += (blick.y - kam.y) * f;
@@ -218,20 +259,69 @@ function bild(ms) {
   } else handy.style.opacity = '0';
   welt.style.filter = ein > 0.01 ? `blur(${ein * 6}px)` : '';
   meldung.classList.toggle('da', pa > 0.6 && pa < 0.76);
-  const stationAn = pa > 0.02 && pa < 0.98;
-  if (stationAn && !stationText.querySelector('b').textContent) {
-    stationText.querySelector('.nr').textContent = 'I';
-    stationText.querySelector('b').textContent = 'Anfrage kommt an';
-    stationText.querySelector('.satz').textContent = '21:47. Niemand ist im Büro.';
-  } else if (!stationAn) stationText.querySelector('b').textContent = '';
+  if (s > ST.anfrage[0] + 0.004 && s < ST.anfrage[1]) stationZeigen(STATIONEN[0]);
+  else if (s >= ST.lesen[0] && s < ST.lesen[1] - 0.003) stationZeigen(STATIONEN[1]);
+  else stationZeigen(null);
 
   text.style.opacity = String(1 - glatt(klemm((s - 0.05) / 0.05)));
   welt.parentElement.style.setProperty('--schleier', text.style.opacity);
   text.style.transform = `translateY(${-glatt(klemm((s - 0.05) / 0.05)) * 4}vh)`;
 
-  uhrSetzen(21 * 60 + 47);
+  uhrSetzen(21 * 60 + 47 + glatt(teil(pl, [0.1, 0.5])));
   if (!RUHIG) lebenZeichnen(t);
   if (laeuft) requestAnimationFrame(bild);
+}
+
+// ---------- Station II „gelesen“ ----------
+// Rein vom Scroll abhängig, rückwärts gleich: Putti wachen nacheinander auf, das Display zeigt „Gelesen“,
+// zwei Putti treten ans Handy, die Büchse springt aus dem Handy ins Rohr, ihr Leuchten fährt hinauf und
+// nach links hinter die Krone (Station III fängt sie). Gibt die Lage der Büchse für die Kamera zurück.
+function station2(pl) {
+  const aktiv = s >= ST.lesen[0];
+  for (const p of putti) for (const b of p.bilder) b.classList.toggle('ist-wach', aktiv && pl >= p.ab || s >= ST.lesen[1]);
+  for (const z of zs) z.classList.toggle('weg', s >= ST.lesen[0] + 0.004);
+  display.classList.toggle('gelesen', pl > 0.3 && s < ST.lesen[1] + 0.2);
+  for (const b of pultPutti) b.classList.toggle('da', pl > 0.3);
+  // Sprung: Büchse aus dem Handy im Bogen zum Einwurf, dort hinein (kleiner werden)
+  const sprung = teil(pl, [0.44, 0.54]);
+  const hinein = teil(pl, [0.52, 0.56]);
+  const bx = START.x + (EINWURF.x - START.x) * sprung;
+  const by = START.y + (EINWURF.y - START.y) * sprung - Math.sin(sprung * Math.PI) * 90;
+  const winkel = -70 * sprung;
+  buechse.setAttribute('transform', `translate(${bx} ${by}) rotate(${winkel}) scale(${1.8 * (0.4 + 0.6 * glatt(teil(pl, [0.42, 0.47])) - 0.5 * hinein)})`);
+  buechse.style.opacity = pl > 0.42 && hinein < 1 ? '1' : '0';
+  // Fahrt im Rohr: Leuchten und Glanz entlang des Wegs, am Ende hinter der Krone ausblenden
+  const fahrt = RUHIG ? (pl > 0.56 ? 1 : 0) : sanft(teil(pl, [0.55, 0.86]));
+  const p = rohrWeg.getPointAtLength(fahrt * ROHR_LANG);
+  const imRohr = pl > 0.54 && fahrt < 1;
+  glut.setAttribute('cx', p.x);
+  glut.setAttribute('cy', p.y);
+  glut.style.opacity = imRohr ? String(Math.min(1, (pl - 0.54) * 40) * (1 - glatt(teil(fahrt, [0.9, 1])))) : '0';
+  rohrGlanz.style.strokeDashoffset = String(-(fahrt * ROHR_LANG - 70));
+  rohrGlanz.style.opacity = glut.style.opacity;
+  if (pl <= 0.54) return { x: EINWURF.x, y: EINWURF.y };
+  return { x: p.x, y: p.y };
+}
+
+const STATIONEN = [
+  { nr: 'I', titel: 'Anfrage kommt an', satz: '21:47. Niemand ist im Büro.' },
+  { nr: 'II', titel: 'gelesen', satz: '21:48. Die Helfer sind wach und lesen mit.' },
+];
+let stationJetzt;
+let stationUhr = 0;
+function stationZeigen(st) {
+  if (st === stationJetzt) return;
+  stationJetzt = st;
+  clearTimeout(stationUhr);
+  const setzen = () => {
+    stationText.querySelector('.nr').textContent = st ? st.nr : '';
+    stationText.querySelector('b').textContent = st ? st.titel : '';
+    stationText.querySelector('.satz').textContent = st ? st.satz : '';
+    stationText.classList.remove('wechselt');
+  };
+  if (!st || !stationText.querySelector('b').textContent) { setzen(); return; }
+  stationText.classList.add('wechselt');
+  stationUhr = setTimeout(setzen, RUHIG ? 120 : 350);
 }
 
 let laeuft = false;

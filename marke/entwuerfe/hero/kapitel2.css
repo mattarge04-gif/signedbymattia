@@ -153,3 +153,23 @@
 .v-ios .k2-meldung .von { grid-column: 2; grid-row: 1; margin: 0 !important; font: 600 .86em var(--font-system); }
 .v-ios .k2-meldung .inhalt { grid-column: 2 / 4; margin: .1em 0 0 !important; font: 400 .86em/1.3 var(--font-system); }
 .v-ios .k2-meldung .titel { display: none; }
+
+/* Baustein 3 · Station II „gelesen“: Putti wachen auf (Zwei-Bild-Wechsel 0.3 s), Putti am Pult, Rohrpost */
+.k2-putto.wach-bild { opacity: 0; }
+.k2-putto.schlaf-bild, .k2-putto.wach-bild { transition: opacity .3s var(--ease-ui); }
+.k2-putto.schlaf-bild:not(.allein).ist-wach { opacity: 0; }
+.k2-putto.wach-bild.ist-wach { opacity: 1; }
+.k2-putto.allein { transition: translate .25s var(--ease-ui); }
+.k2-putto.allein.ist-wach { translate: 0 -5%; } /* Platzhalter, bis die wachen Bilder da sind */
+.k2-z.weg { visibility: hidden; }
+.k2-pult-putto { position: absolute; display: block; opacity: 0; translate: 0 10%; transition: opacity .4s var(--ease-ui), translate .6s var(--ease-ui); }
+.k2-pult-putto.da { opacity: 1; translate: 0 0; }
+.k2-gelesen { position: absolute; left: 50%; top: 58%; margin: 0; padding: .35em .8em; translate: -50% .6em; opacity: 0; white-space: nowrap;
+  font: 700 3em var(--font-system); color: #fff; background: #E0679C; box-shadow: 0 0 1.2em #FF9DC8; border-radius: 99px; transition: opacity .3s var(--ease-ui), translate .4s var(--ease-ui); }
+.k2-geraet.gelesen .k2-gelesen { opacity: 1; translate: -50% 0; }
+.k2-handy .k2-gelesen { display: none; }
+.k2-rohrpost { pointer-events: none; }
+#k2Glut { opacity: 0; filter: blur(3px); }
+#k2RohrGlanz { opacity: 0; filter: blur(3px) drop-shadow(0 0 10px #FF9DC8); }
+#k2Buechse { opacity: 0; }
+@media (prefers-reduced-motion: reduce) { .k2-putto, .k2-pult-putto, .k2-gelesen { transition-duration: .2s; } }

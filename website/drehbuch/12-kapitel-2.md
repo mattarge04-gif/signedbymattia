@@ -1,6 +1,6 @@
 # Drehbuch 12: Kapitel II Automation · Die Nachtschicht
 
-Stand: 29.10.2026 · Status: **Geschichte, Ablauf und Bildverfahren abgenommen [F] (Mattia, 29.10.2026)** ·
+Stand: 31.10.2026 · Status: **Geschichte, Ablauf und Bildverfahren abgenommen [F] (Mattia, 29.10.2026)** ·
 ersetzt alle früheren Fassungen (Wasserspiele, Brunnen, Automat; in der Git-Geschichte bis Commit `4977d26`).
 Grundlage: `00-grammatik.md` (Werte), `03-bildstil.md` (Stil-Bibel), Prüfung `werkzeuge/pruefliste.md`.
 
@@ -119,3 +119,66 @@ No people, no putti, no text, no letters, no watermark. Everything sharp and cle
 ```
 
 Weitere Prompts (Morgen, Hinterwand, Putti, Requisiten) folgen nach der Wahl des Masters.
+
+## Prompts Station II „gelesen“ (31.10.2026, Mattia erzeugt in Gemini)
+
+Vorgehen: In Gemini **das genannte Bild anhängen** und den Prompt einfügen. Pro Prompt 2 Varianten,
+Mattia wählt. Speichern unter dem genannten Namen in `marke/assets/k2/ebenen/`. Die wachen Putti sind
+Bearbeitungen der schlafenden, damit Grösse und Lage beim Zwei-Bild-Wechsel nicht springen. Das Handy
+steht rechts unterhalb vom Regal, darum schauen die Putti **nach rechts unten**.
+
+**1 · putto-wach1-v1.png** (anhängen: `putto-schlaf1-v1.png`)
+```
+Edit the attached painting. Keep exactly the same putto, same painting style, same size, same position
+in the frame, same framing and the same plain light grey background. Change only this: he has just woken
+up. He still hugs his knees, but he lifts his head, eyes wide open and curious, looking down to the
+right as if something glowing caught his eye. Cheeks rosy, hair slightly messy from sleep. Nothing else
+in the image, no shadow on the background, no text.
+```
+
+**2 · putto-wach2-v1.png** (anhängen: `putto-schlaf2-v1.png`)
+```
+Edit the attached painting. Keep exactly the same putto, same painting style, same size, same position
+in the frame, same framing and the same plain light grey background. Change only this: he wakes up with
+a big yawn and a stretch, one small fist rubbing an eye, the other arm stretched up, mouth open in a
+yawn, one eye already peeking down to the right. Wings slightly spread. Nothing else in the image, no
+shadow on the background, no text.
+```
+
+**3 · putto-wach3-v1.png** (anhängen: `putto-schlaf3-v1.png`)
+```
+Edit the attached painting. Keep exactly the same putto, same painting style, same size, same position
+in the frame, same framing and the same plain light grey background. Change only this: he is awake and
+sits up, still holding the small pale cushion under one arm, the other hand pointing eagerly down to
+the right, eyes bright, a happy surprised little smile. Nothing else in the image, no shadow on the
+background, no text.
+```
+
+**4 · putto-wach4-v1.png** (anhängen: `putto-schlaf4-v1.png`)
+```
+Edit the attached painting. Keep exactly the same putto, same painting style, same size, same position
+in the frame, same framing and the same plain light grey background. Change only this: he is awake, his
+wings unfold from around his body and open to the sides, he sits upright and alert, eyes open, looking
+down to the right with a serious, focused face, like a little clerk ready to work. Nothing else in the
+image, no shadow on the background, no text.
+```
+
+**5 · putto-pult-links-v1.png** (anhängen: `putto-wach1-v1.png` als Stilbezug)
+```
+Same putto character, same painting style, palette and light as the attached image: a luminous
+Tiepolo-like pastel oil painting, soft, never brown or murky. A single small chubby Baroque putto, full
+body, seen from the front, standing and leaning to the right, both small hands reaching to the right at
+chest height as if gripping and pulling the left edge of a picture frame towards the viewer. Small
+wings, eager face, tongue slightly out in concentration. Hands empty, no frame and no object in the
+image. Plain light grey background, no shadow, no text. Portrait format 2:3.
+```
+
+**6 · putto-pult-rechts-v1.png** (anhängen: `putto-wach3-v1.png` als Stilbezug)
+```
+Same putto character, same painting style, palette and light as the attached image: a luminous
+Tiepolo-like pastel oil painting, soft, never brown or murky. A single small chubby Baroque putto, full
+body, seen from the front, standing and leaning to the left, both small hands reaching to the left at
+chest height as if gripping the right edge of a picture frame, while reading something just in front
+of him with wide, fascinated eyes. Small wings. Hands empty, no frame and no object in the image. Plain
+light grey background, no shadow, no text. Portrait format 2:3.
+```
