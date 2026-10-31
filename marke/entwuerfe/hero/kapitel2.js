@@ -21,7 +21,9 @@ const sterne = $('#k2Sterne');
 const staub = $('#k2Staub');
 const uhr = $('#k2Uhr');
 const FOKUS = { x: 0.47, y: 0.56 }; // Pult mit dem Handy
-const HANDY = { x: 1934 / W, y: 1322 / H }; // Mitte des gemalten Displays
+const HANDY = { x: 0.4856, y: 0.597 }; // Mitte des Handys im Goldrahmen (nach dem Auftakt-Flug der Pult-Ebene)
+const sanft = (t) => t * t * t * (t * (t * 6 - 15) + 10); // weicher als glatt
+const kam = { x: 0.5, y: 0.5, z: 1 };
 const puttiEbene = $('#k2Putti');
 const display = $('#k2Display');
 const handy = $('#k2Handy');
@@ -172,21 +174,31 @@ function bild(ms) {
   const licht = 0.12 + 0.88 * glatt(teil(pa, [0, 0.1]));
   display.style.setProperty('--licht', licht);
   handy.style.setProperty('--licht', licht);
-  const nah = RUHIG ? 0 : glatt(teil(pa, [0.08, 0.42])) * (1 - glatt(teil(pa, [0.82, 1])));
-  const kz = 1 + 1.4 * nah;
+  // Kamera: Blickpunkt wandert stetig von der Bildmitte zur Handymitte, das Handy landet in der Bildschirmmitte
+  // Handymitte live messen (inkl. Tiefe der Pult-Ebene), damit es wirklich in der Bildschirmmitte landet
+  const rr = display.getBoundingClientRect();
+  const wr = welt.getBoundingClientRect();
+  if (wr.width) {
+    HANDY.x = (rr.left + rr.width / 2 - wr.left) / wr.width;
+    HANDY.y = (rr.top + rr.height / 2 - wr.top) / wr.height;
+  }
+  const nah = RUHIG ? 0 : sanft(teil(pa, [0.04, 0.46])) * (1 - sanft(teil(pa, [0.86, 1])));
+  const blick = { x: 0.5 + (HANDY.x - 0.5) * nah, y: 0.5 + (HANDY.y - 0.5) * nah, z: 1 + 1.5 * nah };
+  const f = RUHIG ? 1 : 0.08;
+  kam.x += (blick.x - kam.x) * f;
+  kam.y += (blick.y - kam.y) * f;
+  kam.z += (blick.z - kam.z) * f;
   const ww = welt.offsetWidth;
   const wh = welt.offsetHeight;
   const links = (innerWidth - ww) / 2;
   const oben = (innerHeight - wh) / 2;
-  let tx = innerWidth / 2 - links - kz * HANDY.x * ww;
-  let ty = innerHeight / 2 - oben - kz * HANDY.y * wh;
-  tx = klemm(tx, innerWidth - links - kz * ww, -links) * nah;
-  ty = klemm(ty, innerHeight - oben - kz * wh, -oben) * nah;
+  const tx = innerWidth / 2 - links - kam.z * kam.x * ww;
+  const ty = innerHeight / 2 - oben - kam.z * kam.y * wh;
   welt.style.transformOrigin = '0 0';
-  welt.style.transform = `translate(${tx}px, ${ty}px) scale(${kz})`;
+  welt.style.transform = `translate(${tx}px, ${ty}px) scale(${kam.z})`;
   // Eintauchen: die scharfe Kopie liegt zuerst genau auf dem Handy im Bild und wächst bis zum ganzen Bildschirm
-  const ein = RUHIG ? glatt(teil(pa, [0.3, 0.4])) * (1 - glatt(teil(pa, [0.86, 0.95]))) : glatt(teil(pa, [0.38, 0.54])) * (1 - glatt(teil(pa, [0.76, 0.9])));
-  const sichtbar = RUHIG ? ein > 0.01 : pa > 0.36 && pa < 0.92;
+  const ein = RUHIG ? glatt(teil(pa, [0.3, 0.4])) * (1 - glatt(teil(pa, [0.86, 0.95]))) : sanft(teil(pa, [0.52, 0.66])) * (1 - sanft(teil(pa, [0.72, 0.85])));
+  const sichtbar = RUHIG ? ein > 0.01 : pa > 0.5 && pa < 0.87;
   if (sichtbar) {
     // gleiches Seitenverhältnis: wächst, bis das Display die ganze Breite füllt; der Bereich mit Uhrzeit
     // und Meldung (ca. 32 % der Höhe) landet in der Bildschirmmitte. Schrift höchstens 24 px (echte Grösse).
@@ -205,7 +217,7 @@ function bild(ms) {
     sperre.style.paddingTop = `${oben}px`;
   } else handy.style.opacity = '0';
   welt.style.filter = ein > 0.01 ? `blur(${ein * 6}px)` : '';
-  meldung.classList.toggle('da', pa > 0.5 && pa < 0.82);
+  meldung.classList.toggle('da', pa > 0.6 && pa < 0.76);
   const stationAn = pa > 0.02 && pa < 0.98;
   if (stationAn && !stationText.querySelector('b').textContent) {
     stationText.querySelector('.nr').textContent = 'I';
