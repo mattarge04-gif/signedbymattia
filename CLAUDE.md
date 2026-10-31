@@ -283,10 +283,39 @@ Automaten, gemalt in 2.5D** (Commits bis `8ad349c`).
   **nur den eigenen Block anfassen.** Schreibende Server-Befehle blockiert die Auto-Mode-Prüfung,
   Mattia führt sie mit `!` aus. Damit ist Punkt (3) VPS aus dem vorherigen Wiedereinstieg erledigt.
 - [?] Standort UK für die Live-Seite bei Aufgabe 19 klären.
-- **Beim Wiedereinstieg zuerst:** (1) **Kapitel I überarbeiten** – Mattia ist noch nicht zufrieden;
+- *(Wiedereinstieg überholt durch 31.10. abends)* **Beim Wiedereinstieg zuerst:** (1) **Kapitel I überarbeiten** – Mattia ist noch nicht zufrieden;
   zuerst fragen, was genau stört (mit Vorschau/Video), dann Plan zeigen. (2) Danach Abnahme
   Station II, dann Station III „sortiert“ (Büchse gefangen, Fach „Dringend“). (3) Zeitplan prüfen
   (`plan/aufgaben-bis-live.md`).
+
+**Sitzungsabschluss 31.10. abends [F]:** Kapitel I Überarbeitung geplant, Baustein 1 gebaut.
+
+- **Plan abgenommen** (Mattia): Aufbau bleibt, Wolkenflug nicht anfassen („perfekt“). Ablauf neu:
+  Tür → billige Baukasten-Seite → Putti wischen → coole UI-Seite (Spacing stimmt, hat Leben) →
+  Handy → Live-Klick. Die Schritte Skizze und Inhalte fallen weg. Bausteine K1-B1 bis K1-B5 in
+  `website/drehbuch/10-startseite.md` (Abschnitt „Überarbeitung Kapitel I“).
+- **K1-B1 gebaut:** gemalte Tür im Torbogen (`marke/entwuerfe/hero/tuer.js`, Bild
+  `marke/assets/erster-wurf/k1-tuer-v1.jpg` von Mattia in Gemini erzeugt, Prompt K1-7 in
+  `website/drehbuch/03-bildstil.md`): Risse ab Schlüsselloch, Sonne strahlt durch, Tür bröckelt
+  (Voronoi-Schollen, Canvas, am Scroll), Blitz, dann Browser. Fresko-Variante (K1-6,
+  `k1-fresko-v1.jpg`) verworfen. Fix: Tür war im Wolkenflug sichtbar (Commit `79ed88c`). Online auf
+  https://vorschau.signedbymattia.ch.
+- [A] Abnahme K1-B1 erteilt: Mattia sagte nach dem Fix „weiter zur nächsten Station“.
+- [A] Blitz wirkt eher cremig als gleissend, evtl. heller machen.
+- **Neue Arbeitsweise (Mattia):** kein Video mehr nach Änderungen; `bash werkzeuge/vorschau.sh`
+  hochladen und „ist online“ melden. Prompts für Gemini in die Zwischenablage legen
+  (Markieren im Terminal geht schlecht).
+- Hinweis Helfer: `pruefer` hat beim Aufräumen versehentlich einen fremden lokalen
+  `http.server 8766` (PID 34280) beendet – Helfern sagen, nur eigene Prozesse zu beenden.
+  Playwright-Chromium fehlt lokal; Helfer nutzen Google Chrome (`executablePath`).
+- Commits: `5c932fa`, `56034c5`, `742b800`, `c39ec7d`, `79ed88c`.
+- **Beim Wiedereinstieg zuerst:** (1) **K1-B2 billige Baukasten-Seite** bauen: liegt unter der Tür,
+  nach dem Blitz sichtbar statt des leeren grauen Browsers; Standardschrift, gequetschte Abstände,
+  Stockfoto-Slider, Seitenleiste „Kategorien“, statisch, wie ein Standard-WordPress-Thema ohne
+  fremdes Logo; ersetzt Wireframe-Skizze und Inhalte-Schritt (`kapitel1.js` Schritte 1–2,
+  `.hb-grau`). (2) Danach K1-B3 Putti wischen, K1-B4 Seite lebt, K1-B5 Übergang K1→K2.
+  (3) Abnahme Station II Kapitel II weiterhin offen. (4) Zeitplan (`plan/aufgaben-bis-live.md`)
+  prüfen.
 
 **Erledigt [F]:**
 
