@@ -124,7 +124,8 @@ export function tuerAnlegen(buehne, wand) {
     const W = buehne.clientWidth, H = buehne.clientHeight;
     for (const c of [ch, cv]) { c.setTransform(dpr, 0, 0, dpr, 0, 0); c.clearRect(0, 0, W, H); }
     const fertig = s > ENDE;
-    hinten.style.visibility = vorne.style.visibility = fertig ? 'hidden' : 'visible';
+    // '' statt 'visible': sonst schiene die Tür durch, solange die Bühne noch versteckt ist (Wolkenflug)
+    hinten.style.visibility = vorne.style.visibility = fertig ? 'hidden' : '';
     if (fertig || !bild.complete || !bild.naturalWidth) return;
 
     const riss = klemm((s - TAKT.risse) / TAKT.risseDauer);
