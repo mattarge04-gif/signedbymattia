@@ -143,3 +143,13 @@
 @media (prefers-reduced-motion: reduce) { .k2-putto, .k2-z { animation: none; } }
 .k2-handy .k2-sperre { background-image: url('bilder/himmel.webp'); }
 .k2-meldung .kopf { margin-bottom: .45em !important; line-height: 1.2; }
+
+/* Nachricht wie eine echte iPhone-Mitteilung (Mattia, 31.10.): Glas, App-Symbol, Name, Zeit rechts */
+.v-ios .k2-meldung { max-width: 21em; padding: .9em 1em; border-radius: 1.4em; background: rgb(255 255 255 / .58); backdrop-filter: blur(18px) saturate(1.4); -webkit-backdrop-filter: blur(18px) saturate(1.4); box-shadow: none; display: grid; grid-template-columns: 2.4em 1fr auto; column-gap: .75em; align-items: start; }
+.v-ios .k2-meldung .kopf { display: contents; }
+.v-ios .k2-meldung .app { grid-row: span 3; width: 2.4em; height: 2.4em; border-radius: .6em; font-size: 1em; background: linear-gradient(160deg, #FFB7D5, #FF8CBF); }
+.v-ios .k2-meldung .kopf { font-size: 1em; }
+.v-ios .k2-meldung .jetzt { grid-column: 3; grid-row: 1; font: 400 .72em var(--font-system); color: #4A4060; text-transform: none; letter-spacing: 0; }
+.v-ios .k2-meldung .von { grid-column: 2; grid-row: 1; margin: 0 !important; font: 600 .86em var(--font-system); }
+.v-ios .k2-meldung .inhalt { grid-column: 2 / 4; margin: .1em 0 0 !important; font: 400 .86em/1.3 var(--font-system); }
+.v-ios .k2-meldung .titel { display: none; }

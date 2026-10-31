@@ -209,7 +209,7 @@ function bild(ms) {
     const h = r.height * k;
     const x = r.left + (innerWidth / 2 - w / 2 - r.left) * ein;
     const y = r.top + (innerHeight * 0.42 - h * 0.3 - r.top) * ein;
-    const fs = Math.min(w / 21, 24 + (w / 21 - 24) * (1 - ein));
+    const fs = Math.min(w / 21, 30 + (w / 21 - 30) * (1 - ein));
     const oben = fs * 8.5 + ((innerHeight * 0.2 - y - h * 0.03) - fs * 8.5) * ein;
     Object.assign(handy.style, { width: `${w}px`, height: `${h}px`, fontSize: `${w / 21}px`, transform: `translate(${x}px, ${y}px)`, opacity: '1' });
     const sperre = handy.querySelector('.k2-sperre');
