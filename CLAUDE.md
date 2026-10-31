@@ -254,13 +254,39 @@ Automaten, gemalt in 2.5D** (Commits bis `8ad349c`).
 - Regel 11 Tokens sparen (siehe oben).
 - Vorschau lokal: `python -m http.server 8766` in der Repo-Wurzel, dann
   `localhost:8766/marke/entwuerfe/hero/index.html`.
-- **Beim Wiedereinstieg zuerst:** (1) Ab 01.11. ist das Bild-Guthaben neu: 4 **wache Putti**
+- *(Wiedereinstieg überholt durch 31.10. nachmittags)* **Beim Wiedereinstieg zuerst:** (1) Ab 01.11. ist das Bild-Guthaben neu: 4 **wache Putti**
   erzeugen (gleiche Haltungen wie `marke/assets/k2/ebenen/putto-schlaf1–4`, Stil `stiltest/putto-v3`),
   freistellen, in `k2_buehne.py` einbauen. (2) **Station II** bauen: Putti wachen auf, einer liest das
   Handy, pinke Büchse fährt durch die Rohrpost; Video an Mattia. (3) [?] **VPS als Vorschau-Server**:
   Mattia liefert Anbieter, OS, RAM, SSH-Zugang (selbst eingerichtet) und ob DNS für
   `vorschau.signedbymattia.ch` geht. (4) Zeitplan: Kapitel II verschiebt den Wochenplan um ca. 1 Woche
   (`plan/aufgaben-bis-live.md`), Ausgleich über die Streichliste.
+
+**Sitzungsabschluss 31.10. nachmittags [F]:**
+
+- Kapitel II **Station II „gelesen“ gebaut** (Baustein 3): 4 wache Putti (Zwei-Bild-Wechsel,
+  nacheinander), 2 Putti am Pult halten den Goldrahmen, Display „✓✓ Gelesen“, pinke Büchse springt
+  ins Rohr, Leuchten fährt das Rohr hinauf, Kamera folgt und bleibt im Bild, Uhr 21:48. Scroll
+  0.30–0.44. Prompts in `website/drehbuch/12-kapitel-2.md` (Abschnitt „Prompts Station II“); die
+  Bilder hat Mattia selbst in Gemini erzeugt (Bild-Guthaben Oktober aufgebraucht, USD 7.88 von 8).
+  Gemini ändert beim Bearbeiten das Format (1696×2528 → 1792×2400); `werkzeuge/k2_buehne.py` setzt
+  die wachen Putti deshalb per Bildhöhe und Fachboden. Commits `2e875c7`, `3626932`. Video
+  `plan/videos/k2-baustein3-2026-10-31.mp4`. **Abnahme durch Mattia offen.**
+- [A] Satz „21:48. Die Helfer sind wach und lesen mit.“ ist Platzhalter.
+- [?] Auffällig: Putto oben links wirkt wach kaum anders als schlafend; Putto mit offenen Flügeln
+  ragt übers Fach.
+- **Vorschau-Server eingerichtet:** https://vorschau.signedbymattia.ch (Hostinger-**VPS**, nicht
+  Webhosting; Standort UK; Passwortschutz, Benutzer `mattia`, Passwort nur bei Mattia; noindex).
+  Hochladen: `bash werkzeuge/vorschau.sh`; einmalige Einrichtung `werkzeuge/vorschau-einrichten.sh`
+  (Commit `92923ae`). Auf dem VPS laufen auch n8n, hood.signedbymattia.ch und ein Video-Bot;
+  Caddy-Container `n8n-caddy-1`, Config `/opt/n8n/Caddyfile`, Sicherung `Caddyfile.bak-2026-10-31`;
+  **nur den eigenen Block anfassen.** Schreibende Server-Befehle blockiert die Auto-Mode-Prüfung,
+  Mattia führt sie mit `!` aus. Damit ist Punkt (3) VPS aus dem vorherigen Wiedereinstieg erledigt.
+- [?] Standort UK für die Live-Seite bei Aufgabe 19 klären.
+- **Beim Wiedereinstieg zuerst:** (1) **Kapitel I überarbeiten** – Mattia ist noch nicht zufrieden;
+  zuerst fragen, was genau stört (mit Vorschau/Video), dann Plan zeigen. (2) Danach Abnahme
+  Station II, dann Station III „sortiert“ (Büchse gefangen, Fach „Dringend“). (3) Zeitplan prüfen
+  (`plan/aufgaben-bis-live.md`).
 
 **Erledigt [F]:**
 

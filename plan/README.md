@@ -20,7 +20,7 @@ Ausführlich: `aufgaben-bis-live.md` (Wochenplan), `CLAUDE.md` (Sitzungsabschlü
 | Thema | Stand |
 | --- | --- |
 | Texte (Interview) | offen, Meilenstein 18.10. verpasst |
-| Zugänge (Hosting, DNS, E-Mail, Google-Konto) | bis 15.11.; VPS als Vorschau/Hosting prüfen [?] |
+| Zugänge (Hosting, DNS, E-Mail, Google-Konto) | bis 15.11.; Vorschau auf VPS erledigt 31.10. (vorschau.signedbymattia.ch), Hosting der Live-Seite offen [?] |
 | Werkzeuge | Codex-Prüfer, Bilder über Vertex AI (USD 10/Monat), Scroll-Prüfung |
 
 ## Ältere Dateien
