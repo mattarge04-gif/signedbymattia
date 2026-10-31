@@ -13,7 +13,8 @@
 .k1-wand, .k1-geruest { position: absolute; pointer-events: none; }
 .k1-wand { inset: 0; width: 100%; height: 100%; object-fit: cover; transform-origin: 50% 70%; z-index: 3; }
 .k1-geruest { left: 5%; bottom: -4%; height: 62vh; z-index: 4; }
-.k1-fliegt .k1-wand, .k1-fliegt .k1-browser, .k1-fliegt .k1-geruest { will-change: transform, opacity; }
+/* Browser bewusst ohne will-change: sonst rastert Chrome ihn klein (im Bogen) und zieht das Bild unscharf hoch */
+.k1-fliegt .k1-wand, .k1-fliegt .k1-geruest { will-change: transform, opacity; }
 
 /* Browser im Torbogen */
 .k1-browser {
