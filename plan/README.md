@@ -1,9 +1,29 @@
 # Plan und Stand
 
-Stand: 29.09.2026. Aktuelle Ampel: [`stand-2026-09-29.html`](stand-2026-09-29.html). Aktuelle Übersicht: [`uebersicht.html`](uebersicht.html).
-Sitzungsabschluss mit Aufgaben und Quellen: [`stand-2026-09-28.md`](stand-2026-09-28.md),
-inklusive Nachtrag vom Abend (SEO-Basis weitgehend erledigt). Das Diagramm
-`stand-2026-09-28.html` ist noch vom Mittag.
+Stand: 31.10.2026. **Kurzübersicht für den Wiedereinstieg** (Text statt Grafik, Regel 11 Tokens sparen).
+Ausführlich: `aufgaben-bis-live.md` (Wochenplan), `CLAUDE.md` (Sitzungsabschlüsse, „Beim Wiedereinstieg zuerst“).
+
+## Startseite Desktop (Livegang 17.12.2026)
+
+| Teil | Stand | Nächster Schritt |
+| --- | --- | --- |
+| Hero | gebaut, Mattia „10 von 10“, Abnahme formell offen | – |
+| Wolkenflug | gebaut, „perfekt“ | – |
+| Kapitel I Website | gebaut, Abnahme offen | Mattia scrollt und nimmt ab |
+| **Kapitel II Automation** | **Hero-Methode: Baustein 1 + 2 abgenommen** (Bühne, Handy, Eintauchen) | wache Putti, Station II (Rohrpost) |
+| Kapitel III Sichtbar | Drehbuch grob | nach Kapitel II |
+| Zwischenspiel, Werke, Abschluss | Drehbuch grob | Streichliste: Werke + Zwischenspiel zusammen |
+| Handy-Version | später neu | nach Desktop |
+
+## Ausserhalb der Startseite
+
+| Thema | Stand |
+| --- | --- |
+| Texte (Interview) | offen, Meilenstein 18.10. verpasst |
+| Zugänge (Hosting, DNS, E-Mail, Google-Konto) | bis 15.11.; VPS als Vorschau/Hosting prüfen [?] |
+| Werkzeuge | Codex-Prüfer, Bilder über Vertex AI (USD 10/Monat), Scroll-Prüfung |
+
+## Ältere Dateien
 
 | Datei | Inhalt |
 | --- | --- |
