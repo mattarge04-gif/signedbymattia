@@ -1,7 +1,7 @@
 /* Kapitel I Website · Trompe-l'œil · Werte aus website/drehbuch/00-grammatik.md */
 .k1 { position: relative; z-index: 2; margin-top: -100vh; }
 @media (prefers-reduced-motion: reduce) { .k1 { margin-top: 0; } }
-.k1-bahn { position: relative; height: 970vh; }   /* 720vh + 250vh Pause vor dem Handy (kapitel1.js PAUSE_VH) */
+.k1-bahn { position: relative; height: 1080vh; }   /* 720vh + 360vh Pause vor dem Handy (kapitel1.js PAUSE_VH) */
 /* Wolkenflug (wolkenflug.js): fest über allem, nur rund um den Übergang sichtbar */
 .wolkenflug { position: fixed; inset: 0; z-index: 30; pointer-events: none; visibility: hidden; }
 .wolkenflug canvas { width: 100%; height: 100%; display: block; }
@@ -67,8 +67,11 @@
   100% { box-shadow: 0 0 0 1.1em rgb(226 83 58 / 0), 0 0 0 .3em rgb(226 83 58 / .18); }
 }
 .hb-held { min-height: 0; display: grid; grid-template-columns: 1.15fr 1fr; gap: 3cqw; align-items: center; }
-.hb-text { display: flex; flex-direction: column; align-items: flex-start; gap: 2.4cqh; }
+.hb-text { display: flex; flex-direction: column; align-items: flex-start; gap: 3.2cqh; }
 .hb-titel { margin: 0; font-weight: 800; font-size: 5.6cqw; line-height: .92; letter-spacing: -.045em; }
+/* Box = Versalhöhe bis Grundlinie: die Figma-Masse (zeigen.js) messen so exakt die sichtbaren Kanten */
+.hb-titel, .hb-lead { text-box: trim-both cap alphabetic; }
+.hb-titel { margin-bottom: .8cqw; }   /* getrimmt fehlt die Unterlänge: etwas mehr Luft zum Lead */
 .hb-lead { margin: 0; font-size: 1.15em; line-height: 1.45; max-width: 36ch; color: #3D5266; }
 .hb-lead em { font-family: Georgia, serif; font-style: italic; color: var(--hb-blau); }
 .hb-knoepfe { display: flex; align-items: center; gap: 2.2cqw; }
@@ -92,13 +95,47 @@
 .hb-tropf { position: relative; display: inline-block; }
 .hb-tropfen {
   position: absolute; left: 82%; top: 86%; width: .13em; height: .13em; margin-left: -.065em; opacity: 0;
-  border-radius: 0 50% 50% 50%; background: radial-gradient(circle at 60% 60%, #7FB7E6, var(--hb-blau));
-  transform-origin: 50% 0;
+  border-radius: 0 50% 50% 50%; background: radial-gradient(circle at 60% 60%, #9CC8EE, var(--hb-blau));
+  rotate: 45deg; scale: 0;
 }
+/* platscht auf die Zeile darunter: Ring und zwei Spritzer */
 .hb-platsch {
-  position: absolute; left: 82%; top: 86%; width: .5em; height: .14em; opacity: 0;
-  border: 1.5px solid #7FB7E6; border-radius: 50%; transform: translateX(-50%);
+  position: absolute; left: 82%; top: calc(86% + var(--fall, 20px)); width: .5em; height: .14em; opacity: 0;
+  border: 1.5px solid #7FB7E6; border-radius: 50%; translate: -50% -50%;
 }
+.hb-platsch::before, .hb-platsch::after {
+  content: ""; position: absolute; left: 50%; top: 0; width: .06em; height: .06em; border-radius: 50%; background: #7FB7E6;
+}
+/* Hover: bildet sich am t, fällt mit Schwerkraft, platscht, und wieder von vorn */
+.hb-tropf.tropft .hb-tropfen { animation: hb-tropfen 1.9s infinite; }
+.hb-tropf.tropft .hb-platsch { animation: hb-platsch 1.9s infinite; }
+.hb-tropf.tropft .hb-platsch::before { animation: hb-spritzer-l 1.9s infinite; }
+.hb-tropf.tropft .hb-platsch::after { animation: hb-spritzer-r 1.9s infinite; }
+@keyframes hb-tropfen {
+  0% { opacity: 1; scale: 0; translate: 0 0; }
+  38% { scale: 1; translate: 0 0; animation-timing-function: cubic-bezier(.55, 0, 1, .45); }
+  58% { opacity: 1; scale: 1; translate: 0 var(--fall, 20px); }
+  59%, 100% { opacity: 0; scale: 1; translate: 0 var(--fall, 20px); }
+}
+@keyframes hb-platsch {
+  0%, 57% { opacity: 0; scale: .2; }
+  59% { opacity: 1; scale: .4; }
+  85%, 100% { opacity: 0; scale: 1.5; }
+}
+@keyframes hb-spritzer-l {
+  0%, 57% { opacity: 0; translate: 0 0; }
+  59% { opacity: 1; translate: 0 0; }
+  66% { translate: -.18em -.2em; }
+  78%, 100% { opacity: 0; translate: -.3em .02em; }
+}
+@keyframes hb-spritzer-r {
+  0%, 57% { opacity: 0; translate: 0 0; }
+  59% { opacity: 1; translate: 0 0; }
+  66% { translate: .16em -.24em; }
+  78%, 100% { opacity: 0; translate: .28em .02em; }
+}
+.hb-stempel { transition: scale .5s cubic-bezier(.16, 1, .3, 1); }
+.hb-stempel.hover { scale: 1.08; }
 .hb-foto {
   position: relative; align-self: stretch; min-height: 0; margin-right: -5cqw;
   border-radius: 1.4cqw 0 0 1.4cqw;
@@ -132,6 +169,8 @@
 .hb-toast::before { content: ""; display: inline-block; width: .55em; height: .55em; margin-right: .7em; border-radius: 50%; background: #7BE0A5; vertical-align: .08em; }
 .hb-toast.da { translate: -50% 0; opacity: 1; }
 .hb-knopf.gedrueckt { scale: .94; filter: brightness(1.25); }
+.hb-knopf.haupt { transition: translate .4s cubic-bezier(.16, 1, .3, 1), box-shadow .4s cubic-bezier(.16, 1, .3, 1); }
+.hb-knopf.haupt.hover { translate: 0 -.18em; box-shadow: 0 .7em 1.4em -.6em rgb(20 42 64 / .55); }
 
 /* Handy: gleiche Seite, eine Spalte */
 @container (max-width: 560px) {
@@ -265,6 +304,9 @@
 }
 .k1-mass.waag b { top: 0; translate: -50% -110%; }
 .k1-mass.senk b { left: 100%; translate: 4px -50%; }
+/* Zeiger, der von Station zu Station hovert */
+.k1-hover { position: absolute; left: 0; top: 0; width: 22px; transform-origin: 0 0; filter: drop-shadow(0 2px 3px rgb(0 0 0 / .25)); }
+.k1-hover svg { display: block; width: 100%; }
 .k1-striche { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
 .k1-striche path {
   fill: none; stroke: var(--color-text); stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round;

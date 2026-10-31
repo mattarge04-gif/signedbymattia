@@ -84,9 +84,9 @@ function masse() {
 const WOLKEN_VH = 0.9;
 let bahnOben = 0;
 // Pause: die fertige Seite steht still und zeigt ihre Bewegungen (K1-B4, zeigen.js), bevor sie zum Handy wird.
-// 250vh ≈ 5–6 s Scrollen [A]
+// 360vh ≈ 8 s Scrollen [A]: 7 Stationen, die Masse am Anfang bekommen am meisten Zeit
 const PAUSE_BEI = 0.68;
-const PAUSE_VH = 2.5;
+const PAUSE_VH = 3.6;
 let pauseZiel = 0;   // 0–1 innerhalb der Pause
 let pz = 0;
 function fortschritt() {
