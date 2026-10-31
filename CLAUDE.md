@@ -48,6 +48,20 @@ Budgets und Kostenfreigaben bleiben in `agency-automation-os/projects/lead-engin
    `plan/auftraege/README.md`. Am Ende jeder Abendsitzung fragen: Was kann
    morgen ohne Mattia laufen? Dafür den Skill `auftrag-planen` nutzen
    („bereite mir die Liste für morgen vor“).
+11. **Tokens sparen** (Mattia, 31.10.2026):
+   - **Eine Sitzung = ein Baustein.** Neue Sitzung, sobald (a) ein Baustein
+     abgenommen ist, (b) das Thema wechselt oder (c) Claude meldet, dass der
+     Verlauf lang wird (Faustregel: nach rund 2 h oder vielen Bildern).
+     Wechsel: Claude macht die Stand-Routine (`/stand`, Commit) → Mattia tippt
+     `/clear` → erste Nachricht „weitermachen“ → Claude liest „Beim
+     Wiedereinstieg zuerst“.
+   - **`/compact`** tippt Mattia mitten in einem Baustein, wenn Claude es
+     vorschlägt, mit Fokus, z. B. `/compact Fokus Kapitel II Baustein 3`.
+   - **Routinearbeit an Helfer:** Freistellen, Videos aufnehmen, Kontaktbögen,
+     Bildschirmfotos, Konsolen-Check → `pruefer` (Haiku) oder `umsetzer`
+     (Sonnet). Claude (Opus) macht nur Entwurf, Szenen-Code und Urteil.
+     Sichtprüfung zuerst durch Codex (ChatGPT-Abo); Claude schaut höchstens
+     einen Kontaktbogen pro Prüfschritt an, keine Einzelbilder.
 
 ## Aktueller Stand und nächste Schritte
 
