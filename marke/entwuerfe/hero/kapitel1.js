@@ -93,9 +93,9 @@ function bild() {
   const cy = (m.loch.y0 + m.loch.y1) / 2;
   wand.style.transformOrigin = `${cx}px ${cy}px`;
   wand.style.transform = `scale(${z})`;
-  wand.style.opacity = String(1 - klemm((s - 0.25) / 0.07));
+  wand.style.opacity = String(1 - klemm((s - 0.21) / 0.04));   // unter dem Blitz weg, nicht über dem Browser
   geruest.style.transform = `translateX(${-40 * aus(klemm((s - 0.08) / 0.22))}vw) scale(${1 + 0.6 * (z - 1)})`;
-  geruest.style.opacity = String(1 - klemm((s - 0.22) / 0.07));
+  geruest.style.opacity = String(1 - klemm((s - 0.2) / 0.04));
 
   // Browser: erst hinter der Öffnung (füllt sie), dann echtes Fenster in der Mitte
   const lw = (m.loch.x1 - m.loch.x0) * z;
