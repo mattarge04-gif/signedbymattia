@@ -147,7 +147,7 @@
 .bb-slider {
   position: relative; flex: 1 1 0; min-height: 0;
   /* Standard-Stockfoto (K1-8), leicht übersättigt */
-  background: url("bilder/k1-stockfoto-600.webp") 50% 50% / cover, url("bilder/k1-musterfoto-600.webp") 50% 50% / cover; filter: saturate(1.2);
+  background: url("bilder/k1-stockfoto-600.webp") 60% 30% / cover #E8ECEF; filter: saturate(1.2);
 }
 .bb-slider::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgb(0 0 0 / .45), rgb(0 0 0 / 0) 70%); }
 .bb-pfeil { position: absolute; top: 50%; z-index: 1; translate: 0 -50%; width: 1.4em; height: 1.4em; display: grid; place-items: center; border-radius: 50%; font-size: 1.8em; line-height: 1; color: #fff; background: rgb(0 0 0 / .3); }
