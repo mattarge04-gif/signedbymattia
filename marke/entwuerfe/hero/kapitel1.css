@@ -9,7 +9,7 @@
 .k1-buehne { position: sticky; top: 0; height: 100vh; height: 100svh; overflow: hidden; }
 .k1-hinten { position: absolute; inset: 0; background: linear-gradient(180deg, var(--color-chapter-2), var(--color-chapter-1)); }
 
-.k1-fresko { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+.k1-tuer { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
 .k1-wand, .k1-geruest, .k1-schraube { position: absolute; pointer-events: none; }
 .k1-wand { inset: 0; width: 100%; height: 100%; object-fit: cover; transform-origin: 50% 70%; z-index: 3; }
 .k1-geruest { left: 5%; bottom: -4%; height: 62vh; z-index: 4; }

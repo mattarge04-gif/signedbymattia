@@ -250,3 +250,17 @@ text, no letters, no watermark. 9:16, high detail.
 
 Tipp: Wenn die Komposition nicht in die hohe Öffnung passt, im selben Chat nachschieben: „Same fresco,
 keep the plumber in the middle third, more sky above, the fountain at the very bottom.“
+
+**K1-7 Tür im Torbogen** (9:16) → `k1-tuer-v1.jpg` [F] (Mattia, 31.10.2026: Tür statt Fresko; Licht
+strahlt durch die Risse, Tür bröckelt, kurz hell, dann die Website). Stil-Vorlage `k1-wand-v1.jpg`.
+```
+Using the attached image as a reference for painting style, palette and ornament:
+a closed baroque double door painted in the luminous style of a Tiepolo, seen straight on, portrait
+format, the door fills the whole image edge to edge (no wall, no arch, no frame around it). Two tall
+door leaves with raised panels in cream and pale lilac, delicate pale-gold mouldings, shell and scroll
+ornaments, two ornate pale-gold handles and a small keyhole in the middle. It looks painted on plaster:
+very fine hairline craquelure all over, slightly chalky matte surface, but bright and fresh. Soft light
+from the upper left. Pastel palette only: powder blue (#CFE3F7), lilac (#D9CCF5), peach (#FFD6C2),
+cream (#FBF3EA), pale gold (#E3C58A). No brown, no dark shadows, no figures, no text, no watermark.
+9:16, high detail.
+```
