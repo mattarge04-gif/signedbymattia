@@ -121,19 +121,20 @@ for name, quelle, fach in PUTTI:
     y = rg['y'] + round((boden - 6) * k_regal) - hoehe
     info['putti'][name] = {'x': x, 'y': y, 'w': breite, 'h': hoehe}
     ebenen[name] = im
-    # Station II: die wache Haltung ist eine Gemini-Bearbeitung des schlafenden Bilds (gleicher Ausschnitt).
-    # Darum gleicher Massstab und gleiche Lage des ganzen Originals, nur der Freistell-Rahmen ist anders.
+    # Station II: die wache Haltung ist eine Gemini-Bearbeitung des schlafenden Bilds. Gemini ändert dabei das
+    # Format (1696 × 2528 → 1792 × 2400), die Figur bleibt aber gleich gross im Verhältnis zur Bildhöhe.
+    # Darum: Massstab über die Bildhöhe, Füsse auf demselben Fachboden, Mitte über derselben Mitte.
     wach = quelle.replace('schlaf', 'wach')
     if (R / f'{wach}.png').exists() or (R / f'{wach}.jpg').exists():
-        (gw, gh), (sl, st, _, _) = box
+        (_, gh), _ = box
         wi = frei(wach)
-        ww, wh = oeffnen(wach).size
-        wl, wt, _, _ = frei_box(wach)
-        kw = k * gw / ww  # falls Gemini die Auflösung geändert hat
+        _, wh = oeffnen(wach).size
+        kw = k * gh / wh
         wb, whh = round(wi.width * kw), round(wi.height * kw)
-        wi.resize((wb, whh), Image.LANCZOS).save(A / f'{name.replace("schlaf", "wach")}.webp', quality=88, method=6)
-        info['putti'][name.replace('schlaf', 'wach')] = {
-            'x': x + round(wl * kw - sl * k), 'y': y + round(wt * kw - st * k), 'w': wb, 'h': whh}
+        wi = wi.resize((wb, whh), Image.LANCZOS)
+        wi.save(A / f'{name.replace("schlaf", "wach")}.webp', quality=88, method=6)
+        info['putti'][name.replace('schlaf', 'wach')] = {'x': x + round(breite / 2 - wb / 2), 'y': y + hoehe - whh, 'w': wb, 'h': whh}
+        ebenen[name.replace('schlaf', 'wach')] = wi
 
 # Station II: zwei Putti am Pult links und rechts vom Handy im Goldrahmen (Display x 1860–2002, Fuss y ≈ 1500)
 PULT_PUTTI = [('pult-links', 'ebenen/putto-pult-links-v1', 1845, 'rechts'), ('pult-rechts', 'ebenen/putto-pult-rechts-v1', 2017, 'links')]
