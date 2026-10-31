@@ -86,6 +86,29 @@ info['vorne'] = {'x': 0, 'y': 0, 'w': W, 'h': H}
 
 info['uhr'] = {'x': 1997, 'y': 590, 'r': 95}
 
+# Putti in den Fächern (Regal-Koordinaten 680 × 893: obere Reihe y 200–490, untere y 535–830)
+FAECHER = {'o1': (65, 193, 490), 'o3': (347, 472, 490), 'u2': (205, 333, 830), 'u4': (487, 610, 830)}
+PUTTI = [('schlaf-o1', 'ebenen/putto-schlaf1-v1', 'o1'), ('schlaf-o3', 'ebenen/putto-schlaf2-v1', 'o3'),
+         ('schlaf-u2', 'ebenen/putto-schlaf3-v1', 'u2'), ('schlaf-u4', 'ebenen/putto-schlaf4-v1', 'u4')]
+rg = info['regal']
+k_regal = rg['w'] / 680
+info['putti'] = {}
+for name, quelle, fach in PUTTI:
+    x0, x1, boden = FAECHER[fach]
+    im = frei(quelle)
+    breite = round((x1 - x0) * 0.92 * k_regal)
+    hoehe = round(im.height * breite / im.width)
+    maxh = round(270 * k_regal)
+    if hoehe > maxh:
+        breite = round(breite * maxh / hoehe)
+        hoehe = maxh
+    im = im.resize((breite, hoehe), Image.LANCZOS)
+    im.save(A / f'{name}.webp', quality=88, method=6)
+    x = rg['x'] + round(((x0 + x1) / 2) * k_regal - breite / 2)
+    y = rg['y'] + round((boden - 6) * k_regal) - hoehe
+    info['putti'][name] = {'x': x, 'y': y, 'w': breite, 'h': hoehe}
+    ebenen[name] = im
+
 json.dump(info, open(A / 'k2b.json', 'w'), indent=1)
 print(json.dumps(info))
 
@@ -93,7 +116,10 @@ if '--probe' in sys.argv:
     p = Image.new('RGBA', (W, H))
     p.paste(himmel, (hx, hy))
     p.alpha_composite(wand_rgba)
-    for name in ('regal', 'pult', 'stuhl'):
+    p.alpha_composite(ebenen['regal'], (info['regal']['x'], info['regal']['y']))
+    for name, i in info['putti'].items():
+        p.alpha_composite(ebenen[name], (i['x'], i['y']))
+    for name in ('pult', 'stuhl'):
         p.alpha_composite(ebenen[name], (info[name]['x'], info[name]['y']))
     p.alpha_composite(voll)
     p.convert('RGB').resize((2000, round(2000 * H / W))).save(sys.argv[sys.argv.index('--probe') + 1], quality=88)

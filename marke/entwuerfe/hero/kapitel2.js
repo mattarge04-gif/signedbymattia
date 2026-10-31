@@ -21,6 +21,14 @@ const sterne = $('#k2Sterne');
 const staub = $('#k2Staub');
 const uhr = $('#k2Uhr');
 const FOKUS = { x: 0.47, y: 0.56 }; // Pult mit dem Handy
+const HANDY = { x: 1934 / W, y: 1322 / H }; // Mitte des gemalten Displays
+const puttiEbene = $('#k2Putti');
+const display = $('#k2Display');
+const handy = $('#k2Handy');
+const meldung = $('#k2Meldung');
+const stationText = $('#k2Station');
+const ST = { auftakt: [0, 0.1], anfrage: [0.1, 0.3] };
+const teil = (x, [a, b]) => klemm((x - a) / (b - a));
 
 // ---------- Teile platzieren ----------
 let info = null;
@@ -29,6 +37,23 @@ fetch('bilder/k2b/k2b.json').then((r) => r.json()).then((j) => {
   const lege = (el, i) => Object.assign(el.style, { left: `${(i.x / W) * 100}%`, top: `${(i.y / H) * 100}%`, width: `${(i.w / W) * 100}%` });
   document.querySelectorAll('.k2-teil').forEach((el) => lege(el, j[el.dataset.teil]));
   lege($('#k2Himmel'), j.himmel);
+  // Putti in den Fächern; der schnarchende (oben 3) bekommt aufsteigende „z“
+  for (const [name, i] of Object.entries(j.putti)) {
+    const im = new Image();
+    im.src = `bilder/k2b/${name}.webp`;
+    im.alt = '';
+    im.className = 'k2-putto';
+    lege(im, i);
+    puttiEbene.appendChild(im);
+  }
+  const sn = j.putti['schlaf-o3'];
+  for (let n = 0; n < 3; n++) {
+    const z = document.createElement('span');
+    z.className = 'k2-z';
+    z.textContent = 'z';
+    Object.assign(z.style, { left: `${((sn.x + sn.w * 0.62) / W) * 100}%`, top: `${((sn.y + sn.h * 0.12) / H) * 100}%` });
+    puttiEbene.appendChild(z);
+  }
   uhrBauen(j.uhr);
   groesse();
 });
@@ -141,13 +166,49 @@ function bild(ms) {
     e.el.style.transform = `translate(${neigung.x * e.tiefe}px, ${neigung.y * e.tiefe * 0.6}px) scale(${z})`;
   }
   vorne.style.opacity = String(1 - glatt(klemm((s - 0.06) / 0.05)));
-  welt.style.transform = '';
+
+  // Station I: das Display geht an, die Kamera fliegt aufs Handy, das gemalte Handy wird zum echten
+  const pa = teil(s, ST.anfrage);
+  display.style.opacity = String(glatt(teil(pa, [0, 0.12])));
+  const nah = RUHIG ? 0 : glatt(teil(pa, [0.08, 0.42])) * (1 - glatt(teil(pa, [0.8, 1])));
+  const kz = 1 + 1.35 * nah;
+  const ww = welt.offsetWidth;
+  const wh = welt.offsetHeight;
+  const links = (innerWidth - ww) / 2;
+  const oben = (innerHeight - wh) / 2;
+  let tx = innerWidth / 2 - links - kz * HANDY.x * ww;
+  let ty = innerHeight / 2 - oben - kz * HANDY.y * wh;
+  tx = klemm(tx, innerWidth - links - kz * ww, -links) * nah;
+  ty = klemm(ty, innerHeight - oben - kz * wh, -oben) * nah;
+  welt.style.transformOrigin = '0 0';
+  welt.style.transform = `translate(${tx}px, ${ty}px) scale(${kz})`;
+  const gross = RUHIG ? glatt(teil(pa, [0.3, 0.4])) * (1 - glatt(teil(pa, [0.85, 0.95]))) : glatt(teil(pa, [0.36, 0.56])) * (1 - glatt(teil(pa, [0.78, 0.92])));
+  if (gross > 0.001) {
+    const r = display.getBoundingClientRect();
+    const zh = innerHeight * 0.74;
+    const zw = zh * (124 / 209);
+    const zx = innerWidth / 2 - zw / 2;
+    const zy = innerHeight / 2 - zh / 2;
+    const w = r.width + (zw - r.width) * gross;
+    handy.style.width = `${w}px`;
+    handy.style.fontSize = `${w / 19}px`;
+    handy.style.transform = `translate(${r.left + (zx - r.left) * gross}px, ${r.top + (zy - r.top) * gross}px)`;
+    handy.style.opacity = String(klemm(gross * 4));
+  } else handy.style.opacity = '0';
+  welt.style.filter = gross > 0.01 ? `brightness(${1 - 0.3 * gross}) saturate(${1 - 0.2 * gross})` : '';
+  meldung.classList.toggle('da', pa > 0.5 && pa < 0.86);
+  const stationAn = pa > 0.02 && pa < 0.98;
+  if (stationAn && !stationText.querySelector('b').textContent) {
+    stationText.querySelector('.nr').textContent = 'I';
+    stationText.querySelector('b').textContent = 'Anfrage kommt an';
+    stationText.querySelector('.satz').textContent = '21:47. Niemand ist im Büro.';
+  } else if (!stationAn) stationText.querySelector('b').textContent = '';
 
   text.style.opacity = String(1 - glatt(klemm((s - 0.05) / 0.05)));
   welt.parentElement.style.setProperty('--schleier', text.style.opacity);
   text.style.transform = `translateY(${-glatt(klemm((s - 0.05) / 0.05)) * 4}vh)`;
 
-  uhrSetzen(21 * 60 + 47 + klemm(s) * 6);
+  uhrSetzen(21 * 60 + 47);
   if (!RUHIG) lebenZeichnen(t);
   if (laeuft) requestAnimationFrame(bild);
 }

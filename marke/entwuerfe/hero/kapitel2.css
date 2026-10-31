@@ -2,6 +2,7 @@
    Eine Welt aus einem Masterbild: Ebenen liegen im Rahmen 4000 × 2233 (bilder/k2n/k2n.json). */
 .k2 { position: relative; background: var(--color-bg); }
 .k2-bahn { position: relative; height: 1000vh; }
+.k2-station:has(b:empty) { opacity: 0; }
 .k2-buehne { position: sticky; top: 0; height: 100vh; height: 100svh; overflow: hidden; background: #B9A6D6; }
 
 /* Welt: füllt die Bühne wie cover, Kamera per transform */
@@ -88,3 +89,39 @@
   .k2-inhalt { grid-template-columns: 1fr; }
   .k2-text, .k2-station { max-width: 80vw; }
 }
+
+/* Baustein 2: Putti, Display, Flug ins Handy */
+.k2-putto { position: absolute; display: block; transform-origin: 50% 100%; animation: k2-atmen 3.4s ease-in-out infinite; }
+.k2-putto:nth-child(2) { animation-duration: 3.9s; animation-delay: -1.2s; }
+.k2-putto:nth-child(3) { animation-duration: 3.1s; animation-delay: -2s; }
+.k2-putto:nth-child(4) { animation-duration: 4.2s; animation-delay: -.6s; }
+@keyframes k2-atmen { 0%, 100% { scale: 1 1; } 50% { scale: 1.012 1.03; } }
+.k2-z { position: absolute; font: italic 600 calc(1.1vw) var(--font-hand); color: #F4F0FF; text-shadow: 0 0 6px rgb(120 110 200 / .8); opacity: 0; animation: k2-z 3.6s ease-out infinite; pointer-events: none; }
+.k2-z:nth-of-type(2) { animation-delay: 1.2s; font-size: 1.4vw; }
+.k2-z:nth-of-type(3) { animation-delay: 2.4s; font-size: 1.7vw; }
+@keyframes k2-z { 0% { opacity: 0; translate: 0 0; } 20% { opacity: .9; } 100% { opacity: 0; translate: 1.6vw -3.2vw; } }
+.k2-display {
+  position: absolute; left: calc(1872 / 4000 * 100%); top: calc(1218 / 2233 * 100%);
+  width: calc(124 / 4000 * 100%); height: calc(209 / 2233 * 100%); border-radius: 3px; overflow: hidden;
+  background: linear-gradient(160deg, #FFE6F2, #F3D9FF 60%, #DCE6FF); opacity: 0; display: grid; place-items: center; align-content: start; padding-top: .7vw;
+  box-shadow: 0 0 1.4vw .4vw rgb(255 157 200 / .55);
+}
+.k2-display .zeit { font: 700 .55vw/1 var(--font-system); color: #3B2E52; letter-spacing: -.02em; }
+.k2-display .punkt { margin-top: .5vw; width: 70%; height: 16%; border-radius: 4px; background: #fff; box-shadow: 0 0 0 1px #FF9DC8; }
+.k2-handy {
+  position: absolute; left: 0; top: 0; z-index: 11; width: 22vh; aspect-ratio: 124 / 209; transform-origin: 0 0;
+  border-radius: 9%/5.5%; background: #FF9DC8; padding: 4.5% 4%; opacity: 0; pointer-events: none;
+  box-shadow: inset 0 0 0 2px rgb(255 255 255 / .55), 0 40px 80px -30px rgb(35 27 58 / .6), 0 0 80px 10px rgb(255 157 200 / .35);
+}
+.k2-handy-schirm { width: 100%; height: 100%; border-radius: 4%/2.4%; background: linear-gradient(165deg, #FFE6F2, #F1DBFF 55%, #D9E5FF); padding: 14% 7% 0; display: grid; align-content: start; justify-items: center; overflow: hidden; }
+.k2-handy-zeit { margin: 0; font: 300 3.4em/1 var(--font-system); color: #3B2E52; letter-spacing: -.03em; }
+.k2-handy-datum { margin: .3em 0 2.2em; font: 500 .8em var(--font-system); color: #5B4E72; }
+.k2-meldung { width: 100%; padding: .9em 1em; border-radius: 1.1em; background: rgb(255 255 255 / .82); box-shadow: 0 8px 20px -10px rgb(35 27 58 / .35); text-align: left; opacity: 0; translate: 0 -.6em; transition: opacity .4s var(--ease-ui), translate .5s var(--ease-pointe); }
+.k2-meldung.da { opacity: 1; translate: 0 0; }
+.k2-meldung p { margin: 0; }
+.k2-meldung .kopf { display: flex; align-items: center; gap: .5em; white-space: nowrap; font: 600 .62em var(--font-system); color: #8A7FA3; text-transform: uppercase; letter-spacing: .04em; }
+.k2-meldung .app { display: grid; place-items: center; width: 1.7em; height: 1.7em; border-radius: .45em; background: #FF9DC8; color: #fff; font-size: 1.1em; }
+.k2-meldung .jetzt { margin-left: auto; text-transform: none; font-weight: 500; }
+.k2-meldung .von { margin-top: .55em !important; font: 700 .95em var(--font-system); color: #231B3A; }
+.k2-meldung .inhalt { margin-top: .2em !important; font: 400 .9em/1.35 var(--font-system); color: #231B3A; }
+@media (prefers-reduced-motion: reduce) { .k2-putto, .k2-z { animation: none; } }
