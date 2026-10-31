@@ -1,6 +1,7 @@
 // Kapitel I Website · Trompe-l'œil: der gemalte Torbogen wird ein echter Browser.
 // Drehbuch: website/drehbuch/10-startseite.md (11) · Werte: website/drehbuch/00-grammatik.md
 import { tuerAnlegen } from './tuer.js';
+import { zeigenAnlegen } from './zeigen.js';
 
 const RUHIG = matchMedia('(prefers-reduced-motion: reduce)').matches;
 const $ = (s) => document.querySelector(s);
@@ -33,6 +34,7 @@ const wischer = $('#k1Wischer');
 const grund = $('#k1Grund');
 const kante = $('#k1Kante');
 const tuer = tuerAnlegen(buehne, wand);
+const zeigen = zeigenAnlegen(buehne, browser);
 
 // K1-B3 · Putti wischen: die Seite wird Bahn für Bahn neu gemacht wie eine Tapete.
 // Der Wisch-Putto zieht eine Bahn vor, der Roller-Putto rollt dahinter die neue Seite auf.
@@ -81,9 +83,12 @@ function masse() {
 // Die ersten 90vh gehören dem Wolkenflug (wolkenflug.js), erst danach beginnt die Choreografie
 const WOLKEN_VH = 0.9;
 let bahnOben = 0;
-// Pause: die fertige Seite steht kurz still (ca. 2 s Scrollen), bevor sie zum Handy wird
+// Pause: die fertige Seite steht still und zeigt ihre Bewegungen (K1-B4, zeigen.js), bevor sie zum Handy wird.
+// 250vh ≈ 5–6 s Scrollen [A]
 const PAUSE_BEI = 0.68;
-const PAUSE_VH = 0.9;
+const PAUSE_VH = 2.5;
+let pauseZiel = 0;   // 0–1 innerhalb der Pause
+let pz = 0;
 function fortschritt() {
   const rect = sektion.getBoundingClientRect();
   bahnOben = rect.top;
@@ -92,6 +97,7 @@ function fortschritt() {
   const lang = rect.height - innerHeight - vor - pause;   // Strecke ohne Pause
   const weg = -rect.top - vor;
   const p = weg < PAUSE_BEI * lang ? weg : Math.max(PAUSE_BEI * lang, weg - pause);
+  pauseZiel = klemm((weg - PAUSE_BEI * lang) / pause);
   return klemm(p / lang);
 }
 
@@ -99,6 +105,9 @@ function bild() {
   const ziel = RUHIG ? 0.7 : fortschritt();
   s += (ziel - s) * (RUHIG ? 1 : PARAMETER.nachziehen);
   if (Math.abs(ziel - s) < 0.0004) s = ziel;
+  const pzZiel = RUHIG ? 1 : pauseZiel;
+  pz += (pzZiel - pz) * (RUHIG ? 1 : PARAMETER.nachziehen);
+  if (Math.abs(pzZiel - pz) < 0.0004) pz = pzZiel;
   const m = masse();
   buehne.classList.toggle('k1-fliegt', s > 0.05 && s < 0.86);
 
@@ -158,7 +167,7 @@ function bild() {
   // erst im Blitz sichtbar, nicht schon durch die Löcher der bröckelnden Tür (Spitze 0.21, aus 0.27)
   billig.style.opacity = String(glatt(klemm((s - 0.22) / 0.04)));
   // K1-B3 · Putti wischen: Abzieher und Roller machen die Seite Bahn für Bahn neu (Roller ziehbar)
-  const rollerDa = s > 0.42 && s < 0.71;
+  const rollerDa = s > 0.42 && s < 0.71 && pz < 0.03;   // in der Pause fliegen die Putti weg
   roller.classList.toggle('da', rollerDa);
   wischer.classList.toggle('da', rollerDa);
   if (!gezogen) r = 100 * klemm((s - 0.45) / 0.22);
@@ -172,7 +181,10 @@ function bild() {
     l.y += (z.y - l.y) * f;
     (k === 'roller' ? roller : wischer).style.transform = `translate(${l.x}px, ${l.y}px)`;
   }
-  tipp.classList.toggle('da', s > 0.6 && s < 0.71 && !gezogen);
+  tipp.classList.toggle('da', rollerDa && s > 0.6 && !gezogen);
+
+  // K1-B4 · Die Seite lebt: Masse, Notizen von Hand, Bewegungen (zeigen.js)
+  zeigen(pz);
 
   // Schritt 5 · Live: ein Zeiger klickt „Termin anfragen“, die Anfrage geht raus
   const zp = glatt(klemm((s - 0.84) / 0.05));
