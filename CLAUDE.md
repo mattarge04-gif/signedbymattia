@@ -65,7 +65,7 @@ Budgets und Kostenfreigaben bleiben in `agency-automation-os/projects/lead-engin
 
 ## Aktueller Stand und nächste Schritte
 
-Stand: 31.10.2026. Zeitplan: Vault `Zielplan.md`, Aufgabenliste `plan/aufgaben-bis-live.md`. Phase **Fundament**
+Stand: 01.11.2026. Zeitplan: Vault `Zielplan.md`, Aufgabenliste `plan/aufgaben-bis-live.md`. Phase **Fundament**
 (KW 39–42) endete am 18.10.2026. **Livegang neu 17.12.2026** (Entscheid 28.10.).
 
 **Sitzungsabschluss 28.09.:** Claude erreichte am 27.09. um 23:59 das
@@ -387,12 +387,28 @@ Automaten, gemalt in 2.5D** (Commits bis `8ad349c`).
   roughnotation.com und Excalidraw (Screenshots nur im Scratchpad).
 - Commits: `c3ef6d4`, `5d53213`. Online auf https://vorschau.signedbymattia.ch.
 - [?] Das Falten zum Handy dauerte schon vorher nur ca. 0,25 s (wirkt evtl. wie Schnappen), wird mit K1-B5a ersetzt.
-- **Beim Wiedereinstieg zuerst:** (1) **K1-B5a Handy neu + Übergang „Teile fliegen“** (Entscheid Mattia):
+- *(Wiedereinstieg überholt durch 01.11.)* **Beim Wiedereinstieg zuerst:** (1) **K1-B5a Handy neu + Übergang „Teile fliegen“** (Entscheid Mattia):
   Plan und Befund in `website/drehbuch/10-startseite.md` (Zeile K1-B5a). Pinkes iPhone aus Kapitel II
   wiederverwenden (dort Code suchen), FLIP je Teil am Scroll, Burger-Menü, Anruf-Leiste, Handy-Layout ohne
   Loch, Toast im Display. Danach hochladen und „ist online“ melden. (2) Danach K1-B5 Übergang K1→K2.
   (3) Caddy `Cache-Control "no-cache"` im eigenen Block (Mattia führt mit `!` aus). (4) Abnahme Station II
   Kapitel II offen. (5) Zeitplan `plan/aufgaben-bis-live.md` prüfen.
+
+**Sitzungsabschluss 01.11. [F]:** Kapitel I Baustein 5a gebaut.
+
+- **K1-B5a Handy + „Teile fliegen“** (`marke/entwuerfe/hero/handy.js`, Stil in `kapitel1.css`): Browser verblasst,
+  9 Teile (Navigation → Burger, Logo, Foto, Titel, Lead, Knöpfe, Bewertung, Leistungen, Notfall) fliegen gestaffelt
+  im Bogen ins **pinke iPhone** (`.k2-geraet` aus Kapitel II wiederverwendet). Handy-Seite neu ohne Loch: Statusleiste,
+  Burger, Liste mit ›, Anruf-Leiste unten, Toast passt ins Display, runde Ecken per `clip-path`. Live-Klick im Display.
+  Scroll 0.71–0.83. Details Zeile K1-B5a in `website/drehbuch/10-startseite.md`. [A] abgenommen (Mattia bemängelte
+  nur die Ecken, behoben, dann „pushe“).
+- Technik: Flug-Kopien liegen in einem Raum mit gleicher Container-Grösse (`.k1-raum`), damit cqw/em stimmen.
+- [?] Zeiger ist ein Mauspfeil auf dem Handy, evtl. Fingertipp. [A] Beim Überblenden kurz doppelter Titel.
+- Werkzeug: Playwright liegt in `werkzeuge/node_modules` (nicht Repo-Wurzel), Chrome per `executablePath`.
+- Commits: `0e75e8d`, `5af760e`. Online auf https://vorschau.signedbymattia.ch.
+- **Beim Wiedereinstieg zuerst:** (1) **K1-B5 Übergang K1 → K2** planen (heller Tag → Nacht der Schreibstube),
+  Mattia den Plan zeigen. (2) Caddy `Cache-Control "no-cache"` im eigenen Block (Mattia führt mit `!` aus).
+  (3) Abnahme Station II Kapitel II offen. (4) Zeitplan `plan/aufgaben-bis-live.md` prüfen.
 
 **Erledigt [F]:**
 
