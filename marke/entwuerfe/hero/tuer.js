@@ -13,14 +13,13 @@ const TAKT = {
   fallen: 0.13, fallenSpanne: 0.06, fallDauer: 0.06,
   blitzAn: 0.18, blitzSpitze: 0.21, blitzAus: 0.27,
 };
-const URSPRUNG = [0.5, 0.47];   // Schlüsselloch
+const URSPRUNG = [0.546, 0.655]; // Schlüsselloch der Tür (k1-tuer-v1.jpg)
 const SPALTEN = 8, ZEILEN = 15;
 const SONNE = '255, 244, 214';
 
 const bild = new Image();
 bild.decoding = 'async';
 bild.src = 'bilder/k1-tuer.webp';
-bild.onerror = () => { bild.onerror = null; bild.src = 'bilder/k1-fresko.webp'; };   // bis die Tür da ist
 
 // Schollen: Voronoi-Zellen aus einem verwackelten Raster, im Einheitsquadrat der Öffnung
 function schollenBauen() {

@@ -219,7 +219,7 @@ bleibt unverändert** („perfekt, nicht anfassen“). Verbessert werden einzeln
 
 | Nr. | Baustein | Inhalt | Aufwand [A] |
 | --- | --- | --- | --- |
-| K1-B1 | Fresko im Torbogen | Im Bogen ein gemaltes Barock-Fresko der Himmelblau-Werkstatt (Prompt K1-6 in `03-bildstil.md`). Beim Zoomen reisst die Farbe und blättert in Schollen ab (WebGL), darunter der Browser. | 1 Abend |
+| K1-B1 | Tür im Torbogen | **gebaut 31.10.** (`tuer.js`): gemalte Tür (Prompt K1-7, `k1-tuer-v1.jpg`) reisst vom Schlüsselloch aus, Sonne strahlt durch die Risse, Tür bröckelt, Blitz, dann die Website. Fresko-Fassung (K1-6) verworfen (Mattia: Tür besser). Abnahme offen. | 1 Abend |
 | K1-B2 | Billige Baukasten-Seite | Standardschrift, gequetschte Abstände, Stockfoto-Slider, Seitenleiste „Kategorien“, statisch | ½ Abend |
 | K1-B3 | Putti wischen | Roller- und Wisch-Putto ziehen die neue Seite Streifen für Streifen über die alte; Roller bleibt ziehbarer Regler | ½–1 Abend |
 | K1-B4 | Neue Seite lebt | Abstandsraster; langsamer Bild-Zoom, Notfall-Punkt pulsiert, Bewertungen zählen hoch, Abzeichen „37 Jahre“ dreht, Termin-Knopf glänzt | 1 Abend |
