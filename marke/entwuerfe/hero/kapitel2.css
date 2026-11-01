@@ -164,13 +164,33 @@
 .k2-z.weg { visibility: hidden; }
 .k2-pult-putto { position: absolute; display: block; opacity: 0; translate: 0 10%; transition: opacity .4s var(--ease-ui), translate .6s var(--ease-ui); }
 .k2-pult-putto.da { opacity: 1; translate: 0 0; }
-.k2-gelesen { position: absolute; left: 50%; top: 58%; margin: 0; padding: .35em .8em; translate: -50% .6em; opacity: 0; white-space: nowrap;
-  font: 700 3em var(--font-system); color: #fff; background: #E0679C; box-shadow: 0 0 1.2em #FF9DC8; border-radius: 99px; transition: opacity .3s var(--ease-ui), translate .4s var(--ease-ui); }
-.k2-geraet.gelesen .k2-gelesen { opacity: 1; translate: -50% 0; }
+/* „Gelesen“ (Mattia 01.11.: Pille sah billig aus): Wallpaper dunkelt ab, Kreis mit Doppelhaken zeichnet sich */
+.k2-sperre::before { content: ''; position: absolute; inset: 0; pointer-events: none; opacity: 0; transition: opacity .4s var(--ease-ui);
+  background: radial-gradient(ellipse 90% 60% at 50% 60%, rgb(40 22 60 / .55), rgb(40 22 60 / .25)); }
+.k2-geraet.gelesen .k2-sperre::before { opacity: 1; }
+.k2-sperre > * { position: relative; }
+.k2-sperre > .k2-insel { position: absolute; }
+.k2-gelesen { position: absolute; left: 0; right: 0; top: 47%; margin: 0; display: grid; justify-items: center; opacity: 0; translate: 0 .8em;
+  transition: opacity .3s var(--ease-ui), translate .5s var(--ease-pointe); }
+.k2-gelesen p { margin: 0; color: #fff; font-family: var(--font-system); white-space: nowrap; }
+.k2-gelesen .wort { margin-top: .35em; font-size: 2.7em; font-weight: 700; letter-spacing: -.02em; text-shadow: 0 .1em .5em rgb(30 15 45 / .5); }
+.k2-gelesen .wer { margin-top: .15em; font-size: 1.45em; font-weight: 500; color: rgb(255 255 255 / .85); }
+.k2-haken { width: 7.5em; height: 7.5em; overflow: visible; filter: drop-shadow(0 0 1.2em rgb(255 140 196 / .8)); }
+.k2-haken circle { fill: #E0679C; stroke: #FFC4DE; stroke-width: 1.5; transform-origin: center; scale: .6; transition: scale .45s var(--ease-pointe); }
+.k2-haken path { fill: none; stroke: #fff; stroke-width: 3.6; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 1; stroke-dashoffset: 1; transition: stroke-dashoffset .35s var(--ease-ui); }
+.k2-geraet.gelesen .k2-gelesen { opacity: 1; translate: 0 0; }
+.k2-geraet.gelesen .k2-haken circle { scale: 1; }
+.k2-geraet.gelesen .k2-haken .h1 { stroke-dashoffset: 0; transition-delay: .2s; }
+.k2-geraet.gelesen .k2-haken .h2 { stroke-dashoffset: 0; transition-delay: .42s; }
+.k2-geraet.gelesen .k2-meldung { display: none; }
 .k2-handy .k2-gelesen { display: none; }
 .k2-rohrpost { pointer-events: none; }
-#k2Glut { opacity: 0; filter: blur(3px); }
-#k2RohrGlanz { opacity: 0; filter: blur(3px) drop-shadow(0 0 10px #FF9DC8); }
+/* Licht im Rohr (Mattia 01.11.: Fleck neben dem Rohr): Spur liegt auf dem Rohr, hell aufgehellt (screen) */
+.k2-rohrpost { mix-blend-mode: screen; }
+#k2Glut { opacity: 0; }
+.k2-spur { opacity: 0; }
+#k2SpurAussen { filter: blur(14px); }
+#k2RohrGlanz { filter: blur(3px); }
 #k2Buechse { opacity: 0; }
 @media (prefers-reduced-motion: reduce) { .k2-putto, .k2-pult-putto, .k2-gelesen { transition-duration: .2s; } }
 
@@ -186,3 +206,22 @@
 .zr-zeit { margin: 0; font: 600 clamp(84px, 11vw, 168px)/1 var(--font-system); color: #fff; letter-spacing: -.03em; font-variant-numeric: tabular-nums; text-shadow: 0 4px 30px rgb(40 30 80 / .35); }
 .zr-datum { margin: .6em 0 0; font: 600 clamp(18px, 1.6vw, 26px) var(--font-system); color: rgb(255 255 255 / .92); }
 .zr-dunkel { background: #050308; opacity: 0; }
+
+/* Vollbild-Mitteilung (Mattia 01.11.: soll besser aussehen): Wallpaper oben dunkler für die Uhr, Datum über
+   der Uhr wie iOS, Mitteilung als Glas mit gestapelter zweiter Karte, Hinweis unten */
+.k2-handy .k2-sperre::before { opacity: 1; background: linear-gradient(rgb(46 30 96 / .62), rgb(46 30 96 / .34) 38%, rgb(46 30 96 / .2) 65%, rgb(46 30 96 / .45)); }
+.k2-meldung .app { position: static; inset: auto; }
+.k2-handy .k2-datum { order: -1; margin: 0 0 .15em; font-size: .78em; font-weight: 700; color: #fff; letter-spacing: .01em; text-shadow: 0 .04em .25em rgb(30 20 70 / .6); }
+.k2-handy .k2-uhrzeit { font-size: 3.6em; font-weight: 700; letter-spacing: -.045em; margin-bottom: .55em; text-shadow: 0 .05em .4em rgb(30 20 70 / .3); }
+.v-ios .k2-meldung { max-width: 20em; padding: .8em .95em .85em; border-radius: 1.25em; grid-template-columns: 2.1em 1fr auto; column-gap: .65em; row-gap: .05em;
+  background: rgb(255 255 255 / .72); box-shadow: 0 .6em 1.6em -.6em rgb(30 20 70 / .45); position: relative; }
+.v-ios .k2-meldung::after { content: ''; position: absolute; left: 5%; right: 5%; bottom: -.5em; height: 1em; z-index: -1; border-radius: 0 0 1em 1em; background: rgb(255 255 255 / .38); }
+.v-ios .k2-meldung .app { grid-row: 1 / span 3; align-self: start; width: 2.1em; height: 2.1em; border-radius: .52em; font-size: 1em; }
+.v-ios .k2-meldung .titel { display: block; grid-column: 2; grid-row: 1; font: 600 .5em var(--font-system); color: #6E6488; text-transform: uppercase; letter-spacing: .06em; }
+.v-ios .k2-meldung .jetzt { grid-column: 3; grid-row: 1; font-size: .55em; }
+.v-ios .k2-meldung .von { grid-column: 2 / 4; grid-row: 2; margin-top: .15em !important; font: 650 .82em var(--font-system); }
+.v-ios .k2-meldung .inhalt { grid-column: 2 / 4; grid-row: 3; font: 400 .74em/1.32 var(--font-system); }
+.k2-wischen { margin: 1.6em 0 0; font: 500 .5em var(--font-system); color: rgb(255 255 255 / .8); opacity: 0; transition: opacity .5s var(--ease-ui) .3s; }
+.k2-wischen::after { content: ''; display: block; width: 8em; height: .35em; margin: .9em auto 0; border-radius: 99px; background: rgb(255 255 255 / .85); }
+.k2-meldung.da + .k2-wischen { opacity: 1; }
+.k2-im-bild .k2-wischen { display: none; }

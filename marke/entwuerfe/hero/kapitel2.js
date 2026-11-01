@@ -34,10 +34,12 @@ const ST = { auftakt: [0, 0.1], anfrage: [0.1, 0.3], lesen: [0.3, 0.44] };
 const WECKEN = { 'schlaf-o1': 0.06, 'schlaf-u4': 0.12, 'schlaf-u2': 0.18, 'schlaf-o3': 0.26 };
 const rohrWeg = $('#k2RohrWeg');
 const rohrGlanz = $('#k2RohrGlanz');
+const spuren = [[$('#k2SpurAussen'), 320, 0.45], [rohrGlanz, 200, 0.9], [$('#k2SpurKern'), 90, 1]]; // Länge, Stärke
+const displayZeit = display.querySelector('.k2-uhrzeit');
 const glut = $('#k2Glut');
 const buechse = $('#k2Buechse');
 const ROHR_LANG = rohrWeg.getTotalLength();
-rohrGlanz.style.strokeDasharray = `140 ${ROHR_LANG + 200}`;
+for (const [el, lang] of spuren) el.style.strokeDasharray = `${lang} ${ROHR_LANG + 400}`;
 const START = { x: 1931, y: 1175 }; // Oberkante des Handys im Goldrahmen
 const EINWURF = rohrWeg.getPointAtLength(0);
 const putti = [];
@@ -209,6 +211,7 @@ function bild(ms) {
   }
   const pl = teil(s, ST.lesen);
   const rohr = station2(pl);
+  schaerfe(pl);
   let blick;
   if (s < ST.lesen[0]) {
     const nah = RUHIG ? 0 : Math.max(zurueck, sanft(teil(pa, [0.04, 0.46])) * (1 - sanft(teil(pa, [0.86, 1]))));
@@ -261,7 +264,7 @@ function bild(ms) {
   welt.style.filter = ein > 0.01 ? `blur(${ein * 6}px)` : '';
   meldung.classList.toggle('da', pa > 0.6 && pa < 0.76);
   if (s > ST.anfrage[0] + 0.004 && s < ST.anfrage[1]) stationZeigen(STATIONEN[0]);
-  else if (s >= ST.lesen[0] && s < ST.lesen[1] - 0.003) stationZeigen(STATIONEN[1]);
+  else if (s >= ST.lesen[0] && s < ST.lesen[1] - 0.003) stationZeigen(STATIONEN[pl < 0.44 ? 1 : 2]);
   else stationZeigen(null);
 
   text.style.opacity = String(1 - glatt(klemm((s - 0.05) / 0.05)));
@@ -273,6 +276,28 @@ function bild(ms) {
   if (laeuft) requestAnimationFrame(bild);
 }
 
+// ---------- Tiefenschärfe in Station II (Mattia 01.11.) ----------
+// Zuerst sind Pult und Handy scharf, Regal und Wand weich; folgt die Kamera der Büchse ins Rohr, zieht die
+// Schärfe nach hinten: Regal, Rohr und Uhr scharf, Pult und Stuhl weich. Blur in Welt-Pixeln (wird mitskaliert).
+const SCHAERFE = { hinten: [8, 14, 16], vorne: [24, 34] }; // Ebenen nach data-tiefe
+let letzteSchaerfe = '';
+function schaerfe(pl) {
+  const an = RUHIG ? 0 : sanft(teil(pl, [0.02, 0.2])) * (1 - sanft(teil(pl, [0.9, 1])));
+  const zurRohr = sanft(teil(pl, [0.4, 0.58]));
+  const weich = (f) => (f * an > 0.02 ? `blur(${(f * an * 2.6).toFixed(2)}px)` : '');
+  const schluessel = `${an.toFixed(3)}|${zurRohr.toFixed(3)}`;
+  if (schluessel === letzteSchaerfe) return;
+  letzteSchaerfe = schluessel;
+  for (const e of ebenen) {
+    if (e.tiefe <= 4) continue; // Himmel im Fenster bleibt
+    const istRohr = e.el.classList.contains('k2-rohrpost');
+    let f = 0;
+    if (SCHAERFE.hinten.includes(e.tiefe) && !istRohr) f = e.tiefe === 8 ? 1 - 0.6 * zurRohr : 1 - zurRohr;
+    else if (SCHAERFE.vorne.includes(e.tiefe)) f = zurRohr * (e.tiefe === 34 ? 1.3 : 1);
+    e.el.style.filter = weich(f);
+  }
+}
+
 // ---------- Station II „gelesen“ ----------
 // Rein vom Scroll abhängig, rückwärts gleich: Putti wachen nacheinander auf, das Display zeigt „Gelesen“,
 // zwei Putti treten ans Handy, die Büchse springt aus dem Handy ins Rohr, ihr Leuchten fährt hinauf und
@@ -282,6 +307,7 @@ function station2(pl) {
   for (const p of putti) for (const b of p.bilder) b.classList.toggle('ist-wach', aktiv && pl >= p.ab || s >= ST.lesen[1]);
   for (const z of zs) z.classList.toggle('weg', s >= ST.lesen[0] + 0.004);
   display.classList.toggle('gelesen', pl > 0.3 && s < ST.lesen[1] + 0.2);
+  displayZeit.textContent = aktiv ? '21:48' : '21:47';
   for (const b of pultPutti) b.classList.toggle('da', pl > 0.3);
   // Sprung: Büchse aus dem Handy im Bogen zum Einwurf, dort hinein (kleiner werden)
   const sprung = teil(pl, [0.44, 0.54]);
@@ -298,15 +324,20 @@ function station2(pl) {
   glut.setAttribute('cx', p.x);
   glut.setAttribute('cy', p.y);
   glut.style.opacity = imRohr ? String(Math.min(1, (pl - 0.54) * 40) * (1 - glatt(teil(fahrt, [0.9, 1])))) : '0';
-  rohrGlanz.style.strokeDashoffset = String(-(fahrt * ROHR_LANG - 70));
-  rohrGlanz.style.opacity = glut.style.opacity;
+  // Lichtspur: Kopf an der Büchse, Schweif dahinter (je Strich eigene Länge)
+  for (const [el, lang, staerke] of spuren) {
+    el.style.strokeDashoffset = String(-(fahrt * ROHR_LANG - lang));
+    el.style.opacity = String(+glut.style.opacity * staerke);
+  }
   if (pl <= 0.54) return { x: EINWURF.x, y: EINWURF.y };
   return { x: p.x, y: p.y };
 }
 
 const STATIONEN = [
-  { nr: 'I', titel: 'Anfrage kommt an', satz: '21:47. Niemand ist im Büro.' },
-  { nr: 'II', titel: 'gelesen', satz: '21:48. Die Helfer sind wach und lesen mit.' },
+  // [A] Platzhalter bis zum Textinterview, erklärender zum Mitlesen (Mattia 01.11.)
+  { nr: 'I', titel: 'Anfrage kommt an', satz: '21:47. Frau Meier schreibt über die Website. Im Büro ist niemand mehr.' },
+  { nr: 'II', titel: 'gelesen', satz: '21:48. Die Helfer lesen sofort mit und erkennen: Boiler, Kriens, eilt.' },
+  { nr: 'II', titel: 'gelesen', satz: 'Per Rohrpost geht die Anfrage weiter zum Sortieren.' },
 ];
 let stationJetzt;
 let stationUhr = 0;
