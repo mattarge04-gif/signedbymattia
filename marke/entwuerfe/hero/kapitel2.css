@@ -392,3 +392,9 @@
 @media (prefers-reduced-motion: reduce) { .k2-rauch path, .k2-dampf i { animation: none; } .k2-erl, .k2-erl .ok, .k2-pult-putto.kaffee-bild { transition-duration: .2s; } }
 /* Uhr, Datum und Meldungen über dem Abdunkeln (::before liegt sonst als positioniertes Element darüber) */
 .k2-geraet.morgen .k2-sperre > :is(.k2-uhrzeit, .k2-datum, .k2-erledigt) { position: relative; }
+
+/* Plan der Rohrpost-Zentrale: steht beim Scrollen kurz still und füllt den Bildschirm, der Text darunter kommt erst danach */
+.k2-panel { padding-top: 0; }
+.k2-plan-bahn { height: 190vh; margin: 0 -6vw 10vh; }
+.k2-plan-buehne { position: sticky; top: 0; height: 100vh; height: 100svh; display: grid; place-items: center; padding: 4vh 4vw; box-sizing: border-box; }
+.k2-plan-buehne .k2-plan { width: min(92vw, calc(88svh * 1000 / 560)); }
