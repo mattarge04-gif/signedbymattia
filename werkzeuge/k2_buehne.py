@@ -168,6 +168,26 @@ for name, quelle, kante, seite in PULT_PUTTI:
     x = kante - breite if seite == 'rechts' else kante
     info['putti'][name] = {'x': x, 'y': 1500 - hoehe, 'w': breite, 'h': hoehe}
     ebenen[name] = im
+    # Station IV: der linke Pult-Putto schreibt (Bearbeitungen von putto-pult-links, gleiches Format 1792 × 2400).
+    # Gleicher Massstab und gleiche Lage im Original, damit beim Zwei-Bild-Wechsel nichts springt.
+    if name == 'pult-links':
+        l0, t0, r0, b0 = frei_box(quelle)
+        ks = hoehe / (b0 - t0)
+        for teil in ('schreibt-a', 'schreibt-b'):
+            q = f'ebenen/putto-{teil}-v1'
+            if not ((R / f'{q}.png').exists() or (R / f'{q}.jpg').exists()):
+                continue
+            si = frei(q)
+            l1, t1, _, _ = frei_box(q)
+            sb, sh = round(si.width * ks), round(si.height * ks)
+            si = si.resize((sb, sh), Image.LANCZOS)
+            si.save(A / f'{teil}.webp', quality=88, method=6)
+            sx, sy = x + round((l1 - l0) * ks), 1500 - hoehe + round((t1 - t0) * ks)
+            info['putti'][teil] = {'x': sx, 'y': sy, 'w': sb, 'h': sh}
+            ebenen[teil] = si
+            if teil == 'schreibt-a':
+                # Federspitze im Original bei ca. (1622, 1214) [A], nach Augenmass
+                info['feder'] = {'x': round(x + (1622 - l0) * ks), 'y': round(1500 - hoehe + (1214 - t0) * ks)}
 
 # Rohrpost-Büchse (gemalt, Mattia 01.11.: echtes Bild statt SVG), Höhe 72 Rahmen-Pixel, Mitte = Bezugspunkt
 if (R / 'ebenen/buechse-v1.png').exists() or (R / 'ebenen/buechse-v1.jpg').exists():

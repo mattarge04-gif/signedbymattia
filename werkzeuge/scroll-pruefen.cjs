@@ -12,7 +12,7 @@ if (!URL || !BAHN || !OUT) { console.error('Aufruf: node scroll-pruefen.cjs <url
 (async () => {
   fs.rmSync(OUT, { recursive: true, force: true });
   fs.mkdirSync(OUT, { recursive: true });
-  const b = await chromium.launch({ args: ['--use-gl=angle', '--enable-gpu-rasterization', '--ignore-gpu-blocklist'] });
+  const b = await chromium.launch({ executablePath: 'C:/Program Files/Google/Chrome/Application/chrome.exe', args: ['--use-gl=angle', '--enable-gpu-rasterization', '--ignore-gpu-blocklist'] });
   const p = await b.newPage({ viewport: { width: 1440, height: 900 } });
   const fehler = [];
   p.on('pageerror', (e) => fehler.push(e.message));

@@ -4,6 +4,7 @@
 // Anteil am Kameraflug; der Vorhang fliegt im Auftakt an der Kamera vorbei. Lebt: Sterne, ziehender Himmel,
 // Kerze, Mondstaub, Uhr. Baustein 2: Station I (Handy, schlafende Putti, Eintauchen).
 // Baustein 3: Station II „gelesen“ (Putti wachen auf, Display „Gelesen“, Büchse fährt durchs Rohr).
+// Station III „sortiert“ (Fang-Putto, Schild „Dringend“), Station IV „beantwortet“ (Putto schreibt aufs Display).
 const RUHIG = matchMedia('(prefers-reduced-motion: reduce)').matches;
 const MAUS = matchMedia('(hover: hover) and (pointer: fine)').matches;
 const $ = (s) => document.querySelector(s);
@@ -29,7 +30,7 @@ const display = $('#k2Display');
 const handy = $('#k2Handy');
 const meldung = $('#k2Meldung');
 const stationText = $('#k2Station');
-const ST = { auftakt: [0, 0.1], anfrage: [0.1, 0.3], lesen: [0.3, 0.44], sortieren: [0.44, 0.58] };
+const ST = { auftakt: [0, 0.1], anfrage: [0.1, 0.3], lesen: [0.3, 0.44], sortieren: [0.44, 0.58], antworten: [0.58, 0.72] };
 // Station II: wann welcher Putto aufwacht (Anteil der Station); der Schnarcher (oben 3) zuletzt
 const WECKEN = { 'schlaf-o1': 0.06, 'schlaf-u4': 0.12, 'schlaf-u2': 0.18, 'schlaf-o3': 0.26 };
 const rohrWeg = $('#k2RohrWeg');
@@ -49,6 +50,11 @@ const SCHILDER = [['Dringend', 0], ['Offerte', 1], ['Termin', 2], ['Rückruf', 3
 const schilder = $('#k2Schilder');
 let dringend = null;
 const fang = {};
+const schreib = {};
+const ROHRENDE = { x: 2157, y: 1232 }; // Mündung des Messing-Rohrendes rechts vom Handy (Pult-Bild)
+const buechse2 = $('#k2BuechseZwei');
+const rausLicht = $('#k2RausLicht');
+const antwort = display.querySelector('.k2-antwort');
 for (const [el, lang] of spuren) el.style.strokeDasharray = `${lang} ${ROHR_LANG + 400}`;
 const START = { x: 1931, y: 1175 }; // Oberkante des Handys im Goldrahmen
 const EINWURF = rohrWeg.getPointAtLength(0);
@@ -82,6 +88,9 @@ fetch('bilder/k2b/k2b.json', { cache: 'no-cache' }).then((r) => r.json()).then((
     const wach = j.putti[wachName] ? bildFuer(wachName, j.putti[wachName], 'k2-putto wach-bild', puttiEbene) : null;
     putti.push({ ab: WECKEN[name] ?? 0.1, bilder: wach ? [schlaf, wach] : [schlaf] });
   }
+  for (const n of ['schreibt-a', 'schreibt-b']) if (j.putti[n]) schreib[n] = bildFuer(n, j.putti[n], 'k2-pult-putto schreib-bild', display.parentElement);
+  schreib.links = pultPutti.find((b) => b.src.endsWith('pult-links.webp'));
+  if (j.buechse) Object.entries({ x: -j.buechse.w / 2, y: -j.buechse.h / 2, width: j.buechse.w, height: j.buechse.h }).forEach(([k, v]) => buechse2.setAttribute(k, v));
   for (const n of ['fang-a', 'fang-b']) if (j.putti[`${n}-o1`]) fang[n] = bildFuer(`${n}-o1`, j.putti[`${n}-o1`], 'k2-putto fang-bild', puttiEbene);
   // den wachen Putto nur ausblenden, wenn die Fang-Bilder wirklich da sind (alte k2b.json im Cache)
   if (fang['fang-a'] && fang['fang-b']) fang.wach = puttiEbene.querySelector('img[src$="wach-o1.webp"]');
@@ -237,9 +246,20 @@ function bild(ms) {
   const rohr = station2(pl);
   const ps = teil(s, ST.sortieren);
   const ziel3 = station3(ps);
+  const pa4 = teil(s, ST.antworten);
+  const ziel4 = station4(pa4);
   schaerfe(pl, ps);
   let blick;
-  if (s < ST.lesen[0]) {
+  if (ziel4) {
+    // Station IV: nah aufs Handy mit dem schreibenden Putto, dann der Büchse nach oben folgen, am Ende die ganze Stube
+    const ein = RUHIG ? 0 : sanft(teil(pa4, [0, 0.14]));
+    const raus = sanft(teil(pa4, [0.72, 0.88]));
+    const ende = RUHIG ? 1 : sanft(teil(pa4, [0.88, 1]));
+    const zx = HANDY.x + (ziel4.x / W - HANDY.x) * raus;
+    const zy = HANDY.y + (ziel4.y / H - HANDY.y) * raus;
+    const nah = ein * (1 - ende);
+    blick = { x: 0.5 + (zx - 0.5) * nah, y: 0.5 + (zy - 0.5) * nah, z: 1 + (1.4 - 0.7 * raus) * nah };
+  } else if (s < ST.lesen[0]) {
     const nah = RUHIG ? 0 : Math.max(zurueck, sanft(teil(pa, [0.04, 0.46])) * (1 - sanft(teil(pa, [0.86, 1]))));
     blick = { x: 0.5 + (HANDY.x - 0.5) * nah, y: 0.5 + (HANDY.y - 0.5) * nah, z: 1 + 1.5 * nah };
   } else if (ziel3) {
@@ -301,13 +321,14 @@ function bild(ms) {
   if (s > ST.anfrage[0] + 0.004 && s < ST.anfrage[1]) stationZeigen(STATIONEN[0]);
   else if (s >= ST.lesen[0] && s < ST.lesen[1]) stationZeigen(STATIONEN[pl < 0.44 ? 1 : 2]);
   else if (s >= ST.sortieren[0] && s < ST.sortieren[1] - 0.003) stationZeigen(STATIONEN[3]);
+  else if (s >= ST.antworten[0] && s < ST.antworten[1] - 0.003) stationZeigen(STATIONEN[4]);
   else stationZeigen(null);
 
   text.style.opacity = String(1 - glatt(klemm((s - 0.05) / 0.05)));
   welt.parentElement.style.setProperty('--schleier', text.style.opacity);
   text.style.transform = `translateY(${-glatt(klemm((s - 0.05) / 0.05)) * 4}vh)`;
 
-  uhrSetzen(21 * 60 + 47 + glatt(teil(pl, [0.1, 0.5])) + glatt(teil(ps, [0.55, 0.7])));
+  uhrSetzen(21 * 60 + 47 + glatt(teil(pl, [0.1, 0.5])) + glatt(teil(ps, [0.55, 0.7])) + glatt(teil(pa4, [0.5, 0.62])));
   if (!RUHIG) lebenZeichnen(t);
   if (laeuft) requestAnimationFrame(bild);
 }
@@ -345,7 +366,7 @@ function station2(pl) {
   for (const z of zs) z.classList.toggle('weg', s >= ST.lesen[0] + 0.004);
   const ps = teil(s, ST.sortieren);
   display.classList.toggle('gelesen', pl > 0.3 && ps <= 0.6);
-  display.classList.toggle('sortiert', ps > 0.6);
+  display.classList.toggle('sortiert', ps > 0.6 && s < ST.antworten[0] + 0.012);
   displayZeit.textContent = ps > 0.6 ? '21:49' : aktiv ? '21:48' : '21:47';
   for (const b of pultPutti) b.classList.toggle('da', pl > 0.3);
   // Sprung: Büchse aus dem Handy im Bogen zum Einwurf, dort hinein (kleiner werden)
@@ -406,6 +427,42 @@ function station3(ps) {
   return { x: p.x + (1300 - p.x) * zumFach, y: p.y + (760 - p.y) * zumFach };
 }
 
+// ---------- Station IV „beantwortet“ ----------
+// Der linke Pult-Putto nimmt die Feder und schreibt direkt aufs Display (Entscheid Mattia 01.11.): Zeile für
+// Zeile Tinte, dann Feder hoch, die Tinte wird zur gesendeten Antwort-Blase ✓✓. Danach steigt eine zweite
+// Büchse aus dem Messing-Rohrende und schiesst nach oben hinaus zum Kunden. Gibt den Blickpunkt zurück.
+function station4(pa) {
+  const aktiv = s >= ST.antworten[0];
+  const schreibt = aktiv && pa >= 0.1 && pa < 0.58;
+  const fertig = aktiv && pa >= 0.58;
+  schreib['schreibt-a']?.classList.toggle('zeigen', schreibt);
+  schreib['schreibt-b']?.classList.toggle('zeigen', fertig);
+  schreib.links?.classList.toggle('weg', !!(schreib['schreibt-a'] && (schreibt || fertig)));
+  display.classList.toggle('antwort', aktiv && pa > 0.06);
+  // Tinte: Zeile 1 und 2 vom Scroll, die Hand (der ganze Putto) wippt und rückt mit
+  const z1 = teil(pa, [0.14, 0.34]);
+  const z2 = teil(pa, [0.36, 0.56]);
+  antwort.style.setProperty('--z1', z1.toFixed(3));
+  antwort.style.setProperty('--z2', z2.toFixed(3));
+  const zug = pa < 0.35 ? z1 : z2;
+  const wipp = schreibt && !RUHIG && pa > 0.14 ? Math.sin(pa * 260) * 1.6 : 0;
+  if (schreib['schreibt-a']) setze(schreib['schreibt-a'], 'transform', `translateX(${(schreibt ? zug * 7 : 0).toFixed(2)}%) rotate(${wipp.toFixed(2)}deg)`);
+  display.classList.toggle('tinte-weg', aktiv && pa >= 0.6);
+  display.classList.toggle('tippt', aktiv && pa >= 0.6 && pa < 0.66);
+  display.classList.toggle('gesendet', aktiv && pa >= 0.66);
+  // zweite Büchse: steigt aus dem Rohrende, kurzes Zögern, dann schiesst sie nach oben hinaus (mit Lichtspur)
+  const steigt = sanft(teil(pa, [0.68, 0.74]));
+  const schuss = teil(pa, [0.75, 0.88]);
+  const sy = ROHRENDE.y + 30 - 50 * steigt - 1500 * schuss * schuss;
+  buechse2.setAttribute('transform', `translate(${ROHRENDE.x} ${sy.toFixed(1)})`);
+  buechse2.setAttribute('opacity', aktiv && pa > 0.68 && schuss < 1 ? '1' : '0');
+  rausLicht.setAttribute('transform', `translate(${ROHRENDE.x} ${(sy + 20).toFixed(1)})`);
+  rausLicht.setAttribute('height', String(Math.max(0, Math.min(420, ROHRENDE.y - sy - 20)).toFixed(0)));
+  rausLicht.setAttribute('opacity', aktiv && schuss > 0 ? String((1 - glatt(teil(pa, [0.86, 0.94]))).toFixed(3)) : '0');
+  if (!aktiv) return null;
+  return { x: ROHRENDE.x, y: Math.max(500, sy) };
+}
+
 // Messingschilder unter den Trichtern (oben in jedem Fach), Regal-Koordinaten 680 × 893 → Rahmen
 function schilderBauen(rg) {
   const k = rg.w / 680;
@@ -428,6 +485,7 @@ const STATIONEN = [
   { nr: 'II', titel: 'gelesen', satz: '21:48. Die Helfer lesen sofort mit und erkennen: Boiler, Kriens, eilt.' },
   { nr: 'II', titel: 'gelesen', satz: 'Per Rohrpost geht die Anfrage weiter zum Sortieren.' },
   { nr: 'III', titel: 'sortiert', satz: 'Tropfender Boiler heisst: dringend. Die Anfrage kommt nach vorne.' },
+  { nr: 'IV', titel: 'beantwortet', satz: '21:50. Die Antwort haben Sie vorher festgelegt. Sie geht sofort raus.' },
 ];
 let stationJetzt;
 let stationUhr = 0;

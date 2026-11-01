@@ -211,3 +211,36 @@ caught something. Both small hands are pulled in close in front of his chest, cu
 holding a small cylinder upright, and he looks down at his hands with a proud, delighted grin. Wings
 relaxed. Hands hold nothing visible, no object in the image, no shadow on the background, no text.
 ```
+
+## Station IV „beantwortet“ [F] (Plan abgenommen, Mattia 01.11.2026)
+
+- Scroll 0.58–0.72 [A]. Kamera fährt vom Fach „Dringend“ hinunter zum Pult, Schärfe zieht nach vorne.
+- **Putto schreibt** (Entscheid Mattia): Der Putto links vom Goldrahmen (`pult-links`) wechselt zu
+  `putto-schreibt-a` (Feder auf dem Papier) → `putto-schreibt-b` (Feder hoch, Schnörkel, stolz). Die Feder ist
+  im Bild gemalt. Ein kleines Papier liegt auf dem Pult (Code), die Tinte schreibt per DrawSVG
+  „Wir kommen morgen um 8 Uhr.“
+- **Neue Büchse am Pult** (Entscheid Mattia): Das Papier rollt sich ein, fährt in eine zweite gemalte Büchse
+  (`buechse.webp`), die springt ins Messing-Rohrende rechts vom Handy; Licht schiesst das Rohr hinaus.
+  Die erste Büchse bleibt beim Fang-Putto im Fach.
+- Handy: drei Tipp-Punkte → Antwort-Blase „Wir kommen morgen um 8 Uhr.“ mit ✓✓ „Antwort gesendet“, Uhr 21:50.
+- Text unten links: IV · beantwortet · „Die Antwort legen Sie vorher fest. Sie geht sofort raus.“ [A]
+
+**9 · putto-schreibt-a-v1** (Referenz: `putto-pult-links-v1.jpg`, Vertex)
+```
+Edit the attached painting. Keep exactly the same putto, same painting style, same size, same position
+in the frame, same framing and the same plain light grey background. Change only this: he stands and leans
+forward to the right, writing. His right hand holds a long white-lilac feather quill pen, its tip pointing
+down to the right at the height of his hips, as if writing on a sheet lying on a table just in front of
+him. His left hand rests flat on that invisible sheet. He looks down at his writing with deep
+concentration, tongue slightly out. No table, no paper, no other object, no shadow on the background,
+no text.
+```
+
+**10 · putto-schreibt-b-v1** (Referenz: `putto-schreibt-a-v1`, Vertex)
+```
+Edit the attached painting. Keep exactly the same putto, same painting style, same size, same position
+in the frame, same framing and the same plain light grey background. Change only this: he has just
+finished writing. He lifts the same white-lilac feather quill high with a proud flourish, his left hand
+still resting on the invisible sheet, and smiles contentedly, looking down at what he wrote. No table, no
+paper, no other object, no shadow on the background, no text.
+```

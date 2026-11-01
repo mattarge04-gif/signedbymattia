@@ -253,3 +253,45 @@
 .k2-geraet.sortiert .k2-sortiert .marke { scale: 1; }
 .k2-handy .k2-sortiert { display: none; }
 @media (prefers-reduced-motion: reduce) { .k2-sortiert, .k2-sortiert .marke, .k2-putto.fang-bild { transition-duration: .2s; } }
+
+/* ---------- Station IV „beantwortet“ ---------- */
+/* Der linke Pult-Putto schreibt mit der Feder direkt aufs Display (Zwei-Bild-Wechsel), die Tinte wird zur
+   gesendeten Antwort; eine zweite Büchse schiesst aus dem Messing-Rohrende hinaus zum Kunden. */
+.k2-pult-putto.da.weg { opacity: 0; transition-duration: .3s; }
+.k2-pult-putto.schreib-bild { opacity: 0; translate: none; transform-origin: 50% 100%; transition: opacity .3s var(--ease-ui); }
+.k2-pult-putto.schreib-bild.zeigen { opacity: 1; }
+.k2-sperre > .k2-insel { z-index: 3; }
+.k2-sperre > .k2-antwort {
+  position: absolute; inset: 0; z-index: 2; margin: 0; padding: 4.6em 1.3em 1.4em; display: flex; flex-direction: column; gap: .9em;
+  background: linear-gradient(#FBF7FD, #F3ECF8); font-family: var(--font-system); color: #1C1530;
+  opacity: 0; transition: opacity .4s var(--ease-ui);
+}
+.k2-geraet.antwort .k2-antwort { opacity: 1; }
+.k2-antwort p { margin: 0; }
+.k2-antwort .k2-chatkopf { display: grid; justify-items: center; gap: .35em; padding-bottom: .9em; border-bottom: .06em solid rgb(28 21 48 / .1); }
+.k2-antwort .k2-ava { display: grid; place-items: center; width: 3.4em; height: 3.4em; border-radius: 50%; background: linear-gradient(#C9BEDD, #A99BC4); color: #fff; font-size: 1.05em; font-weight: 600; }
+.k2-antwort .name { font-size: 1.25em; font-weight: 600; }
+.k2-antwort .ihr { align-self: flex-start; max-width: 82%; padding: .55em .8em; border-radius: 1.1em 1.1em 1.1em .3em; background: #E6E0EE; font-size: 1.45em; line-height: 1.25; }
+/* Tinte: Handschrift, Zeile für Zeile vom Scroll freigelegt (--z1, --z2 von 0 bis 1) */
+.k2-antwort .tinte { position: absolute; left: 1.2em; right: .8em; top: 53%; font: italic 400 2.75em/1.02 var(--font-hand); color: #2B1E4A; transition: opacity .35s var(--ease-ui), scale .45s var(--ease-pointe), translate .45s var(--ease-pointe); transform-origin: 100% 50%; }
+.k2-antwort .tinte span { display: block; white-space: nowrap; }
+.k2-antwort .tinte span:first-child { clip-path: inset(-30% calc(100% - var(--z1, 0) * 100%) -30% 0); }
+.k2-antwort .tinte span:last-child { clip-path: inset(-30% calc(100% - var(--z2, 0) * 100%) -30% 0); }
+.k2-geraet.tinte-weg .k2-antwort .tinte { opacity: 0; scale: .55; translate: 1em 0; }
+.k2-antwort .tippen, .k2-antwort .blase { position: absolute; right: 1.3em; top: 55%; }
+.k2-antwort .tippen { display: flex; gap: .35em; padding: .8em 1em; border-radius: 1.2em; background: #E6E0EE; opacity: 0; transition: opacity .25s var(--ease-ui); }
+.k2-antwort .tippen i { width: .7em; height: .7em; border-radius: 50%; background: #8E83A6; animation: k2-tippen 1s infinite; }
+.k2-antwort .tippen i:nth-child(2) { animation-delay: .15s; }
+.k2-antwort .tippen i:nth-child(3) { animation-delay: .3s; }
+@keyframes k2-tippen { 0%, 60%, 100% { translate: 0 0; opacity: .5; } 30% { translate: 0 -.35em; opacity: 1; } }
+.k2-geraet.tippt .k2-antwort .tippen { opacity: 1; }
+.k2-antwort .blase { max-width: 82%; padding: .55em .8em; border-radius: 1.1em 1.1em .3em 1.1em; background: #E0679C; color: #fff; font-size: 1.6em; font-weight: 500; line-height: 1.25;
+  box-shadow: 0 0 1.2em rgb(255 140 196 / .55); opacity: 0; scale: .6; transform-origin: 100% 100%; transition: opacity .3s var(--ease-ui), scale .45s var(--ease-pointe); }
+.k2-geraet.gesendet .k2-antwort .blase { opacity: 1; scale: 1; }
+.k2-antwort .status { position: absolute; right: 1.5em; top: 74%; font-size: 1.05em; font-weight: 500; color: #6E6488; opacity: 0; transition: opacity .3s var(--ease-ui) .25s; }
+.k2-antwort .status b { color: #E0679C; font-weight: 700; }
+.k2-geraet.gesendet .k2-antwort .status { opacity: 1; }
+.k2-handy .k2-antwort { display: none; }
+.k2-raus { pointer-events: none; }
+#k2RausLicht { mix-blend-mode: screen; }
+@media (prefers-reduced-motion: reduce) { .k2-antwort .tippen i { animation: none; } .k2-antwort, .k2-antwort .tinte, .k2-antwort .blase, .k2-pult-putto.schreib-bild { transition-duration: .2s; } }
