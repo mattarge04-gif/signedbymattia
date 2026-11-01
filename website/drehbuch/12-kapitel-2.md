@@ -182,3 +182,32 @@ chest height as if gripping the right edge of a picture frame, while reading som
 of him with wide, fascinated eyes. Small wings. Hands empty, no frame and no object in the image. Plain
 light grey background, no shadow, no text. Portrait format 2:3.
 ```
+
+## Station III „sortiert“ [F] (Plan abgenommen, Mattia 01.11.2026)
+
+- Scroll 0.44–0.58. Kamera bleibt oben am Regal, wo die Büchse aus Station II ankommt.
+- Büchse fährt im oberen Rohr nach links, Trichter über dem Fach oben links klappt, Büchse fällt hinein.
+- Putto oben links (bisher `putto-wach1`) fängt sie: Zwei-Bild-Wechsel `putto-fang-a` (Arme hoch) →
+  `putto-fang-b` (hält sie vor der Brust). Hände im Bild leer, die Büchse liegt als SVG darüber.
+- Unter allen 8 Fächern Messingschilder in SVG: Dringend · Offerte · Termin · Rückruf · Rechnung · Frage ·
+  Später · Werbung. „Dringend“ leuchtet pink, wenn die Büchse ankommt.
+- Handy: **„Eingeordnet: Dringend“** (Entscheid Mattia, gleiches Wort wie das Schild), Uhr 21:49.
+- Text unten links: III · sortiert · „Tropfender Boiler heisst: dringend. Die Anfrage kommt nach vorne.“ [A]
+
+**7 · putto-fang-a-v1.png** (anhängen: `putto-wach1-v1.png`)
+```
+Edit the attached painting. Keep exactly the same putto, same painting style, same size, same position
+in the frame, same framing and the same plain light grey background. Change only this: he sits upright,
+both small arms stretched up above his head with open, empty hands, ready to catch something falling
+from above. He looks straight up with wide, eager eyes and a little open-mouthed smile. Wings slightly
+lifted. Hands empty, no object in the image, no shadow on the background, no text.
+```
+
+**8 · putto-fang-b-v1.png** (anhängen: `putto-fang-a-v1.png`)
+```
+Edit the attached painting. Keep exactly the same putto, same painting style, same size, same position
+in the frame, same framing and the same plain light grey background. Change only this: he has just
+caught something. Both small hands are pulled in close in front of his chest, cupped together as if
+holding a small cylinder upright, and he looks down at his hands with a proud, delighted grin. Wings
+relaxed. Hands hold nothing visible, no object in the image, no shadow on the background, no text.
+```
