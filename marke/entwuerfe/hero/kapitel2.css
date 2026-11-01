@@ -258,7 +258,8 @@
 /* Ein Putto steht von hinten vor dem Handy und tippt die Antwort (Zwei-Bild-Wechsel je Buchstabe), der
    Entwurf wird zur gesendeten Blase ✓✓; eine zweite Büchse schiesst aus dem Messing-Rohrende hinaus. */
 .k2-pult-putto.da.weg { opacity: 0; transition-duration: .3s; }
-.k2-pult-putto.tipp-bild { opacity: 0; translate: none; transition: opacity .25s var(--ease-ui); }
+.k2-pult-putto.tipp-bild { opacity: 0; translate: none; background: url('bilder/k2b/tippt.webp') 0 0 / 200% 100% no-repeat; transition: opacity .25s var(--ease-ui); }
+.k2-pult-putto.tipp-bild.oben { background-position: 100% 0; }
 .k2-pult-putto.tipp-bild.zeigen { opacity: 1; }
 .k2-sperre > .k2-insel { z-index: 3; }
 .k2-sperre > .k2-antwort {
@@ -300,4 +301,3 @@
 .k2-tastatur i { width: 1.55em; height: 2.2em; border-radius: .3em; background: #fff; box-shadow: 0 .08em 0 rgb(60 40 80 / .25); }
 .k2-tastatur .unten .leer { width: 9em; }
 .k2-tastatur .unten i:not(.leer) { width: 3.2em; background: #C7BDD3; }
-.k2-pult-putto.tipp-bild.tausch { transition: none; }

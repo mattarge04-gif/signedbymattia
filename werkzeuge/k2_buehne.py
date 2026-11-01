@@ -190,6 +190,18 @@ if (R / 'ebenen/putto-tippt-a-v1.png').exists() or (R / 'ebenen/putto-tippt-a-v1
         info['putti'][teil] = {'x': round(FINGER[0] - (1466 - l1) * kt), 'y': round(FINGER[1] - (454 - t1) * kt), 'w': tb, 'h': th}
         ebenen[teil] = ti
     info['finger'] = {'x': FINGER[0], 'y': FINGER[1]}
+    # Sprite: beide Haltungen nebeneinander auf gleich grossem Feld (Mattia 01.11.: Flackern beim Umschalten zweier
+    # Bilder, Chrome malt das unsichtbare nicht vor). Im Code wird nur der Ausschnitt verschoben.
+    if 'tippt-b' in info['putti']:
+        pa_, pb_ = info['putti']['tippt-a'], info['putti']['tippt-b']
+        x0, y0 = min(pa_['x'], pb_['x']), min(pa_['y'], pb_['y'])
+        fw = max(pa_['x'] + pa_['w'], pb_['x'] + pb_['w']) - x0
+        fh = max(pa_['y'] + pa_['h'], pb_['y'] + pb_['h']) - y0
+        sprite = Image.new('RGBA', (fw * 2, fh))
+        sprite.alpha_composite(ebenen['tippt-a'], (pa_['x'] - x0, pa_['y'] - y0))
+        sprite.alpha_composite(ebenen['tippt-b'], (fw + pb_['x'] - x0, pb_['y'] - y0))
+        sprite.save(A / 'tippt.webp', quality=88, method=6)
+        info['tippt'] = {'x': x0, 'y': y0, 'w': fw, 'h': fh}
 
 # Rohrpost-Büchse (gemalt, Mattia 01.11.: echtes Bild statt SVG), Höhe 72 Rahmen-Pixel, Mitte = Bezugspunkt
 if (R / 'ebenen/buechse-v1.png').exists() or (R / 'ebenen/buechse-v1.jpg').exists():

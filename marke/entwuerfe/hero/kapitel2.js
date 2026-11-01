@@ -88,7 +88,15 @@ fetch('bilder/k2b/k2b.json', { cache: 'no-cache' }).then((r) => r.json()).then((
     const wach = j.putti[wachName] ? bildFuer(wachName, j.putti[wachName], 'k2-putto wach-bild', puttiEbene) : null;
     putti.push({ ab: WECKEN[name] ?? 0.1, bilder: wach ? [schlaf, wach] : [schlaf] });
   }
-  for (const n of ['tippt-a', 'tippt-b']) if (j.putti[n]) schreib[n] = bildFuer(n, j.putti[n], 'k2-pult-putto tipp-bild', display.parentElement);
+  // tippender Putto als Sprite (beide Haltungen in einem Bild), umgeschaltet wird nur der Ausschnitt
+  if (j.tippt) {
+    const d = document.createElement('div');
+    d.className = 'k2-pult-putto tipp-bild';
+    lege(d, j.tippt);
+    d.style.aspectRatio = `${j.tippt.w} / ${j.tippt.h}`;
+    display.parentElement.appendChild(d);
+    schreib.tipp = d;
+  }
   schreib.links = pultPutti.find((b) => b.src.endsWith('pult-links.webp'));
   if (j.buechse) Object.entries({ x: -j.buechse.w / 2, y: -j.buechse.h / 2, width: j.buechse.w, height: j.buechse.h }).forEach(([k, v]) => buechse2.setAttribute(k, v));
   for (const n of ['fang-a', 'fang-b']) if (j.putti[`${n}-o1`]) fang[n] = bildFuer(`${n}-o1`, j.putti[`${n}-o1`], 'k2-putto fang-bild', puttiEbene);
@@ -434,8 +442,8 @@ function station3(ps) {
 const ANTWORT = 'Wir kommen morgen um 8 Uhr.';
 const getippt = antwort.querySelector('.getippt');
 let getipptJetzt = -1;
-let tippDa = false;
-let tippAb = 0;
+let tippLetzt = -1;
+let tippZeit = 0;
 function station4(pa) {
   const aktiv = s >= ST.antworten[0];
   // nacheinander statt gleichzeitig (sonst scheinen beide durch): Rahmen-Putto geht, Tipp-Putto kommt; nach dem
@@ -449,16 +457,17 @@ function station4(pa) {
   const gesendet = aktiv && pa >= 0.6;
   display.classList.toggle('tippt', tippt);
   display.classList.toggle('gesendet', gesendet);
-  // Finger: unten (a) bei jedem Buchstaben, oben (b) dazwischen; Senden-Tipp bei 0.58, danach Finger oben
-  const unten = RUHIG ? pa < 0.6 : (pa >= 0.16 && pa < 0.53 ? n % 2 === 1 : pa >= 0.56 && pa < 0.6) || pa < 0.16;
-  // Fingerwechsel sofort (Überblenden machte den Putto kurz durchsichtig), weich nur beim Auf- und Abtreten
-  if (da && !tippDa) tippAb = performance.now();
-  tippDa = da;
-  const tausch = da && performance.now() - tippAb > 320;
-  for (const n of ['tippt-a', 'tippt-b']) schreib[n]?.classList.toggle('tausch', tausch);
-  schreib['tippt-a']?.classList.toggle('zeigen', da && unten);
-  schreib['tippt-b']?.classList.toggle('zeigen', da && !unten);
-  schreib.links?.classList.toggle('weg', !!(schreib['tippt-a'] && linksWeg));
+  // Finger tippt im festen Takt (0.11 s), solange neue Buchstaben kommen; ruht der Scroll, ruht der Finger unten.
+  // Senden-Tipp bei 0.56–0.6. (Pro Buchstabe umschalten flackerte bei schnellem Scrollen.)
+  const jetzt = performance.now();
+  if (n !== tippLetzt) { tippLetzt = n; tippZeit = jetzt; }
+  const tipptGerade = !RUHIG && pa >= 0.16 && pa < 0.53 && jetzt - tippZeit < 160;
+  const oben = tipptGerade ? Math.floor(jetzt / 110) % 2 === 1 : pa >= 0.53 && pa < 0.56;
+  if (schreib.tipp) {
+    schreib.tipp.classList.toggle('zeigen', da);
+    schreib.tipp.classList.toggle('oben', da && oben);
+  }
+  schreib.links?.classList.toggle('weg', !!(schreib.tipp && linksWeg));
   // zweite Büchse: steigt aus dem Rohrende, kurzes Zögern, dann schiesst sie nach oben hinaus (mit Lichtspur)
   const steigt = sanft(teil(pa, [0.68, 0.74]));
   const schuss = teil(pa, [0.75, 0.88]);
