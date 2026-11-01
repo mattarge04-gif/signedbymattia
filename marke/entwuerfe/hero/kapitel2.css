@@ -301,3 +301,32 @@
 .k2-tastatur i { width: 1.55em; height: 2.2em; border-radius: .3em; background: #fff; box-shadow: 0 .08em 0 rgb(60 40 80 / .25); }
 .k2-tastatur .unten .leer { width: 9em; }
 .k2-tastatur .unten i:not(.leer) { width: 3.2em; background: #C7BDD3; }
+
+/* ---------- Station V „Termin steht“ ---------- */
+/* Kalenderbuch klappt auf (Sprite zu · halb · offen, Bild 0 deckt sich mit dem Pult), ein Putto schreibt den
+   Termin mit der Feder (Sprite schreibt · schwingt), die Schrift liegt schräg auf der linken Seite (SVG-Matrix). */
+.k2-buch { position: absolute; background: url('bilder/k2b/buch.webp') 0 0 / 300% 100% no-repeat; pointer-events: none; }
+.k2-buch.halb { background-position: 50% 0; }
+.k2-buch.offen { background-position: 100% 0; }
+.k2-eintrag { pointer-events: none; }
+.k2-eintrag text { font: italic 400 34px var(--font-hand); fill: #3B2E52; letter-spacing: .01em; }
+.k2-eintrag text.klein { font-size: 25px; }
+#k2Haken { fill: none; stroke: #E0679C; stroke-width: 4.5; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 1; stroke-dashoffset: 1; }
+.k2-pult-putto.schreib-bild { opacity: 0; translate: none; background: url('bilder/k2b/schreibt.webp') 0 0 / 200% 100% no-repeat; scale: -1 1; transition: opacity .25s var(--ease-ui); }
+.k2-pult-putto.schreib-bild.schwingt { background-position: 100% 0; }
+.k2-pult-putto.schreib-bild.zeigen { opacity: 1; }
+/* Handy: Kalender-Mitteilung fährt oben über den Chat */
+.k2-banner { position: absolute; z-index: 4; left: .55em; right: .55em; top: 2.9em; margin: 0; padding: .65em .75em; border-radius: 1.2em;
+  display: grid; grid-template-columns: 2.4em 1fr; column-gap: .65em; align-items: center;
+  background: rgb(255 255 255 / .9); box-shadow: 0 .4em 1.4em rgb(28 21 48 / .22); font-family: var(--font-system); color: #1C1530;
+  opacity: 0; translate: 0 -140%; transition: opacity .3s var(--ease-ui), translate .5s var(--ease-pointe); }
+.k2-banner p { margin: 0; grid-column: 2; }
+.k2-banner .kal { grid-row: 1 / span 3; display: grid; place-items: center; width: 2.4em; height: 2.4em; border-radius: .6em; background: #fff;
+  box-shadow: inset 0 0 0 .07em #E6DDEE; font-size: 1em; font-weight: 300; line-height: 1; }
+.k2-banner .kal b { font-size: .42em; font-weight: 700; color: #E0679C; letter-spacing: .04em; }
+.k2-banner .titel { font-size: .62em; font-weight: 600; color: #6E6488; text-transform: uppercase; letter-spacing: .05em; }
+.k2-banner .was { font-size: 1em; font-weight: 650; }
+.k2-banner .wann { font-size: .92em; color: #4A4060; }
+.k2-geraet.termin .k2-banner { opacity: 1; translate: 0 0; }
+.k2-handy .k2-banner { display: none; }
+@media (prefers-reduced-motion: reduce) { .k2-banner, .k2-pult-putto.schreib-bild { transition-duration: .2s; } }

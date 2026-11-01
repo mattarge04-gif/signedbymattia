@@ -6,7 +6,7 @@ import json
 import pathlib
 import sys
 import numpy as np
-from PIL import Image, ImageFilter
+from PIL import Image, ImageChops, ImageDraw, ImageFilter
 from rembg import remove, new_session
 
 R = pathlib.Path('C:/web agency/signedbymattia/marke/assets/k2')
@@ -203,6 +203,64 @@ if (R / 'ebenen/putto-tippt-a-v1.png').exists() or (R / 'ebenen/putto-tippt-a-v1
         sprite.save(A / 'tippt.webp', quality=88, method=6)
         info['tippt'] = {'x': x0, 'y': y0, 'w': fw, 'h': fh}
 
+# Station V (Mattia 01.11.): Kalenderbuch rechts auf dem Pult klappt auf (Sprite zu, halb, offen), ein Putto
+# schreibt mit der Feder den Termin hinein. Halb/offen sind Vertex-Bearbeitungen des Pult-Ausschnitts
+# BUCH_BOX (Original-Pixel); nur der Bereich ums Buch wird weich überlagert, der Rest bleibt das Pult.
+BUCH_BOX = (3200, 250, 5504, 1978)
+if (R / 'ebenen/buch-offen-v1.png').exists():
+    bx0, by0, bx1, _ = frei_box('ebenen/e4-pult-v1')
+    kp = info['pult']['w'] / (bx1 - bx0)
+    cw, ch = BUCH_BOX[2] - BUCH_BOX[0], BUCH_BOX[3] - BUCH_BOX[1]
+    maske = Image.new('L', (cw, ch), 0)
+    ImageDraw.Draw(maske).rounded_rectangle((250, 0, 2050, 1290), 80, fill=255)
+    maske = maske.filter(ImageFilter.GaussianBlur(40))
+    bilder_ = [oeffnen('ebenen/e4-pult-v1').crop(BUCH_BOX)]
+    bilder_ += [oeffnen(f'ebenen/buch-{n}-v1').resize((cw, ch), Image.LANCZOS) for n in ('halb', 'offen')]
+    fw, fh = round(cw * kp), round(ch * kp)
+    sprite = Image.new('RGBA', (fw * 3, fh))
+    # Tischplatte: Maske des ganzen Pults (rembg sieht im Ausschnitt die Platte teils als Hintergrund);
+    # dazu je Bild die eigene Maske für alles, was über die Platte hinausragt (aufgestellter Deckel)
+    a_pult = remove(oeffnen('ebenen/e4-pult-v1'), session=ses, post_process_mask=True).getchannel('A').crop(BUCH_BOX)
+    for n, bi in enumerate(bilder_):
+        # Abstand zum grauen Grund (rembg stanzt Löcher in den hellblauen Deckel)
+        f = np.asarray(bi).astype(np.float32)
+        grund = np.median(f[:120, -400:].reshape(-1, 3), 0)
+        da = np.clip((np.sqrt(((f - grund) ** 2).sum(-1)) - 10) / 14, 0, 1)
+        da = Image.fromarray((da * 255).astype(np.uint8)).filter(ImageFilter.MinFilter(3)).filter(ImageFilter.GaussianBlur(1.2))
+        a = ImageChops.lighter(da, a_pult)
+        bi = bi.convert('RGBA')
+        bi.putalpha(ImageChops.multiply(a, maske))
+        sprite.alpha_composite(bi.resize((fw, fh), Image.LANCZOS), (fw * n, 0))
+    sprite.save(A / 'buch.webp', quality=88, method=6)
+    bx, byy = info['pult']['x'] + (BUCH_BOX[0] - bx0) * kp, info['pult']['y'] + (BUCH_BOX[1] - by0) * kp
+    info['buch'] = {'x': round(bx), 'y': round(byy), 'w': fw, 'h': fh}
+    if '--probe' in sys.argv:
+        ebenen['buch-offen'] = sprite.crop((fw * 2, 0, fw * 3, fh))
+    # linke Seite des offenen Buchs (Ausschnitt-Pixel): oben links, oben am Falz, unten links → Rahmen
+    rp = lambda p: [round(bx + p[0] * kp), round(byy + p[1] * kp)]
+    info['seite'] = {'o': rp((453, 613)), 'r': rp((953, 507)), 'u': rp((800, 1107))}
+    # schreibender Putto (verworfene Station-IV-Bilder): a schreibt, Federspitze im Original bei (1625, 1220);
+    # b schwingt die Feder. Gleich gross wie die Pult-Putti; die Lage folgt im Code der Schrift (Bezug Federspitze).
+    if (R / 'ebenen/putto-schreibt-a-v1.png').exists():
+        l0, t0, r0, b0 = frei_box('ebenen/putto-schreibt-a-v1')
+        ks = 300 / (b0 - t0)
+        teile = {}
+        for teil in ('schreibt-a', 'schreibt-b'):
+            q = f'ebenen/putto-{teil}-v1'
+            si = frei(q)
+            l1, t1, _, _ = frei_box(q)
+            si = si.resize((round(si.width * ks), round(si.height * ks)), Image.LANCZOS)
+            teile[teil] = (si, round((l1 - 1625) * ks), round((t1 - 1220) * ks))  # Lage relativ zur Federspitze
+        x0 = min(v[1] for v in teile.values())
+        y0 = min(v[2] for v in teile.values())
+        sw = max(v[1] + v[0].width for v in teile.values()) - x0
+        sh = max(v[2] + v[0].height for v in teile.values()) - y0
+        sprite = Image.new('RGBA', (sw * 2, sh))
+        for n, (si, dx, dy) in enumerate(teile.values()):
+            sprite.alpha_composite(si, (sw * n + dx - x0, dy - y0))
+        sprite.save(A / 'schreibt.webp', quality=88, method=6)
+        info['schreibt'] = {'dx': x0, 'dy': y0, 'w': sw, 'h': sh}  # Ecke oben links relativ zur Federspitze
+
 # Rohrpost-Büchse (gemalt, Mattia 01.11.: echtes Bild statt SVG), Höhe 72 Rahmen-Pixel, Mitte = Bezugspunkt
 if (R / 'ebenen/buechse-v1.png').exists() or (R / 'ebenen/buechse-v1.jpg').exists():
     bi = frei('ebenen/buechse-v1')
@@ -223,5 +281,7 @@ if '--probe' in sys.argv:
         p.alpha_composite(ebenen[name], (i['x'], i['y']))
     for name in ('pult', 'stuhl'):
         p.alpha_composite(ebenen[name], (info[name]['x'], info[name]['y']))
+        if name == 'pult' and 'buch-offen' in ebenen:
+            p.alpha_composite(ebenen['buch-offen'], (info['buch']['x'], info['buch']['y']))
     p.alpha_composite(voll)
     p.convert('RGB').resize((2000, round(2000 * H / W))).save(sys.argv[sys.argv.index('--probe') + 1], quality=88)

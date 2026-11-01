@@ -266,3 +266,40 @@ light grey background. Change only this: his raised right hand is pulled back a 
 lifted slightly away from the invisible surface between two taps, and his curly head is tilted a little to
 the left as if reading what he just typed. Nothing else in the image, no shadow on the background, no text.
 ```
+
+## Station V „Termin steht“ [F] (gebaut 01.11.2026, Abnahme offen)
+
+- Scroll 0.72–0.84 (`ST.termin`, `station5()` in `marke/entwuerfe/hero/kapitel2.js`).
+- Entscheide Mattia: **Putto mit Feder** trägt ein (die Feder aus dem Tintenfass kommt endlich zum Einsatz);
+  Handy zeigt eine **Mitteilung** (Banner „Kalender · Termin eingetragen · Do 08:00 · Boiler“).
+- Ablauf: Kamera nah aufs Kalenderbuch (Handy links im Bild), rechter Pult-Putto tritt ab, Buch klappt auf
+  (Sprite zu · halb · offen), Putto schreibt **gespiegelt** (mit links, sonst verdeckt er die Schrift) „Do 08:00“ und
+  „Boiler · Meier“ auf die linke Seite (SVG schräg per Matrix, vom Scroll aufgedeckt, Feder folgt), schwingt die Feder,
+  pinker Haken, Banner auf dem Handy, Wanduhr 21:51, Kamera zurück auf die ganze Stube.
+- Bilder über Vertex (`werkzeuge/bild.py`, Bearbeitung des Pult-Ausschnitts `ebenen/k5-buch-ausschnitt.jpg`, 4:3, 2K):
+  `buch-halb-v1`, `buch-offen-v1`. Schreib-Putto: die verworfenen `putto-schreibt-a/b` aus Station IV.
+  `werkzeuge/k2_buehne.py` legt die Bücher nur weich ums Buch über das Pult (Maske Pult + Farbabstand zum Grund,
+  rembg stanzt sonst Löcher in den hellblauen Deckel) → `bilder/k2b/buch.webp`, `schreibt.webp`, `k2b.json`
+  „buch“, „seite“, „schreibt“.
+- [A] Stationssatz V „21:51. Der Termin steht im Kalender. Nachtragen müssen Sie nichts.“ Platzhalter bis Textinterview.
+
+**12 · buch-offen-v1** (Referenz: `k5-buch-ausschnitt.jpg`, Vertex)
+```
+Edit the attached painting. Keep exactly the same painting style, palette, light, framing, camera angle, the same
+marble desk, the same brass cylinder on the left and the same plain light grey background, everything in the same
+position. Change only the book: the same leather book with the pale blue and gold cover now lies OPEN, flat on the desk
+at the same spot, opened in the middle, spine in the middle, both covers resting on the marble. The two cream-ivory
+pages are blank, with only very faint thin ruled lines and a thin lilac silk ribbon bookmark lying across the right
+page. The open book stays within the area of the desk top and does not touch the brass cylinder. No writing, no
+letters, no numbers, no text anywhere.
+```
+
+**13 · buch-halb-v1** (Referenz: `k5-buch-ausschnitt.jpg`, Vertex)
+```
+Edit the attached painting. Keep exactly the same painting style, palette, light, framing, camera angle, the same
+marble desk, the same brass cylinder on the left and the same plain light grey background, everything in the same
+position. Change only the book: the same leather book with the pale blue and gold cover is in the middle of being
+opened. It still lies at the same spot, the stack of pages lies flat, and the front cover with its pale blue and gold
+ornament stands upright, swung open about 90 degrees, so we see its inside lining edge-on and the first cream page is
+visible. Same book size. No writing, no letters, no numbers, no text anywhere.
+```

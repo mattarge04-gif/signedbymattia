@@ -46,3 +46,5 @@ datum,modell,groesse,usd,datei,prompt
 2026-11-01T19:27:35,gemini-nano-banana-2.1,2K,0.14,marke/assets/k2/ebenen/putto-schreibt-b-v1.jpg,"Edit the attached painting. Keep exactly the same putto, same painting style, same size, same position in the frame, sam"
 2026-11-01T19:42:22,gemini-nano-banana-2.1,2K,0.14,marke/assets/k2/ebenen/putto-tippt-a-v1.jpg,"Same putto character, same painting style, palette and light as the attached image: a luminous Tiepolo-like pastel oil p"
 2026-11-01T19:43:05,gemini-nano-banana-2.1,2K,0.14,marke/assets/k2/ebenen/putto-tippt-b-v1.jpg,"Edit the attached painting. Keep exactly the same putto seen from behind, same painting style, same size, same position "
+2026-11-01T20:53:36,gemini-nano-banana-2.1,2K,0.14,marke/assets/k2/ebenen/buch-offen-v1.jpg,"Edit the attached painting. Keep exactly the same painting style, palette, light, framing, camera angle, the same marble"
+2026-11-01T20:54:18,gemini-nano-banana-2.1,2K,0.14,marke/assets/k2/ebenen/buch-halb-v1.jpg,"Edit the attached painting. Keep exactly the same painting style, palette, light, framing, camera angle, the same marble"

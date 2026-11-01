@@ -5,6 +5,7 @@
 // Kerze, Mondstaub, Uhr. Baustein 2: Station I (Handy, schlafende Putti, Eintauchen).
 // Baustein 3: Station II „gelesen“ (Putti wachen auf, Display „Gelesen“, Büchse fährt durchs Rohr).
 // Station III „sortiert“ (Fang-Putto, Schild „Dringend“), Station IV „beantwortet“ (Putto tippt von hinten aufs Display).
+// Station V „Termin steht“ (Kalenderbuch klappt auf, Putto schreibt den Termin mit der Feder).
 const RUHIG = matchMedia('(prefers-reduced-motion: reduce)').matches;
 const MAUS = matchMedia('(hover: hover) and (pointer: fine)').matches;
 const $ = (s) => document.querySelector(s);
@@ -30,7 +31,7 @@ const display = $('#k2Display');
 const handy = $('#k2Handy');
 const meldung = $('#k2Meldung');
 const stationText = $('#k2Station');
-const ST = { auftakt: [0, 0.1], anfrage: [0.1, 0.3], lesen: [0.3, 0.44], sortieren: [0.44, 0.58], antworten: [0.58, 0.72] };
+const ST = { auftakt: [0, 0.1], anfrage: [0.1, 0.3], lesen: [0.3, 0.44], sortieren: [0.44, 0.58], antworten: [0.58, 0.72], termin: [0.72, 0.84] };
 // Station II: wann welcher Putto aufwacht (Anteil der Station); der Schnarcher (oben 3) zuletzt
 const WECKEN = { 'schlaf-o1': 0.06, 'schlaf-u4': 0.12, 'schlaf-u2': 0.18, 'schlaf-o3': 0.26 };
 const rohrWeg = $('#k2RohrWeg');
@@ -97,6 +98,16 @@ fetch('bilder/k2b/k2b.json', { cache: 'no-cache' }).then((r) => r.json()).then((
     display.parentElement.appendChild(d);
     schreib.tipp = d;
   }
+  if (j.schreibt) {
+    const d = document.createElement('div');
+    d.className = 'k2-pult-putto schreib-bild';
+    Object.assign(d.style, { width: `${(j.schreibt.w / W) * 100}%`, aspectRatio: `${j.schreibt.w} / ${j.schreibt.h}`, left: '0', top: '0' });
+    display.parentElement.appendChild(d);
+    schreib.feder = d;
+  }
+  if (j.buch) { lege(buch, j.buch); buch.style.aspectRatio = `${j.buch.w} / ${j.buch.h}`; }
+  if (j.seite) seiteBauen(j.seite);
+  schreib.rechts = pultPutti.find((b) => b.src.endsWith('pult-rechts.webp'));
   schreib.links = pultPutti.find((b) => b.src.endsWith('pult-links.webp'));
   if (j.buechse) Object.entries({ x: -j.buechse.w / 2, y: -j.buechse.h / 2, width: j.buechse.w, height: j.buechse.h }).forEach(([k, v]) => buechse2.setAttribute(k, v));
   for (const n of ['fang-a', 'fang-b']) if (j.putti[`${n}-o1`]) fang[n] = bildFuer(`${n}-o1`, j.putti[`${n}-o1`], 'k2-putto fang-bild', puttiEbene);
@@ -256,9 +267,15 @@ function bild(ms) {
   const ziel3 = station3(ps);
   const pa4 = teil(s, ST.antworten);
   const ziel4 = station4(pa4);
-  schaerfe(pl, ps);
+  const pa5 = teil(s, ST.termin);
+  const ziel5 = station5(pa5, t);
+  schaerfe(pl, ps, pa5);
   let blick;
-  if (ziel4) {
+  if (ziel5) {
+    // Station V: nah aufs Kalenderbuch (Handy links noch im Bild), am Ende die ganze Stube
+    const nah = RUHIG ? 0 : sanft(teil(pa5, [0, 0.16])) * (1 - sanft(teil(pa5, [0.82, 1])));
+    blick = { x: 0.5 + (ziel5.x / W - 0.5) * nah, y: 0.5 + (ziel5.y / H - 0.5) * nah, z: 1 + 1.8 * nah };
+  } else if (ziel4) {
     // Station IV: nah aufs Handy mit dem schreibenden Putto, dann der Büchse nach oben folgen, am Ende die ganze Stube
     const ein = RUHIG ? 0 : sanft(teil(pa4, [0, 0.14]));
     const raus = sanft(teil(pa4, [0.72, 0.88]));
@@ -330,13 +347,14 @@ function bild(ms) {
   else if (s >= ST.lesen[0] && s < ST.lesen[1]) stationZeigen(STATIONEN[pl < 0.44 ? 1 : 2]);
   else if (s >= ST.sortieren[0] && s < ST.sortieren[1] - 0.003) stationZeigen(STATIONEN[3]);
   else if (s >= ST.antworten[0] && s < ST.antworten[1] - 0.003) stationZeigen(STATIONEN[4]);
+  else if (s >= ST.termin[0] && s < ST.termin[1] - 0.003) stationZeigen(STATIONEN[5]);
   else stationZeigen(null);
 
   text.style.opacity = String(1 - glatt(klemm((s - 0.05) / 0.05)));
   welt.parentElement.style.setProperty('--schleier', text.style.opacity);
   text.style.transform = `translateY(${-glatt(klemm((s - 0.05) / 0.05)) * 4}vh)`;
 
-  uhrSetzen(21 * 60 + 47 + glatt(teil(pl, [0.1, 0.5])) + glatt(teil(ps, [0.55, 0.7])) + glatt(teil(pa4, [0.5, 0.62])));
+  uhrSetzen(21 * 60 + 47 + glatt(teil(pl, [0.1, 0.5])) + glatt(teil(ps, [0.55, 0.7])) + glatt(teil(pa4, [0.5, 0.62])) + glatt(teil(pa5, [0.6, 0.68])));
   if (!RUHIG) lebenZeichnen(t);
   if (laeuft) requestAnimationFrame(bild);
 }
@@ -346,10 +364,12 @@ function bild(ms) {
 // Schärfe nach hinten: Regal, Rohr und Uhr scharf, Pult und Stuhl weich. Blur in Welt-Pixeln (wird mitskaliert).
 const SCHAERFE = { hinten: [8, 14, 16], vorne: [24, 34] }; // Ebenen nach data-tiefe
 let letzteSchaerfe = '';
-function schaerfe(pl, ps) {
-  // in Station III bleibt das Regal scharf, beim Zurückziehen auf Fach und Handy wird alles scharf
-  const an = RUHIG ? 0 : sanft(teil(pl, [0.02, 0.2])) * (1 - sanft(teil(ps, [0.58, 0.74])));
-  const zurRohr = sanft(teil(pl, [0.4, 0.58]));
+function schaerfe(pl, ps, pa5) {
+  // in Station III bleibt das Regal scharf, beim Zurückziehen auf Fach und Handy wird alles scharf;
+  // in Station V ist wieder das Pult scharf (Buch und Handy), Regal und Wand weich
+  const v = pa5 > 0;
+  const an = RUHIG ? 0 : v ? sanft(teil(pa5, [0.04, 0.18])) * (1 - sanft(teil(pa5, [0.8, 0.95]))) : sanft(teil(pl, [0.02, 0.2])) * (1 - sanft(teil(ps, [0.58, 0.74])));
+  const zurRohr = v ? 0 : sanft(teil(pl, [0.4, 0.58]));
   const weich = (f) => (f * an > 0.02 ? `blur(${(f * an * 2.6).toFixed(2)}px)` : '');
   const schluessel = `${an.toFixed(3)}|${zurRohr.toFixed(3)}`;
   if (schluessel === letzteSchaerfe) return;
@@ -481,6 +501,84 @@ function station4(pa) {
   return { x: ROHRENDE.x, y: Math.max(500, sy) };
 }
 
+// ---------- Station V „Termin steht“ ----------
+// Das Kalenderbuch rechts auf dem Pult klappt auf (Sprite zu · halb · offen), der rechte Pult-Putto tritt ab, ein
+// Putto schreibt mit der Feder „Do 08:00 · Boiler · Meier“ auf die linke Seite (die Schrift wird vom Scroll
+// aufgedeckt, die Federspitze folgt), schwingt die Feder, pinker Haken; das Handy zeigt „Termin eingetragen“.
+const buch = $('#k2Buch');
+const zeilen = [[$('#k2Text1'), $('#k2Zeile1R'), [0.2, 0.36]], [$('#k2Text2'), $('#k2Zeile2R'), [0.4, 0.57]]];
+const haken = $('#k2Haken');
+let SEITE = null; // Matrix Seite → Rahmen
+let breiten = null;
+function seiteBauen(sb) {
+  const lx = [sb.r[0] - sb.o[0], sb.r[1] - sb.o[1]];
+  const ly = [sb.u[0] - sb.o[0], sb.u[1] - sb.o[1]];
+  const L1 = Math.hypot(...lx);
+  const L2 = Math.hypot(...ly);
+  SEITE = [lx[0] / L1, lx[1] / L1, ly[0] / L2, ly[1] / L2, sb.o[0], sb.o[1]];
+  $('#k2Eintrag').setAttribute('transform', `matrix(${SEITE.join(' ')})`);
+}
+const aufSeite = (x, y) => ({ x: SEITE[0] * x + SEITE[2] * y + SEITE[4], y: SEITE[1] * x + SEITE[3] * y + SEITE[5] });
+let schreibLetzt = -1;
+let schreibZeit = 0;
+function station5(pa, t) {
+  const aktiv = s >= ST.termin[0];
+  buch.classList.toggle('halb', aktiv && pa >= 0.11 && pa < 0.16);
+  buch.classList.toggle('offen', aktiv && pa >= 0.16);
+  // nacheinander: rechter Pult-Putto geht, Schreib-Putto kommt; am Schluss umgekehrt
+  schreib.rechts?.classList.toggle('weg', !!(schreib.feder && aktiv && pa >= 0.04 && pa < 0.84));
+  const da = aktiv && pa >= 0.08 && pa < 0.8;
+  display.classList.toggle('termin', aktiv && pa >= 0.66);
+  if (!SEITE) return aktiv ? { x: 2250, y: 1400 } : null;
+  if (!breiten) {
+    const b = zeilen.map(([el]) => el.getComputedTextLength());
+    if (b.every((x) => x > 0)) breiten = b; // erst wenn die Schrift gesetzt ist
+  }
+  const br = breiten || [130, 170];
+  // Schrift aufdecken, Federspitze am rechten Rand des Aufgedeckten (knapp über der Grundlinie)
+  let spitze = null;
+  let bewegt = 0;
+  zeilen.forEach(([el, rect, ab], n) => {
+    const f = aktiv ? teil(pa, ab) : 0;
+    const x = +el.getAttribute('x');
+    const y = +el.getAttribute('y');
+    rect.setAttribute('x', String(x - 6));
+    rect.setAttribute('y', String(y - 60));
+    rect.setAttribute('width', (f > 0 ? f * (br[n] + 6) + 4 : 0).toFixed(1));
+    if (n === 0 || pa >= ab[0]) spitze = { x: x + f * br[n], y: y - 4 };
+    bewegt += f;
+  });
+  const x1 = +zeilen[0][0].getAttribute('x');
+  const hk = { x: x1 + br[0] + 16, y: 60 };
+  haken.setAttribute('transform', `translate(${hk.x} ${hk.y})`);
+  haken.style.strokeDashoffset = String(1 - (aktiv ? glatt(teil(pa, [0.6, 0.66])) : 0));
+  // zwischen den Zeilen gleitet die Feder im kleinen Bogen an den Anfang der zweiten
+  if (pa > 0.36 && pa < 0.4) {
+    const g = glatt(teil(pa, [0.36, 0.4]));
+    const a = { x: x1 + br[0], y: +zeilen[0][0].getAttribute('y') - 4 };
+    const b = { x: +zeilen[1][0].getAttribute('x'), y: +zeilen[1][0].getAttribute('y') - 4 };
+    spitze = { x: a.x + (b.x - a.x) * g, y: a.y + (b.y - a.y) * g - Math.sin(g * Math.PI) * 14 };
+  }
+  if (pa >= 0.58) spitze = { x: hk.x - 6, y: hk.y - 4 };
+  // Feder zittert im Takt, solange geschrieben wird (zeitbasiert wie beim Tippen, nicht pro Scroll-Schritt)
+  const jetzt = performance.now();
+  if (Math.abs(bewegt - schreibLetzt) > 0.002) { schreibLetzt = bewegt; schreibZeit = jetzt; }
+  const zittert = !RUHIG && jetzt - schreibZeit < 160 && pa > 0.2 && pa < 0.57;
+  const p = aufSeite(spitze.x + (zittert ? Math.sin(t * 38) * 2 : 0), spitze.y + (zittert ? Math.cos(t * 47) * 2.5 : 0));
+  if (schreib.feder && info?.schreibt) {
+    const sb = info.schreibt;
+    // gespiegelt (schreibt mit links): der Körper steht rechts der Feder und verdeckt die Schrift nicht
+    setze(schreib.feder, 'left', `${((p.x - sb.w - sb.dx) / W) * 100}%`);
+    setze(schreib.feder, 'top', `${((p.y + sb.dy) / H) * 100}%`);
+    schreib.feder.classList.toggle('zeigen', da);
+    schreib.feder.classList.toggle('schwingt', da && pa >= 0.6 && pa < 0.74);
+  }
+  if (!aktiv) return null;
+  // Blick: Seitenmitte, etwas nach links, damit das Handy im Goldrahmen im Bild bleibt
+  const mitte = aufSeite(110, 90);
+  return { x: mitte.x - 110, y: mitte.y };
+}
+
 // Messingschilder unter den Trichtern (oben in jedem Fach), Regal-Koordinaten 680 × 893 → Rahmen
 function schilderBauen(rg) {
   const k = rg.w / 680;
@@ -504,6 +602,7 @@ const STATIONEN = [
   { nr: 'II', titel: 'gelesen', satz: 'Per Rohrpost geht die Anfrage weiter zum Sortieren.' },
   { nr: 'III', titel: 'sortiert', satz: 'Tropfender Boiler heisst: dringend. Die Anfrage kommt nach vorne.' },
   { nr: 'IV', titel: 'beantwortet', satz: '21:50. Die Antwort haben Sie vorher festgelegt. Sie geht sofort raus.' },
+  { nr: 'V', titel: 'Termin steht', satz: '21:51. Der Termin steht im Kalender. Nachtragen müssen Sie nichts.' },
 ];
 let stationJetzt;
 let stationUhr = 0;
