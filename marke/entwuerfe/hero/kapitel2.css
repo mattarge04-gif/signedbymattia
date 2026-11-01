@@ -8,7 +8,7 @@
 /* Welt: füllt die Bühne wie cover, Kamera per transform */
 .k2-welt {
   position: absolute; left: 50%; top: 50%; width: max(100vw, 179.1vh); aspect-ratio: 4000 / 2233;
-  translate: -50% -50%; will-change: transform; transform-origin: 0 0;
+  translate: -50% -50%; transform-origin: 0 0; /* kein will-change: sonst rastert Chrome klein und zoomt unscharf hoch (Mattia 01.11.) */
 }
 /* weicher Schleier links, damit der Text auch bei naher Kamera lesbar bleibt */
 .k2-buehne::after {
@@ -17,7 +17,7 @@
   opacity: var(--schleier, 1);
 }
 /* Ebenen (Hero-Methode): jede Ebene deckt den ganzen Rahmen, Tiefe und Kameraflug per transform */
-.k2-ebene { position: absolute; inset: 0; will-change: transform; }
+.k2-ebene { position: absolute; inset: 0; }
 .k2-voll { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
 .k2-teil { position: absolute; display: block; }
 .k2-himmel { position: absolute; display: block; animation: k2-ziehen 70s ease-in-out infinite alternate; }

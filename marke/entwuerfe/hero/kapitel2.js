@@ -163,6 +163,13 @@ function lebenZeichnen(t) {
 }
 
 // ---------- Hauptschleife ----------
+// Stil nur schreiben, wenn er sich ändert (ruhendes Bild = Chrome rastert in voller Auflösung)
+const gesetzt = new WeakMap();
+function setze(el, k, v) {
+  let m = gesetzt.get(el);
+  if (!m) gesetzt.set(el, (m = {}));
+  if (m[k] !== v) { m[k] = v; el.style[k] = v; }
+}
 let s = 0;
 const neigung = { x: 0, y: 0 };
 let maus = { x: 0.5, y: 0.5, da: false };
@@ -191,8 +198,8 @@ function bild(ms) {
   const fy = FOKUS.y * 100;
   for (const e of ebenen) {
     const z = 1 + flug * e.flug * 0.28;
-    e.el.style.transformOrigin = `${fx}% ${fy}%`;
-    e.el.style.transform = `translate(${neigung.x * e.tiefe}px, ${neigung.y * e.tiefe * 0.6}px) scale(${z})`;
+    setze(e.el, 'transformOrigin', `${fx}% ${fy}%`);
+    setze(e.el, 'transform', `translate(${(neigung.x * e.tiefe).toFixed(1)}px, ${(neigung.y * e.tiefe * 0.6).toFixed(1)}px) scale(${z.toFixed(4)})`);
   }
   vorne.style.opacity = '0';   // Vorhang-Auftakt ersetzt durch das Zurückziehen aus dem Handy
 
@@ -233,14 +240,15 @@ function bild(ms) {
   kam.x += (blick.x - kam.x) * f;
   kam.y += (blick.y - kam.y) * f;
   kam.z += (blick.z - kam.z) * f;
+  // einrasten: sonst ändert sich der transform ewig um Bruchteile und Chrome rastert nie scharf nach
+  if (Math.abs(blick.x - kam.x) < 0.0005 && Math.abs(blick.y - kam.y) < 0.0005 && Math.abs(blick.z - kam.z) < 0.001) Object.assign(kam, blick);
   const ww = welt.offsetWidth;
   const wh = welt.offsetHeight;
   const links = (innerWidth - ww) / 2;
   const oben = (innerHeight - wh) / 2;
   const tx = innerWidth / 2 - links - kam.z * kam.x * ww;
   const ty = innerHeight / 2 - oben - kam.z * kam.y * wh;
-  welt.style.transformOrigin = '0 0';
-  welt.style.transform = `translate(${tx}px, ${ty}px) scale(${kam.z})`;
+  setze(welt, 'transform', `translate(${tx.toFixed(1)}px, ${ty.toFixed(1)}px) scale(${kam.z.toFixed(4)})`);
   // Eintauchen: die scharfe Kopie liegt zuerst genau auf dem Handy im Bild und wächst bis zum ganzen Bildschirm
   const ein = RUHIG ? glatt(teil(pa, [0.3, 0.4])) * (1 - glatt(teil(pa, [0.86, 0.95]))) : Math.max(zurueck, sanft(teil(pa, [0.52, 0.66])) * (1 - sanft(teil(pa, [0.72, 0.85]))));
   const sichtbar = RUHIG ? ein > 0.01 : (pa > 0.5 && pa < 0.87) || zurueck > 0.001;
