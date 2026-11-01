@@ -29,7 +29,7 @@ const display = $('#k2Display');
 const handy = $('#k2Handy');
 const meldung = $('#k2Meldung');
 const stationText = $('#k2Station');
-const ST = { auftakt: [0, 0.1], anfrage: [0.1, 0.3], lesen: [0.3, 0.44] };
+const ST = { auftakt: [0, 0.1], anfrage: [0.1, 0.3], lesen: [0.3, 0.44], sortieren: [0.44, 0.58] };
 // Station II: wann welcher Putto aufwacht (Anteil der Station); der Schnarcher (oben 3) zuletzt
 const WECKEN = { 'schlaf-o1': 0.06, 'schlaf-u4': 0.12, 'schlaf-u2': 0.18, 'schlaf-o3': 0.26 };
 const rohrWeg = $('#k2RohrWeg');
@@ -39,6 +39,17 @@ const displayZeit = display.querySelector('.k2-uhrzeit');
 const glut = $('#k2Glut');
 const buechse = $('#k2Buechse');
 const ROHR_LANG = rohrWeg.getTotalLength();
+// Station II fährt bis unter den Trichter (Verteiler), Station III von dort durch das obere Rohr zum Fach „Dringend“
+const bisVerteiler = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+bisVerteiler.setAttribute('d', 'M1818 1150 Q1832 1146 1832 1128 L1832 552 Q1832 532 1812 532 L1778 532');
+const ROHR_II = bisVerteiler.getTotalLength();
+const TRICHTER = { x: 1298, y: 662 }; // Mündung über Fach oben links
+const HAND = { x: 1322, y: 800 }; // Hände des Fang-Puttos (k2b.json „hand“)
+const SCHILDER = [['Dringend', 0], ['Offerte', 1], ['Termin', 2], ['Rückruf', 3], ['Rechnung', 4], ['Frage', 5], ['Später', 6], ['Werbung', 7]];
+const schilder = $('#k2Schilder');
+let dringend = null;
+const fang = {};
+let fangBuechse = null;
 for (const [el, lang] of spuren) el.style.strokeDasharray = `${lang} ${ROHR_LANG + 400}`;
 const START = { x: 1931, y: 1175 }; // Oberkante des Handys im Goldrahmen
 const EINWURF = rohrWeg.getPointAtLength(0);
@@ -72,6 +83,20 @@ fetch('bilder/k2b/k2b.json').then((r) => r.json()).then((j) => {
     const wach = j.putti[wachName] ? bildFuer(wachName, j.putti[wachName], 'k2-putto wach-bild', puttiEbene) : null;
     putti.push({ ab: WECKEN[name] ?? 0.1, bilder: wach ? [schlaf, wach] : [schlaf] });
   }
+  for (const n of ['fang-a', 'fang-b']) if (j.putti[`${n}-o1`]) fang[n] = bildFuer(`${n}-o1`, j.putti[`${n}-o1`], 'k2-putto fang-bild', puttiEbene);
+  fang.wach = puttiEbene.querySelector('img[src$="wach-o1.webp"]');
+  // Station III: gefangene Büchse liegt in der Putti-Ebene (vor dem Putto, ohne screen-Mischung des Rohrs)
+  const fs = document.createElementNS(NS, 'svg');
+  fs.setAttribute('class', 'k2-zeichen');
+  fs.setAttribute('viewBox', `0 0 ${W} ${H}`);
+  fangBuechse = buechse.cloneNode(true);
+  fangBuechse.removeAttribute('id');
+  fangBuechse.setAttribute('class', 'k2-fangbuechse');
+  fs.appendChild(fangBuechse);
+  puttiEbene.appendChild(fs);
+  schilderBauen(j.regal);
+  HAND.x = j.hand?.x ?? HAND.x;
+  HAND.y = j.hand?.y ?? HAND.y;
   const sn = j.putti['schlaf-o3'];
   for (let n = 0; n < 3; n++) {
     const z = document.createElement('span');
@@ -218,14 +243,24 @@ function bild(ms) {
   }
   const pl = teil(s, ST.lesen);
   const rohr = station2(pl);
-  schaerfe(pl);
+  const ps = teil(s, ST.sortieren);
+  const ziel3 = station3(ps);
+  schaerfe(pl, ps);
   let blick;
   if (s < ST.lesen[0]) {
     const nah = RUHIG ? 0 : Math.max(zurueck, sanft(teil(pa, [0.04, 0.46])) * (1 - sanft(teil(pa, [0.86, 1]))));
     blick = { x: 0.5 + (HANDY.x - 0.5) * nah, y: 0.5 + (HANDY.y - 0.5) * nah, z: 1 + 1.5 * nah };
+  } else if (ziel3) {
+    // Station III: nah am Rohr und am Fach, dann zurück auf Fach und Handy, am Ende die ganze Stube
+    const nah = RUHIG ? 0 : 1 - sanft(teil(ps, [0.88, 1]));
+    const zurueckHandy = sanft(teil(ps, [0.58, 0.76]));
+    const zx = ziel3.x / W + (0.42 - ziel3.x / W) * zurueckHandy;
+    const zy = ziel3.y / H + (0.46 - ziel3.y / H) * zurueckHandy;
+    const z = 1 + (1.3 - 0.75 * zurueckHandy) * nah;
+    blick = { x: 0.5 + (zx - 0.5) * nah, y: 0.5 + (zy - 0.5) * nah, z };
   } else {
     // Station II: zuerst Handy und Regal mit den Putti im Blick, dann folgt die Kamera der Büchse im Rohr
-    const nah = RUHIG ? 0 : sanft(teil(pl, [0, 0.22])) * (1 - sanft(teil(pl, [0.88, 1])));
+    const nah = RUHIG ? 0 : sanft(teil(pl, [0, 0.22]));
     const folgen = sanft(teil(pl, [0.42, 0.6]));
     const zielX = 0.44 + (rohr.x / W - 0.44) * folgen;
     const zielY = 0.5 + (rohr.y / H - 0.5) * folgen;
@@ -272,14 +307,15 @@ function bild(ms) {
   welt.style.filter = ein > 0.01 ? `blur(${ein * 6}px)` : '';
   meldung.classList.toggle('da', pa > 0.6 && pa < 0.76);
   if (s > ST.anfrage[0] + 0.004 && s < ST.anfrage[1]) stationZeigen(STATIONEN[0]);
-  else if (s >= ST.lesen[0] && s < ST.lesen[1] - 0.003) stationZeigen(STATIONEN[pl < 0.44 ? 1 : 2]);
+  else if (s >= ST.lesen[0] && s < ST.lesen[1]) stationZeigen(STATIONEN[pl < 0.44 ? 1 : 2]);
+  else if (s >= ST.sortieren[0] && s < ST.sortieren[1] - 0.003) stationZeigen(STATIONEN[3]);
   else stationZeigen(null);
 
   text.style.opacity = String(1 - glatt(klemm((s - 0.05) / 0.05)));
   welt.parentElement.style.setProperty('--schleier', text.style.opacity);
   text.style.transform = `translateY(${-glatt(klemm((s - 0.05) / 0.05)) * 4}vh)`;
 
-  uhrSetzen(21 * 60 + 47 + glatt(teil(pl, [0.1, 0.5])));
+  uhrSetzen(21 * 60 + 47 + glatt(teil(pl, [0.1, 0.5])) + glatt(teil(ps, [0.55, 0.7])));
   if (!RUHIG) lebenZeichnen(t);
   if (laeuft) requestAnimationFrame(bild);
 }
@@ -289,8 +325,9 @@ function bild(ms) {
 // Schärfe nach hinten: Regal, Rohr und Uhr scharf, Pult und Stuhl weich. Blur in Welt-Pixeln (wird mitskaliert).
 const SCHAERFE = { hinten: [8, 14, 16], vorne: [24, 34] }; // Ebenen nach data-tiefe
 let letzteSchaerfe = '';
-function schaerfe(pl) {
-  const an = RUHIG ? 0 : sanft(teil(pl, [0.02, 0.2])) * (1 - sanft(teil(pl, [0.9, 1])));
+function schaerfe(pl, ps) {
+  // in Station III bleibt das Regal scharf, beim Zurückziehen auf Fach und Handy wird alles scharf
+  const an = RUHIG ? 0 : sanft(teil(pl, [0.02, 0.2])) * (1 - sanft(teil(ps, [0.58, 0.74])));
   const zurRohr = sanft(teil(pl, [0.4, 0.58]));
   const weich = (f) => (f * an > 0.02 ? `blur(${(f * an * 2.6).toFixed(2)}px)` : '');
   const schluessel = `${an.toFixed(3)}|${zurRohr.toFixed(3)}`;
@@ -314,8 +351,10 @@ function station2(pl) {
   const aktiv = s >= ST.lesen[0];
   for (const p of putti) for (const b of p.bilder) b.classList.toggle('ist-wach', aktiv && pl >= p.ab || s >= ST.lesen[1]);
   for (const z of zs) z.classList.toggle('weg', s >= ST.lesen[0] + 0.004);
-  display.classList.toggle('gelesen', pl > 0.3 && s < ST.lesen[1] + 0.2);
-  displayZeit.textContent = aktiv ? '21:48' : '21:47';
+  const ps = teil(s, ST.sortieren);
+  display.classList.toggle('gelesen', pl > 0.3 && ps <= 0.6);
+  display.classList.toggle('sortiert', ps > 0.6);
+  displayZeit.textContent = ps > 0.6 ? '21:49' : aktiv ? '21:48' : '21:47';
   for (const b of pultPutti) b.classList.toggle('da', pl > 0.3);
   // Sprung: Büchse aus dem Handy im Bogen zum Einwurf, dort hinein (kleiner werden)
   const sprung = teil(pl, [0.44, 0.54]);
@@ -327,18 +366,74 @@ function station2(pl) {
   buechse.style.opacity = pl > 0.42 && hinein < 1 ? '1' : '0';
   // Fahrt im Rohr: Leuchten und Glanz entlang des Wegs, am Ende hinter der Krone ausblenden
   const fahrt = RUHIG ? (pl > 0.56 ? 1 : 0) : sanft(teil(pl, [0.55, 0.86]));
-  const p = rohrWeg.getPointAtLength(fahrt * ROHR_LANG);
-  const imRohr = pl > 0.54 && fahrt < 1;
+  const p = rohrLicht(fahrt * ROHR_II, pl > 0.54 ? Math.min(1, (pl - 0.54) * 40) : 0);
+  if (pl <= 0.54) return { x: EINWURF.x, y: EINWURF.y };
+  return p;
+}
+
+// Licht im Rohr an der Stelle weg (Länge), Kopf an der Büchse, Schweif dahinter (je Strich eigene Länge)
+function rohrLicht(weg, staerke) {
+  const p = rohrWeg.getPointAtLength(weg);
   glut.setAttribute('cx', p.x);
   glut.setAttribute('cy', p.y);
-  glut.style.opacity = imRohr ? String(Math.min(1, (pl - 0.54) * 40) * (1 - glatt(teil(fahrt, [0.9, 1])))) : '0';
-  // Lichtspur: Kopf an der Büchse, Schweif dahinter (je Strich eigene Länge)
-  for (const [el, lang, staerke] of spuren) {
-    el.style.strokeDashoffset = String(-(fahrt * ROHR_LANG - lang));
-    el.style.opacity = String(+glut.style.opacity * staerke);
+  glut.style.opacity = String(staerke);
+  for (const [el, lang, st] of spuren) {
+    el.style.strokeDashoffset = String(-(weg - lang));
+    el.style.opacity = String(staerke * st);
   }
-  if (pl <= 0.54) return { x: EINWURF.x, y: EINWURF.y };
   return { x: p.x, y: p.y };
+}
+
+// ---------- Station III „sortiert“ ----------
+// Die Büchse fährt vom Verteiler durchs obere Rohr zum Trichter über Fach „Dringend“, fällt heraus, der Putto
+// oben links fängt sie (Zwei-Bild-Wechsel), das Schild „Dringend“ leuchtet, das Handy zeigt „Eingeordnet“.
+// Gibt den Blickpunkt (Rahmen-Pixel) zurück.
+function station3(ps) {
+  const aktiv = s >= ST.sortieren[0];
+  // Putto: wach → Arme hoch → hält die Büchse
+  const arme = aktiv && ps >= 0.12 && ps < 0.47;
+  const haelt = aktiv && ps >= 0.47;
+  fang['fang-a']?.classList.toggle('zeigen', arme);
+  fang['fang-b']?.classList.toggle('zeigen', haelt);
+  fang.wach?.classList.toggle('weg', arme || haelt);
+  dringend?.classList.toggle('an', haelt && ps >= 0.5);
+  if (!aktiv) {
+    if (fangBuechse) fangBuechse.style.opacity = '0';
+    return null;
+  }
+  // Fahrt durchs obere Rohr, am Trichter verlischt das Licht
+  const fahrt = RUHIG ? (ps > 0.05 ? 1 : 0) : sanft(teil(ps, [0, 0.36]));
+  const p = rohrLicht(ROHR_II + fahrt * (ROHR_LANG - ROHR_II), 1 - glatt(teil(ps, [0.34, 0.42])));
+  // Fall aus dem Trichter in die Hände (beschleunigt), dann ruht sie in den Händen
+  const fall = teil(ps, [0.38, 0.47]);
+  const f2 = fall * fall;
+  const bx = TRICHTER.x + (HAND.x - TRICHTER.x) * f2;
+  const by = TRICHTER.y + (HAND.y - TRICHTER.y) * f2;
+  const kipp = haelt ? 0 : 25 * Math.sin(fall * Math.PI);
+  if (fangBuechse) {
+    fangBuechse.setAttribute('transform', `translate(${bx} ${by}) rotate(${kipp}) scale(1.5)`);
+    fangBuechse.style.opacity = ps > 0.38 ? '1' : '0';
+  }
+  buechse.style.opacity = '0';
+  // Blick: folgt dem Licht, dann aufs Fach; danach Fach und Handy zusammen
+  const zumFach = sanft(teil(ps, [0.28, 0.42]));
+  return { x: p.x + (1300 - p.x) * zumFach, y: p.y + (760 - p.y) * zumFach };
+}
+
+// Messingschilder unter den Trichtern (oben in jedem Fach), Regal-Koordinaten 680 × 893 → Rahmen
+function schilderBauen(rg) {
+  const k = rg.w / 680;
+  const mitten = [129, 269, 410, 549];
+  for (const [wort, n] of SCHILDER) {
+    const cx = rg.x + mitten[n % 4] * k;
+    const cy = rg.y + (n < 4 ? 258 : 600) * k;
+    const g = document.createElementNS(NS, 'g');
+    g.setAttribute('class', 'k2-schild');
+    g.setAttribute('transform', `translate(${cx} ${cy})`);
+    g.innerHTML = `<rect x="-46" y="-12" width="92" height="24" rx="5"/><text y="5">${wort}</text>`;
+    schilder.appendChild(g);
+    if (n === 0) dringend = g;
+  }
 }
 
 const STATIONEN = [
@@ -346,6 +441,7 @@ const STATIONEN = [
   { nr: 'I', titel: 'Anfrage kommt an', satz: '21:47. Frau Meier schreibt über die Website. Im Büro ist niemand mehr.' },
   { nr: 'II', titel: 'gelesen', satz: '21:48. Die Helfer lesen sofort mit und erkennen: Boiler, Kriens, eilt.' },
   { nr: 'II', titel: 'gelesen', satz: 'Per Rohrpost geht die Anfrage weiter zum Sortieren.' },
+  { nr: 'III', titel: 'sortiert', satz: 'Tropfender Boiler heisst: dringend. Die Anfrage kommt nach vorne.' },
 ];
 let stationJetzt;
 let stationUhr = 0;

@@ -135,6 +135,25 @@ for name, quelle, fach in PUTTI:
         wi.save(A / f'{name.replace("schlaf", "wach")}.webp', quality=88, method=6)
         info['putti'][name.replace('schlaf', 'wach')] = {'x': x + round(breite / 2 - wb / 2), 'y': y + hoehe - whh, 'w': wb, 'h': whh}
         ebenen[name.replace('schlaf', 'wach')] = wi
+    # Station III: der Putto oben links fängt die Büchse (Bearbeitungen von putto-wach1, gleiches Format)
+    if name == 'schlaf-o1':
+        for teil, quelle_f in (('fang-a', 'ebenen/putto-fang-a-v1'), ('fang-b', 'ebenen/putto-fang-b-v1')):
+            if not ((R / f'{quelle_f}.png').exists() or (R / f'{quelle_f}.jpg').exists()):
+                continue
+            (_, gh), _ = box
+            fi = frei(quelle_f)
+            fl, fo, _, _ = frei_box(quelle_f)
+            _, fh = oeffnen(quelle_f).size
+            kf = k * gh / fh
+            fb, fhh = round(fi.width * kf), round(fi.height * kf)
+            fi = fi.resize((fb, fhh), Image.LANCZOS)
+            fi.save(A / f'{teil}-o1.webp', quality=88, method=6)
+            fx, fy = x + round(breite / 2 - fb / 2), y + hoehe - fhh
+            info['putti'][f'{teil}-o1'] = {'x': fx, 'y': fy, 'w': fb, 'h': fhh}
+            ebenen[f'{teil}-o1'] = fi
+            if teil == 'fang-b':
+                # Hände vor der Brust im Original (1792 × 2400) bei ca. (1093, 1152) [A], nach Augenmass
+                info['hand'] = {'x': round(fx + (1093 - fl) * kf), 'y': round(fy + (1152 - fo) * kf)}
 
 # Station II: zwei Putti am Pult links und rechts vom Handy im Goldrahmen (Display x 1860–2002, Fuss y ≈ 1500)
 PULT_PUTTI = [('pult-links', 'ebenen/putto-pult-links-v1', 1845, 'rechts'), ('pult-rechts', 'ebenen/putto-pult-rechts-v1', 2017, 'links')]
