@@ -341,3 +341,35 @@ Edit the attached painting. Keep exactly the same putto, same painting style, sa
 ```
 Edit the attached painting. Keep exactly the same painting style, palette, framing, camera angle, the same candle, candlestick, table and the same plain light grey background, everything in the same position and size. Change only this: the candle has just been blown out. No flame, no glow. The wick is short, bent and blackened, a tiny dark tip. The wax at the top is slightly melted with a small drip. No smoke, no text.
 ```
+
+## Papier · Plan der Rohrpost-Zentrale [?] (Vorschläge 01.11.2026, Mattia wählt)
+
+Gebaut [F]: Die Grafik steht beim Scrollen kurz still und füllt den Bildschirm (`.k2-plan-bahn` 190vh, sticky), der
+Text darunter kommt erst danach (Commit `f006c0a`). [A] Beim Hereinscrollen steht kurz eine kleine Büchse oben links.
+
+**A · Inhalt (was man versteht)**
+1. Frau Meiers Büchse als roter Faden: pinke Büchse „Boiler tropft“ fährt sichtbar durch, mit Uhrzeiten 21:47–21:51.
+2. Zentrale in vier beschriftete Schritte: Lesen, Sortieren, Antworten, Eintragen (= Stationen aus Kapitel II).
+3. Ausgänge mit echten Beispielen („Antwort: Wir kommen morgen um 8 Uhr“, „Termin: Do 08:00“) statt Schlagworten.
+4. Zeitleiste unten: Mond links, Sonne rechts, „Sie schlafen“; ersetzt den Massstab „0–1 Nacht“.
+5. [?] Weitere Eingänge (WhatsApp, Google-Profil), nur wenn das Angebot sie wirklich abdeckt.
+
+**B · Stil (Hero-Qualität statt Vektorkasten)**
+6. Gemaltes Pergament mit Goldrand als Grund (Vertex), Plan in Tinte darüber.
+7. Echter Kupferstich-Plan: Schraffuren, Kompassrose, Titel-Kartusche von zwei Putti gehalten.
+8. Zentrale = das gemalte Regal aus der Szene (`regal.webp`), klein, statt des flachen Kastens.
+9. Messingrohre mit Glanz, Muffen, Nieten.
+10. Beschriftung von Hand wie ein Architektenplan, Legende in einer Kartusche.
+
+**C · Bewegung, während die Grafik steht**
+11. Plan zeichnet sich am Scroll Strich für Strich wie mit der Feder (GSAP DrawSVG ist eingebunden).
+12. Kamera im Plan: beginnt nah an Frau Meiers Büchse, fährt auf den ganzen Plan hinaus.
+13. Rohrpost lebt: Büchsen fahren dauernd, pink hinein, gold heraus.
+14. Kleine Putti (vorhandene Sprites) an der Zentrale.
+15. Hover auf einen Ausgang zeigt die passende Handy-Mitteilung aus der Szene.
+
+**D · Übergang**
+16. Der Sperrbildschirm wird zum Papier: die drei Meldungen fliegen an ihre Ausgänge im Plan.
+
+**Vorschlag Claude [A]:** 1 + 2 + 6 + 11 + 16 (gleiche Geschichte, gemalt, Übergang wie Kapitel I). Aufwand ca. ein
+Abend, ca. USD 0.30 Vertex. Danach Tarot-Karte II.

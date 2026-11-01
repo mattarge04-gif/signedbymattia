@@ -65,7 +65,7 @@ Budgets und Kostenfreigaben bleiben in `agency-automation-os/projects/lead-engin
 
 ## Aktueller Stand und nächste Schritte
 
-Stand: 01.11.2026 (spät, Station V). Zeitplan: Vault `Zielplan.md`, Aufgabenliste `plan/aufgaben-bis-live.md`. Phase **Fundament**
+Stand: 01.11.2026 (sehr spät, Morgen). Zeitplan: Vault `Zielplan.md`, Aufgabenliste `plan/aufgaben-bis-live.md`. Phase **Fundament**
 (KW 39–42) endete am 18.10.2026. **Livegang neu 17.12.2026** (Entscheid 28.10.).
 
 **Sitzungsabschluss 28.09.:** Claude erreichte am 27.09. um 23:59 das
@@ -512,11 +512,31 @@ Kapitel 1 ist done“).
 - Handy-Banner „Kalender · Termin eingetragen · Do 08:00 · Boiler“, Wanduhr 21:51.
 - [A] Stationssatz V Platzhalter bis Textinterview. [?] `--font-hand` wirkt eher wie kursive Druckschrift als Federschrift.
 - Vertex November USD 1.68 von 8.00. Commits `9169f16`, `eb7128a`. Online auf https://vorschau.signedbymattia.ch.
-- **Beim Wiedereinstieg zuerst:** (1) **„Morgen“** planen (Drehbuch-Tabelle 0.78–0.92 → jetzt ab 0.84: Kerze aus,
+- *(Wiedereinstieg überholt durch 01.11. sehr spät)* (1) **„Morgen“** planen (Drehbuch-Tabelle 0.78–0.92 → jetzt ab 0.84: Kerze aus,
   Morgenlicht, Tür, Pointe Sperrbildschirm 07:00 mit drei erledigten Meldungen, „Sie haben geschlafen. Ihr Betrieb
   nicht.“), Plan mit 1–2 Entscheidfragen zeigen, Bilder über Vertex (Master Morgen = Bearbeitung der Stube, nur Licht).
   (2) Dann Papier/Tarot-Karte II. (3) Caddy `Cache-Control "no-cache"` im eigenen Block (Mattia mit `!`).
   (4) Zeitplan `plan/aufgaben-bis-live.md` prüfen.
+
+**Sitzungsabschluss 01.11. sehr spät [F]:** **„Morgen“ Kapitel II gebaut** (Abnahme offen; Mattia meldete nur den
+doppelten Putto, behoben).
+
+- Entscheide Mattia: Sperrbildschirm zeigt, was passiert ist (Dringend · Antwort · Termin, keine Offerte); Tür mit
+  Schatten + Kaffee-Putto. Scroll 0.84–0.99 (`morgen()` in `kapitel2.js`), Details und Prompts in
+  `website/drehbuch/12-kapitel-2.md` (Abschnitt „Morgen“).
+- Kerze geht aus (eigene Ebene `kerze.webp` über Pult ohne Flamme, Rauch), Uhr dreht bis 07:00, Morgenlicht im Code
+  (`.k2-morgen`, Vars `--kerze`/`--tag`, kein neues Wandbild), Morgenhimmel, Putti schlafen wieder, Kamera schwenkt
+  zur Tür (goldener Spalt, Gestalt), Kaffee-Putto (Sprite) löst Rahmen-Putto ab, Eintauchen in Sperrbildschirm 07:00
+  mit drei Meldungen, Karte „Sie haben geschlafen. · Ihr Betrieb nicht.“ [A] Texte Platzhalter.
+- Fix: Putti-Wechsel hart an derselben Stelle (vorher beide halb durchsichtig). Lehre bestätigt: nie überblenden.
+- Papier: Plan der Rohrpost-Zentrale steht beim Scrollen still und füllt den Bildschirm (`.k2-plan-bahn`).
+- Vertex November USD 2.24 von 8.00. Commits `f897752`, `d08b09b`, `f006c0a`. Online.
+- [A] Datum auf dem Sperrbildschirm blass; Karte überlappt dritte Meldung knapp; kleine Büchse oben links beim
+  Hereinscrollen der Grafik.
+- **Beim Wiedereinstieg zuerst:** (1) Mattia wählt aus den 16 Vorschlägen zur Grafik
+  (`website/drehbuch/12-kapitel-2.md`, Abschnitt „Papier“; Vorschlag Claude 1+2+6+11+16), dann Pergament-Stiltest
+  zeigen, dann bauen. (2) Abnahme „Morgen“ einholen. (3) Danach Tarot-Karte II. (4) Caddy `Cache-Control "no-cache"`
+  im eigenen Block (Mattia mit `!`). (5) Zeitplan `plan/aufgaben-bis-live.md` prüfen.
 
 **Erledigt [F]:**
 
