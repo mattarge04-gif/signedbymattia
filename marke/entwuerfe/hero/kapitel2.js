@@ -436,7 +436,7 @@ const getippt = antwort.querySelector('.getippt');
 let getipptJetzt = -1;
 function station4(pa) {
   const aktiv = s >= ST.antworten[0];
-  const da = aktiv && pa >= 0.08;
+  const da = aktiv && pa >= 0.08 && pa < 0.63; // nach dem Senden tritt er ab, der Rahmen-Putto kommt zurück
   display.classList.toggle('antwort', aktiv && pa > 0.06);
   const n = Math.round(ANTWORT.length * teil(pa, [0.16, 0.52]));
   if (n !== getipptJetzt) { getipptJetzt = n; getippt.textContent = ANTWORT.slice(0, n); }

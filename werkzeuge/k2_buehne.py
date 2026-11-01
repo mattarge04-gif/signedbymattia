@@ -170,11 +170,14 @@ for name, quelle, kante, seite in PULT_PUTTI:
     ebenen[name] = im
 
 # Station IV (Mattia 01.11.): ein Putto steht von hinten vor dem Handy und tippt die Antwort (Zwei-Bild-Wechsel,
-# tippt-b ist eine Bearbeitung von tippt-a). Fingerspitze im Original a bei ca. (1466, 454) [A], landet auf FINGER.
-FINGER = (1935, 1328)
+# tippt-b ist eine Bearbeitung von tippt-a). Fingerspitze im Original a bei ca. (1466, 454) [A].
+# Gleich gross wie die Pult-Putti (Mattia 01.11.: „zu klein“), Füsse auf der Tischplatte vor dem Rahmen; die Höhe
+# des Fingers ergibt sich daraus, die Tastatur im Display richtet sich danach (kapitel2.css .k2-tastatur).
+TIPP_HOEHE, TIPP_FUSS, TIPP_X = 290, 1530, 1925
 if (R / 'ebenen/putto-tippt-a-v1.png').exists() or (R / 'ebenen/putto-tippt-a-v1.jpg').exists():
     l0, t0, r0, b0 = frei_box('ebenen/putto-tippt-a-v1')
-    kt = 225 / (b0 - t0)
+    kt = TIPP_HOEHE / (b0 - t0)
+    FINGER = (TIPP_X, round(TIPP_FUSS - TIPP_HOEHE + (454 - t0) * kt))
     for teil in ('tippt-a', 'tippt-b'):
         q = f'ebenen/putto-{teil}-v1'
         if not ((R / f'{q}.png').exists() or (R / f'{q}.jpg').exists()):

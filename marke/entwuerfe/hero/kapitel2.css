@@ -262,35 +262,37 @@
 .k2-pult-putto.tipp-bild.zeigen { opacity: 1; }
 .k2-sperre > .k2-insel { z-index: 3; }
 .k2-sperre > .k2-antwort {
-  position: absolute; inset: 0; z-index: 2; margin: 0; padding: 3.7em 1.2em 1.4em; display: flex; flex-direction: column; gap: .7em;
+  position: absolute; inset: 0; z-index: 2; margin: 0; padding: 3.3em 1.1em 1.4em; display: flex; flex-direction: column; gap: .55em;
   background: linear-gradient(#FBF7FD, #F3ECF8); font-family: var(--font-system); color: #1C1530;
   opacity: 0; transition: opacity .4s var(--ease-ui);
 }
 .k2-geraet.antwort .k2-antwort { opacity: 1; }
 .k2-antwort p { margin: 0; }
-.k2-antwort .k2-chatkopf { display: flex; align-items: center; justify-content: center; gap: .45em; padding-bottom: .6em; border-bottom: .06em solid rgb(28 21 48 / .1); }
-.k2-antwort .k2-ava { display: grid; place-items: center; width: 2.2em; height: 2.2em; border-radius: 50%; background: linear-gradient(#C9BEDD, #A99BC4); color: #fff; font-size: .9em; font-weight: 600; }
-.k2-antwort .name { font-size: 1.15em; font-weight: 600; }
-.k2-antwort .ihr { align-self: flex-start; max-width: 82%; padding: .45em .7em; border-radius: 1.1em 1.1em 1.1em .3em; background: #E6E0EE; font-size: 1.25em; line-height: 1.22; }
-/* Antwort: zuerst Entwurf (hell, pinker Rand, Cursor), nach dem Senden pink */
-.k2-antwort .blase { position: absolute; right: 1.2em; top: 29.5%; max-width: 78%; min-height: 1.25em; padding: .5em .75em; border-radius: 1.1em 1.1em .3em 1.1em;
-  background: #fff; box-shadow: inset 0 0 0 .1em #E0679C; color: #1C1530; font-size: 1.3em; font-weight: 500; line-height: 1.22;
-  opacity: 0; transition: opacity .25s var(--ease-ui), background .3s var(--ease-ui), color .3s var(--ease-ui), box-shadow .3s var(--ease-ui), scale .4s var(--ease-pointe); transform-origin: 100% 100%; }
-.k2-geraet.tippt .k2-antwort .blase { opacity: 1; }
-.k2-antwort .cursor { display: inline-block; width: .08em; height: 1.05em; margin-left: .05em; vertical-align: -.15em; background: #E0679C; animation: k2-cursor 1s steps(1) infinite; }
+.k2-antwort .k2-chatkopf { display: flex; align-items: center; justify-content: center; gap: .4em; padding-bottom: .45em; border-bottom: .06em solid rgb(28 21 48 / .1); }
+.k2-antwort .k2-ava { display: grid; place-items: center; width: 1.8em; height: 1.8em; border-radius: 50%; background: linear-gradient(#C9BEDD, #A99BC4); color: #fff; font-size: .8em; font-weight: 600; }
+.k2-antwort .name { font-size: 1.05em; font-weight: 600; }
+.k2-antwort .ihr { align-self: flex-start; max-width: 84%; padding: .45em .7em; border-radius: 1.1em 1.1em 1.1em .3em; background: #E6E0EE; font-size: 1.2em; line-height: 1.22; }
+/* Tippen wie bei iMessage: Text entsteht im Eingabefeld direkt über der Tastatur (der Finger des Puttos liegt auf
+   deren oberster Reihe, k2b.json „finger“ ≈ 31 % der Gerätehöhe); nach dem Senden steht er als pinke Blase im Verlauf */
+.k2-antwort .eingabe { position: absolute; left: .7em; right: .7em; top: 24.6%; min-height: 2.1em; padding: .35em .75em; border-radius: 1.2em; background: #fff;
+  box-shadow: inset 0 0 0 .09em #CFC6DA; font-size: 1.05em; line-height: 1.4; white-space: nowrap; overflow: hidden; opacity: 0; transition: opacity .25s var(--ease-ui); }
+.k2-geraet.tippt .k2-antwort .eingabe { opacity: 1; }
+.k2-geraet.gesendet .k2-antwort .eingabe { opacity: 0; }
+.k2-antwort .cursor { display: inline-block; width: .09em; height: 1.1em; margin-left: .05em; vertical-align: -.18em; background: #E0679C; animation: k2-cursor 1s steps(1) infinite; }
 @keyframes k2-cursor { 50% { opacity: 0; } }
-.k2-geraet.gesendet .k2-antwort .blase { opacity: 1; background: #E0679C; color: #fff; box-shadow: 0 0 1.2em rgb(255 140 196 / .55); animation: k2-gesendet .45s var(--ease-pointe); }
-.k2-geraet.gesendet .k2-antwort .cursor { display: none; }
-@keyframes k2-gesendet { 0% { scale: .9; } 60% { scale: 1.05; } 100% { scale: 1; } }
-.k2-antwort .status { position: absolute; right: 1.4em; top: 43%; font-size: 1em; font-weight: 500; color: #6E6488; opacity: 0; transition: opacity .3s var(--ease-ui) .25s; }
+.k2-antwort .blase { position: absolute; right: 1.1em; top: 25.5%; max-width: 78%; padding: .45em .7em; border-radius: 1.1em 1.1em .3em 1.1em; background: #E0679C; color: #fff;
+  font-size: 1.3em; font-weight: 500; line-height: 1.22; box-shadow: 0 0 1.2em rgb(255 140 196 / .55); opacity: 0; scale: .6; transform-origin: 100% 100%;
+  transition: opacity .3s var(--ease-ui), scale .45s var(--ease-pointe); }
+.k2-geraet.gesendet .k2-antwort .blase { opacity: 1; scale: 1; }
+.k2-antwort .status { position: absolute; right: 1.3em; top: 38%; font-size: .95em; font-weight: 500; color: #6E6488; opacity: 0; transition: opacity .3s var(--ease-ui) .25s; }
 .k2-antwort .status b { color: #E0679C; font-weight: 700; }
 .k2-geraet.gesendet .k2-antwort .status { opacity: 1; }
 .k2-handy .k2-antwort { display: none; }
 .k2-raus { pointer-events: none; }
 #k2RausLicht { mix-blend-mode: screen; }
-@media (prefers-reduced-motion: reduce) { .k2-antwort .cursor { animation: none; } .k2-antwort, .k2-antwort .blase, .k2-pult-putto.tipp-bild { transition-duration: .2s; animation: none; } }
+@media (prefers-reduced-motion: reduce) { .k2-antwort .cursor { animation: none; } .k2-antwort, .k2-antwort .blase, .k2-antwort .eingabe, .k2-pult-putto.tipp-bild { transition-duration: .2s; } }
 /* Tastatur: der Finger des Puttos liegt auf der obersten Reihe; nach dem Senden fährt sie hinunter */
-.k2-tastatur { position: absolute; left: 0; right: 0; bottom: 0; top: 50%; padding: .9em .35em 1.6em; display: grid; align-content: start; gap: .7em;
+.k2-tastatur { position: absolute; left: 0; right: 0; bottom: 0; top: 29.6%; padding: .75em .35em 1.6em; display: grid; align-content: start; gap: .75em;
   background: #DDD5E6; translate: 0 100%; transition: translate .4s var(--ease-ui); }
 .k2-geraet.tippt .k2-tastatur { translate: 0 0; }
 .k2-geraet.gesendet .k2-tastatur { translate: 0 100%; }
