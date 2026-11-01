@@ -17,8 +17,10 @@ export function handyAnlegen(buehne) {
   geraet.className = 'k2-geraet k1-iphone';
   geraet.setAttribute('aria-hidden', 'true');
   geraet.innerHTML = '<div class="k2-glas"><div class="k1-display"><span class="k2-insel"></span>'
-    + '<p class="k1-status"><b>10:24</b><span class="k1-akku"><i></i></span></p></div></div>';
+    + '<p class="k1-status"><b>10:24</b><span class="k1-akku"><i></i></span></p>'
+    + '<div class="k2-sperre k1-sperre"><p class="k2-uhrzeit">10:24</p><p class="k2-datum">Mittwoch, 12. November</p></div></div></div>';
   const display = geraet.querySelector('.k1-display');
+  const sperre = geraet.querySelector('.k1-sperre');
 
   // Handy-Seite = Kopie der fertigen Seite mit Burger-Menü und Anruf-Leiste
   const hb = desk.cloneNode(true);
@@ -83,11 +85,18 @@ export function handyAnlegen(buehne) {
     const pw = Math.min((vh * 0.84 * 21) / 41.26, vw * 0.8, 360);
     const h = (pw * 41.26) / 21;
     Object.assign(geraet.style, { fontSize: `${pw / 21}px`, left: `${(vw - pw) / 2}px`, top: `${vh * 0.53 - h / 2}px` });
-    return vh;
+    return { vw, vh, pw };
   }
 
-  function bild(hp) {
-    const vh = lage();
+  // K1-B5 · Übergang zu Kapitel II: das Handy sperrt sich (gesperrt 0–1), dann taucht die Kamera ins
+  // Display, bis es den ganzen Bildschirm füllt (tauch 0–1; Zoom exponentiell = gleichmässiges Tempo)
+  function bild(hp, gesperrt = 0, tauch = 0) {
+    const { vw, vh, pw } = lage();
+    sperre.style.opacity = String(gesperrt);
+    geraet.classList.toggle('gesperrt', gesperrt > 0.5);
+    const em = pw / 21;
+    const voll = Math.max(vw / (18.86 * em), vh / (39.12 * em)) * 1.04;
+    geraet.style.transform = tauch > 0 ? `translateY(${(0.5 - 0.53) * vh * tauch}px) scale(${voll ** tauch})` : '';
     const fliegt = hp > 0 && hp < 1;
     const k = `${innerWidth}x${innerHeight}`;
     if (fliegt && (!flieger || k !== schluessel)) { bauen(); schluessel = k; }

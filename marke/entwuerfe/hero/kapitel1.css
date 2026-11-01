@@ -1,7 +1,7 @@
 /* Kapitel I Website · Trompe-l'œil · Werte aus website/drehbuch/00-grammatik.md */
 .k1 { position: relative; z-index: 2; margin-top: -100vh; }
 @media (prefers-reduced-motion: reduce) { .k1 { margin-top: 0; } }
-.k1-bahn { position: relative; height: 1080vh; }   /* 720vh + 360vh Pause vor dem Handy (kapitel1.js PAUSE_VH) */
+.k1-bahn { position: relative; height: 1240vh; }   /* 720vh + 360vh Pause vor dem Handy (PAUSE_VH) + 160vh Abschluss (ENDE_VH) */
 /* Wolkenflug (wolkenflug.js): fest über allem, nur rund um den Übergang sichtbar */
 .wolkenflug { position: fixed; inset: 0; z-index: 30; pointer-events: none; visibility: hidden; }
 .wolkenflug canvas { width: 100%; height: 100%; display: block; }
@@ -446,11 +446,28 @@
 .k1-karte strong { font-size: 30px; letter-spacing: var(--tracking-headline); margin: 6px 0 10px; }
 .k1-hinweis { grid-column: 1 / -1; color: var(--color-text-muted); font-size: 14px; margin: 0; }
 
+/* K1-B5 · Abschluss auf der Bühne: links „Was Sie bekommen“, rechts die Karte, dazwischen das Handy */
+.k1-inhalt.auf-buehne {
+  position: absolute; inset: 0; z-index: 4; max-width: none; margin: 0; padding: 0 5vw;
+  grid-template-columns: 1fr min(400px, 30vw) 1fr; grid-template-rows: 1fr auto auto 1fr; column-gap: 3vw; row-gap: 20px;
+  opacity: 0; pointer-events: none;
+}
+.k1-inhalt.auf-buehne.da .k1-karte { pointer-events: auto; }
+.auf-buehne h3 { grid-column: 1; grid-row: 2; justify-self: end; width: min(100%, 340px); font-size: clamp(28px, 2.8vw, 46px); }
+.auf-buehne .k1-liste { grid-column: 1; grid-row: 3; justify-self: end; width: min(100%, 340px); font-size: 17px; gap: 14px; }
+.auf-buehne .k1-karte { grid-column: 3; grid-row: 2 / 4; justify-self: start; align-self: center; min-width: 240px; }
+.auf-buehne .k1-hinweis { display: none; }
+/* Sperrbildschirm im K1-Handy (Hero-Himmel wie in Kapitel II), Statusleiste geht darunter */
+.k1-sperre { position: absolute; inset: 0; z-index: 4; padding-top: 8.5em; border-radius: 0; opacity: 0; --licht: 1; }
+.k1-iphone.gesperrt .k1-status { opacity: 0; }
+
 @media (max-width: 720px) {
   .k1-geruest { height: 40vh; left: -10%; }
   .k1-inhalt { grid-template-columns: 1fr; }
   .k1-roller, .k1-wischer { width: 28vw; }
   .k1-muster { bottom: auto; top: 12vh; right: 4vw; font-size: 14px; }
+  .auf-buehne h3, .auf-buehne .k1-liste { display: none; }
+  .auf-buehne .k1-karte { grid-column: 1 / -1; grid-row: 4; justify-self: center; align-self: end; margin-bottom: 4vh; transform: scale(.8); }
 }
 @media (prefers-reduced-motion: reduce) {
   .k1-bahn { height: auto; }

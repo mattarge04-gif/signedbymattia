@@ -173,3 +173,16 @@
 #k2RohrGlanz { opacity: 0; filter: blur(3px) drop-shadow(0 0 10px #FF9DC8); }
 #k2Buechse { opacity: 0; }
 @media (prefers-reduced-motion: reduce) { .k2-putto, .k2-pult-putto, .k2-gelesen { transition-duration: .2s; } }
+
+/* K1-B5 · Zeitraffer im Display zwischen Kapitel I und II (zeitraffer.js) */
+.zr { position: fixed; inset: 0; z-index: 60; overflow: hidden; visibility: hidden; opacity: 0; pointer-events: none; background: #0E0B16; }
+.zr > div { position: absolute; inset: 0; }
+.zr-tag { background: #9FB8E8 url('bilder/himmel.webp') center / cover; }
+.zr > .zr-sonne { inset: auto; left: 50%; top: 0; width: 46vmax; height: 46vmax; border-radius: 50%; opacity: 0;
+  background: radial-gradient(circle, rgb(255 246 214) 0 9%, rgb(255 206 140 / .75) 16%, rgb(255 160 120 / .25) 38%, transparent 68%); mix-blend-mode: screen; }
+.zr-abend { opacity: 0; background: linear-gradient(to bottom, rgb(84 60 140 / .55), rgb(232 120 120 / .45) 55%, rgb(255 178 110 / .7)); mix-blend-mode: multiply; }
+.zr-nacht { opacity: 0; background: #0E0B16 url('bilder/k2b/himmel.webp') center / cover; }
+.zr > .zr-uhr { inset: auto 0 auto 0; top: 26vh; display: grid; justify-items: center; opacity: 0; }
+.zr-zeit { margin: 0; font: 600 clamp(84px, 11vw, 168px)/1 var(--font-system); color: #fff; letter-spacing: -.03em; font-variant-numeric: tabular-nums; text-shadow: 0 4px 30px rgb(40 30 80 / .35); }
+.zr-datum { margin: .6em 0 0; font: 600 clamp(18px, 1.6vw, 26px) var(--font-system); color: rgb(255 255 255 / .92); }
+.zr-dunkel { background: #050308; opacity: 0; }

@@ -37,6 +37,14 @@ const zeigen = zeigenAnlegen(buehne, browser);
 const handy = handyAnlegen(buehne);
 const { knopf: farbKnopf, toast } = handy;
 handy.display.append(zeiger);
+// K1-B5 · Abschluss: Inhalt und Karte stehen auf der Bühne neben dem Handy (statt Papier dazwischen),
+// danach taucht die Kamera ins Handy (Übergang zu Kapitel II, zeitraffer.js)
+const inhalt = $('.k1-inhalt');
+if (!RUHIG) {
+  inhalt.classList.add('auf-buehne');
+  buehne.append(inhalt);
+  $('.k1-panel').hidden = true;
+}
 
 // K1-B3 · Putti wischen: die Seite wird Bahn für Bahn neu gemacht wie eine Tapete.
 // Der Wisch-Putto zieht eine Bahn vor, der Roller-Putto rollt dahinter die neue Seite auf.
@@ -91,15 +99,21 @@ const PAUSE_BEI = 0.68;
 const PAUSE_VH = 3.6;
 let pauseZiel = 0;   // 0–1 innerhalb der Pause
 let pz = 0;
+// Abschluss nach dem Live-Klick: Karte (0–0.36), Handy sperrt sich, Eintauchen (0.5–1). 160vh [A]
+const ENDE_VH = 1.6;
+let endeZiel = 0;
+let ap = 0;
 function fortschritt() {
   const rect = sektion.getBoundingClientRect();
   bahnOben = rect.top;
   const vor = WOLKEN_VH * innerHeight;
   const pause = PAUSE_VH * innerHeight;
-  const lang = rect.height - innerHeight - vor - pause;   // Strecke ohne Pause
+  const ende = ENDE_VH * innerHeight;
+  const lang = rect.height - innerHeight - vor - pause - ende;   // Strecke ohne Pause und Abschluss
   const weg = -rect.top - vor;
   const p = weg < PAUSE_BEI * lang ? weg : Math.max(PAUSE_BEI * lang, weg - pause);
   pauseZiel = klemm((weg - PAUSE_BEI * lang) / pause);
+  endeZiel = klemm((weg - pause - lang) / ende);
   return klemm(p / lang);
 }
 
@@ -110,6 +124,9 @@ function bild() {
   const pzZiel = RUHIG ? 1 : pauseZiel;
   pz += (pzZiel - pz) * (RUHIG ? 1 : PARAMETER.nachziehen);
   if (Math.abs(pzZiel - pz) < 0.0004) pz = pzZiel;
+  const apZiel = RUHIG ? 0 : endeZiel;
+  ap += (apZiel - ap) * (RUHIG ? 1 : PARAMETER.nachziehen);
+  if (Math.abs(apZiel - ap) < 0.0004) ap = apZiel;
   const m = masse();
   buehne.classList.toggle('k1-fliegt', s > 0.05 && s < 0.86);
 
@@ -184,7 +201,12 @@ function bild() {
 
   // K1-B4 · Die Seite lebt: Masse, Notizen von Hand, Bewegungen (zeigen.js)
   zeigen(pz);
-  handy.bild(hp);
+  // K1-B5 · Abschluss: Karte neben dem Handy, Handy sperrt sich, Kamera taucht ins Display
+  const kd = glatt(klemm(ap / 0.1)) * (1 - glatt(klemm((ap - 0.34) / 0.08)));
+  inhalt.style.opacity = String(kd);
+  inhalt.style.translate = `0 ${(1 - kd) * 3}vh`;
+  inhalt.classList.toggle('da', kd > 0.5);
+  handy.bild(hp, glatt(klemm((ap - 0.4) / 0.08)), glatt(klemm((ap - 0.5) / 0.5)));
 
   // Schritt 5 · Live: ein Zeiger klickt „Termin anfragen“, die Anfrage geht raus
   const zp = glatt(klemm((s - 0.84) / 0.05));
@@ -196,7 +218,7 @@ function bild() {
     const sy = handy.display.offsetHeight * 0.95;
     zeiger.style.transform = `translate(${sx + (zx - sx) * zp}px, ${sy + (zy - sy) * zp}px) scale(${s > 0.89 && s < 0.91 ? 0.85 : 1})`;
   }
-  zeiger.style.opacity = String(klemm((s - 0.82) / 0.02));
+  zeiger.style.opacity = String(klemm((s - 0.82) / 0.02) * (1 - klemm((ap - 0.3) / 0.06)));
   farbKnopf.classList.toggle('gedrueckt', s > 0.89 && s < 0.91);
   toast.classList.toggle('da', s > 0.905);
 

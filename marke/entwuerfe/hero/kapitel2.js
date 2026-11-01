@@ -9,7 +9,6 @@ const MAUS = matchMedia('(hover: hover) and (pointer: fine)').matches;
 const $ = (s) => document.querySelector(s);
 const klemm = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
 const glatt = (t) => t * t * (3 - 2 * t);
-const ausEase = (t) => 1 - (1 - t) ** 3;
 const W = 4000;
 const H = 2233;
 
@@ -182,8 +181,10 @@ function bild(ms) {
     neigung.x += ((maus.da ? 0.5 - maus.x : 0) - neigung.x) * 0.05;
     neigung.y += ((maus.da ? 0.5 - maus.y : 0) - neigung.y) * 0.05;
   }
-  // Auftakt: der Vorhang fliegt an der Kamera vorbei, die Kamera fährt in die Stube (wie der Hero-Flug)
-  const flug = RUHIG ? 1 : ausEase(klemm(s / 0.1));
+  // Auftakt (K1-B5): Wir sind noch im Display des Handys (Zeitraffer aus Kapitel I, zeitraffer.js). Die Kamera
+  // zieht aus demselben Handy zurück, jetzt im Goldrahmen auf dem Pult; die Ebenen ziehen dabei verschieden schnell.
+  const zurueck = RUHIG ? 0 : 1 - sanft(teil(s, [0.04, 0.1]));
+  const flug = 1 + 0.5 * zurueck;
   const fx = FOKUS.x * 100;
   const fy = FOKUS.y * 100;
   for (const e of ebenen) {
@@ -191,7 +192,7 @@ function bild(ms) {
     e.el.style.transformOrigin = `${fx}% ${fy}%`;
     e.el.style.transform = `translate(${neigung.x * e.tiefe}px, ${neigung.y * e.tiefe * 0.6}px) scale(${z})`;
   }
-  vorne.style.opacity = String(1 - glatt(klemm((s - 0.06) / 0.05)));
+  vorne.style.opacity = '0';   // Vorhang-Auftakt ersetzt durch das Zurückziehen aus dem Handy
 
   // Station I: das Handy wacht auf, die Kamera fährt heran und taucht ins Display ein (wie Apples Fahrt ins Objektiv)
   const pa = teil(s, ST.anfrage);
@@ -210,7 +211,7 @@ function bild(ms) {
   const rohr = station2(pl);
   let blick;
   if (s < ST.lesen[0]) {
-    const nah = RUHIG ? 0 : sanft(teil(pa, [0.04, 0.46])) * (1 - sanft(teil(pa, [0.86, 1])));
+    const nah = RUHIG ? 0 : Math.max(zurueck, sanft(teil(pa, [0.04, 0.46])) * (1 - sanft(teil(pa, [0.86, 1]))));
     blick = { x: 0.5 + (HANDY.x - 0.5) * nah, y: 0.5 + (HANDY.y - 0.5) * nah, z: 1 + 1.5 * nah };
   } else {
     // Station II: zuerst Handy und Regal mit den Putti im Blick, dann folgt die Kamera der Büchse im Rohr
@@ -238,8 +239,8 @@ function bild(ms) {
   welt.style.transformOrigin = '0 0';
   welt.style.transform = `translate(${tx}px, ${ty}px) scale(${kam.z})`;
   // Eintauchen: die scharfe Kopie liegt zuerst genau auf dem Handy im Bild und wächst bis zum ganzen Bildschirm
-  const ein = RUHIG ? glatt(teil(pa, [0.3, 0.4])) * (1 - glatt(teil(pa, [0.86, 0.95]))) : sanft(teil(pa, [0.52, 0.66])) * (1 - sanft(teil(pa, [0.72, 0.85])));
-  const sichtbar = RUHIG ? ein > 0.01 : pa > 0.5 && pa < 0.87;
+  const ein = RUHIG ? glatt(teil(pa, [0.3, 0.4])) * (1 - glatt(teil(pa, [0.86, 0.95]))) : Math.max(zurueck, sanft(teil(pa, [0.52, 0.66])) * (1 - sanft(teil(pa, [0.72, 0.85]))));
+  const sichtbar = RUHIG ? ein > 0.01 : (pa > 0.5 && pa < 0.87) || zurueck > 0.001;
   if (sichtbar) {
     // gleiches Seitenverhältnis: wächst, bis das Display die ganze Breite füllt; der Bereich mit Uhrzeit
     // und Meldung (ca. 32 % der Höhe) landet in der Bildschirmmitte. Schrift höchstens 24 px (echte Grösse).
