@@ -9,6 +9,8 @@ import numpy as np
 from PIL import Image, ImageChops, ImageDraw, ImageFilter
 from rembg import remove, new_session
 
+sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
+
 R = pathlib.Path('C:/web agency/signedbymattia/marke/assets/k2')
 A = pathlib.Path('C:/web agency/signedbymattia/marke/entwuerfe/hero/bilder/k2b')
 A.mkdir(parents=True, exist_ok=True)
@@ -216,7 +218,7 @@ if (R / 'ebenen/buch-offen-v1.png').exists():
     maske = maske.filter(ImageFilter.GaussianBlur(40))
     bilder_ = [oeffnen('ebenen/e4-pult-v1').crop(BUCH_BOX)]
     bilder_ += [oeffnen(f'ebenen/buch-{n}-v1').resize((cw, ch), Image.LANCZOS) for n in ('halb', 'offen')]
-    fw, fh = round(cw * kp), round(ch * kp)
+    fw, fh = round(cw * kp * 2), round(ch * kp * 2)  # doppelt aufgelöst, die Kamera fährt nah heran
     sprite = Image.new('RGBA', (fw * 3, fh))
     # Tischplatte: Maske des ganzen Pults (rembg sieht im Ausschnitt die Platte teils als Hintergrund);
     # dazu je Bild die eigene Maske für alles, was über die Platte hinausragt (aufgestellter Deckel)
@@ -233,12 +235,30 @@ if (R / 'ebenen/buch-offen-v1.png').exists():
         sprite.alpha_composite(bi.resize((fw, fh), Image.LANCZOS), (fw * n, 0))
     sprite.save(A / 'buch.webp', quality=88, method=6)
     bx, byy = info['pult']['x'] + (BUCH_BOX[0] - bx0) * kp, info['pult']['y'] + (BUCH_BOX[1] - by0) * kp
-    info['buch'] = {'x': round(bx), 'y': round(byy), 'w': fw, 'h': fh}
+    info['buch'] = {'x': round(bx), 'y': round(byy), 'w': round(fw / 2), 'h': round(fh / 2)}
     if '--probe' in sys.argv:
-        ebenen['buch-offen'] = sprite.crop((fw * 2, 0, fw * 3, fh))
+        ebenen['buch-offen'] = sprite.crop((fw * 2, 0, fw * 3, fh)).resize((round(fw / 2), round(fh / 2)), Image.LANCZOS)
     # linke Seite des offenen Buchs (Ausschnitt-Pixel): oben links, oben am Falz, unten links → Rahmen
     rp = lambda p: [round(bx + p[0] * kp), round(byy + p[1] * kp)]
     info['seite'] = {'o': rp((453, 613)), 'r': rp((953, 507)), 'u': rp((800, 1107))}
+    # Schreiblinien (Mattia 01.11.: Schrift exakt auf den gemalten Linien): Linien verfolgen (k2_linien.py), Enden
+    # abschneiden (dort zittert die Spur), glätten (Polynom 3. Grades) und in Seiten-Koordinaten umrechnen
+    from k2_linien import linien_finden
+    sei = info['seite']
+    o_ = np.array(sei['o'], float)
+    ax_ = np.array(sei['r'], float) - o_
+    ay_ = np.array(sei['u'], float) - o_
+    M_ = np.column_stack([ax_ / np.linalg.norm(ax_), ay_ / np.linalg.norm(ay_)])
+    Mi = np.linalg.inv(M_)
+    gefunden = linien_finden(oeffnen('ebenen/buch-offen-v1').convert('L').resize((cw, ch), Image.LANCZOS))
+    info['zeilen'] = []
+    for n in (3, 7):  # Linie für „Do 08:00“ und für „Boiler · Meier“ (vier Linien Abstand)
+        pk = np.array(gefunden[n][6:-8], float)
+        poly = np.polyfit(pk[:, 0], pk[:, 1], 3)
+        xs = np.linspace(pk[0, 0], pk[-1, 0], 40)
+        fr = np.column_stack([bx + xs * kp, byy + np.polyval(poly, xs) * kp])
+        lok = (Mi @ (fr - o_).T).T
+        info['zeilen'].append([[round(x, 1), round(y, 1)] for x, y in lok])
     # schreibender Putto (verworfene Station-IV-Bilder): a schreibt, Federspitze im Original bei (1625, 1220);
     # b schwingt die Feder. Gleich gross wie die Pult-Putti; die Lage folgt im Code der Schrift (Bezug Federspitze).
     if (R / 'ebenen/putto-schreibt-a-v1.png').exists():

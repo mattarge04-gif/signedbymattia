@@ -308,10 +308,12 @@
 .k2-buch { position: absolute; background: url('bilder/k2b/buch.webp') 0 0 / 300% 100% no-repeat; pointer-events: none; }
 .k2-buch.halb { background-position: 50% 0; }
 .k2-buch.offen { background-position: 100% 0; }
-.k2-eintrag { pointer-events: none; }
-.k2-eintrag text { font: italic 400 34px var(--font-hand); fill: #3B2E52; letter-spacing: .01em; }
-.k2-eintrag text.klein { font-size: 25px; }
-#k2Haken { fill: none; stroke: #E0679C; stroke-width: 4.5; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 1; stroke-dashoffset: 1; }
+/* Tinte: auf den gemalten Linien (textPath), mit dem Papier multipliziert, leicht ungleichmässig (Filter k2Tinte) */
+.k2-eintrag { pointer-events: none; mix-blend-mode: multiply; }
+#k2Pfad1, #k2Pfad2 { fill: none; stroke: none; }
+.k2-eintrag text { font: italic 400 21px var(--font-hand); fill: #2E2148; fill-opacity: .9; letter-spacing: .01em; }
+.k2-eintrag text.klein { font-size: 16.5px; }
+#k2Haken { fill: none; stroke: #E0679C; stroke-width: 2.6; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 1; stroke-dashoffset: 1; }
 .k2-pult-putto.schreib-bild { opacity: 0; translate: none; background: url('bilder/k2b/schreibt.webp') 0 0 / 200% 100% no-repeat; scale: -1 1; transition: opacity .25s var(--ease-ui); }
 .k2-pult-putto.schreib-bild.schwingt { background-position: 100% 0; }
 .k2-pult-putto.schreib-bild.zeigen { opacity: 1; }

@@ -106,7 +106,7 @@ fetch('bilder/k2b/k2b.json', { cache: 'no-cache' }).then((r) => r.json()).then((
     schreib.feder = d;
   }
   if (j.buch) { lege(buch, j.buch); buch.style.aspectRatio = `${j.buch.w} / ${j.buch.h}`; }
-  if (j.seite) seiteBauen(j.seite);
+  if (j.seite) seiteBauen(j.seite, j.zeilen);
   schreib.rechts = pultPutti.find((b) => b.src.endsWith('pult-rechts.webp'));
   schreib.links = pultPutti.find((b) => b.src.endsWith('pult-links.webp'));
   if (j.buechse) Object.entries({ x: -j.buechse.w / 2, y: -j.buechse.h / 2, width: j.buechse.w, height: j.buechse.h }).forEach(([k, v]) => buechse2.setAttribute(k, v));
@@ -274,7 +274,9 @@ function bild(ms) {
   if (ziel5) {
     // Station V: nah aufs Kalenderbuch (Handy links noch im Bild), am Ende die ganze Stube
     const nah = RUHIG ? 0 : sanft(teil(pa5, [0, 0.16])) * (1 - sanft(teil(pa5, [0.82, 1])));
-    blick = { x: 0.5 + (ziel5.x / W - 0.5) * nah, y: 0.5 + (ziel5.y / H - 0.5) * nah, z: 1 + 1.8 * nah };
+    // beim Schreiben ganz nah (Schrift auf den feinen Linien), zur Mitteilung auf dem Handy wieder etwas weiter
+    const weiter = glatt(teil(pa5, [0.6, 0.7]));
+    blick = { x: 0.5 + (ziel5.x / W - 0.5) * nah, y: 0.5 + (ziel5.y / H - 0.5) * nah, z: 1 + (2.7 - 0.9 * weiter) * nah };
   } else if (ziel4) {
     // Station IV: nah aufs Handy mit dem schreibenden Putto, dann der Büchse nach oben folgen, am Ende die ganze Stube
     const ein = RUHIG ? 0 : sanft(teil(pa4, [0, 0.14]));
@@ -506,11 +508,14 @@ function station4(pa) {
 // Putto schreibt mit der Feder „Do 08:00 · Boiler · Meier“ auf die linke Seite (die Schrift wird vom Scroll
 // aufgedeckt, die Federspitze folgt), schwingt die Feder, pinker Haken; das Handy zeigt „Termin eingetragen“.
 const buch = $('#k2Buch');
-const zeilen = [[$('#k2Text1'), $('#k2Zeile1R'), [0.2, 0.36]], [$('#k2Text2'), $('#k2Zeile2R'), [0.4, 0.57]]];
+// je Zeile: Text, Aufdeck-Rechteck, Scroll-Abschnitt, Pfad der gemalten Linie (k2b.json „zeilen“, Seiten-Koordinaten)
+const zeilen = [[$('#k2Text1'), $('#k2Zeile1R'), [0.2, 0.36], $('#k2Pfad1')], [$('#k2Text2'), $('#k2Zeile2R'), [0.4, 0.57], $('#k2Pfad2')]];
+const ABSATZ = 10; // startOffset der textPath
 const haken = $('#k2Haken');
 let SEITE = null; // Matrix Seite → Rahmen
 let breiten = null;
-function seiteBauen(sb) {
+function seiteBauen(sb, linien) {
+  if (linien) linien.forEach((pk, n) => zeilen[n][3].setAttribute('d', `M${pk.map((q) => q.join(' ')).join(' L')}`));
   const lx = [sb.r[0] - sb.o[0], sb.r[1] - sb.o[1]];
   const ly = [sb.u[0] - sb.o[0], sb.u[1] - sb.o[1]];
   const L1 = Math.hypot(...lx);
@@ -534,32 +539,36 @@ function station5(pa, t) {
     const b = zeilen.map(([el]) => el.getComputedTextLength());
     if (b.every((x) => x > 0)) breiten = b; // erst wenn die Schrift gesetzt ist
   }
-  const br = breiten || [130, 170];
-  // Schrift aufdecken, Federspitze am rechten Rand des Aufgedeckten (knapp über der Grundlinie)
+  const br = breiten || [80, 100];
+  // Schrift aufdecken (Rechteck bis zur Feder), Federspitze auf der Linie am Ende des Geschriebenen, knapp darüber
   let spitze = null;
   let bewegt = 0;
-  zeilen.forEach(([el, rect, ab], n) => {
+  const aufLinie = (n, lang) => {
+    const q = zeilen[n][3].getPointAtLength(ABSATZ + lang);
+    return { x: q.x, y: q.y - 3 };
+  };
+  zeilen.forEach(([, rect, ab], n) => {
     const f = aktiv ? teil(pa, ab) : 0;
-    const x = +el.getAttribute('x');
-    const y = +el.getAttribute('y');
-    rect.setAttribute('x', String(x - 6));
-    rect.setAttribute('y', String(y - 60));
-    rect.setAttribute('width', (f > 0 ? f * (br[n] + 6) + 4 : 0).toFixed(1));
-    if (n === 0 || pa >= ab[0]) spitze = { x: x + f * br[n], y: y - 4 };
+    const q = aufLinie(n, f * br[n]);
+    rect.setAttribute('x', '-50');
+    rect.setAttribute('y', '-100');
+    rect.setAttribute('height', '400');
+    rect.setAttribute('width', (f > 0 ? q.x + 50 + 2 : 0).toFixed(1));
+    if (n === 0 || pa >= ab[0]) spitze = q;
     bewegt += f;
   });
-  const x1 = +zeilen[0][0].getAttribute('x');
-  const hk = { x: x1 + br[0] + 16, y: 60 };
-  haken.setAttribute('transform', `translate(${hk.x} ${hk.y})`);
+  const e1 = aufLinie(0, br[0] + 7);
+  const hk = { x: e1.x, y: e1.y - 1 };
+  haken.setAttribute('transform', `translate(${hk.x.toFixed(1)} ${hk.y.toFixed(1)})`);
   haken.style.strokeDashoffset = String(1 - (aktiv ? glatt(teil(pa, [0.6, 0.66])) : 0));
   // zwischen den Zeilen gleitet die Feder im kleinen Bogen an den Anfang der zweiten
   if (pa > 0.36 && pa < 0.4) {
     const g = glatt(teil(pa, [0.36, 0.4]));
-    const a = { x: x1 + br[0], y: +zeilen[0][0].getAttribute('y') - 4 };
-    const b = { x: +zeilen[1][0].getAttribute('x'), y: +zeilen[1][0].getAttribute('y') - 4 };
+    const a = aufLinie(0, br[0]);
+    const b = aufLinie(1, 0);
     spitze = { x: a.x + (b.x - a.x) * g, y: a.y + (b.y - a.y) * g - Math.sin(g * Math.PI) * 14 };
   }
-  if (pa >= 0.58) spitze = { x: hk.x - 6, y: hk.y - 4 };
+  if (pa >= 0.58) spitze = { x: hk.x + 4, y: hk.y - 6 };
   // Feder zittert im Takt, solange geschrieben wird (zeitbasiert wie beim Tippen, nicht pro Scroll-Schritt)
   const jetzt = performance.now();
   if (Math.abs(bewegt - schreibLetzt) > 0.002) { schreibLetzt = bewegt; schreibZeit = jetzt; }
@@ -575,8 +584,8 @@ function station5(pa, t) {
   }
   if (!aktiv) return null;
   // Blick: Seitenmitte, etwas nach links, damit das Handy im Goldrahmen im Bild bleibt
-  const mitte = aufSeite(110, 90);
-  return { x: mitte.x - 110, y: mitte.y };
+  const mitte = aufSeite(100, 85);
+  return { x: mitte.x - 30 - 90 * glatt(teil(pa, [0.6, 0.7])), y: mitte.y };
 }
 
 // Messingschilder unter den Trichtern (oben in jedem Fach), Regal-Koordinaten 680 × 893 → Rahmen
