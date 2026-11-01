@@ -65,7 +65,7 @@ Budgets und Kostenfreigaben bleiben in `agency-automation-os/projects/lead-engin
 
 ## Aktueller Stand und nächste Schritte
 
-Stand: 01.11.2026 (spätabends). Zeitplan: Vault `Zielplan.md`, Aufgabenliste `plan/aufgaben-bis-live.md`. Phase **Fundament**
+Stand: 01.11.2026 (nachts). Zeitplan: Vault `Zielplan.md`, Aufgabenliste `plan/aufgaben-bis-live.md`. Phase **Fundament**
 (KW 39–42) endete am 18.10.2026. **Livegang neu 17.12.2026** (Entscheid 28.10.).
 
 **Sitzungsabschluss 28.09.:** Claude erreichte am 27.09. um 23:59 das
@@ -436,10 +436,35 @@ Kapitel 1 ist done“).
 - Stationstexte erklärender, [A] Platzhalter bis Textinterview; Station II hat zwei Sätze (vor/nach der Rohrpost).
 - **Unschärfe in Mattias Chrome** (Commit `ec53165`): kein `will-change` auf `.k2-welt`/`.k2-ebene`, Kamera rastet
   ein, Stil nur bei Änderung (`setze()`). Headless zeigt das Problem nicht. Bilder waren nicht schuld.
-- **Beim Wiedereinstieg zuerst:** (1) **Station III „sortiert“** planen (Büchse gefangen, Fach „Dringend“;
+- *(Wiedereinstieg überholt durch 01.11. nachts)* **Beim Wiedereinstieg zuerst:** (1) **Station III „sortiert“** planen (Büchse gefangen, Fach „Dringend“;
   Drehbuch `website/drehbuch/12-kapitel-2.md`), Plan zeigen, Gemini-Prompts in die Zwischenablage. (2) Caddy
   `Cache-Control "no-cache"` im eigenen Block (Mattia führt mit `!` aus). (3) Zeitplan `plan/aufgaben-bis-live.md`
   prüfen (Kapitel II verschiebt ca. 1 Woche).
+
+**Sitzungsabschluss 01.11. nachts [F]:** **Station III „sortiert“ Kapitel II gebaut und abgenommen** (Mattia: „passt“).
+
+- Plan und Prompts in `website/drehbuch/12-kapitel-2.md` (Abschnitt „Station III“). Scroll 0.44–0.58 (`ST.sortieren`
+  in `kapitel2.js`).
+- Rohrweg verlängert: Station II fährt bis zum Verteiler unter dem Trichter (`ROHR_II`), Station III durchs obere Rohr
+  zum Trichter über Fach oben links; Büchse fällt heraus, Putto fängt sie (Zwei-Bild-Wechsel `fang-a-o1` Arme hoch →
+  `fang-b-o1` hält sie). 8 Messingschilder in SVG (`#k2Schilder` in der Regal-Ebene: Dringend, Offerte, Termin,
+  Rückruf, Rechnung, Frage, Später, Werbung), „Dringend“ leuchtet pink. Handy „Eingeordnet · Dringend“, 21:49
+  (Entscheid Mattia: gleiches Wort wie das Schild). Kamera folgt dem Licht, dann Fach, dann zurück auf Fach + Handy,
+  am Ende ganze Stube. Station II zoomt am Ende nicht mehr hinaus.
+- **Büchse jetzt gemalt** (Mattia: „echtes Bild“): `marke/assets/k2/ebenen/buechse-v1.jpg`, Web
+  `bilder/k2b/buechse.webp`, eigene Ebene `.k2-buechsen` (Tiefe 16, ohne Blur, ohne screen-Mischung), ersetzt die
+  SVG-Büchse in Station II und III.
+- Bilder neu über Vertex (`werkzeuge/bild.py`): putto-fang-a/b, buechse; November USD 0.84 von 8.00. Fang-Putti im
+  Bühnen-Skript `werkzeuge/k2_buehne.py` (Massstab wie wach1, Hände in `k2b.json` „hand“ [A] nach Augenmass).
+- Cache-Befund: Mattias Browser hatte alte `k2b.json` → Putto fehlte. Fix: JSON mit `cache: 'no-cache'`, wacher Putto
+  nur ausgeblendet, wenn Fang-Bilder da sind. Caddy `Cache-Control` weiterhin offen.
+- [A] Stationssatz III Platzhalter bis Textinterview. [A] Büchse in den Händen eher klein, Mattia: passt.
+- Commits `1a962ab`, `392e329`, `02073f5`, `ba18628`. Online auf https://vorschau.signedbymattia.ch.
+- **Beim Wiedereinstieg zuerst:** (1) **Station IV „beantwortet“** planen (Drehbuch Tabelle: Feder schreibt, Büchse
+  zurück, Handy zeigt Antwort „Wir kommen morgen um 8 Uhr.“ ✓✓; Scroll 0.58–0.72 [A]), Plan zeigen, Bilder über
+  Vertex erzeugen (Budget frei) oder Prompts in die Zwischenablage. (2) Caddy `Cache-Control "no-cache"` im eigenen
+  Block (Mattia führt mit `!` aus). (3) Zeitplan `plan/aufgaben-bis-live.md` prüfen (Kapitel II verschiebt ca.
+  1 Woche).
 
 **Erledigt [F]:**
 
