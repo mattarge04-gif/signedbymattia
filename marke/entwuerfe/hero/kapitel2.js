@@ -656,8 +656,13 @@ function morgen(pm) {
   schatten.setAttribute('transform', `translate(${(3440 - 60 * tuer).toFixed(1)} 2233) scale(${(0.9 + 0.2 * tuer).toFixed(3)})`);
   // Kaffee-Putto ersetzt den rechten Rahmen-Putto (nacheinander, nie beide halb)
   if (schreib.kaffee) {
-    if (aktiv && pm >= 0.46) schreib.rechts?.classList.add('weg');
-    schreib.kaffee.classList.toggle('zeigen', aktiv && pm >= 0.48);
+    // harter Wechsel an derselben Stelle ohne Überblenden (Mattia 01.11.: beide Putti halb durchsichtig übereinander)
+    const tausch = aktiv && pm >= 0.47;
+    if (schreib.rechts) {
+      if (tausch) schreib.rechts.classList.add('weg');
+      setze(schreib.rechts, 'transition', aktiv && pm >= 0.4 ? 'none' : '');
+    }
+    schreib.kaffee.classList.toggle('zeigen', tausch);
     schreib.kaffee.classList.toggle('hin', aktiv && pm >= 0.55);
     schreib.dampf.classList.toggle('zeigen', aktiv && pm >= 0.55);
   }
