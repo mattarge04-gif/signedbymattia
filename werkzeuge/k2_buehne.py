@@ -169,6 +169,14 @@ for name, quelle, kante, seite in PULT_PUTTI:
     info['putti'][name] = {'x': x, 'y': 1500 - hoehe, 'w': breite, 'h': hoehe}
     ebenen[name] = im
 
+# Rohrpost-Büchse (gemalt, Mattia 01.11.: echtes Bild statt SVG), Höhe 72 Rahmen-Pixel, Mitte = Bezugspunkt
+if (R / 'ebenen/buechse-v1.png').exists() or (R / 'ebenen/buechse-v1.jpg').exists():
+    bi = frei('ebenen/buechse-v1')
+    bh = 72
+    bw = round(bi.width * bh / bi.height)
+    bi.resize((bw * 3, bh * 3), Image.LANCZOS).save(A / 'buechse.webp', quality=90, method=6)  # 3fach für Nähe
+    info['buechse'] = {'w': bw, 'h': bh}
+
 json.dump(info, open(A / 'k2b.json', 'w'), indent=1)
 print(json.dumps(info))
 

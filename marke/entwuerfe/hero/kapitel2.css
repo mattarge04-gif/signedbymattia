@@ -230,7 +230,8 @@
 .k2-putto.fang-bild { opacity: 0; transition: opacity .3s var(--ease-ui); }
 .k2-putto.fang-bild.zeigen { opacity: 1; }
 .k2-putto.wach-bild.ist-wach.weg { opacity: 0; }
-.k2-fangbuechse { opacity: 0; }
+#k2BuechseBild { opacity: 0; }
+.k2-buechsen { pointer-events: none; }
 /* Messingschilder an den Fächern; „Dringend“ leuchtet pink, wenn die Büchse ankommt */
 .k2-schild rect { fill: #D9BC84; stroke: #8C6A3A; stroke-width: 1.5; transition: fill .4s var(--ease-ui), stroke .4s var(--ease-ui); }
 .k2-schild text { font: italic 600 15px var(--font-hand); fill: #4A3520; text-anchor: middle; letter-spacing: .02em; transition: fill .4s var(--ease-ui); }
