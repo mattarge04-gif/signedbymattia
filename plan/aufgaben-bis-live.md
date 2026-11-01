@@ -30,7 +30,7 @@ Bisheriges Tempo (28.10.): rund ein Teil der Startseite pro Woche Bauzeit (Hero,
 | 5 | Stationen 1–5 bauen | Ich | 4 h |
 | 6 | 4 Veo-Übergänge erzeugen | Du | 45 min |
 | 7 | Übergänge einbauen, Kapitel II abnehmen | Ich, Du | 1 h |
-| 8 | Kapitel I durchscrollen und abnehmen | Du | 10 min |
+| 8 | ~~Kapitel I durchscrollen und abnehmen~~ erledigt 01.11. („Kapitel 1 ist done“) | Du | 10 min |
 | 9 | Hero abnehmen | Du | 10 min |
 | 10 | Pinsel-Bild erzeugen, ich stelle frei und baue als Zeiger ein | Du, Ich | 25 min |
 

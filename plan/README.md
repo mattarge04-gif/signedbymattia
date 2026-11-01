@@ -1,6 +1,6 @@
 # Plan und Stand
 
-Stand: 31.10.2026. **Kurzübersicht für den Wiedereinstieg** (Text statt Grafik, Regel 11 Tokens sparen).
+Stand: 01.11.2026. **Kurzübersicht für den Wiedereinstieg** (Text statt Grafik, Regel 11 Tokens sparen).
 Ausführlich: `aufgaben-bis-live.md` (Wochenplan), `CLAUDE.md` (Sitzungsabschlüsse, „Beim Wiedereinstieg zuerst“).
 
 ## Startseite Desktop (Livegang 17.12.2026)
@@ -9,8 +9,8 @@ Ausführlich: `aufgaben-bis-live.md` (Wochenplan), `CLAUDE.md` (Sitzungsabschlü
 | --- | --- | --- |
 | Hero | gebaut, Mattia „10 von 10“, Abnahme formell offen | – |
 | Wolkenflug | gebaut, „perfekt“ | – |
-| **Kapitel I Website** | **Überarbeitung: K1-B1 Tür, K1-B2 Baukasten-Seite, K1-B3 Putti wischen abgenommen** (31.10. nachts), Plan K1-B1 bis B5 abgenommen | K1-B4 Neue Seite lebt (Showoff mit Hinweisen), dann B5 |
-| Kapitel II Automation | Hero-Methode: Baustein 1 + 2 abgenommen, Station II gebaut | Abnahme Station II, dann Station III |
+| Kapitel I Website | **fertig, abgenommen 01.11.** (K1-B1 bis K1-B5 inkl. Übergang zu Kapitel II, Mattia: „perfekt, Kapitel 1 ist done“) | – |
+| **Kapitel II Automation** | Hero-Methode: Baustein 1 + 2 abgenommen, Station II gebaut; Auftakt neu = Zurückziehen aus dem Handy (01.11.) | **Abnahme Station II, dann Station III „sortiert“** |
 | Kapitel III Sichtbar | Drehbuch grob | nach Kapitel II |
 | Zwischenspiel, Werke, Abschluss | Drehbuch grob | Streichliste: Werke + Zwischenspiel zusammen |
 | Handy-Version | später neu | nach Desktop |

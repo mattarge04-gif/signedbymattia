@@ -65,7 +65,7 @@ Budgets und Kostenfreigaben bleiben in `agency-automation-os/projects/lead-engin
 
 ## Aktueller Stand und nächste Schritte
 
-Stand: 01.11.2026. Zeitplan: Vault `Zielplan.md`, Aufgabenliste `plan/aufgaben-bis-live.md`. Phase **Fundament**
+Stand: 01.11.2026 (abends). Zeitplan: Vault `Zielplan.md`, Aufgabenliste `plan/aufgaben-bis-live.md`. Phase **Fundament**
 (KW 39–42) endete am 18.10.2026. **Livegang neu 17.12.2026** (Entscheid 28.10.).
 
 **Sitzungsabschluss 28.09.:** Claude erreichte am 27.09. um 23:59 das
@@ -406,9 +406,25 @@ Automaten, gemalt in 2.5D** (Commits bis `8ad349c`).
 - [?] Zeiger ist ein Mauspfeil auf dem Handy, evtl. Fingertipp. [A] Beim Überblenden kurz doppelter Titel.
 - Werkzeug: Playwright liegt in `werkzeuge/node_modules` (nicht Repo-Wurzel), Chrome per `executablePath`.
 - Commits: `0e75e8d`, `5af760e`. Online auf https://vorschau.signedbymattia.ch.
-- **Beim Wiedereinstieg zuerst:** (1) **K1-B5 Übergang K1 → K2** planen (heller Tag → Nacht der Schreibstube),
-  Mattia den Plan zeigen. (2) Caddy `Cache-Control "no-cache"` im eigenen Block (Mattia führt mit `!` aus).
-  (3) Abnahme Station II Kapitel II offen. (4) Zeitplan `plan/aufgaben-bis-live.md` prüfen.
+- *(Wiedereinstieg überholt durch 01.11. abends)*
+
+**Sitzungsabschluss 01.11. abends [F]:** **Kapitel I fertig und abgenommen** (Mattia: „der Übergang ist perfekt,
+Kapitel 1 ist done“).
+
+- **K1-B5 Übergang K1 → K2**, Variante A „Handy bleibt“ (Entscheid Mattia): nach dem Live-Klick 160vh Abschluss
+  (`ENDE_VH` in `kapitel1.js`, Bahn 1240vh): „Was Sie bekommen“ und Karte I stehen auf der Bühne neben dem Handy
+  (`.k1-inhalt.auf-buehne`, Papier-Panel entfällt), Handy sperrt sich (Hero-Himmel, 10:24), Kamera taucht ins Display
+  (`handy.js`). Neu `zeitraffer.js`: Vollbild-Display, Uhr 10:24 → 21:47, Sonne sinkt, Abendglühen, Nachthimmel
+  aus K2, Display geht aus. Kapitel II zieht aus demselben Handy im Goldrahmen zurück (Auftakt s 0.04–0.1,
+  Vorhang-Auftakt entfällt, `kapitel2.js`). Ohne Konsolenfehler vor- und rückwärts.
+- Werkzeug neu: `werkzeuge/standbild.cjs` (Standbilder an Scroll-Stellen, Chrome per `executablePath`).
+- [?] Toast K1 „Wir rufen Sie heute noch zurück“ passt zeitlich nicht ganz zur Anfrage 21:47 in K2 (Textinterview).
+- Commit `05c6c81`. Online auf https://vorschau.signedbymattia.ch.
+- **Beim Wiedereinstieg zuerst:** (1) **Abnahme Station II Kapitel II** (Mattia scrollt, Strg+F5); offene Befunde:
+  Putto oben links wach kaum anders, Putto mit offenen Flügeln ragt übers Fach. (2) Dann **Station III „sortiert“**
+  planen (Büchse gefangen, Fach „Dringend“), Plan zeigen, Prompts in die Zwischenablage. (3) Caddy
+  `Cache-Control "no-cache"` im eigenen Block (Mattia führt mit `!` aus). (4) Zeitplan `plan/aufgaben-bis-live.md`
+  prüfen (Kapitel II verschiebt ca. 1 Woche).
 
 **Erledigt [F]:**
 
