@@ -215,17 +215,18 @@ relaxed. Hands hold nothing visible, no object in the image, no shadow on the ba
 ## Station IV „beantwortet“ [F] (Plan abgenommen, Mattia 01.11.2026)
 
 - Scroll 0.58–0.72 [A]. Kamera fährt vom Fach „Dringend“ hinunter zum Pult, Schärfe zieht nach vorne.
-- **Putto schreibt** (Entscheid Mattia): Der Putto links vom Goldrahmen (`pult-links`) wechselt zu
-  `putto-schreibt-a` (Feder auf dem Papier) → `putto-schreibt-b` (Feder hoch, Schnörkel, stolz). Die Feder ist
-  im Bild gemalt. Ein kleines Papier liegt auf dem Pult (Code), die Tinte schreibt per DrawSVG
-  „Wir kommen morgen um 8 Uhr.“
+- **Putto tippt von hinten** (Mattia 01.11., ersetzt „Putto schreibt mit Feder“): Der linke Pult-Putto tritt ab,
+  ein Putto steht mit dem Rücken zu uns vor dem Handy und tippt auf der Tastatur im Display (`putto-tippt-a` Finger
+  unten ↔ `putto-tippt-b` Finger oben, Wechsel je Buchstabe). Die Antwort entsteht Buchstabe für Buchstabe im
+  Entwurf, beim Senden wird die Blase pink, Tastatur fährt weg. Bilder `putto-schreibt-a/b` verworfen.
 - **Neue Büchse am Pult** (Entscheid Mattia): Das Papier rollt sich ein, fährt in eine zweite gemalte Büchse
   (`buechse.webp`), die springt ins Messing-Rohrende rechts vom Handy; Licht schiesst das Rohr hinaus.
   Die erste Büchse bleibt beim Fang-Putto im Fach.
-- Handy: drei Tipp-Punkte → Antwort-Blase „Wir kommen morgen um 8 Uhr.“ mit ✓✓ „Antwort gesendet“, Uhr 21:50.
+- Handy: Chat mit Frau Meier („Boiler tropft. Morgen möglich?“) → getippte Antwort „Wir kommen morgen um 8 Uhr.“ →
+  pink, „Gesendet ✓✓ · 21:50“.
 - Text unten links: IV · beantwortet · „Die Antwort legen Sie vorher fest. Sie geht sofort raus.“ [A]
 
-**9 · putto-schreibt-a-v1** (Referenz: `putto-pult-links-v1.jpg`, Vertex)
+**9 · putto-schreibt-a-v1** (verworfen) (Referenz: `putto-pult-links-v1.jpg`, Vertex)
 ```
 Edit the attached painting. Keep exactly the same putto, same painting style, same size, same position
 in the frame, same framing and the same plain light grey background. Change only this: he stands and leans
@@ -236,11 +237,32 @@ concentration, tongue slightly out. No table, no paper, no other object, no shad
 no text.
 ```
 
-**10 · putto-schreibt-b-v1** (Referenz: `putto-schreibt-a-v1`, Vertex)
+**10 · putto-schreibt-b-v1** (verworfen) (Referenz: `putto-schreibt-a-v1`, Vertex)
 ```
 Edit the attached painting. Keep exactly the same putto, same painting style, same size, same position
 in the frame, same framing and the same plain light grey background. Change only this: he has just
 finished writing. He lifts the same white-lilac feather quill high with a proud flourish, his left hand
 still resting on the invisible sheet, and smiles contentedly, looking down at what he wrote. No table, no
 paper, no other object, no shadow on the background, no text.
+```
+
+**11 · putto-tippt-a-v1** (Referenz: `putto-pult-links-v1.jpg`, Vertex)
+```
+Same putto character, same painting style, palette and light as the attached image: a luminous Tiepolo-like
+pastel oil painting, soft, never brown or murky. The same small chubby Baroque putto with blond curls, lilac
+wings and the pale blue-lilac drape, but now seen strictly FROM BEHIND: we see the back of his curly head,
+his back between the two small lilac wings, the drape around his hips, his bare legs and the soles of his
+feet. He stands on tiptoe, slightly turned to the right, and stretches his right arm up and forward,
+index finger extended, tapping on a flat vertical surface just in front of him at the height of his raised
+hand, like typing on a big phone screen. His left hand rests on his hip. Full body, nothing in front of
+him, no screen, no object, plain light grey background, no shadow, no text. Portrait format 3:4.
+```
+
+**12 · putto-tippt-b-v1** (Referenz: `putto-tippt-a-v1`, Vertex)
+```
+Edit the attached painting. Keep exactly the same putto seen from behind, same painting style, same size,
+same position in the frame, same framing, same legs and feet, same wings, same drape and the same plain
+light grey background. Change only this: his raised right hand is pulled back a little, the index finger
+lifted slightly away from the invisible surface between two taps, and his curly head is tilted a little to
+the left as if reading what he just typed. Nothing else in the image, no shadow on the background, no text.
 ```

@@ -4,7 +4,7 @@
 // Anteil am Kameraflug; der Vorhang fliegt im Auftakt an der Kamera vorbei. Lebt: Sterne, ziehender Himmel,
 // Kerze, Mondstaub, Uhr. Baustein 2: Station I (Handy, schlafende Putti, Eintauchen).
 // Baustein 3: Station II „gelesen“ (Putti wachen auf, Display „Gelesen“, Büchse fährt durchs Rohr).
-// Station III „sortiert“ (Fang-Putto, Schild „Dringend“), Station IV „beantwortet“ (Putto schreibt aufs Display).
+// Station III „sortiert“ (Fang-Putto, Schild „Dringend“), Station IV „beantwortet“ (Putto tippt von hinten aufs Display).
 const RUHIG = matchMedia('(prefers-reduced-motion: reduce)').matches;
 const MAUS = matchMedia('(hover: hover) and (pointer: fine)').matches;
 const $ = (s) => document.querySelector(s);
@@ -88,7 +88,7 @@ fetch('bilder/k2b/k2b.json', { cache: 'no-cache' }).then((r) => r.json()).then((
     const wach = j.putti[wachName] ? bildFuer(wachName, j.putti[wachName], 'k2-putto wach-bild', puttiEbene) : null;
     putti.push({ ab: WECKEN[name] ?? 0.1, bilder: wach ? [schlaf, wach] : [schlaf] });
   }
-  for (const n of ['schreibt-a', 'schreibt-b']) if (j.putti[n]) schreib[n] = bildFuer(n, j.putti[n], 'k2-pult-putto schreib-bild', display.parentElement);
+  for (const n of ['tippt-a', 'tippt-b']) if (j.putti[n]) schreib[n] = bildFuer(n, j.putti[n], 'k2-pult-putto tipp-bild', display.parentElement);
   schreib.links = pultPutti.find((b) => b.src.endsWith('pult-links.webp'));
   if (j.buechse) Object.entries({ x: -j.buechse.w / 2, y: -j.buechse.h / 2, width: j.buechse.w, height: j.buechse.h }).forEach(([k, v]) => buechse2.setAttribute(k, v));
   for (const n of ['fang-a', 'fang-b']) if (j.putti[`${n}-o1`]) fang[n] = bildFuer(`${n}-o1`, j.putti[`${n}-o1`], 'k2-putto fang-bild', puttiEbene);
@@ -428,28 +428,27 @@ function station3(ps) {
 }
 
 // ---------- Station IV „beantwortet“ ----------
-// Der linke Pult-Putto nimmt die Feder und schreibt direkt aufs Display (Entscheid Mattia 01.11.): Zeile für
-// Zeile Tinte, dann Feder hoch, die Tinte wird zur gesendeten Antwort-Blase ✓✓. Danach steigt eine zweite
-// Büchse aus dem Messing-Rohrende und schiesst nach oben hinaus zum Kunden. Gibt den Blickpunkt zurück.
+// Ein Putto steht von hinten vor dem Handy und tippt die Antwort (Entscheid Mattia 01.11.): Buchstabe für
+// Buchstabe vom Scroll, bei jedem Buchstaben wechselt der Finger (Zwei-Bild). Dann tippt er „Senden“, die Blase
+// wird pink ✓✓. Danach steigt eine zweite Büchse aus dem Messing-Rohrende und schiesst nach oben hinaus.
+const ANTWORT = 'Wir kommen morgen um 8 Uhr.';
+const getippt = antwort.querySelector('.getippt');
+let getipptJetzt = -1;
 function station4(pa) {
   const aktiv = s >= ST.antworten[0];
-  const schreibt = aktiv && pa >= 0.1 && pa < 0.58;
-  const fertig = aktiv && pa >= 0.58;
-  schreib['schreibt-a']?.classList.toggle('zeigen', schreibt);
-  schreib['schreibt-b']?.classList.toggle('zeigen', fertig);
-  schreib.links?.classList.toggle('weg', !!(schreib['schreibt-a'] && (schreibt || fertig)));
+  const da = aktiv && pa >= 0.08;
   display.classList.toggle('antwort', aktiv && pa > 0.06);
-  // Tinte: Zeile 1 und 2 vom Scroll, die Hand (der ganze Putto) wippt und rückt mit
-  const z1 = teil(pa, [0.14, 0.34]);
-  const z2 = teil(pa, [0.36, 0.56]);
-  antwort.style.setProperty('--z1', z1.toFixed(3));
-  antwort.style.setProperty('--z2', z2.toFixed(3));
-  const zug = pa < 0.35 ? z1 : z2;
-  const wipp = schreibt && !RUHIG && pa > 0.14 ? Math.sin(pa * 260) * 1.6 : 0;
-  if (schreib['schreibt-a']) setze(schreib['schreibt-a'], 'transform', `translateX(${(schreibt ? zug * 7 : 0).toFixed(2)}%) rotate(${wipp.toFixed(2)}deg)`);
-  display.classList.toggle('tinte-weg', aktiv && pa >= 0.6);
-  display.classList.toggle('tippt', aktiv && pa >= 0.6 && pa < 0.66);
-  display.classList.toggle('gesendet', aktiv && pa >= 0.66);
+  const n = Math.round(ANTWORT.length * teil(pa, [0.16, 0.52]));
+  if (n !== getipptJetzt) { getipptJetzt = n; getippt.textContent = ANTWORT.slice(0, n); }
+  const tippt = aktiv && pa >= 0.14;
+  const gesendet = aktiv && pa >= 0.6;
+  display.classList.toggle('tippt', tippt);
+  display.classList.toggle('gesendet', gesendet);
+  // Finger: unten (a) bei jedem Buchstaben, oben (b) dazwischen; Senden-Tipp bei 0.58, danach Finger oben
+  const unten = RUHIG ? pa < 0.6 : (pa >= 0.16 && pa < 0.53 ? n % 2 === 1 : pa >= 0.56 && pa < 0.6) || pa < 0.16;
+  schreib['tippt-a']?.classList.toggle('zeigen', da && unten);
+  schreib['tippt-b']?.classList.toggle('zeigen', da && !unten);
+  schreib.links?.classList.toggle('weg', !!(schreib['tippt-a'] && da));
   // zweite Büchse: steigt aus dem Rohrende, kurzes Zögern, dann schiesst sie nach oben hinaus (mit Lichtspur)
   const steigt = sanft(teil(pa, [0.68, 0.74]));
   const schuss = teil(pa, [0.75, 0.88]);
