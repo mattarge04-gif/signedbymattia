@@ -65,7 +65,7 @@ Budgets und Kostenfreigaben bleiben in `agency-automation-os/projects/lead-engin
 
 ## Aktueller Stand und nächste Schritte
 
-Stand: 01.11.2026 (nachts). Zeitplan: Vault `Zielplan.md`, Aufgabenliste `plan/aufgaben-bis-live.md`. Phase **Fundament**
+Stand: 01.11.2026 (spätnachts). Zeitplan: Vault `Zielplan.md`, Aufgabenliste `plan/aufgaben-bis-live.md`. Phase **Fundament**
 (KW 39–42) endete am 18.10.2026. **Livegang neu 17.12.2026** (Entscheid 28.10.).
 
 **Sitzungsabschluss 28.09.:** Claude erreichte am 27.09. um 23:59 das
@@ -460,11 +460,41 @@ Kapitel 1 ist done“).
   nur ausgeblendet, wenn Fang-Bilder da sind. Caddy `Cache-Control` weiterhin offen.
 - [A] Stationssatz III Platzhalter bis Textinterview. [A] Büchse in den Händen eher klein, Mattia: passt.
 - Commits `1a962ab`, `392e329`, `02073f5`, `ba18628`. Online auf https://vorschau.signedbymattia.ch.
-- **Beim Wiedereinstieg zuerst:** (1) **Station IV „beantwortet“** planen (Drehbuch Tabelle: Feder schreibt, Büchse
+- *(Wiedereinstieg überholt durch 01.11. spätnachts)* **Beim Wiedereinstieg zuerst:** (1) **Station IV „beantwortet“** planen (Drehbuch Tabelle: Feder schreibt, Büchse
   zurück, Handy zeigt Antwort „Wir kommen morgen um 8 Uhr.“ ✓✓; Scroll 0.58–0.72 [A]), Plan zeigen, Bilder über
   Vertex erzeugen (Budget frei) oder Prompts in die Zwischenablage. (2) Caddy `Cache-Control "no-cache"` im eigenen
   Block (Mattia führt mit `!` aus). (3) Zeitplan `plan/aufgaben-bis-live.md` prüfen (Kapitel II verschiebt ca.
   1 Woche).
+
+**Sitzungsabschluss 01.11. spätnachts [F]:** **Station IV „beantwortet“ Kapitel II gebaut und abgenommen** (Mattia: „top weiter“).
+
+- Plan, Entscheide und Prompts in `website/drehbuch/12-kapitel-2.md` (Abschnitt „Station IV“). Scroll 0.58–0.72
+  (`ST.antworten`, `station4()` in `marke/entwuerfe/hero/kapitel2.js`).
+- Ablauf: Kamera nah aufs Handy; Display wird Chat mit Frau Meier („Boiler tropft. Morgen möglich?“); ein **Putto von
+  hinten** (Entscheid Mattia, ersetzt „Putto schreibt mit Feder“) steht vor dem Handy, tippt auf der Tastatur im
+  Display, Antwort „Wir kommen morgen um 8 Uhr.“ entsteht Buchstabe für Buchstabe im Eingabefeld; Senden → pinke
+  Blase, „Gesendet ✓✓ · 21:50“, Tastatur fährt weg, Wanduhr 21:50; Putto tritt ab, Rahmen-Putto kommt zurück
+  (nacheinander, nie zwei halb durchsichtig). Zweite gemalte Büchse steigt aus dem Messing-Rohrende rechts vom Handy
+  (Mündung Rahmen-Pixel 2157/1232) und schiesst mit Lichtspur nach oben hinaus (Entscheid Mattia: neue Büchse, erste
+  bleibt beim Fang-Putto); Kamera folgt, am Ende ganze Stube.
+- Bilder über Vertex: `putto-tippt-a/b` (Rückenansicht, b ist Bearbeitung von a), verworfen `putto-schreibt-a/b`.
+  November USD 1.40 von 8.00. Im Bühnen-Skript `werkzeuge/k2_buehne.py`: gleich gross wie die Pult-Putti (290 px,
+  Mattia: „zu klein“), Füsse 1530, Finger ergibt sich daraus (≈ 31 % der Gerätehöhe), Tastatur im Display danach
+  ausgerichtet; **Sprite** `bilder/k2b/tippt.webp` (beide Haltungen nebeneinander, `k2b.json` „tippt“).
+- **Lehre Flackern [F]:** Zwei-Bild-Wechsel per Opacity-Umschalten zweier `<img>` flackerte bei Mattia (Putto kurz
+  durchsichtig): Überblenden macht beide halb durchsichtig, und Chrome malt unsichtbare Bilder oft nicht vor. Lösung:
+  Sprite in einem Element, nur `background-position` umschalten; schnelle Wechsel zeitbasiert im Takt (0.11 s) statt
+  pro Scroll-Schritt. Headless zeigt das Problem nicht.
+- Fix Werkzeug: `werkzeuge/scroll-pruefen.cjs` nutzt jetzt Chrome per `executablePath` (Playwright-Chromium fehlt).
+- [A] Stationssatz IV „21:50. Die Antwort haben Sie vorher festgelegt. Sie geht sofort raus.“ Platzhalter bis
+  Textinterview. [A] Feder steckt weiter gemalt im Tintenfass (ungenutzt).
+- Commits `60ee23c`, `297525d`, `6186b1c`, `8db54fc`, `e0cd4d6`, `774c4ea`. Online auf https://vorschau.signedbymattia.ch.
+- **Beim Wiedereinstieg zuerst:** (1) **Station V „Termin steht“** planen (Drehbuch-Tabelle: Eintrag im Kalenderbuch
+  rechts auf dem Pult; Handy „Termin eingetragen · Do 08:00 · Boiler“; Scroll ca. 0.72–0.84 [A]), Plan mit 1–2
+  Entscheidfragen zeigen, Bilder über Vertex (`werkzeuge/bild.py`, Budget frei). Zwei-Bild-Wechsel gleich als Sprite
+  bauen. (2) Danach „Morgen“ (Pointe Sperrbildschirm 07:00) und Papier/Tarot-Karte II. (3) Caddy
+  `Cache-Control "no-cache"` im eigenen Block (Mattia führt mit `!` aus). (4) Zeitplan `plan/aufgaben-bis-live.md`
+  prüfen (Kapitel II verschiebt ca. 1 Woche).
 
 **Erledigt [F]:**
 
