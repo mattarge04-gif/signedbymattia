@@ -65,7 +65,7 @@ Budgets und Kostenfreigaben bleiben in `agency-automation-os/projects/lead-engin
 
 ## Aktueller Stand und nächste Schritte
 
-Stand: 01.11.2026 (spätnachts). Zeitplan: Vault `Zielplan.md`, Aufgabenliste `plan/aufgaben-bis-live.md`. Phase **Fundament**
+Stand: 01.11.2026 (spät, Station V). Zeitplan: Vault `Zielplan.md`, Aufgabenliste `plan/aufgaben-bis-live.md`. Phase **Fundament**
 (KW 39–42) endete am 18.10.2026. **Livegang neu 17.12.2026** (Entscheid 28.10.).
 
 **Sitzungsabschluss 28.09.:** Claude erreichte am 27.09. um 23:59 das
@@ -489,12 +489,34 @@ Kapitel 1 ist done“).
 - [A] Stationssatz IV „21:50. Die Antwort haben Sie vorher festgelegt. Sie geht sofort raus.“ Platzhalter bis
   Textinterview. [A] Feder steckt weiter gemalt im Tintenfass (ungenutzt).
 - Commits `60ee23c`, `297525d`, `6186b1c`, `8db54fc`, `e0cd4d6`, `774c4ea`. Online auf https://vorschau.signedbymattia.ch.
-- **Beim Wiedereinstieg zuerst:** (1) **Station V „Termin steht“** planen (Drehbuch-Tabelle: Eintrag im Kalenderbuch
+- *(Wiedereinstieg überholt durch 01.11. spät)* (1) **Station V „Termin steht“** planen (Drehbuch-Tabelle: Eintrag im Kalenderbuch
   rechts auf dem Pult; Handy „Termin eingetragen · Do 08:00 · Boiler“; Scroll ca. 0.72–0.84 [A]), Plan mit 1–2
   Entscheidfragen zeigen, Bilder über Vertex (`werkzeuge/bild.py`, Budget frei). Zwei-Bild-Wechsel gleich als Sprite
   bauen. (2) Danach „Morgen“ (Pointe Sperrbildschirm 07:00) und Papier/Tarot-Karte II. (3) Caddy
   `Cache-Control "no-cache"` im eigenen Block (Mattia führt mit `!` aus). (4) Zeitplan `plan/aufgaben-bis-live.md`
   prüfen (Kapitel II verschiebt ca. 1 Woche).
+
+**Sitzungsabschluss 01.11. spät [F]:** **Station V „Termin steht“ Kapitel II gebaut und abgenommen** (Mattia: „passt“).
+
+- Plan, Entscheide, Prompts in `website/drehbuch/12-kapitel-2.md` (Abschnitt „Station V“). Scroll 0.72–0.84
+  (`ST.termin`, `station5()` in `kapitel2.js`). Entscheide Mattia: Putto mit Feder, Handy-Mitteilung.
+- Kalenderbuch klappt auf (Sprite zu · halb · offen, `bilder/k2b/buch.webp`, doppelt aufgelöst), Bilder `buch-halb-v1`,
+  `buch-offen-v1` über Vertex als Bearbeitung des Pult-Ausschnitts (`ebenen/k5-buch-ausschnitt.jpg`, 4:3) → sitzen
+  pixelgenau; nur weich ums Buch überlagert (Maske Pult + Farbabstand, rembg stanzte Löcher in den hellblauen Deckel).
+- Schreib-Putto: verworfene `putto-schreibt-a/b` aus Station IV, **gespiegelt** (sonst verdeckt er die Schrift), Sprite
+  `schreibt.webp`, steht auf der rechten Buchseite.
+- **Schrift exakt auf den gemalten Linien** (Mattia): `werkzeuge/k2_linien.py` verfolgt die Linien im Hochpass,
+  `k2_buehne.py` glättet sie und legt sie als Seiten-Koordinaten in `k2b.json` „zeilen“; SVG `textPath` in der
+  Seiten-Matrix (Buchstaben neigen sich mit der Seite), Tinte `mix-blend-mode: multiply` + Filter `#k2Tinte`.
+  Kamera beim Schreiben z 3.7, zur Mitteilung 2.8.
+- Handy-Banner „Kalender · Termin eingetragen · Do 08:00 · Boiler“, Wanduhr 21:51.
+- [A] Stationssatz V Platzhalter bis Textinterview. [?] `--font-hand` wirkt eher wie kursive Druckschrift als Federschrift.
+- Vertex November USD 1.68 von 8.00. Commits `9169f16`, `eb7128a`. Online auf https://vorschau.signedbymattia.ch.
+- **Beim Wiedereinstieg zuerst:** (1) **„Morgen“** planen (Drehbuch-Tabelle 0.78–0.92 → jetzt ab 0.84: Kerze aus,
+  Morgenlicht, Tür, Pointe Sperrbildschirm 07:00 mit drei erledigten Meldungen, „Sie haben geschlafen. Ihr Betrieb
+  nicht.“), Plan mit 1–2 Entscheidfragen zeigen, Bilder über Vertex (Master Morgen = Bearbeitung der Stube, nur Licht).
+  (2) Dann Papier/Tarot-Karte II. (3) Caddy `Cache-Control "no-cache"` im eigenen Block (Mattia mit `!`).
+  (4) Zeitplan `plan/aufgaben-bis-live.md` prüfen.
 
 **Erledigt [F]:**
 

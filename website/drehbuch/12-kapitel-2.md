@@ -267,14 +267,14 @@ lifted slightly away from the invisible surface between two taps, and his curly 
 the left as if reading what he just typed. Nothing else in the image, no shadow on the background, no text.
 ```
 
-## Station V „Termin steht“ [F] (gebaut 01.11.2026, Abnahme offen)
+## Station V „Termin steht“ [F] (gebaut und abgenommen 01.11.2026, Mattia: „passt“)
 
 - Scroll 0.72–0.84 (`ST.termin`, `station5()` in `marke/entwuerfe/hero/kapitel2.js`).
 - Entscheide Mattia: **Putto mit Feder** trägt ein (die Feder aus dem Tintenfass kommt endlich zum Einsatz);
   Handy zeigt eine **Mitteilung** (Banner „Kalender · Termin eingetragen · Do 08:00 · Boiler“).
 - Ablauf: Kamera nah aufs Kalenderbuch (Handy links im Bild), rechter Pult-Putto tritt ab, Buch klappt auf
   (Sprite zu · halb · offen), Putto schreibt **gespiegelt** (mit links, sonst verdeckt er die Schrift) „Do 08:00“ und
-  „Boiler · Meier“ auf die linke Seite (SVG schräg per Matrix, vom Scroll aufgedeckt, Feder folgt), schwingt die Feder,
+  „Boiler · Meier“ auf die linke Seite, **exakt auf zwei gemalten Linien** (`werkzeuge/k2_linien.py`, SVG `textPath` in der Seiten-Matrix, vom Scroll aufgedeckt, Feder folgt), schwingt die Feder,
   pinker Haken, Banner auf dem Handy, Wanduhr 21:51, Kamera zurück auf die ganze Stube.
 - Bilder über Vertex (`werkzeuge/bild.py`, Bearbeitung des Pult-Ausschnitts `ebenen/k5-buch-ausschnitt.jpg`, 4:3, 2K):
   `buch-halb-v1`, `buch-offen-v1`. Schreib-Putto: die verworfenen `putto-schreibt-a/b` aus Station IV.
