@@ -434,9 +434,14 @@ function station3(ps) {
 const ANTWORT = 'Wir kommen morgen um 8 Uhr.';
 const getippt = antwort.querySelector('.getippt');
 let getipptJetzt = -1;
+let tippDa = false;
+let tippAb = 0;
 function station4(pa) {
   const aktiv = s >= ST.antworten[0];
-  const da = aktiv && pa >= 0.08 && pa < 0.63; // nach dem Senden tritt er ab, der Rahmen-Putto kommt zurück
+  // nacheinander statt gleichzeitig (sonst scheinen beide durch): Rahmen-Putto geht, Tipp-Putto kommt; nach dem
+  // Senden umgekehrt
+  const da = aktiv && pa >= 0.1 && pa < 0.63;
+  const linksWeg = aktiv && pa >= 0.06 && pa < 0.665;
   display.classList.toggle('antwort', aktiv && pa > 0.06);
   const n = Math.round(ANTWORT.length * teil(pa, [0.16, 0.52]));
   if (n !== getipptJetzt) { getipptJetzt = n; getippt.textContent = ANTWORT.slice(0, n); }
@@ -446,9 +451,14 @@ function station4(pa) {
   display.classList.toggle('gesendet', gesendet);
   // Finger: unten (a) bei jedem Buchstaben, oben (b) dazwischen; Senden-Tipp bei 0.58, danach Finger oben
   const unten = RUHIG ? pa < 0.6 : (pa >= 0.16 && pa < 0.53 ? n % 2 === 1 : pa >= 0.56 && pa < 0.6) || pa < 0.16;
+  // Fingerwechsel sofort (Überblenden machte den Putto kurz durchsichtig), weich nur beim Auf- und Abtreten
+  if (da && !tippDa) tippAb = performance.now();
+  tippDa = da;
+  const tausch = da && performance.now() - tippAb > 320;
+  for (const n of ['tippt-a', 'tippt-b']) schreib[n]?.classList.toggle('tausch', tausch);
   schreib['tippt-a']?.classList.toggle('zeigen', da && unten);
   schreib['tippt-b']?.classList.toggle('zeigen', da && !unten);
-  schreib.links?.classList.toggle('weg', !!(schreib['tippt-a'] && da));
+  schreib.links?.classList.toggle('weg', !!(schreib['tippt-a'] && linksWeg));
   // zweite Büchse: steigt aus dem Rohrende, kurzes Zögern, dann schiesst sie nach oben hinaus (mit Lichtspur)
   const steigt = sanft(teil(pa, [0.68, 0.74]));
   const schuss = teil(pa, [0.75, 0.88]);

@@ -300,3 +300,4 @@
 .k2-tastatur i { width: 1.55em; height: 2.2em; border-radius: .3em; background: #fff; box-shadow: 0 .08em 0 rgb(60 40 80 / .25); }
 .k2-tastatur .unten .leer { width: 9em; }
 .k2-tastatur .unten i:not(.leer) { width: 3.2em; background: #C7BDD3; }
+.k2-pult-putto.tipp-bild.tausch { transition: none; }
