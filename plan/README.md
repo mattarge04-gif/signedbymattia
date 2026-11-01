@@ -10,7 +10,7 @@ Ausführlich: `aufgaben-bis-live.md` (Wochenplan), `CLAUDE.md` (Sitzungsabschlü
 | Hero | gebaut, Mattia „10 von 10“, Abnahme formell offen | – |
 | Wolkenflug | gebaut, „perfekt“ | – |
 | Kapitel I Website | **fertig, abgenommen 01.11.** (K1-B1 bis K1-B5 inkl. Übergang zu Kapitel II, Mattia: „perfekt, Kapitel 1 ist done“) | – |
-| **Kapitel II Automation** | Hero-Methode: Baustein 1 + 2 abgenommen, Station II gebaut; Auftakt neu = Zurückziehen aus dem Handy (01.11.) | **Abnahme Station II, dann Station III „sortiert“** |
+| **Kapitel II Automation** | Hero-Methode: Baustein 1 + 2 und **Station II abgenommen (01.11.)**, mit Tiefenschärfe und neuer Mitteilung | **Station III „sortiert“ planen** |
 | Kapitel III Sichtbar | Drehbuch grob | nach Kapitel II |
 | Zwischenspiel, Werke, Abschluss | Drehbuch grob | Streichliste: Werke + Zwischenspiel zusammen |
 | Handy-Version | später neu | nach Desktop |

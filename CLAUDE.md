@@ -65,7 +65,7 @@ Budgets und Kostenfreigaben bleiben in `agency-automation-os/projects/lead-engin
 
 ## Aktueller Stand und nächste Schritte
 
-Stand: 01.11.2026 (abends). Zeitplan: Vault `Zielplan.md`, Aufgabenliste `plan/aufgaben-bis-live.md`. Phase **Fundament**
+Stand: 01.11.2026 (spätabends). Zeitplan: Vault `Zielplan.md`, Aufgabenliste `plan/aufgaben-bis-live.md`. Phase **Fundament**
 (KW 39–42) endete am 18.10.2026. **Livegang neu 17.12.2026** (Entscheid 28.10.).
 
 **Sitzungsabschluss 28.09.:** Claude erreichte am 27.09. um 23:59 das
@@ -420,10 +420,25 @@ Kapitel 1 ist done“).
 - Werkzeug neu: `werkzeuge/standbild.cjs` (Standbilder an Scroll-Stellen, Chrome per `executablePath`).
 - [?] Toast K1 „Wir rufen Sie heute noch zurück“ passt zeitlich nicht ganz zur Anfrage 21:47 in K2 (Textinterview).
 - Commit `05c6c81`. Online auf https://vorschau.signedbymattia.ch.
-- **Beim Wiedereinstieg zuerst:** (1) **Abnahme Station II Kapitel II** (Mattia scrollt, Strg+F5); offene Befunde:
+- *(Wiedereinstieg überholt durch 01.11. spätabends)* (1) Abnahme Station II Kapitel II (Mattia scrollt, Strg+F5); offene Befunde:
   Putto oben links wach kaum anders, Putto mit offenen Flügeln ragt übers Fach. (2) Dann **Station III „sortiert“**
   planen (Büchse gefangen, Fach „Dringend“), Plan zeigen, Prompts in die Zwischenablage. (3) Caddy
   `Cache-Control "no-cache"` im eigenen Block (Mattia führt mit `!` aus). (4) Zeitplan `plan/aufgaben-bis-live.md`
+  prüfen (Kapitel II verschiebt ca. 1 Woche).
+
+**Sitzungsabschluss 01.11. spätabends [F]:** **Station II Kapitel II abgenommen** (Mattia: „top weitermachen“).
+
+- Nachbesserungen nach Mattias Befunden (Commit `4c231dd`): Vollbild-Mitteilung neu (Hintergrund oben dunkler,
+  Datum über der Uhr, Glas-Karte mit Stapel, „Zum Öffnen nach oben wischen“; Symbol klebte am Rand wegen
+  Namenskonflikt `.app` aus `hero.css`); „Gelesen“ als pinker Kreis mit gezeichnetem Doppelhaken, Handy zeigt 21:48;
+  Licht im Rohr als Spur aus drei Strichen (`mix-blend-mode: screen`) statt Fleck daneben; **Tiefenschärfe**
+  (`schaerfe()` in `kapitel2.js`): zuerst Pult/Handy scharf, beim Folgen der Büchse Regal/Rohr/Uhr scharf.
+- Stationstexte erklärender, [A] Platzhalter bis Textinterview; Station II hat zwei Sätze (vor/nach der Rohrpost).
+- **Unschärfe in Mattias Chrome** (Commit `ec53165`): kein `will-change` auf `.k2-welt`/`.k2-ebene`, Kamera rastet
+  ein, Stil nur bei Änderung (`setze()`). Headless zeigt das Problem nicht. Bilder waren nicht schuld.
+- **Beim Wiedereinstieg zuerst:** (1) **Station III „sortiert“** planen (Büchse gefangen, Fach „Dringend“;
+  Drehbuch `website/drehbuch/12-kapitel-2.md`), Plan zeigen, Gemini-Prompts in die Zwischenablage. (2) Caddy
+  `Cache-Control "no-cache"` im eigenen Block (Mattia führt mit `!` aus). (3) Zeitplan `plan/aufgaben-bis-live.md`
   prüfen (Kapitel II verschiebt ca. 1 Woche).
 
 **Erledigt [F]:**
