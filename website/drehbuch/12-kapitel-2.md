@@ -1,6 +1,6 @@
 # Drehbuch 12: Kapitel II Automation · Die Nachtschicht
 
-Stand: 31.10.2026 · Status: **Geschichte, Ablauf und Bildverfahren abgenommen [F] (Mattia, 29.10.2026)** ·
+Stand: 01.11.2026 · Status: **Geschichte, Ablauf und Bildverfahren abgenommen [F] (Mattia, 29.10.2026)** ·
 ersetzt alle früheren Fassungen (Wasserspiele, Brunnen, Automat; in der Git-Geschichte bis Commit `4977d26`).
 Grundlage: `00-grammatik.md` (Werte), `03-bildstil.md` (Stil-Bibel), Prüfung `werkzeuge/pruefliste.md`.
 
@@ -302,4 +302,42 @@ position. Change only the book: the same leather book with the pale blue and gol
 opened. It still lies at the same spot, the stack of pages lies flat, and the front cover with its pale blue and gold
 ornament stands upright, swung open about 90 degrees, so we see its inside lining edge-on and the first cream page is
 visible. Same book size. No writing, no letters, no numbers, no text anywhere.
+```
+
+## Morgen [F] (Plan und Entscheide Mattia 01.11.2026, Abnahme offen)
+
+- Scroll 0.84–0.99 (`ST.morgen`, `morgen()` in `kapitel2.js`). Entscheide Mattia: Sperrbildschirm zeigt, **was passiert ist**
+  (Eingeordnet: Dringend · Antwort gesendet · Termin Do 08:00, keine Offerte); an der Tür **Schatten + Kaffee-Putto**.
+- Ablauf: Kerze geht aus (brennende Kerze als eigene Ebene `kerze.webp` über dem Pult ohne Flamme, Rauch in SVG) →
+  Wanduhr dreht durch die Nacht bis 07:00, Nachtblau weicht dem Morgenlicht (`.k2-morgen`, Morgenhimmel im Fenster,
+  Sterne aus, Staub golden) → Putti schlafen wieder (Schlaf-Bilder, „z“ wieder da, Büchse liegt im Fach) → Kamera
+  schwenkt zur Tür: goldener Lichtspalt, Schatten des Inhabers → Kaffee-Putto ersetzt den rechten Rahmen-Putto
+  (Sprite `kaffee.webp`: gähnt → hält den Kaffee hin, Dampf) → Kamera nah aufs Handy, Eintauchen in den
+  Sperrbildschirm 07:00, „Über Nacht erledigt“, drei Meldungen kommen nacheinander mit Haken → Karte unten links:
+  **„Sie haben geschlafen.“ · „Ihr Betrieb nicht.“**
+- Bilder über Vertex (`werkzeuge/bild.py`): `e0-morgenhimmel-v1` (Bearbeitung Nachthimmel), `putto-kaffee-a/b-v1`
+  (b ist Bearbeitung von a), `kerze-aus-v1` (Bearbeitung des Pult-Ausschnitts `ebenen/k6-kerze-ausschnitt.jpg`,
+  Original-Pixel 822/250–1622/850). Einbau in `werkzeuge/k2_buehne.py`. Kein neues Wandbild: Morgen ist Licht im Code.
+- [A] Texte „Am Morgen · Die Kerze ist aus, die Helfer schlafen. Erledigt ist alles.“ Platzhalter bis Textinterview.
+- [A] Schatten an der Tür wirkt eher wie eine Gestalt im Gegenlicht als wie ein Schlagschatten (kein Boden im Bild).
+- [A] Datum auf dem Sperrbildschirm wirkt blass; Karte unten links überlappt die dritte Meldung knapp.
+
+**14 · e0-morgenhimmel-v1** (Referenz: `e0-nachthimmel-v1.jpg`, Vertex, 16:9)
+```
+Edit the attached painting. Keep exactly the same painting style, framing, cloud shapes and composition. Change only the time of day: it is now early morning just after sunrise. The sky turns from night into a soft luminous dawn: pale peach and warm apricot near the bottom, fading into light rose and clear pale sky blue at the top. Clouds lit warmly from below with golden-pink edges. No stars, no moon. Pastel, bright, airy, never brown or murky. No text, no birds, no buildings.
+```
+
+**15 · putto-kaffee-a-v1** (Referenz: `putto-pult-rechts-v1.jpg`, Vertex, 3:4)
+```
+Same putto character, same painting style, palette and light as the attached image: a luminous Tiepolo-like pastel oil painting. Full figure of the putto STANDING upright, seen from the front, on a plain flat light grey background, whole body visible with some margin, feet at the bottom. He has just woken up after a long night shift: hair tousled, eyes half closed, one small fist rubbing his eye, a big yawn. With the other hand he holds a small white-and-gold Baroque porcelain coffee cup on a saucer close to his tummy. Wings drooping, a little crumpled. Soft morning light from the right. No steam, no shadow on the background, no text, no other objects.
+```
+
+**16 · putto-kaffee-b-v1** (Referenz: `putto-kaffee-a-v1`, Vertex, 3:4)
+```
+Edit the attached painting. Keep exactly the same putto, same painting style, same size, same position in the frame, same framing, same cup and the same plain light grey background. Change only this: he holds the coffee cup on its saucer out towards the viewer with both small hands, arms stretched forward, offering it. Eyes still sleepy but now with a small, warm, slightly crooked smile. Wings drooping. No steam, no shadow on the background, no text.
+```
+
+**17 · kerze-aus-v1** (Referenz: `k6-kerze-ausschnitt.jpg`, Vertex, 4:3)
+```
+Edit the attached painting. Keep exactly the same painting style, palette, framing, camera angle, the same candle, candlestick, table and the same plain light grey background, everything in the same position and size. Change only this: the candle has just been blown out. No flame, no glow. The wick is short, bent and blackened, a tiny dark tip. The wax at the top is slightly melted with a small drip. No smoke, no text.
 ```

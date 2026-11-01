@@ -289,6 +289,72 @@ if (R / 'ebenen/buechse-v1.png').exists() or (R / 'ebenen/buechse-v1.jpg').exist
     bi.resize((bw * 3, bh * 3), Image.LANCZOS).save(A / 'buechse.webp', quality=90, method=6)  # 3fach für Nähe
     info['buechse'] = {'w': bw, 'h': bh}
 
+# Morgen (Mattia 01.11.): Kerze geht aus. Das Pult bekommt im Kerzenbereich die Vertex-Bearbeitung ohne Flamme
+# (kerze-aus-v1, Ausschnitt KERZE_BOX des Originals), die brennende Kerze liegt als eigene kleine Ebene darüber
+# und wird ausgeblendet. Ausserhalb der weichen Maske sind beide Bilder gleich (pixelgenau).
+KERZE_BOX = (822, 250, 1622, 850)
+if (R / 'ebenen/kerze-aus-v1.png').exists():
+    pg = frei('ebenen/e4-pult-v1')
+    bx0, by0, bx1, by1 = frei_box('ebenen/e4-pult-v1')
+    kp = info['pult']['w'] / (bx1 - bx0)
+    cw, ch = KERZE_BOX[2] - KERZE_BOX[0], KERZE_BOX[3] - KERZE_BOX[1]
+    ox, oy = KERZE_BOX[0] - bx0, KERZE_BOX[1] - by0
+    maske = Image.new('L', (cw, ch), 0)
+    ImageDraw.Draw(maske).ellipse((405 - 80, 300 - 150, 405 + 80, 300 + 105), fill=255)
+    m = np.asarray(maske.filter(ImageFilter.GaussianBlur(18))).astype(np.float32) / 255
+    aus = np.asarray(oeffnen('ebenen/kerze-aus-v1').resize((cw, ch), Image.LANCZOS)).astype(np.float32)
+    grund = np.median(aus[:80, :80].reshape(-1, 3), 0)
+    a_aus = np.clip((np.sqrt(((aus - grund) ** 2).sum(-1)) - 6) / 10, 0, 1)
+    an = np.asarray(pg.crop((ox, oy, ox + cw, oy + ch))).astype(np.float32)
+    # Pult ohne Flamme: im Maskenbereich Farbe und Deckkraft aus der Bearbeitung
+    neu = an.copy()
+    neu[..., :3] = an[..., :3] * (1 - m[..., None]) + aus * m[..., None]
+    neu[..., 3] = an[..., 3] * (1 - m) + a_aus * 255 * m
+    pg.paste(Image.fromarray(neu.clip(0, 255).astype(np.uint8), 'RGBA'), (ox, oy))
+    pg = pg.resize((info['pult']['w'], info['pult']['h']), Image.LANCZOS)
+    pg.save(A / 'pult.webp', quality=86, method=6)
+    ebenen['pult'] = pg
+    # brennende Kerze: nur der Maskenbereich des Originals, doppelt aufgelöst (Kamera fährt nah)
+    flamme = an.copy()
+    flamme[..., 3] = an[..., 3] * m
+    fl = Image.fromarray(flamme.clip(0, 255).astype(np.uint8), 'RGBA')
+    fb_ = fl.getbbox()
+    fl = fl.crop(fb_)
+    fw, fh = round(fl.width * kp * 2), round(fl.height * kp * 2)
+    fl.resize((fw, fh), Image.LANCZOS).save(A / 'kerze.webp', quality=90, method=6)
+    info['kerze'] = {'x': round(info['pult']['x'] + (ox + fb_[0]) * kp), 'y': round(info['pult']['y'] + (oy + fb_[1]) * kp),
+                     'w': round(fw / 2), 'h': round(fh / 2)}
+
+# Morgenhimmel: Vertex-Bearbeitung des Nachthimmels, gleich gross und gleich gelegt
+if (R / 'ebenen/e0-morgenhimmel-v1.png').exists():
+    mh = oeffnen('ebenen/e0-morgenhimmel-v1').resize((info['himmel']['w'], info['himmel']['h']), Image.LANCZOS)
+    mh.save(A / 'himmel-morgen.webp', quality=84, method=6)
+
+# Morgen: verschlafener Kaffee-Putto ersetzt den rechten Rahmen-Putto (gähnt → hält den Kaffee hin), Sprite wie
+# beim Tippen. b ist eine Bearbeitung von a (gleiches Format), darum gleicher Massstab und gleiche Lage.
+if (R / 'ebenen/putto-kaffee-b-v1.png').exists():
+    l0, t0, r0, b0 = frei_box('ebenen/putto-kaffee-a-v1')
+    kk = 300 / (b0 - t0)
+    KAFFEE_X, KAFFEE_FUSS = 2025, 1500
+    teile = {}
+    for teil in ('a', 'b'):
+        q = f'ebenen/putto-kaffee-{teil}-v1'
+        ki = frei(q)
+        l1, t1, _, _ = frei_box(q)
+        kb, kh = round(ki.width * kk), round(ki.height * kk)
+        teile[teil] = (ki.resize((kb, kh), Image.LANCZOS), round(KAFFEE_X + (l1 - l0) * kk), round(KAFFEE_FUSS - 300 + (t1 - t0) * kk))
+    x0 = min(v[1] for v in teile.values())
+    y0 = min(v[2] for v in teile.values())
+    fw = max(v[1] + v[0].width for v in teile.values()) - x0
+    fh = max(v[2] + v[0].height for v in teile.values()) - y0
+    sprite = Image.new('RGBA', (fw * 2, fh))
+    for n, teil in enumerate(('a', 'b')):
+        ki, kx, ky = teile[teil]
+        sprite.alpha_composite(ki, (fw * n + kx - x0, ky - y0))
+    sprite.save(A / 'kaffee.webp', quality=88, method=6)
+    info['kaffee'] = {'x': x0, 'y': y0, 'w': fw, 'h': fh}
+    ebenen['kaffee'] = sprite.crop((fw, 0, fw * 2, fh))
+
 json.dump(info, open(A / 'k2b.json', 'w'), indent=1)
 print(json.dumps(info))
 
@@ -303,5 +369,7 @@ if '--probe' in sys.argv:
         p.alpha_composite(ebenen[name], (info[name]['x'], info[name]['y']))
         if name == 'pult' and 'buch-offen' in ebenen:
             p.alpha_composite(ebenen['buch-offen'], (info['buch']['x'], info['buch']['y']))
+        if name == 'pult' and 'kaffee' in ebenen:
+            p.alpha_composite(ebenen['kaffee'], (info['kaffee']['x'], info['kaffee']['y']))
     p.alpha_composite(voll)
     p.convert('RGB').resize((2000, round(2000 * H / W))).save(sys.argv[sys.argv.index('--probe') + 1], quality=88)

@@ -6,6 +6,7 @@
 // Baustein 3: Station II „gelesen“ (Putti wachen auf, Display „Gelesen“, Büchse fährt durchs Rohr).
 // Station III „sortiert“ (Fang-Putto, Schild „Dringend“), Station IV „beantwortet“ (Putto tippt von hinten aufs Display).
 // Station V „Termin steht“ (Kalenderbuch klappt auf, Putto schreibt den Termin mit der Feder).
+// Morgen: Kerze aus, Morgenlicht, Tür, Kaffee-Putto, Sperrbildschirm 07:00 mit drei erledigten Meldungen (Pointe).
 const RUHIG = matchMedia('(prefers-reduced-motion: reduce)').matches;
 const MAUS = matchMedia('(hover: hover) and (pointer: fine)').matches;
 const $ = (s) => document.querySelector(s);
@@ -31,7 +32,7 @@ const display = $('#k2Display');
 const handy = $('#k2Handy');
 const meldung = $('#k2Meldung');
 const stationText = $('#k2Station');
-const ST = { auftakt: [0, 0.1], anfrage: [0.1, 0.3], lesen: [0.3, 0.44], sortieren: [0.44, 0.58], antworten: [0.58, 0.72], termin: [0.72, 0.84] };
+const ST = { auftakt: [0, 0.1], anfrage: [0.1, 0.3], lesen: [0.3, 0.44], sortieren: [0.44, 0.58], antworten: [0.58, 0.72], termin: [0.72, 0.84], morgen: [0.84, 0.99] };
 // Station II: wann welcher Putto aufwacht (Anteil der Station); der Schnarcher (oben 3) zuletzt
 const WECKEN = { 'schlaf-o1': 0.06, 'schlaf-u4': 0.12, 'schlaf-u2': 0.18, 'schlaf-o3': 0.26 };
 const rohrWeg = $('#k2RohrWeg');
@@ -63,6 +64,14 @@ const putti = [];
 const pultPutti = [];
 const zs = [];
 const teil = (x, [a, b]) => klemm((x - a) / (b - a));
+const buehne = $('#k2Buehne');
+const rauch = $('.k2-rauch');
+const tuerLicht = $('.k2-tuerlicht');
+const schattenSvg = $('.k2-schatten');
+const schatten = $('#k2Schatten');
+const handyZeit = handy.querySelector('.k2-uhrzeit');
+const datumListe = [display.querySelector('.k2-datum'), handy.querySelector('.k2-datum')];
+const morgenDa = () => s >= ST.morgen[0] && teil(s, ST.morgen) >= 0.22; // Putti schlafen wieder
 
 // ---------- Teile platzieren ----------
 let info = null;
@@ -71,6 +80,7 @@ fetch('bilder/k2b/k2b.json', { cache: 'no-cache' }).then((r) => r.json()).then((
   const lege = (el, i) => Object.assign(el.style, { left: `${(i.x / W) * 100}%`, top: `${(i.y / H) * 100}%`, width: `${(i.w / W) * 100}%` });
   document.querySelectorAll('.k2-teil').forEach((el) => lege(el, j[el.dataset.teil]));
   lege($('#k2Himmel'), j.himmel);
+  lege($('#k2HimmelMorgen'), j.himmel);
   // Putti in den Fächern; der schnarchende (oben 3) bekommt aufsteigende „z“
   const bildFuer = (name, i, klasse, eltern) => {
     const im = new Image();
@@ -104,6 +114,26 @@ fetch('bilder/k2b/k2b.json', { cache: 'no-cache' }).then((r) => r.json()).then((
     Object.assign(d.style, { width: `${(j.schreibt.w / W) * 100}%`, aspectRatio: `${j.schreibt.w} / ${j.schreibt.h}`, left: '0', top: '0' });
     display.parentElement.appendChild(d);
     schreib.feder = d;
+  }
+  // Kaffee-Putto (Morgen) als Sprite, Dampf über der Tasse
+  if (j.kaffee) {
+    const d = document.createElement('div');
+    d.className = 'k2-pult-putto kaffee-bild';
+    lege(d, j.kaffee);
+    d.style.aspectRatio = `${j.kaffee.w} / ${j.kaffee.h}`;
+    display.parentElement.appendChild(d);
+    schreib.kaffee = d;
+    const dampf = document.createElement('span');
+    dampf.className = 'k2-dampf';
+    dampf.innerHTML = '<i></i><i></i><i></i>';
+    // Tasse im Bild b etwa bei 40 % Breite, 27 % Höhe [A] nach Augenmass
+    Object.assign(dampf.style, { left: `${((j.kaffee.x + j.kaffee.w * 0.4) / W) * 100}%`, top: `${((j.kaffee.y + j.kaffee.h * 0.27) / H) * 100}%` });
+    display.parentElement.appendChild(dampf);
+    schreib.dampf = dampf;
+  }
+  if (j.kerze) {
+    // Rauch steigt am Docht auf (Docht etwa bei 72 % der Kerzen-Ebene [A])
+    $('#k2Rauch').setAttribute('transform', `translate(${j.kerze.x + j.kerze.w * 0.5} ${j.kerze.y + j.kerze.h * 0.72})`);
   }
   if (j.buch) { lege(buch, j.buch); buch.style.aspectRatio = `${j.buch.w} / ${j.buch.h}`; }
   if (j.seite) seiteBauen(j.seite, j.zeilen);
@@ -198,7 +228,7 @@ function lebenZeichnen(t) {
     const x = von.x + (nach.x - von.x) * k.a + quer;
     const y = von.y + (nach.y - von.y) * k.a + quer * 0.4;
     dctx.globalAlpha = Math.sin(k.a * Math.PI) * (0.35 + 0.45 * Math.abs(Math.sin(t * 1.3 + k.p)));
-    dctx.fillStyle = '#F4F2FF';
+    dctx.fillStyle = tagWert > 0.5 ? '#FFE6B8' : '#F4F2FF'; // am Morgen goldener Staub im Sonnenstrahl
     dctx.beginPath();
     dctx.arc(x, y, k.r, 0, 6.283);
     dctx.fill();
@@ -269,9 +299,17 @@ function bild(ms) {
   const ziel4 = station4(pa4);
   const pa5 = teil(s, ST.termin);
   const ziel5 = station5(pa5, t);
+  const pm = teil(s, ST.morgen);
+  const ziel6 = morgen(pm);
   schaerfe(pl, ps, pa5);
   let blick;
-  if (ziel5) {
+  if (ziel6) {
+    // Morgen: ganze Stube, dann nah aufs Handy (wie in Station I), danach Eintauchen in den Sperrbildschirm
+    // zur Tür schwenken, solange sie aufgeht (rechter Bildrand), dann zum Handy
+    const zurTuer = RUHIG ? 0 : sanft(teil(pm, [0.3, 0.4])) * (1 - sanft(teil(pm, [0.5, 0.6])));
+    const nah = RUHIG ? 0 : sanft(teil(pm, [0.5, 0.64]));
+    blick = { x: 0.5 + (HANDY.x - 0.5) * nah + 0.2 * zurTuer, y: 0.5 + (HANDY.y - 0.5) * nah + 0.04 * zurTuer, z: 1 + 1.5 * nah + 0.15 * zurTuer };
+  } else if (ziel5) {
     // Station V: nah aufs Kalenderbuch (Handy links noch im Bild), am Ende die ganze Stube
     const nah = RUHIG ? 0 : sanft(teil(pa5, [0, 0.16])) * (1 - sanft(teil(pa5, [0.82, 1])));
     // beim Schreiben ganz nah (Schrift auf den feinen Linien), zur Mitteilung auf dem Handy wieder etwas weiter
@@ -324,8 +362,9 @@ function bild(ms) {
   const ty = innerHeight / 2 - oben - kam.z * kam.y * wh;
   setze(welt, 'transform', `translate(${tx.toFixed(1)}px, ${ty.toFixed(1)}px) scale(${kam.z.toFixed(4)})`);
   // Eintauchen: die scharfe Kopie liegt zuerst genau auf dem Handy im Bild und wächst bis zum ganzen Bildschirm
-  const ein = RUHIG ? glatt(teil(pa, [0.3, 0.4])) * (1 - glatt(teil(pa, [0.86, 0.95]))) : Math.max(zurueck, sanft(teil(pa, [0.52, 0.66])) * (1 - sanft(teil(pa, [0.72, 0.85]))));
-  const sichtbar = RUHIG ? ein > 0.01 : (pa > 0.5 && pa < 0.87) || zurueck > 0.001;
+  const einM = RUHIG ? (pm > 0.62 ? 1 : 0) : sanft(teil(pm, [0.58, 0.7]));
+  const ein = Math.max(einM, RUHIG ? glatt(teil(pa, [0.3, 0.4])) * (1 - glatt(teil(pa, [0.86, 0.95]))) : Math.max(zurueck, sanft(teil(pa, [0.52, 0.66])) * (1 - sanft(teil(pa, [0.72, 0.85])))));
+  const sichtbar = RUHIG ? ein > 0.01 : (pa > 0.5 && pa < 0.87) || zurueck > 0.001 || einM > 0.001;
   if (sichtbar) {
     // gleiches Seitenverhältnis: wächst, bis das Display die ganze Breite füllt; der Bereich mit Uhrzeit
     // und Meldung (ca. 32 % der Höhe) landet in der Bildschirmmitte. Schrift höchstens 24 px (echte Grösse).
@@ -350,13 +389,14 @@ function bild(ms) {
   else if (s >= ST.sortieren[0] && s < ST.sortieren[1] - 0.003) stationZeigen(STATIONEN[3]);
   else if (s >= ST.antworten[0] && s < ST.antworten[1] - 0.003) stationZeigen(STATIONEN[4]);
   else if (s >= ST.termin[0] && s < ST.termin[1] - 0.003) stationZeigen(STATIONEN[5]);
+  else if (s >= ST.morgen[0] + 0.006) stationZeigen(STATIONEN[pm >= 0.88 ? 7 : 6]);
   else stationZeigen(null);
 
   text.style.opacity = String(1 - glatt(klemm((s - 0.05) / 0.05)));
   welt.parentElement.style.setProperty('--schleier', text.style.opacity);
   text.style.transform = `translateY(${-glatt(klemm((s - 0.05) / 0.05)) * 4}vh)`;
 
-  uhrSetzen(21 * 60 + 47 + glatt(teil(pl, [0.1, 0.5])) + glatt(teil(ps, [0.55, 0.7])) + glatt(teil(pa4, [0.5, 0.62])) + glatt(teil(pa5, [0.6, 0.68])));
+  uhrSetzen(21 * 60 + 47 + glatt(teil(pl, [0.1, 0.5])) + glatt(teil(ps, [0.55, 0.7])) + glatt(teil(pa4, [0.5, 0.62])) + glatt(teil(pa5, [0.6, 0.68])) + 549 * sanft(teil(pm, [0.14, 0.42])));
   if (!RUHIG) lebenZeichnen(t);
   if (laeuft) requestAnimationFrame(bild);
 }
@@ -392,8 +432,8 @@ function schaerfe(pl, ps, pa5) {
 // nach links hinter die Krone (Station III fängt sie). Gibt die Lage der Büchse für die Kamera zurück.
 function station2(pl) {
   const aktiv = s >= ST.lesen[0];
-  for (const p of putti) for (const b of p.bilder) b.classList.toggle('ist-wach', aktiv && pl >= p.ab || s >= ST.lesen[1]);
-  for (const z of zs) z.classList.toggle('weg', s >= ST.lesen[0] + 0.004);
+  for (const p of putti) for (const b of p.bilder) b.classList.toggle('ist-wach', (aktiv && pl >= p.ab || s >= ST.lesen[1]) && !morgenDa());
+  for (const z of zs) z.classList.toggle('weg', s >= ST.lesen[0] + 0.004 && !morgenDa());
   const ps = teil(s, ST.sortieren);
   display.classList.toggle('gelesen', pl > 0.3 && ps <= 0.6);
   display.classList.toggle('sortiert', ps > 0.6 && s < ST.antworten[0] + 0.012);
@@ -435,7 +475,7 @@ function station3(ps) {
   const aktiv = s >= ST.sortieren[0];
   // Putto: wach → Arme hoch → hält die Büchse
   const arme = aktiv && ps >= 0.12 && ps < 0.47;
-  const haelt = aktiv && ps >= 0.47;
+  const haelt = aktiv && ps >= 0.47 && !morgenDa();
   fang['fang-a']?.classList.toggle('zeigen', arme);
   fang['fang-b']?.classList.toggle('zeigen', haelt);
   fang.wach?.classList.toggle('weg', arme || haelt);
@@ -588,6 +628,60 @@ function station5(pa, t) {
   return { x: mitte.x - 30 - 90 * glatt(teil(pa, [0.6, 0.7])), y: mitte.y };
 }
 
+// ---------- Morgen (Mattia 01.11.) ----------
+// Die Kerze geht aus (Rauch), die Uhr dreht durch die Nacht bis 07:00, Morgenlicht vertreibt das Nachtblau, die
+// Putti schlafen wieder. Die Tür geht einen Spalt auf, Licht und der Schatten des Inhabers fallen herein; der
+// rechte Rahmen-Putto macht dem verschlafenen Kaffee-Putto Platz (gähnt → hält den Kaffee hin). Dann zeigt das
+// Handy den Sperrbildschirm 07:00 mit drei erledigten Meldungen, die Kamera taucht ein (Pointe).
+let tagJetzt = '';
+let tagWert = 0;
+function morgen(pm) {
+  const aktiv = s >= ST.morgen[0];
+  const kerze = aktiv ? 1 - glatt(teil(pm, [0.03, 0.09])) : 1;
+  const tag = aktiv ? sanft(teil(pm, [0.12, 0.42])) : 0;
+  tagWert = tag;
+  const schluessel = `${kerze.toFixed(3)}|${tag.toFixed(3)}`;
+  if (schluessel !== tagJetzt) {
+    tagJetzt = schluessel;
+    buehne.style.setProperty('--kerze', kerze.toFixed(3));
+    buehne.style.setProperty('--tag', tag.toFixed(3));
+  }
+  // Rauch nur kurz nach dem Ausgehen
+  setze(rauch, 'opacity', aktiv ? (glatt(teil(pm, [0.05, 0.09])) * (1 - glatt(teil(pm, [0.2, 0.3])))).toFixed(3) : '0');
+  // Tür: Spalt öffnet sich, Lichtkeil, Schatten wächst vom Boden herein
+  const tuer = aktiv ? sanft(teil(pm, [0.34, 0.48])) : 0;
+  setze(tuerLicht, 'opacity', tuer.toFixed(3));
+  setze(schattenSvg, 'opacity', (aktiv ? 0.4 * sanft(teil(pm, [0.36, 0.46])) : 0).toFixed(3));
+  // aufrecht neben dem Spalt, wächst leicht (kommt näher); schräg wirkte er wie ein Streifen
+  schatten.setAttribute('transform', `translate(${(3440 - 60 * tuer).toFixed(1)} 2233) scale(${(0.9 + 0.2 * tuer).toFixed(3)})`);
+  // Kaffee-Putto ersetzt den rechten Rahmen-Putto (nacheinander, nie beide halb)
+  if (schreib.kaffee) {
+    if (aktiv && pm >= 0.46) schreib.rechts?.classList.add('weg');
+    schreib.kaffee.classList.toggle('zeigen', aktiv && pm >= 0.48);
+    schreib.kaffee.classList.toggle('hin', aktiv && pm >= 0.55);
+    schreib.dampf.classList.toggle('zeigen', aktiv && pm >= 0.55);
+  }
+  // Büchse liegt am Morgen neben dem schlafenden Fang-Putto im Fach
+  if (morgenDa()) {
+    buechse.setAttribute('transform', 'translate(1356 902) rotate(-84) scale(0.8)');
+    buechse.style.opacity = '1';
+  }
+  // Handy: Sperrbildschirm 07:00, drei erledigte Meldungen nacheinander
+  const frueh = aktiv && pm >= 0.3;
+  for (const g of [display, handy]) {
+    g.classList.toggle('morgen', frueh);
+    g.classList.toggle('n1', aktiv && pm >= 0.72);
+    g.classList.toggle('n2', aktiv && pm >= 0.78);
+    g.classList.toggle('n3', aktiv && pm >= 0.84);
+  }
+  if (frueh) displayZeit.textContent = '07:00';
+  const zeit = frueh ? '07:00' : '21:47';
+  if (handyZeit.textContent !== zeit) handyZeit.textContent = zeit;
+  const datum = frueh ? 'Donnerstag, 13. November' : 'Mittwoch, 12. November';
+  for (const d of datumListe) if (d.textContent !== datum) d.textContent = datum;
+  return aktiv ? { x: 0.5, y: 0.5 } : null;
+}
+
 // Messingschilder unter den Trichtern (oben in jedem Fach), Regal-Koordinaten 680 × 893 → Rahmen
 function schilderBauen(rg) {
   const k = rg.w / 680;
@@ -612,6 +706,8 @@ const STATIONEN = [
   { nr: 'III', titel: 'sortiert', satz: 'Tropfender Boiler heisst: dringend. Die Anfrage kommt nach vorne.' },
   { nr: 'IV', titel: 'beantwortet', satz: '21:50. Die Antwort haben Sie vorher festgelegt. Sie geht sofort raus.' },
   { nr: 'V', titel: 'Termin steht', satz: '21:51. Der Termin steht im Kalender. Nachtragen müssen Sie nichts.' },
+  { nr: '07:00', titel: 'Am Morgen', satz: 'Die Kerze ist aus, die Helfer schlafen. Erledigt ist alles.' },
+  { nr: '07:00', titel: 'Sie haben geschlafen.', satz: 'Ihr Betrieb nicht.' },
 ];
 let stationJetzt;
 let stationUhr = 0;
