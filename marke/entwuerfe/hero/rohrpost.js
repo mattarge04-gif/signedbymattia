@@ -52,12 +52,30 @@ defs.innerHTML = `
   <linearGradient id="rpHolz" x1="0" y1="0" x2="0" y2="1">
     <stop offset="0" stop-color="#F6ECDC"/><stop offset="1" stop-color="${F.holz}"/>
   </linearGradient>
+  <linearGradient id="rpBand" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#FFFBF1"/><stop offset=".5" stop-color="#F8EDD4"/><stop offset="1" stop-color="#EBD3A2"/>
+  </linearGradient>
+  <linearGradient id="rpBandHinten" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#EAD3A3"/><stop offset="1" stop-color="#C9A66B"/>
+  </linearGradient>
+  <linearGradient id="rpSeite" x1="0" y1="0" x2="1" y2="0">
+    <stop offset="0" stop-color="#D9C29C"/><stop offset="1" stop-color="#C5AA7E"/>
+  </linearGradient>
+  <linearGradient id="rpTiefe" x1="0" y1="0" x2="1" y2="0">
+    <stop offset="0" stop-color="#4B3A78" stop-opacity=".22"/><stop offset=".35" stop-color="#4B3A78" stop-opacity="0"/>
+    <stop offset=".8" stop-color="#fff" stop-opacity="0"/><stop offset="1" stop-color="#fff" stop-opacity=".35"/>
+  </linearGradient>
+  <radialGradient id="rpVignette" cx=".5" cy=".5" r=".75">
+    <stop offset=".55" stop-color="#B9965C" stop-opacity="0"/><stop offset="1" stop-color="#B9965C" stop-opacity=".16"/>
+  </radialGradient>
+  <radialGradient id="rpBoden"><stop offset="0" stop-color="#6E5634" stop-opacity=".22"/><stop offset="1" stop-color="#6E5634" stop-opacity="0"/></radialGradient>
   <radialGradient id="rpMuendung"><stop offset=".45" stop-color="#7C6340"/><stop offset="1" stop-color="${F.goldDunkel}"/></radialGradient>`;
 
 // ---------- Blatt: Grund, Raster, Doppelrahmen mit Eckzier ----------
 const blatt = g({ class: 'rp-blatt' });
 el('rect', { x: 8, y: 8, width: 984, height: 544, rx: 22, fill: F.papier, stroke: F.gold, 'stroke-width': 2 }, blatt);
 el('rect', { x: 20, y: 20, width: 960, height: 520, rx: 14, fill: 'url(#rpRaster)', opacity: '.5' }, blatt);
+el('rect', { x: 8, y: 8, width: 984, height: 544, rx: 22, fill: 'url(#rpVignette)' }, blatt);
 el('rect', { x: 20, y: 20, width: 960, height: 520, rx: 14, fill: 'none', stroke: F.gold, 'stroke-width': 0.8 }, blatt);
 // Eckzier: kleine Volute in jeder Ecke, gezeichnet wie der Rest
 [[20, 20, 1, 1], [980, 20, -1, 1], [20, 540, 1, -1], [980, 540, -1, -1]].forEach(([x, y, sx, sy]) => {
@@ -70,10 +88,14 @@ el('rect', { x: 20, y: 20, width: 960, height: 520, rx: 14, fill: 'none', stroke
 
 // Titel-Band: geschwungene Kartusche mit eingerollten Enden
 const titel = g({ class: 'rp-auf', style: '--v:0' });
-el('path', { d: 'M318 70 L300 58 L322 54 L318 70 Z M682 70 L700 58 L678 54 L682 70 Z', fill: F.goldHell, stroke: F.goldDunkel, 'stroke-width': 1, 'stroke-linejoin': 'round' }, titel);
-el('path', { d: 'M322 50 Q500 34 678 50 L678 82 Q500 66 322 82 Z', fill: F.creme, stroke: F.gold, 'stroke-width': 1.6, filter: 'url(#rpSchatten)' }, titel);
-el('path', { d: 'M330 55 Q500 40 670 55 M330 77 Q500 62 670 77', fill: 'none', stroke: F.gold, 'stroke-width': 0.6, opacity: '.8' }, titel);
-el('text', { x: 500, y: 70, 'text-anchor': 'middle', class: 'rp-titel' }, titel, 'Plan der Rohrpost-Zentrale');
+// Schwalbenschwänze hinten, Falten dunkel, Band vorne mit Licht von oben
+el('path', { d: 'M352 58 H292 L306 77 L292 96 H352 Z', fill: 'url(#rpBandHinten)', stroke: F.goldDunkel, 'stroke-width': 1, 'stroke-linejoin': 'round', filter: 'url(#rpSchatten)' }, titel);
+el('path', { d: 'M648 58 H708 L694 77 L708 96 H648 Z', fill: 'url(#rpBandHinten)', stroke: F.goldDunkel, 'stroke-width': 1, 'stroke-linejoin': 'round', filter: 'url(#rpSchatten)' }, titel);
+el('path', { d: 'M336 84 L352 96 L352 84 Z M664 84 L648 96 L648 84 Z', fill: '#A9844A', stroke: F.goldDunkel, 'stroke-width': .8, 'stroke-linejoin': 'round' }, titel);
+el('path', { d: 'M336 44 Q500 30 664 44 L664 84 Q500 70 336 84 Z', fill: 'url(#rpBand)', stroke: F.goldDunkel, 'stroke-width': 1.1, filter: 'url(#rpSchatten)' }, titel);
+el('path', { d: 'M344 49.5 Q500 36 656 49.5 M344 78.5 Q500 65 656 78.5', fill: 'none', stroke: F.gold, 'stroke-width': 0.7 }, titel);
+el('path', { d: 'M340 46 Q500 32.5 660 46', fill: 'none', stroke: '#fff', 'stroke-width': 1.2, opacity: '.8' }, titel);
+el('text', { x: 500, y: 66, 'text-anchor': 'middle', class: 'rp-titel' }, titel, 'Plan der Rohrpost-Zentrale');
 
 // ---------- Geometrie ----------
 const Z = { x: 360, y: 196, b: 280, h: 196 };        // Schrank der Zentrale
@@ -125,8 +147,10 @@ const SYMBOL = {
 };
 EIN.forEach((e, i) => {
   const gr = g({ class: 'rp-auf rp-eingang', style: `--v:${0.1 + i * 0.06}` });
-  el('circle', { cx: 92, cy: e.y, r: 25, fill: 'url(#rpFlieder)', stroke: F.gold, 'stroke-width': 1.6, filter: 'url(#rpSchatten)' }, gr);
-  el('circle', { cx: 92, cy: e.y, r: 20.5, fill: 'none', stroke: F.creme, 'stroke-width': 1, opacity: '.9' }, gr);
+  el('circle', { cx: 92, cy: e.y, r: 27, fill: 'url(#rpGold)', stroke: F.goldDunkel, 'stroke-width': 1, filter: 'url(#rpSchatten)' }, gr);
+  el('circle', { cx: 92, cy: e.y - 1, r: 25.5, fill: 'none', stroke: '#fff', 'stroke-width': .9, opacity: '.6' }, gr);
+  el('circle', { cx: 92, cy: e.y, r: 21.5, fill: 'url(#rpFlieder)', stroke: '#A9844A', 'stroke-width': .9 }, gr);
+  el('circle', { cx: 92, cy: e.y + 1.5, r: 20, fill: 'none', stroke: '#4B3A78', 'stroke-width': 3, opacity: '.1' }, gr);
   const s = el('g', { transform: `translate(92 ${e.y})`, fill: 'none', stroke: F.text, 'stroke-width': 1.5, 'stroke-linejoin': 'round', 'stroke-linecap': 'round' }, gr);
   s.innerHTML = SYMBOL[e.symbol];
   el('text', { x: 92, y: e.y + 46, 'text-anchor': 'middle', class: 'rp-name' }, gr, e.name);
@@ -153,19 +177,30 @@ const zentrale = g({ class: 'rp-auf rp-zentrale', style: '--v:.2' });
 el('path', { d: `M${Z.x + Z.b / 2 - 12} ${Z.y - 30} L${Z.x + Z.b / 2 - 22} ${Z.y - 54} L${Z.x + Z.b / 2 + 22} ${Z.y - 54} L${Z.x + Z.b / 2 + 12} ${Z.y - 30} Z`, fill: 'url(#rpGold)', stroke: F.goldDunkel, 'stroke-width': 1, 'stroke-linejoin': 'round' }, zentrale);
 el('ellipse', { cx: Z.x + Z.b / 2, cy: Z.y - 54, rx: 22, ry: 4, fill: 'url(#rpMuendung)', stroke: F.goldDunkel, 'stroke-width': 1 }, zentrale);
 el('rect', { x: Z.x + Z.b / 2 - 7, y: Z.y - 32, width: 14, height: 14, fill: 'url(#rpGold)', stroke: F.goldDunkel, 'stroke-width': 1 }, zentrale);
+// Bodenschatten und Seitenfläche (Tiefe nach rechts hinten)
+el('ellipse', { cx: Z.x + Z.b / 2 + 8, cy: Z.y + Z.h + 10, rx: Z.b * 0.62, ry: 13, fill: 'url(#rpBoden)' }, zentrale);
+el('path', { d: `M${Z.x + Z.b - 2} ${Z.y + 14} L${Z.x + Z.b + 14} ${Z.y + 4} L${Z.x + Z.b + 14} ${Z.y + Z.h - 12} L${Z.x + Z.b - 2} ${Z.y + Z.h} Z`, fill: 'url(#rpSeite)', stroke: F.tinte, 'stroke-width': 1.1, 'stroke-linejoin': 'round' }, zentrale);
+el('path', { d: `M${Z.x + Z.b + 6} ${Z.y + Z.h - 6} L${Z.x + Z.b + 18} ${Z.y + Z.h - 14} L${Z.x + Z.b + 18} ${Z.y + Z.h - 3} L${Z.x + Z.b + 6} ${Z.y + Z.h + 6} Z`, fill: '#B9965C', stroke: F.goldDunkel, 'stroke-width': .8, 'stroke-linejoin': 'round' }, zentrale);
 // Korpus mit Segmentgiebel
 el('path', {
   d: `M${Z.x} ${Z.y + 22} Q${Z.x} ${Z.y + 10} ${Z.x + 12} ${Z.y + 10} L${Z.x + Z.b / 2 - 50} ${Z.y + 10} Q${Z.x + Z.b / 2} ${Z.y - 22} ${Z.x + Z.b / 2 + 50} ${Z.y + 10} L${Z.x + Z.b - 12} ${Z.y + 10} Q${Z.x + Z.b} ${Z.y + 10} ${Z.x + Z.b} ${Z.y + 22} L${Z.x + Z.b} ${Z.y + Z.h - 12} Q${Z.x + Z.b} ${Z.y + Z.h} ${Z.x + Z.b - 12} ${Z.y + Z.h} L${Z.x + 12} ${Z.y + Z.h} Q${Z.x} ${Z.y + Z.h} ${Z.x} ${Z.y + Z.h - 12} Z`,
   fill: 'url(#rpHolz)', stroke: F.tinte, 'stroke-width': 1.3, filter: 'url(#rpSchatten)',
 }, zentrale);
 el('path', { d: `M${Z.x + 8} ${Z.y + 30} H${Z.x + Z.b - 8}`, stroke: F.holzDunkel, 'stroke-width': 1 }, zentrale);
+el('path', { d: `M${Z.x + 14} ${Z.y + 12} H${Z.x + Z.b / 2 - 52} M${Z.x + Z.b / 2 + 52} ${Z.y + 12} H${Z.x + Z.b - 14}`, stroke: '#fff', 'stroke-width': 1.2, opacity: '.7' }, zentrale);
+// Sockel aus Messing
+el('rect', { x: Z.x - 6, y: Z.y + Z.h - 6, width: Z.b + 12, height: 12, rx: 3, fill: 'url(#rpGold)', stroke: F.goldDunkel, 'stroke-width': 1 }, zentrale);
+el('path', { d: `M${Z.x - 2} ${Z.y + Z.h - 4.5} H${Z.x + Z.b + 2}`, stroke: '#fff', 'stroke-width': 1, opacity: '.7' }, zentrale);
 el('circle', { cx: Z.x + Z.b / 2, cy: Z.y + 8, r: 5, fill: F.pinkHell, stroke: F.tinte, 'stroke-width': 0.9 }, zentrale);
 // Sammelrohr hinter den Kammern
 el('path', { d: `M${Z.x} ${MITTE_Y} H${Z.x + Z.b}`, stroke: F.goldDunkel, 'stroke-width': 4, opacity: '.35' }, zentrale);
 const kammern = SCHRITTE.map((name, i) => {
   const x = KX(i), y = KAMMER.y, b = KAMMER.b, h = KAMMER.h;
   const k = g({ class: 'rp-kammer' }, zentrale);
-  const glas = el('path', { d: `M${x} ${y + h} V${y + b / 2} A${b / 2} ${b / 2} 0 0 1 ${x + b} ${y + b / 2} V${y + h} Z`, fill: 'url(#rpFlieder)', stroke: F.tinte, 'stroke-width': 0.9 }, k);
+  const bogen = (dx) => `M${x - dx} ${y + h + dx} V${y + b / 2} A${b / 2 + dx} ${b / 2 + dx} 0 0 1 ${x + b + dx} ${y + b / 2} V${y + h + dx} Z`;
+  el('path', { d: bogen(4), fill: 'url(#rpGold)', stroke: F.goldDunkel, 'stroke-width': .9 }, k);
+  const glas = el('path', { d: bogen(0), fill: 'url(#rpFlieder)', stroke: '#A9844A', 'stroke-width': 0.8 }, k);
+  el('path', { d: bogen(0), fill: 'url(#rpTiefe)' }, k);
   el('path', { d: `M${x + 7} ${y + h - 6} V${y + b / 2 + 2}`, stroke: '#fff', 'stroke-width': 2, 'stroke-linecap': 'round', opacity: '.55' }, k);
   // Messingschild
   el('rect', { x: x - 5, y: y + h + 10, width: b + 10, height: 15, rx: 3, fill: 'url(#rpGold)', stroke: F.goldDunkel, 'stroke-width': 0.8 }, k);

@@ -14,8 +14,11 @@ set -euo pipefail
 NEU=/opt/vorschau.neu
 rm -rf "$NEU" && mkdir -p "$NEU"
 tar -xzf - -C "$NEU"
+# Cache umgehen (Caddy schickt kein Cache-Control): eigene CSS/JS und die Seite selbst bekommen ?v=<Zeit>
+V=$(date +%s)
+sed -i -E "s#(href|src)=\"([^\":]+\.(css|js))\"#\1=\"\2?v=$V\"#g" "$NEU/marke/entwuerfe/hero/index.html"
 printf '%s\n' '<!doctype html><meta charset="utf-8"><meta name="robots" content="noindex">' \
-  '<meta http-equiv="refresh" content="0; url=marke/entwuerfe/hero/index.html"><title>Vorschau</title>' > "$NEU/index.html"
+  "<meta http-equiv=\"refresh\" content=\"0; url=marke/entwuerfe/hero/index.html?v=$V\"><title>Vorschau</title>" > "$NEU/index.html"
 printf 'User-agent: *\nDisallow: /\n' > "$NEU/robots.txt"
 # Inhalt austauschen, der Ordner selbst bleibt (er ist im Container eingehängt)
 find /opt/vorschau -mindepth 1 -delete
