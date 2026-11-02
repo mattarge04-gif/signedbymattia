@@ -371,5 +371,7 @@ Text darunter kommt erst danach (Commit `f006c0a`). [A] Beim Hereinscrollen steh
 **D · Übergang**
 16. Der Sperrbildschirm wird zum Papier: die drei Meldungen fliegen an ihre Ausgänge im Plan.
 
+**Entscheid Mattia 02.11.2026 [F]:** 1 + 2 + 6 + 11 + 13 + 15 + 16. Reihenfolge: Pergament-Stiltest zeigen, dann bauen.
+
 **Vorschlag Claude [A]:** 1 + 2 + 6 + 11 + 16 (gleiche Geschichte, gemalt, Übergang wie Kapitel I). Aufwand ca. ein
 Abend, ca. USD 0.30 Vertex. Danach Tarot-Karte II.

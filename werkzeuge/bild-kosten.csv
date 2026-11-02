@@ -52,3 +52,5 @@ datum,modell,groesse,usd,datei,prompt
 2026-11-01T21:28:22,gemini-nano-banana-2.1,2K,0.14,marke/assets/k2/ebenen/e0-morgenhimmel-v1.jpg,"Edit the attached painting. Keep exactly the same painting style, framing, cloud shapes and composition. Change only the"
 2026-11-01T21:28:58,gemini-nano-banana-2.1,2K,0.14,marke/assets/k2/ebenen/putto-kaffee-b-v1.jpg,"Edit the attached painting. Keep exactly the same putto, same painting style, same size, same position in the frame, sam"
 2026-11-01T21:30:53,gemini-nano-banana-2.1,1K,0.14,marke/assets/k2/ebenen/kerze-aus-v1.jpg,"Edit the attached painting. Keep exactly the same painting style, palette, framing, camera angle, the same candle, candl"
+2026-11-02T21:51:46,gemini-nano-banana-2.1,2K,0.14,marke/assets/k2/papier/pergament-v1.jpg,"Use the attached painting only as a reference for painting style and palette (soft baroque oil painting, pastel cream, r"
+2026-11-02T22:04:28,gemini-nano-banana-2.1,2K,0.14,marke/assets/k2/papier/plan-v1.jpg,Paint on the attached parchment sheet (keep its gold border and corner ornaments). Draw on it a beautiful hand-coloured 
