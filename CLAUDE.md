@@ -65,7 +65,7 @@ Budgets und Kostenfreigaben bleiben in `agency-automation-os/projects/lead-engin
 
 ## Aktueller Stand und nächste Schritte
 
-Stand: 01.11.2026 (sehr spät, Morgen). Zeitplan: Vault `Zielplan.md`, Aufgabenliste `plan/aufgaben-bis-live.md`. Phase **Fundament**
+Stand: 02.11.2026 (abends). Zeitplan: Vault `Zielplan.md`, Aufgabenliste `plan/aufgaben-bis-live.md`. Phase **Fundament**
 (KW 39–42) endete am 18.10.2026. **Livegang neu 17.12.2026** (Entscheid 28.10.).
 
 **Sitzungsabschluss 28.09.:** Claude erreichte am 27.09. um 23:59 das
@@ -533,10 +533,38 @@ doppelten Putto, behoben).
 - Vertex November USD 2.24 von 8.00. Commits `f897752`, `d08b09b`, `f006c0a`. Online.
 - [A] Datum auf dem Sperrbildschirm blass; Karte überlappt dritte Meldung knapp; kleine Büchse oben links beim
   Hereinscrollen der Grafik.
-- **Beim Wiedereinstieg zuerst:** (1) Mattia wählt aus den 16 Vorschlägen zur Grafik
+- *(Wiedereinstieg überholt durch 02.11.)* **Beim Wiedereinstieg zuerst:** (1) Mattia wählt aus den 16 Vorschlägen zur Grafik
   (`website/drehbuch/12-kapitel-2.md`, Abschnitt „Papier“; Vorschlag Claude 1+2+6+11+16), dann Pergament-Stiltest
   zeigen, dann bauen. (2) Abnahme „Morgen“ einholen. (3) Danach Tarot-Karte II. (4) Caddy `Cache-Control "no-cache"`
   im eigenen Block (Mattia mit `!`). (5) Zeitplan `plan/aufgaben-bis-live.md` prüfen.
+
+**Sitzungsabschluss 02.11. [F]:** **Grafik „Plan der Rohrpost-Zentrale“ (Kapitel II, Papier) neu gebaut und
+abgenommen** (Mattia: „pushe“).
+
+- Gewählt aus den 16 Vorschlägen: 1, 2, 6, 11, 13, 15, 16 (Entscheid in `website/drehbuch/12-kapitel-2.md`, Abschnitt
+  „Papier“). Umgesetzt: 1, 2, 11, 13. Punkt 6 (Pergament) verworfen.
+- Verworfen: Pergament-Stiltest und ganz gemalter Kupferstich-Plan über Vertex (Originale
+  `marke/assets/k2/papier/pergament-v1`, `plan-v1`); Schein-3D mit Verläufen. Mattia: „eine Grafik bleiben, mit wenig
+  Farben viel Tiefe, über Animation oder 2.5D“.
+- Fassung jetzt (`marke/entwuerfe/hero/rohrpost.js`, Stil in `kapitel2.css`): flach in sechs Farben, **vier echte
+  Ebenen** (Blatt, Rohre/Büchsen, Bauten, Fähnchen) als eigene SVGs; Einflug gekippt und auseinandergezogen (3D nur in
+  Bewegung), in Ruhe Maus-Parallaxe in 2D mit flachem Schatten; Schrift liegt auf dem Blatt (sonst doppelt). Rohre
+  zeichnen sich am Scroll, Frau Meiers Büchse 21:47 Formular → Lesen/Sortieren/Antworten/Eintragen (21:48–21:51) →
+  Antwort „Wir kommen morgen um 8 Uhr.“ + Termin „Do 08:00 · Boiler“, **Scheinwerfer** (Rest blass), Symbole in den
+  Kammern, Zeiger im Massstab „21:47–21:51 · 4 Min.“, leise Rohrpost danach. Titel gesetzt mit Linie und Raute;
+  Schriftfeld unten wie ein Bauplan (Legende · „Massstab 1 : 1 Nacht“ · „Blatt II · Automation“ · „gez. Mattia“ [A]
+  Texte von Claude). Bahn `.k2-plan-bahn` 260vh.
+- Kritik Codex vor der Nachbesserung 5/10 (Fall zu schwach, Schrift zu klein); danach umgesetzt.
+- **Cache gelöst:** `werkzeuge/vorschau.sh` hängt beim Hochladen `?v=<Zeit>` an eigene CSS/JS und an die Weiterleitung.
+  Damit ist der Caddy-Punkt `Cache-Control` nicht mehr dringend [A] (verschachtelte JS-Imports bleiben ungeschützt).
+- Vertex November USD 2.52 von 8.00. Commits `6ad4187`, `c5f09f4`, `e6bb1a1`, `2151959`, `15ad924`. Online auf
+  https://vorschau.signedbymattia.ch.
+- [?] Abnahme „Morgen“ weiterhin nicht ausdrücklich erteilt. [A] Frau Meiers Anfrage kommt über das Formular
+  (Textinterview klären).
+- **Beim Wiedereinstieg zuerst:** (1) **Punkt 15**: Hover auf einen Ausgang zeigt die passende Handy-Mitteilung aus der
+  Szene. (2) **Punkt 16**: Sperrbildschirm wird zum Papier, die drei Meldungen fliegen an ihre Ausgänge im Plan.
+  (3) Abnahme „Morgen“ einholen. (4) Tarot-Karte II. (5) Zeitplan `plan/aufgaben-bis-live.md` prüfen (Kapitel II
+  verschiebt ca. 1 Woche).
 
 **Erledigt [F]:**
 

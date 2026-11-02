@@ -342,7 +342,7 @@ Edit the attached painting. Keep exactly the same putto, same painting style, sa
 Edit the attached painting. Keep exactly the same painting style, palette, framing, camera angle, the same candle, candlestick, table and the same plain light grey background, everything in the same position and size. Change only this: the candle has just been blown out. No flame, no glow. The wick is short, bent and blackened, a tiny dark tip. The wax at the top is slightly melted with a small drip. No smoke, no text.
 ```
 
-## Papier · Plan der Rohrpost-Zentrale [?] (Vorschläge 01.11.2026, Mattia wählt)
+## Papier · Plan der Rohrpost-Zentrale [F] (Vorschläge 01.11.2026, gewählt und gebaut 02.11.2026)
 
 Gebaut [F]: Die Grafik steht beim Scrollen kurz still und füllt den Bildschirm (`.k2-plan-bahn` 190vh, sticky), der
 Text darunter kommt erst danach (Commit `f006c0a`). [A] Beim Hereinscrollen steht kurz eine kleine Büchse oben links.
@@ -372,6 +372,13 @@ Text darunter kommt erst danach (Commit `f006c0a`). [A] Beim Hereinscrollen steh
 16. Der Sperrbildschirm wird zum Papier: die drei Meldungen fliegen an ihre Ausgänge im Plan.
 
 **Entscheid Mattia 02.11.2026 [F]:** 1 + 2 + 6 + 11 + 13 + 15 + 16. Reihenfolge: Pergament-Stiltest zeigen, dann bauen.
+
+**Gebaut 02.11.2026 [F]:** Flach in sechs Farben, vier echte Ebenen (Blatt, Rohre/Büchsen, Bauten, Fähnchen) als 2.5D:
+Einflug gekippt und auseinandergezogen, in Ruhe Maus-Parallaxe mit flachem Schatten (`rohrpost.js`, `kapitel2.css`,
+Bahn 260vh). Umgesetzt 1, 2, 11, 13: Scheinwerfer auf Frau Meiers Weg, Zeiger im Massstab „21:47–21:51 · 4 Min.“,
+Schriftfeld wie ein Bauplan ([A] Texte von Claude). **6 Pergament verworfen** (Stiltest und gemalter Plan), Mattia:
+„eine Grafik bleiben“. **Offen: 15 (Hover → Handy-Mitteilung) und 16 (Sperrbildschirm wird zum Papier).** Abgenommen
+(Mattia: „pushe“).
 
 **Vorschlag Claude [A]:** 1 + 2 + 6 + 11 + 16 (gleiche Geschichte, gemalt, Übergang wie Kapitel I). Aufwand ca. ein
 Abend, ca. USD 0.30 Vertex. Danach Tarot-Karte II.
