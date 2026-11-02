@@ -69,7 +69,9 @@
 .k2-inhalt { display: grid; grid-template-columns: 1.6fr 1fr; gap: 4vw; align-items: center; max-width: 1200px; margin: 0 auto; }
 .k2-plan { grid-column: 1 / -1; margin: 0; }
 .k2-grafik { width: 100%; height: auto; display: block; overflow: visible; }
-.k2-grafik .rp-titel { font: italic 25px var(--font-hand); fill: var(--color-text); letter-spacing: .01em; }
+.k2-grafik .rp-titel { font: italic 30px var(--font-hand); fill: var(--color-text); letter-spacing: -.005em; }
+.k2-grafik .rp-skala { font: 500 9px var(--font-system); font-variant-numeric: tabular-nums; fill: #8C7650; }
+.k2-grafik .rp-signatur { font: italic 19px var(--font-hand); fill: #C2557F; }
 .k2-grafik .rp-name { font: 600 13.5px var(--font-system); fill: var(--color-text); letter-spacing: .01em; }
 .k2-grafik .rp-legende { font: 500 11.5px var(--font-system); fill: var(--color-text-muted); }
 .k2-grafik .rp-klein { font: italic 13.5px var(--font-hand); fill: #8C7650; }

@@ -56,12 +56,6 @@ defs.innerHTML = `<pattern id="rpRaster" width="20" height="20" patternUnits="us
 el('rect', { x: 8, y: 8, width: 984, height: 544, rx: 22, fill: F.papier, stroke: F.gold, 'stroke-width': 2 }, L0);
 el('rect', { x: 20, y: 20, width: 960, height: 520, rx: 14, fill: 'url(#rpRaster)', opacity: '.45' }, L0);
 el('rect', { x: 20, y: 20, width: 960, height: 520, rx: 14, fill: 'none', stroke: F.gold, 'stroke-width': 0.8 }, L0);
-[[20, 20, 1, 1], [980, 20, -1, 1], [20, 540, 1, -1], [980, 540, -1, -1]].forEach(([x, y, sx, sy]) => {
-  el('path', {
-    d: 'M10 34 C10 18 18 10 34 10 M16 40 C16 26 24 18 40 16 M34 10 C42 10 46 16 42 21 C39 25 34 22 36 18',
-    transform: `translate(${x} ${y}) scale(${sx} ${sy})`, fill: 'none', stroke: F.gold, 'stroke-width': 1.1, 'stroke-linecap': 'round',
-  }, L0);
-});
 function kapsel(art, eltern, gross = false) {
   const k = g({}, eltern);
   const [b, h] = gross ? [26, 14] : [20, 11];
@@ -70,15 +64,22 @@ function kapsel(art, eltern, gross = false) {
   el('rect', { x: b * 0.14, y: -h / 2, width: b * 0.12, height: h, fill: rand }, k);
   return k;
 }
-kapsel('pink', L0).setAttribute('transform', 'translate(74 508)');
-el('text', { x: 92, y: 512, class: 'rp-legende' }, L0, 'Anfrage');
-kapsel('gold', L0).setAttribute('transform', 'translate(174 508)');
-el('text', { x: 192, y: 512, class: 'rp-legende' }, L0, 'Ergebnis');
-el('path', { d: 'M812 512 H932 M812 507 V517 M872 509 V515 M932 507 V517', stroke: F.tinte, 'stroke-width': 1.1, fill: 'none', 'stroke-linecap': 'round' }, L0);
-el('path', { d: 'M798 504 A6 6 0 1 0 804 516 A4.6 4.6 0 1 1 798 504 Z', fill: F.flieder, stroke: F.tinte, 'stroke-width': 0.8 }, L0);
-el('circle', { cx: 946, cy: 512, r: 4, fill: F.gold, stroke: F.tinte, 'stroke-width': 0.8 }, L0);
-el('path', { d: 'M946 503 V505 M946 519 V521 M937 512 H939 M953 512 H955', stroke: F.tinte, 'stroke-width': 0.8, 'stroke-linecap': 'round' }, L0);
-el('text', { x: 872, y: 497, 'text-anchor': 'middle', class: 'rp-klein' }, L0, 'höchstens eine Nacht');
+// Schriftfeld unten wie auf einem Bauplan: Legende · Massstab · Blatt und Signatur
+const FUSS = 492, ZEILE = 520;
+el('path', { d: `M20 ${FUSS} H980 M316 ${FUSS} V540 M652 ${FUSS} V540`, stroke: F.gold, 'stroke-width': 0.8, fill: 'none' }, L0);
+kapsel('pink', L0).setAttribute('transform', `translate(52 ${ZEILE - 4})`);
+el('text', { x: 70, y: ZEILE, class: 'rp-legende' }, L0, 'Anfrage');
+kapsel('gold', L0).setAttribute('transform', `translate(158 ${ZEILE - 4})`);
+el('text', { x: 176, y: ZEILE, class: 'rp-legende' }, L0, 'Ergebnis');
+el('text', { x: 340, y: ZEILE, class: 'rp-klein' }, L0, 'Massstab 1 : 1 Nacht');
+// Massstabsbalken: fünf Felder abwechselnd voll und leer, Enden beschriftet
+for (let i = 0; i < 5; i++) {
+  el('rect', { x: 476 + i * 28, y: ZEILE - 13, width: 28, height: 6, fill: i % 2 ? F.papier : F.gold, stroke: F.goldDunkel, 'stroke-width': 0.8 }, L0);
+}
+el('text', { x: 476, y: ZEILE + 7, 'text-anchor': 'middle', class: 'rp-skala' }, L0, '21 h');
+el('text', { x: 616, y: ZEILE + 7, 'text-anchor': 'middle', class: 'rp-skala' }, L0, '07 h');
+el('text', { x: 676, y: ZEILE, class: 'rp-legende' }, L0, 'Blatt II · Automation');
+el('text', { x: 956, y: ZEILE + 1, 'text-anchor': 'end', class: 'rp-signatur' }, L0, 'gez. Mattia');
 
 // ---------- Geometrie ----------
 const Z = { x: 360, y: 196, b: 280, h: 196 };
@@ -123,13 +124,10 @@ AUS.forEach((a) => { a.rohr = rohr(`M${Z.x + Z.b} ${a.von} C 712 ${a.von}, 712 $
 const buechsenLage = g({}, L1);
 
 // ---------- Ebene 2: Bauten ----------
-// Titel-Band: flach, Schwalbenschwänze hinten
-const titel = g({}, L2);
-el('path', { d: 'M352 58 H292 L306 77 L292 96 H352 Z M648 58 H708 L694 77 L708 96 H648 Z', fill: F.gold, stroke: F.goldDunkel, 'stroke-width': 1, 'stroke-linejoin': 'round' }, titel);
-el('path', { d: 'M336 84 L352 96 L352 84 Z M664 84 L648 96 L648 84 Z', fill: F.goldDunkel }, titel);
-el('path', { d: 'M336 44 Q500 30 664 44 L664 84 Q500 70 336 84 Z', fill: F.papier, stroke: F.goldDunkel, 'stroke-width': 1.1 }, titel);
-el('path', { d: 'M344 49.5 Q500 36 656 49.5 M344 78.5 Q500 65 656 78.5', fill: 'none', stroke: F.gold, 'stroke-width': 0.8 }, titel);
-el('text', { x: 500, y: 66, 'text-anchor': 'middle', class: 'rp-titel' }, titel, 'Plan der Rohrpost-Zentrale');
+// Titel: gesetzt wie auf einem Plan, darunter eine feine Linie mit Raute
+el('text', { x: 500, y: 64, 'text-anchor': 'middle', class: 'rp-titel' }, L0, 'Plan der Rohrpost-Zentrale');
+el('path', { d: 'M440 80 H494 M506 80 H560', stroke: F.gold, 'stroke-width': 1 }, L0);
+el('path', { d: 'M500 76 L504 80 L500 84 L496 80 Z', fill: F.gold }, L0);
 
 // Eingänge
 const SYMBOL = {
@@ -143,7 +141,7 @@ EIN.forEach((e) => {
   el('circle', { cx: 92, cy: e.y, r: 27.5, fill: 'none', stroke: F.goldDunkel, 'stroke-width': 1 }, gr);
   const s = el('g', { transform: `translate(92 ${e.y})`, fill: 'none', stroke: F.text, 'stroke-width': 1.5, 'stroke-linejoin': 'round', 'stroke-linecap': 'round' }, gr);
   s.innerHTML = SYMBOL[e.symbol];
-  el('text', { x: 92, y: e.y + 48, 'text-anchor': 'middle', class: 'rp-name' }, gr, e.name);
+  el('text', { x: 92, y: e.y + 48, 'text-anchor': 'middle', class: 'rp-name' }, L0, e.name); // Schrift liegt auf dem Blatt, wirft keinen Schatten
   el('path', { d: `M130 ${e.y - 17} Q146 ${e.y - 8} 160 ${e.y - 6} L160 ${e.y + 6} Q146 ${e.y + 8} 130 ${e.y + 17} Z`, fill: F.gold, stroke: F.goldDunkel, 'stroke-width': 1 }, gr);
   el('ellipse', { cx: 130, cy: e.y, rx: 4, ry: 17, fill: F.goldDunkel }, gr);
 });
@@ -154,8 +152,8 @@ AUS.forEach((a) => {
   a.ring = el('circle', { cx: MUND_X, cy: a.y, r: 13, fill: 'none', stroke: F.pink, 'stroke-width': 2, class: 'rp-ring' }, gr);
   el('circle', { cx: MUND_X, cy: a.y, r: 13, fill: F.gold, stroke: F.goldDunkel, 'stroke-width': 1 }, gr);
   el('circle', { cx: MUND_X, cy: a.y, r: 6.5, fill: F.tinte }, gr);
-  el('text', { x: MUND_X + 24, y: a.y + 5, class: 'rp-name' }, gr, a.name);
-  if (a.bsp) a.bspEl = el('text', { x: MUND_X + 24, y: a.y + 23, class: 'rp-bsp', opacity: 0 }, gr, a.bsp);
+  el('text', { x: MUND_X + 24, y: a.y + 5, class: 'rp-name' }, L0, a.name);
+  if (a.bsp) a.bspEl = el('text', { x: MUND_X + 24, y: a.y + 23, class: 'rp-bsp', opacity: 0 }, L0, a.bsp);
 });
 
 // Zentrale
@@ -182,7 +180,7 @@ const kammern = SCHRITTE.map((name, i) => {
   const zeit = el('text', { x: x + b / 2, y: y + h + 42, 'text-anchor': 'middle', class: 'rp-zeit', opacity: 0 }, k, ZEITEN[i]);
   return { glas, zeit, mitte: x + b / 2 };
 });
-el('text', { x: mx, y: Z.y + Z.h + 30, 'text-anchor': 'middle', class: 'rp-klein' }, zentrale, 'Zentrale · nachts besetzt von vier Putti');
+el('text', { x: mx, y: Z.y + Z.h + 30, 'text-anchor': 'middle', class: 'rp-klein' }, L0, 'Zentrale · nachts besetzt von vier Putti');
 
 // ---------- Büchsen (Ebene 1) und Fähnchen (Ebene 3) ----------
 const leise = rohre.map((r, i) => ({ r, k: kapsel(r.art === 'ein' ? 'pink' : 'gold', buechsenLage), dauer: r.art === 'ein' ? 4.2 : 3.4, versatz: (i * 0.37) % 1 }));
