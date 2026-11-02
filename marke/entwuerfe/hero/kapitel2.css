@@ -77,15 +77,19 @@
 .k2-grafik .rp-schild { font: 700 7.6px var(--font-system); letter-spacing: .07em; text-transform: uppercase; fill: #5A4220; }
 .k2-grafik .rp-zeit { font: 600 10px var(--font-system); font-variant-numeric: tabular-nums; fill: #C2557F; transition: opacity .3s var(--ease-ui); }
 .k2-grafik .rp-fahne { font: 600 10.5px var(--font-system); font-variant-numeric: tabular-nums; fill: var(--color-text); }
-.k2-grafik .rp-glut { transition: opacity .6s var(--ease-ui); }
 .k2-grafik .rp-rohr-gruppe path { fill: none; stroke-linecap: round; stroke-linejoin: round; }
-.k2-grafik .rp-rohr-schatten { stroke: #6E5634; stroke-width: 15; opacity: .13; transform: translateY(5px); }
-.k2-grafik .rp-rohr { stroke: #A9844A; stroke-width: 13; }
-.k2-grafik .rp-rohr-kanal { stroke: #E3C58A; stroke-width: 10.5; }
-.k2-grafik .rp-rohr-glanz { stroke: #FFF6DC; stroke-width: 3.2; opacity: .85; transform: translateY(-2.4px); }
+.k2-grafik .rp-rohr-kante { stroke: #B9965C; stroke-width: 13; }
+.k2-grafik .rp-rohr { stroke: #E3C58A; stroke-width: 10; }
+.k2-grafik .rp-rohr-kanal { stroke: #FCF6EE; stroke-width: 2.6; }
+.k2-grafik .rp-ring { transform-box: fill-box; transform-origin: center; opacity: 0; }
+.k2-grafik .rp-ring.an { animation: rp-ring 1.8s var(--ease-ui) infinite; }
+@keyframes rp-ring { from { transform: scale(1); opacity: .9; } to { transform: scale(2.1); opacity: 0; } }
+/* 2.5D: vier Ebenen übereinander, Perspektive nur beim Einflug (in Ruhe 2D, sonst unscharf) */
+.k2-plan { perspective: 1800px; perspective-origin: 50% 30%; }
+.rp-stapel { position: relative; transform-style: preserve-3d; transform-origin: 50% 60%; }
+.rp-stapel .rp-ebene + .rp-ebene { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
 .k2-grafik .rp-zeichnen { stroke-dasharray: 1; stroke-dashoffset: var(--d, 1); }
 .k2-grafik .rp-rohr-gruppe .rp-zeichnen { stroke-dashoffset: var(--d, 1); }
-.k2-grafik .rp-auf { opacity: 0; }
 .k2-panel-text h3 { margin: 0 0 12px; font-size: clamp(32px, 4vw, 60px); letter-spacing: var(--tracking-headline); }
 .k1-karte small { font-size: 12px; color: var(--color-text-muted); margin: -6px 0 8px; }
 
