@@ -70,15 +70,17 @@
 .k2-plan { grid-column: 1 / -1; margin: 0; }
 .k2-grafik { width: 100%; height: auto; display: block; overflow: visible; }
 .k2-grafik .rp-titel { font: italic 30px var(--font-hand); fill: var(--color-text); letter-spacing: -.005em; }
-.k2-grafik .rp-skala { font: 500 9px var(--font-system); font-variant-numeric: tabular-nums; fill: #8C7650; }
+.k2-grafik .rp-skala-pink { fill: #A83E6A; font-weight: 600; }
+.k2-grafik .rp-skala { font: 500 10px var(--font-system); font-variant-numeric: tabular-nums; fill: #8C7650; }
 .k2-grafik .rp-signatur { font: italic 19px var(--font-hand); fill: #C2557F; }
-.k2-grafik .rp-name { font: 600 13.5px var(--font-system); fill: var(--color-text); letter-spacing: .01em; }
+.k2-grafik .rp-name { font: 600 15px var(--font-system); fill: var(--color-text); letter-spacing: .01em; }
+.k2-grafik .rp-name.leise { fill: var(--color-text-muted); font-weight: 500; }
 .k2-grafik .rp-legende { font: 500 11.5px var(--font-system); fill: var(--color-text-muted); }
 .k2-grafik .rp-klein { font: italic 13.5px var(--font-hand); fill: #8C7650; }
-.k2-grafik .rp-bsp { font: italic 13px var(--font-hand); fill: #C2557F; transition: opacity .5s var(--ease-ui); }
-.k2-grafik .rp-schild { font: 700 7.6px var(--font-system); letter-spacing: .07em; text-transform: uppercase; fill: #5A4220; }
-.k2-grafik .rp-zeit { font: 600 10px var(--font-system); font-variant-numeric: tabular-nums; fill: #C2557F; transition: opacity .3s var(--ease-ui); }
-.k2-grafik .rp-fahne { font: 600 10.5px var(--font-system); font-variant-numeric: tabular-nums; fill: var(--color-text); }
+.k2-grafik .rp-bsp { font: italic 16px var(--font-hand); fill: #A83E6A; transition: opacity .5s var(--ease-ui); }
+.k2-grafik .rp-schild { font: 700 8.8px var(--font-system); letter-spacing: .04em; text-transform: uppercase; fill: #5A4220; }
+.k2-grafik .rp-zeit { font: 600 13px var(--font-system); font-variant-numeric: tabular-nums; fill: #A83E6A; transition: opacity .3s var(--ease-ui); }
+.k2-grafik .rp-fahne { font: 600 12.5px var(--font-system); font-variant-numeric: tabular-nums; fill: var(--color-text); }
 .k2-grafik .rp-rohr-gruppe path { fill: none; stroke-linecap: round; stroke-linejoin: round; }
 .k2-grafik .rp-rohr-kante { stroke: #B9965C; stroke-width: 13; }
 .k2-grafik .rp-rohr { stroke: #E3C58A; stroke-width: 10; }
@@ -88,6 +90,10 @@
 @keyframes rp-ring { from { transform: scale(1); opacity: .9; } to { transform: scale(2.1); opacity: 0; } }
 /* 2.5D: vier Ebenen übereinander, Perspektive nur beim Einflug (in Ruhe 2D, sonst unscharf) */
 .k2-plan { perspective: 1800px; perspective-origin: 50% 30%; }
+/* Scheinwerfer: alles ausser Frau Meiers Weg tritt zurück */
+.rp-stapel [data-dim] { transition: opacity .6s var(--ease-ui); }
+.rp-stapel.fokus [data-dim] { opacity: .22; }
+.rp-ausgang.leise { opacity: .8; }
 .rp-stapel { position: relative; transform-style: preserve-3d; transform-origin: 50% 60%; }
 .rp-stapel .rp-ebene + .rp-ebene { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
 .k2-grafik .rp-zeichnen { stroke-dasharray: 1; stroke-dashoffset: var(--d, 1); }

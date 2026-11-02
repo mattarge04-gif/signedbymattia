@@ -5,6 +5,8 @@
 // Tiefe entsteht durch Abstand zwischen den Ebenen: beim Hereinscrollen liegt der Plan gekippt wie auf einem Tisch,
 // die Ebenen schweben auseinander und setzen sich ab (explodierte Ansicht); danach weichen sie der Maus verschieden
 // stark aus, ihr flacher Schatten wandert mit. Gewählt: 1, 2, 11, 13 (15 und 16 folgen).
+// Nachbesserung 02.11. nach Kritik (Claude + Codex 5/10): Scheinwerfer auf Frau Meiers Weg, Symbole in den Kammern,
+// grössere Schrift, Zeiger im Massstab, Trichter weg, eine Muffe je Rohr, mehr Abstand, stärkere Maus-Tiefe.
 // Scroll t über die .k2-plan-bahn (0 beim Hereinkommen, 1 am Ende):
 //   0.22–0.50 Ebenen setzen sich, 0.30–0.52 Rohre zeichnen sich wie mit der Feder
 //   0.56–0.88 Frau Meiers pinke Büchse: Formular 21:47 → Lesen → Sortieren → Antworten → Eintragen
@@ -76,7 +78,12 @@ el('text', { x: 340, y: ZEILE, class: 'rp-klein' }, L0, 'Massstab 1 : 1 Nacht');
 for (let i = 0; i < 5; i++) {
   el('rect', { x: 476 + i * 28, y: ZEILE - 13, width: 28, height: 6, fill: i % 2 ? F.papier : F.gold, stroke: F.goldDunkel, 'stroke-width': 0.8 }, L0);
 }
-el('text', { x: 476, y: ZEILE + 7, 'text-anchor': 'middle', class: 'rp-skala' }, L0, '21 h');
+const skala21 = el('text', { x: 476, y: ZEILE + 8, 'text-anchor': 'middle', class: 'rp-skala' }, L0, '21 h');
+const zeiger = g({ opacity: 0 }, L0);
+el('path', { d: `M0 ${ZEILE - 17} V${ZEILE - 3}`, stroke: F.pinkDunkel, 'stroke-width': 2, 'stroke-linecap': 'round' }, zeiger);
+el('path', { d: `M-4 ${ZEILE - 21} H4 L0 ${ZEILE - 16} Z`, fill: F.pinkDunkel }, zeiger);
+const zeigerText = el('text', { x: 0, y: ZEILE + 8, 'text-anchor': 'start', class: 'rp-skala rp-skala-pink' }, zeiger, '');
+const SKALA = (min) => 476 + (min / 600) * 140;
 el('text', { x: 616, y: ZEILE + 7, 'text-anchor': 'middle', class: 'rp-skala' }, L0, '07 h');
 el('text', { x: 676, y: ZEILE, class: 'rp-legende' }, L0, 'Blatt II · Automation');
 el('text', { x: 956, y: ZEILE + 1, 'text-anchor': 'end', class: 'rp-signatur' }, L0, 'gez. Mattia');
@@ -87,30 +94,37 @@ const KAMMER = { b: 52, abst: 12, y: Z.y + 48, h: 98 };
 const KX = (i) => Z.x + 18 + i * (KAMMER.b + KAMMER.abst);
 const MITTE_Y = 296;
 const EIN = [
-  { name: 'E-Mail', y: 136, zu: 266, symbol: 'brief' },
+  { name: 'E-Mail', y: 136, zu: 256, symbol: 'brief' },
   { name: 'Formular', y: 282, zu: MITTE_Y, symbol: 'formular' },
-  { name: 'Telefon', y: 428, zu: 326, symbol: 'telefon' },
+  { name: 'Telefon', y: 428, zu: 336, symbol: 'telefon' },
 ];
 const AUS = [
-  { name: 'Antwort', y: 122, von: 232, bsp: '„Wir kommen morgen um 8 Uhr.“' },
-  { name: 'Termin', y: 206, von: 264, bsp: 'Do 08:00 · Boiler' },
-  { name: 'Offerte', y: 290, von: 296 },
-  { name: 'Rückruf', y: 374, von: 328 },
-  { name: 'Rechnung', y: 458, von: 360 },
+  { name: 'Antwort', y: 122, von: 222, bsp: '„Wir kommen morgen um 8 Uhr.“' },
+  { name: 'Termin', y: 206, von: 259, bsp: 'Do 08:00 · Boiler' },
+  { name: 'Offerte', y: 290, von: 296, leise: true },
+  { name: 'Rückruf', y: 374, von: 333, leise: true },
+  { name: 'Rechnung', y: 458, von: 370, leise: true },
 ];
-const MUND_X = 766;
+const MUND_X = 748;
 const SCHRITTE = ['Lesen', 'Sortieren', 'Antworten', 'Eintragen'];
 const ZEITEN = ['21:48', '21:49', '21:50', '21:51'];
+// Gezeichnete Symbole je Schritt, gleicher Strich wie die Eingänge
+const SCHRITT_SYMBOL = [
+  '<path d="M-12 0 C-6 -8 6 -8 12 0 C6 8 -6 8 -12 0 Z"/><circle r="3.6"/>',
+  '<rect x="-11" y="-11" width="22" height="6" rx="1.5"/><rect x="-11" y="-2.5" width="22" height="6" rx="1.5"/><rect x="-11" y="6" width="22" height="6" rx="1.5"/>',
+  '<path d="M9 -12 C-1 -9 -7 -1 -8 9 C0 7 7 0 9 -12 Z M-8 9 L-10 13 M-3 3 L3 -3"/>',
+  '<rect x="-10" y="-8" width="20" height="18" rx="2"/><path d="M-10 -2.5 H10 M-5 -11 V-5.5 M5 -11 V-5.5 M-4 4 L-1 7 L5 1"/>',
+];
 
 // ---------- Ebene 1: Rohre (drei flache Striche: Kante, Messing, Glaskanal) ----------
 const rohre = [];
-function rohr(d, art) {
-  const gr = g({ class: 'rp-rohr-gruppe' }, L1);
+function rohr(d, art, dim = false) {
+  const gr = g(dim ? { class: 'rp-rohr-gruppe', 'data-dim': '' } : { class: 'rp-rohr-gruppe' }, L1);
   el('path', { d, class: 'rp-rohr-kante rp-zeichnen', pathLength: 1 }, gr);
   const koerper = el('path', { d, class: 'rp-rohr rp-zeichnen', pathLength: 1 }, gr);
   el('path', { d, class: 'rp-rohr-kanal rp-zeichnen', pathLength: 1 }, gr);
   const L = koerper.getTotalLength();
-  const muffen = [0.3, 0.7].map((f) => {
+  const muffen = [0.5].map((f) => {
     const p = koerper.getPointAtLength(L * f), q = koerper.getPointAtLength(Math.min(L, L * f + 1));
     const w = (Math.atan2(q.y - p.y, q.x - p.x) * 180) / Math.PI;
     return el('rect', { x: -2.5, y: -8, width: 5, height: 16, rx: 1.5, fill: F.gold, stroke: F.goldDunkel, 'stroke-width': 1, transform: `translate(${p.x} ${p.y}) rotate(${w})`, opacity: 0 }, gr);
@@ -119,8 +133,8 @@ function rohr(d, art) {
   rohre.push(r);
   return r;
 }
-EIN.forEach((e) => { e.rohr = rohr(`M160 ${e.y} C 262 ${e.y}, 262 ${e.zu}, ${Z.x} ${e.zu}`, 'ein'); });
-AUS.forEach((a) => { a.rohr = rohr(`M${Z.x + Z.b} ${a.von} C 712 ${a.von}, 712 ${a.y}, ${MUND_X - 12} ${a.y}`, 'aus'); });
+EIN.forEach((e) => { e.rohr = rohr(`M160 ${e.y} C 262 ${e.y}, 262 ${e.zu}, ${Z.x} ${e.zu}`, 'ein', e.name !== 'Formular'); });
+AUS.forEach((a) => { a.rohr = rohr(`M${Z.x + Z.b} ${a.von} C 700 ${a.von}, 700 ${a.y}, ${MUND_X - 12} ${a.y}`, 'aus', !!a.leise); });
 const buechsenLage = g({}, L1);
 
 // ---------- Ebene 2: Bauten ----------
@@ -136,32 +150,31 @@ const SYMBOL = {
   telefon: '<path d="M-7 -9 C-9 -9 -10 -7 -10 -5 C-10 4 -4 10 5 10 C7 10 9 9 9 7 L9 4 L4 2 L2 4 C-1 3 -3 1 -4 -2 L-2 -4 L-4 -9 Z"/>',
 };
 EIN.forEach((e) => {
-  const gr = g({}, L2);
+  const dim = e.name !== 'Formular' ? { 'data-dim': '' } : {};
+  const gr = g(dim, L2);
   el('circle', { cx: 92, cy: e.y, r: 25, fill: F.flieder, stroke: F.gold, 'stroke-width': 4 }, gr);
   el('circle', { cx: 92, cy: e.y, r: 27.5, fill: 'none', stroke: F.goldDunkel, 'stroke-width': 1 }, gr);
   const s = el('g', { transform: `translate(92 ${e.y})`, fill: 'none', stroke: F.text, 'stroke-width': 1.5, 'stroke-linejoin': 'round', 'stroke-linecap': 'round' }, gr);
   s.innerHTML = SYMBOL[e.symbol];
-  el('text', { x: 92, y: e.y + 48, 'text-anchor': 'middle', class: 'rp-name' }, L0, e.name); // Schrift liegt auf dem Blatt, wirft keinen Schatten
+  el('text', { x: 92, y: e.y + 50, 'text-anchor': 'middle', class: 'rp-name', ...dim }, L0, e.name); // Schrift liegt auf dem Blatt, wirft keinen Schatten
   el('path', { d: `M130 ${e.y - 17} Q146 ${e.y - 8} 160 ${e.y - 6} L160 ${e.y + 6} Q146 ${e.y + 8} 130 ${e.y + 17} Z`, fill: F.gold, stroke: F.goldDunkel, 'stroke-width': 1 }, gr);
   el('ellipse', { cx: 130, cy: e.y, rx: 4, ry: 17, fill: F.goldDunkel }, gr);
 });
 
 // Ausgänge
 AUS.forEach((a) => {
-  const gr = g({ class: 'rp-ausgang', 'data-name': a.name }, L2);
+  const dim = a.leise ? { 'data-dim': '' } : {};
+  const gr = g({ class: a.leise ? 'rp-ausgang leise' : 'rp-ausgang', 'data-name': a.name, ...dim }, L2);
   a.ring = el('circle', { cx: MUND_X, cy: a.y, r: 13, fill: 'none', stroke: F.pink, 'stroke-width': 2, class: 'rp-ring' }, gr);
   el('circle', { cx: MUND_X, cy: a.y, r: 13, fill: F.gold, stroke: F.goldDunkel, 'stroke-width': 1 }, gr);
   el('circle', { cx: MUND_X, cy: a.y, r: 6.5, fill: F.tinte }, gr);
-  el('text', { x: MUND_X + 24, y: a.y + 5, class: 'rp-name' }, L0, a.name);
-  if (a.bsp) a.bspEl = el('text', { x: MUND_X + 24, y: a.y + 23, class: 'rp-bsp', opacity: 0 }, L0, a.bsp);
+  el('text', { x: MUND_X + 24, y: a.y + 5.5, class: a.leise ? 'rp-name leise' : 'rp-name', ...dim }, L0, a.name);
+  if (a.bsp) a.bspEl = el('text', { x: MUND_X + 24, y: a.y + 25, class: 'rp-bsp', opacity: 0 }, L0, a.bsp);
 });
 
 // Zentrale
 const zentrale = g({}, L2);
 const mx = Z.x + Z.b / 2;
-el('path', { d: `M${mx - 12} ${Z.y - 30} L${mx - 22} ${Z.y - 54} L${mx + 22} ${Z.y - 54} L${mx + 12} ${Z.y - 30} Z`, fill: F.gold, stroke: F.goldDunkel, 'stroke-width': 1, 'stroke-linejoin': 'round' }, zentrale);
-el('ellipse', { cx: mx, cy: Z.y - 54, rx: 22, ry: 4, fill: F.goldDunkel }, zentrale);
-el('rect', { x: mx - 7, y: Z.y - 32, width: 14, height: 14, fill: F.gold, stroke: F.goldDunkel, 'stroke-width': 1 }, zentrale);
 el('path', {
   d: `M${Z.x} ${Z.y + 22} Q${Z.x} ${Z.y + 10} ${Z.x + 12} ${Z.y + 10} L${mx - 50} ${Z.y + 10} Q${mx} ${Z.y - 22} ${mx + 50} ${Z.y + 10} L${Z.x + Z.b - 12} ${Z.y + 10} Q${Z.x + Z.b} ${Z.y + 10} ${Z.x + Z.b} ${Z.y + 22} L${Z.x + Z.b} ${Z.y + Z.h} L${Z.x} ${Z.y + Z.h} Z`,
   fill: F.papier, stroke: F.tinte, 'stroke-width': 1.3,
@@ -174,23 +187,25 @@ const kammern = SCHRITTE.map((name, i) => {
   const x = KX(i), y = KAMMER.y, b = KAMMER.b, h = KAMMER.h;
   const k = g({}, zentrale);
   const glas = el('path', { d: `M${x} ${y + h} V${y + b / 2} A${b / 2} ${b / 2} 0 0 1 ${x + b} ${y + b / 2} V${y + h} Z`, fill: F.flieder, stroke: F.gold, 'stroke-width': 3.5 }, k);
-  el('path', { d: `M${x + 9} ${y + h - 8} V${y + b / 2 + 2}`, stroke: F.papier, 'stroke-width': 2.5, 'stroke-linecap': 'round' }, k);
-  el('rect', { x: x - 5, y: y + h + 10, width: b + 10, height: 15, rx: 3, fill: F.gold, stroke: F.goldDunkel, 'stroke-width': 0.8 }, k);
-  el('text', { x: x + b / 2, y: y + h + 20.6, 'text-anchor': 'middle', class: 'rp-schild' }, k, name);
-  const zeit = el('text', { x: x + b / 2, y: y + h + 42, 'text-anchor': 'middle', class: 'rp-zeit', opacity: 0 }, k, ZEITEN[i]);
+  el('path', { d: `M${x + 8} ${y + h - 8} V${y + b / 2 + 4}`, stroke: F.papier, 'stroke-width': 2.5, 'stroke-linecap': 'round' }, k);
+  const sym = el('g', { transform: `translate(${x + b / 2 + 2} ${y + h * 0.56})`, fill: 'none', stroke: F.text, 'stroke-width': 1.6, 'stroke-linejoin': 'round', 'stroke-linecap': 'round' }, k);
+  sym.innerHTML = SCHRITT_SYMBOL[i];
+  el('rect', { x: x - 6, y: y + h + 9, width: b + 12, height: 18, rx: 3, fill: F.gold, stroke: F.goldDunkel, 'stroke-width': 0.8 }, k);
+  el('text', { x: x + b / 2, y: y + h + 21.4, 'text-anchor': 'middle', class: 'rp-schild' }, k, name);
+  const zeit = el('text', { x: x + b / 2, y: y + h + 44, 'text-anchor': 'middle', class: 'rp-zeit', opacity: 0 }, k, ZEITEN[i]);
   return { glas, zeit, mitte: x + b / 2 };
 });
-el('text', { x: mx, y: Z.y + Z.h + 30, 'text-anchor': 'middle', class: 'rp-klein' }, L0, 'Zentrale · nachts besetzt von vier Putti');
+el('text', { x: mx, y: Z.y + Z.h + 32, 'text-anchor': 'middle', class: 'rp-klein' }, L0, 'Zentrale · nachts besetzt von vier Putti');
 
 // ---------- Büchsen (Ebene 1) und Fähnchen (Ebene 3) ----------
 const leise = rohre.map((r, i) => ({ r, k: kapsel(r.art === 'ein' ? 'pink' : 'gold', buechsenLage), dauer: r.art === 'ein' ? 4.2 : 3.4, versatz: (i * 0.37) % 1 }));
 const meier = kapsel('pink', buechsenLage, true);
 const ergebnis = [AUS[0], AUS[1]].map((a) => ({ a, k: kapsel('gold', buechsenLage) }));
 const fahne = g({ opacity: 0 }, L3);
-el('rect', { x: -66, y: -48, width: 132, height: 22, rx: 11, fill: F.papier, stroke: F.pink, 'stroke-width': 1.4 }, fahne);
+el('rect', { x: -80, y: -52, width: 160, height: 26, rx: 13, fill: F.papier, stroke: F.pink, 'stroke-width': 1.4 }, fahne);
 el('path', { d: 'M-5 -26.6 L0 -20 L5 -26.6', fill: F.papier, stroke: F.pink, 'stroke-width': 1.4, 'stroke-linejoin': 'round' }, fahne);
 el('rect', { x: -6, y: -28, width: 12, height: 3, fill: F.papier }, fahne);
-const fahneText = el('text', { x: 0, y: -33, 'text-anchor': 'middle', class: 'rp-fahne' }, fahne, '21:47 · Boiler tropft');
+const fahneText = el('text', { x: 0, y: -34.5, 'text-anchor': 'middle', class: 'rp-fahne' }, fahne, '21:47 · Boiler tropft');
 [meier, ...ergebnis.map((e) => e.k), ...leise.map((b) => b.k)].forEach((k) => k.setAttribute('opacity', 0));
 
 const formular = EIN[1].rohr;
@@ -234,10 +249,10 @@ function tiefe(auf) {
   stapel.style.transform = '';
   ebenen.forEach((s, i) => {
     if (!i) return;
-    s.style.transform = `translate(${(-maus.x * i * 4).toFixed(2)}px, ${(-maus.y * i * 3).toFixed(2)}px)`;
+    s.style.transform = `translate(${(-maus.x * i * 7).toFixed(2)}px, ${(-maus.y * i * 5).toFixed(2)}px)`;
     s.style.opacity = 1;
     // flacher Schatten in einer Farbe, fällt vom Licht (Maus) weg; je höher die Ebene, desto weiter
-    s.style.filter = `drop-shadow(${(-maus.x * i * 1.6).toFixed(2)}px ${(2 + i * 1.6 - maus.y * i).toFixed(2)}px 0 ${F.schatten})`;
+    s.style.filter = `drop-shadow(${(-maus.x * i * 2.4).toFixed(2)}px ${(2.5 + i * 1.8 - maus.y * i * 1.5).toFixed(2)}px 0 ${F.schatten})`;
   });
 }
 
@@ -279,6 +294,14 @@ function zeichne(tt) {
     a.bspEl.setAttribute('opacity', f >= 1 ? 1 : 0);
   });
   basis.classList.toggle('meier-laeuft', aktiv);
+  // Scheinwerfer: solange Frau Meier unterwegs ist und die Ergebnisse herausfahren
+  stapel.classList.toggle('fokus', m > 0 && raus < 1);
+  // Zeiger im Massstab: 21:47 bis 21:51, danach bleibt er mit „4 Min.“ stehen
+  const minute = p.kammer < 0 ? 47 : 48 + p.kammer;
+  zeiger.setAttribute('opacity', m > 0 ? 1 : 0);
+  zeiger.setAttribute('transform', `translate(${SKALA(minute).toFixed(2)} 0)`);
+  zeigerText.textContent = raus >= 1 ? '21:47–21:51 · 4 Min.' : `21:${minute}`;
+  skala21.setAttribute('opacity', m > 0 ? 0 : 1);
 }
 
 // Leise Rohrpost (13): zeitbasiert, pausiert während Frau Meier unterwegs ist
