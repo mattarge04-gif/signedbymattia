@@ -613,7 +613,10 @@
     addEventListener('resize', () => karten.forEach(([k, el]) => fensterBild(el, k)));
     komponiere(); bild.classList.add('bereit');
     // Vorauswahl von Kaufseiten: ?mit=werk,stern
-    const mit = new URLSearchParams(location.search).get('mit');
+    const such = new URLSearchParams(location.search), mit = such.get('mit');
+    // Anzahl Abläufe von Karte II auf der Startseite: ?mit=rad&ablaeufe=3
+    const ab = Math.max(1, Math.min(5, parseInt(such.get('ablaeufe'), 10) || 1));
+    if (ab > 1) { zustand.ablaeufe = ab; const o = document.querySelector('.karte[data-id="rad"] output'); if (o) o.textContent = ab; }
     if (mit) mit.split(',').forEach(id => { const p = karten.find(([k]) => k.id === id); if (p) waehle(p[0], true, p[1], true); });
     rechne();
   });

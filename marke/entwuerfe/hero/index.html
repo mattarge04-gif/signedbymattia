@@ -270,16 +270,44 @@
         </svg>
       </figure>
     </div></div>
-    <div class="k2-inhalt">
+    <div class="rad-bahn" id="radBahn"><div class="k2-inhalt">
       <div class="k2-panel-text">
         <h3>Was Ihnen abgenommen wird</h3>
         <p class="k1-hinweis">[Platzhalter: Was automatisiert wird und wo die Grenzen sind, folgt aus dem Textinterview.]</p>
       </div>
-      <div class="k1-karte">
-        <span class="nr">II</span><b>Das Rad</b><span>Automation</span><strong>ab CHF 500</strong><small>+ CHF 400 je weiterer Ablauf</small>
-        <a class="button-edition knopf" href="#atelier">Ins Atelier legen</a>
+      <!-- Tarot-Karte II: die Rohrpost liefert sie (rad.js, Entscheid Mattia 03.11.) -->
+      <div class="rad-lieferung" id="radLieferung">
+        <svg class="rad-rohr" id="radRohr" viewBox="0 0 300 600" aria-hidden="true"></svg>
+        <article class="rad-karte" id="radKarte">
+          <div class="rad-hebe"><div class="rad-innen">
+            <button type="button" class="rad-seite rad-vorne" aria-label="Karte II, Das Rad: Automation, ab CHF 500. Umdrehen.">
+              <span class="rad-nr">II</span>
+              <span class="rad-fenster"></span>
+              <span class="rad-name">Das Rad</span>
+              <span class="rad-leistung">Automation</span>
+              <span class="rad-preis">ab CHF 500</span>
+            </button>
+            <div class="rad-seite rad-hinten" inert>
+              <div class="rad-kopf"><h4>Automation</h4><span class="rad-nr">II</span></div>
+              <dl class="rad-zustand">
+                <dt class="an">An</dt><dd>Ein Ablauf läuft ohne Sie weiter, z. B. Offertanfragen sortieren oder Termine buchen. Mit Fehlerpfad und Übergabe.</dd>
+                <dt class="aus">Aus</dt><dd>Anfragen und Termine bleiben Handarbeit, so wie heute.</dd>
+              </dl>
+              <div class="rad-wahl">
+                <button type="button" class="rad-pfeil" data-schritt="-1" aria-label="Ein Ablauf weniger">‹</button>
+                <svg class="rad-rad" viewBox="-30 -30 60 60" aria-hidden="true"><g class="rad-dreh"></g></svg>
+                <button type="button" class="rad-pfeil" data-schritt="1" aria-label="Ein Ablauf mehr">›</button>
+                <p class="rad-anzahl"><output aria-live="polite">1 Ablauf</output><strong>CHF 500</strong></p>
+              </div>
+              <div class="rad-knoepfe">
+                <a class="button-edition knopf rad-legen" href="../atelier-prototyp.html?mit=rad">Ins Atelier legen</a>
+                <button type="button" class="rad-zurueck" aria-label="Karte wieder umdrehen">↺</button>
+              </div>
+            </div>
+          </div></div>
+        </article>
       </div>
-    </div>
+    </div></div>
   </div>
 </section>
 </main>
@@ -298,5 +326,6 @@
 <script type="module" src="kapitel2.js"></script>
 <script type="module" src="zeitraffer.js"></script>
 <script type="module" src="rohrpost.js"></script>
+<script type="module" src="rad.js"></script>
 </body>
 </html>

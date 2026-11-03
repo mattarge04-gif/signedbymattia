@@ -433,3 +433,67 @@
 .k2-erl.rp-flieger .ok { scale: 1; transition: none; }
 .k2-plan-buehne { position: sticky; top: 0; height: 100vh; height: 100svh; display: grid; place-items: center; padding: 4vh 4vw; box-sizing: border-box; }
 .k2-plan-buehne .k2-plan { width: min(92vw, calc(88svh * 1000 / 560)); }
+
+/* Tarot-Karte II „Das Rad“ (rad.js): die Rohrpost liefert sie. Rohr kommt von rechts, Büchse fällt heraus,
+   Deckel springt, Karte wächst aus der Büchse und landet leicht gekippt. Danach wie im Atelier: Hover hebt,
+   Klick dreht, auf der Rückseite dreht man das Rad für die Anzahl Abläufe. */
+.k2-panel { overflow-x: clip; }
+.rad-lieferung { position: relative; width: 300px; height: 600px; justify-self: center; }
+.rad-rohr { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; pointer-events: none; }
+.rad-rohr .rad-strich { fill: none; stroke-linecap: round; stroke-linejoin: round; }
+.rad-karte { position: absolute; left: 25px; top: 130px; width: 250px; aspect-ratio: 3 / 5; z-index: 2; transform-origin: 50% 50%; pointer-events: none; }
+.rad-karte.gelandet { pointer-events: auto; }
+.rad-hebe { --lift: 0px; --tilt: 0deg; --scale: 1; position: absolute; inset: 0; perspective: 1400px;
+  transform: translateY(var(--lift)) rotate(var(--tilt)) scale(var(--scale)); transition: transform .45s var(--ease-ui); }
+.rad-karte.gelandet:hover .rad-hebe, .rad-karte.gelandet:focus-within .rad-hebe { --lift: -12px; --tilt: 3deg; }
+.rad-karte.umgedreht .rad-hebe { --lift: -16px; --tilt: 3deg; --scale: 1.06; }
+.rad-innen { position: absolute; inset: 0; transform-style: preserve-3d; transition: transform .75s var(--ease-ui); }
+.umgedreht .rad-innen { transform: rotateY(180deg); }
+.rad-seite { position: absolute; inset: 0; box-sizing: border-box; backface-visibility: hidden; -webkit-backface-visibility: hidden;
+  border-radius: 16px; padding: 16px 16px 14px; display: flex; flex-direction: column; align-items: center; text-align: center;
+  background: var(--color-bg); border: 0; color: var(--color-text); font: inherit;
+  box-shadow: 0 0 0 1.5px var(--color-gold), 0 0 0 6px var(--color-bg), 0 0 0 7.5px var(--color-gold), 0 26px 44px -22px rgb(35 27 58 / .55); }
+.rad-vorne { cursor: pointer; background: linear-gradient(to bottom, var(--color-bg) 55%, var(--color-chapter-2)); }
+.rad-vorne:focus-visible, .rad-hinten button:focus-visible, .rad-legen:focus-visible { outline: 2px solid var(--color-text); outline-offset: 4px; }
+.rad-nr { font-family: var(--font-hand); font-size: 30px; line-height: 1; margin-bottom: 10px; }
+.rad-fenster { flex: 1; width: 100%; border-radius: 999px 999px 8px 8px; background: #B9A6D6 url(bilder/k2b/karte-rad.webp) 50% 38% / cover no-repeat;
+  box-shadow: 0 0 0 1.5px var(--color-gold), inset 0 0 0 1px rgb(35 27 58 / .15); }
+.rad-name { margin-top: 14px; font-weight: 800; font-size: 14px; letter-spacing: .16em; text-transform: uppercase; }
+.rad-leistung { font-size: 14px; color: var(--color-text-muted); }
+.rad-preis { font-size: 15px; font-weight: 600; margin-top: 2px; }
+.rad-hinten { transform: rotateY(180deg); align-items: stretch; text-align: left; gap: 10px;
+  background:
+    repeating-linear-gradient(45deg, transparent 0 14px, color-mix(in oklab, var(--color-gold), transparent 78%) 14px 15px),
+    repeating-linear-gradient(-45deg, transparent 0 14px, color-mix(in oklab, var(--color-gold), transparent 78%) 14px 15px),
+    var(--color-bg); }
+.rad-kopf { display: flex; align-items: baseline; justify-content: space-between; }
+.rad-kopf h4 { margin: 0; font-size: 17px; letter-spacing: -.01em; }
+.rad-kopf .rad-nr { font-size: 24px; margin: 0; }
+.rad-zustand { display: grid; grid-template-columns: auto 1fr; gap: 7px 9px; align-items: start; font-size: 13px; line-height: 1.38; margin: 0; }
+.rad-zustand dt { font-size: 10.5px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; padding: 2px 7px; border-radius: 999px; margin-top: 1px; }
+.rad-zustand dt.an { background: var(--color-accent); box-shadow: var(--outline-button); }
+.rad-zustand dt.aus { box-shadow: inset 0 0 0 1px var(--color-text-muted); color: var(--color-text-muted); }
+.rad-zustand dd { margin: 0; }
+.rad-wahl { display: grid; grid-template-columns: auto auto auto 1fr; align-items: center; gap: 4px; margin-top: auto;
+  padding: 8px 10px; border-radius: 10px; background: color-mix(in oklab, var(--color-gold), var(--color-bg) 62%); }
+.rad-pfeil { width: 30px; height: 30px; border-radius: 50%; border: 0; background: transparent; color: var(--color-text); font-size: 22px; line-height: 1; cursor: pointer; }
+.rad-pfeil:hover { background: color-mix(in oklab, var(--color-gold), transparent 50%); }
+.rad-pfeil:disabled { opacity: .3; cursor: default; background: transparent; }
+.rad-rad { width: 46px; height: 46px; overflow: visible; }
+.rad-dreh { transition: transform .45s var(--ease-pointe); }
+.rad-anzahl { margin: 0 0 0 8px; display: grid; justify-items: end; font-size: 12.5px; color: var(--color-text-muted); }
+.rad-anzahl strong { font-size: 20px; color: var(--color-text); letter-spacing: var(--tracking-headline); font-variant-numeric: tabular-nums; }
+.rad-knoepfe { display: flex; gap: 8px; align-items: center; }
+.rad-legen { flex: 1; padding: 10px 12px; font-size: 13.5px; text-align: center; text-decoration: none; }
+.rad-zurueck { width: 36px; height: 36px; border-radius: 50%; border: 0; background: transparent; box-shadow: inset 0 0 0 1px var(--color-text-muted); color: var(--color-text); cursor: pointer; }
+@media (prefers-reduced-motion: reduce) {
+  .rad-hebe, .rad-innen, .rad-dreh { transition-duration: .01s; }
+}
+/* Die Lieferung braucht Ruhe: Inhalt steht in einer Bahn still, während Büchse und Karte kommen */
+.rad-bahn { height: 230vh; }
+.rad-bahn > .k2-inhalt { position: sticky; top: max(2vh, calc(50svh - 320px)); }
+.rad-anzahl strong, .rad-anzahl output, .rad-legen { white-space: nowrap; }
+.rad-wahl { padding: 8px 8px; gap: 2px; }
+.rad-anzahl { margin-left: 4px; }
+.rad-legen { padding: 10px 8px; font-size: 13px; }
+.rad-anzahl strong { font-size: 18px; }
