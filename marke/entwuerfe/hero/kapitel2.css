@@ -424,6 +424,12 @@
 
 /* Plan der Rohrpost-Zentrale: steht beim Scrollen kurz still und füllt den Bildschirm, der Text darunter kommt erst danach */
 .k2-panel { padding-top: 0; }
-.k2-plan-bahn { height: 260vh; margin: 0 -6vw 10vh; }
+.k2-plan-bahn { height: 400vh; margin: -100vh -6vw 10vh; } /* liegt über dem Ende von Kapitel II (Übergang 16) */
+.k2-panel { background: transparent; } /* .k2 ist papierfarben; vor dem Übergang muss Kapitel II durchscheinen */
+.k2-plan-buehne.steht { background: var(--color-bg); }
+.k2-plan-buehne .k2-plan { opacity: 0; }
+.rp-kopie { pointer-events: none; }
+.k2-erl.rp-flieger { position: absolute; z-index: 12; margin: 0; opacity: 1; translate: none; scale: none; transition: none; transform-origin: 50% 50%; pointer-events: none; }
+.k2-erl.rp-flieger .ok { scale: 1; transition: none; }
 .k2-plan-buehne { position: sticky; top: 0; height: 100vh; height: 100svh; display: grid; place-items: center; padding: 4vh 4vw; box-sizing: border-box; }
 .k2-plan-buehne .k2-plan { width: min(92vw, calc(88svh * 1000 / 560)); }

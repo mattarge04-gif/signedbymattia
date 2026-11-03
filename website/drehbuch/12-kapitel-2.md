@@ -377,7 +377,11 @@ Text darunter kommt erst danach (Commit `f006c0a`). [A] Beim Hereinscrollen steh
 Einflug gekippt und auseinandergezogen, in Ruhe Maus-Parallaxe mit flachem Schatten (`rohrpost.js`, `kapitel2.css`,
 Bahn 260vh). Umgesetzt 1, 2, 11, 13: Scheinwerfer auf Frau Meiers Weg, Zeiger im Massstab „21:47–21:51 · 4 Min.“,
 Schriftfeld wie ein Bauplan ([A] Texte von Claude). **6 Pergament verworfen** (Stiltest und gemalter Plan), Mattia:
-„eine Grafik bleiben“. **Offen: 15 (Hover → Handy-Mitteilung) und 16 (Sperrbildschirm wird zum Papier).** Abgenommen
+„eine Grafik bleiben“. **15 und 16 gebaut 03.11.2026 [F]:** 15 Hover auf einen Ausgang zeigt die Handy-Mitteilung (Antwort, Termin aus der
+Szene; Offerte, Rückruf, Rechnung [A] Beispieltexte), Tippen auf Touch. 16 Bahn liegt 100vh über dem Ende von Kapitel II,
+eine Kopie des Sperrbildschirms übernimmt deckungsgleich, Himmel verblasst zu Papier, Meldungen fliegen im Bogen:
+„Eingeordnet“ wird Frau Meiers Büchse am Formular-Eingang, „Antwort“/„Termin“ verschwinden in ihren Ausgängen, Ring
+pulsiert, Text erst nach der Fahrt (Entscheide Mattia). Bahn 400vh. Abgenommen
 (Mattia: „pushe“).
 
 **Vorschlag Claude [A]:** 1 + 2 + 6 + 11 + 16 (gleiche Geschichte, gemalt, Übergang wie Kapitel I). Aufwand ca. ein

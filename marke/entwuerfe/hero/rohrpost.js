@@ -7,10 +7,14 @@
 // stark aus, ihr flacher Schatten wandert mit. Gewählt: 1, 2, 11, 13, 15 (16 folgt).
 // Nachbesserung 02.11. nach Kritik (Claude + Codex 5/10): Scheinwerfer auf Frau Meiers Weg, Symbole in den Kammern,
 // grössere Schrift, Zeiger im Massstab, Trichter weg, eine Muffe je Rohr, mehr Abstand, stärkere Maus-Tiefe.
-// Scroll t über die .k2-plan-bahn (0 beim Hereinkommen, 1 am Ende):
-//   0.22–0.50 Ebenen setzen sich, 0.30–0.52 Rohre zeichnen sich wie mit der Feder
-//   0.56–0.88 Frau Meiers pinke Büchse: Formular 21:47 → Lesen → Sortieren → Antworten → Eintragen
-//   0.88–0.96 zwei goldene Büchsen fahren zu Antwort und Termin
+// Übergang (16, 03.11.): Die Bahn liegt 100vh über dem Ende von Kapitel II (margin-top -100vh). Sobald sie steht,
+// übernimmt eine Kopie des Sperrbildschirms 07:00 deckungsgleich; der Himmel verblasst zu Papier, die drei Meldungen
+// fliegen an ihre Stellen: „Eingeordnet“ wird Frau Meiers Büchse am Formular-Eingang, „Antwort“ und „Termin“
+// verschwinden in ihren Ausgängen (Ring pulsiert, Text erst wenn die goldenen Büchsen ankommen; Entscheid Mattia).
+// Scroll u über die stehende Bühne (0 = Ende Kapitel II, 1 = Bühne löst sich):
+//   0.03–0.12 Sperrbildschirm verblasst · 0.06–0.30 Plan kommt und setzt sich · 0.10–0.28 Meldungen fliegen
+//   0.22–0.36 Rohre zeichnen sich · 0.40–0.72 Frau Meiers Büchse: Formular → Lesen → Sortieren → Antworten → Eintragen
+//   0.72–0.82 zwei goldene Büchsen fahren zu Antwort und Termin
 const RUHIG = matchMedia('(prefers-reduced-motion: reduce)').matches;
 const MAUS = matchMedia('(pointer: fine)').matches;
 const NS = 'http://www.w3.org/2000/svg';
@@ -136,6 +140,7 @@ function rohr(d, art, dim = false) {
 EIN.forEach((e) => { e.rohr = rohr(`M160 ${e.y} C 262 ${e.y}, 262 ${e.zu}, ${Z.x} ${e.zu}`, 'ein', e.name !== 'Formular'); });
 AUS.forEach((a) => { a.rohr = rohr(`M${Z.x + Z.b} ${a.von} C 700 ${a.von}, 700 ${a.y}, ${MUND_X - 12} ${a.y}`, 'aus', !!a.leise); });
 const buechsenLage = g({}, L1);
+const eingangMarke = el('circle', { cx: 168, cy: EIN[1].y, r: 1, fill: 'none' }, L1);
 
 // ---------- Ebene 2: Bauten ----------
 // Titel: gesetzt wie auf einem Plan, darunter eine feine Linie mit Raute
@@ -293,13 +298,74 @@ function tiefe(auf) {
 }
 
 // ---------- Ablauf am Scroll ----------
+const T = { weg: [0.03, 0.12], plan: [0.06, 0.14], setzen: [0.06, 0.3], zeichnen: [0.22, 0.36], meier: [0.4, 0.72], raus: [0.72, 0.82] };
+const FLUG = [[0.1, 0.24], [0.12, 0.26], [0.14, 0.28]];
+const figur = basis.closest('.k2-plan');
+const buehne = bahn.querySelector('.k2-plan-buehne');
+let steht = false;
 function fortschritt() {
   const r = bahn.getBoundingClientRect();
-  return klemme((innerHeight - r.top) / r.height);
+  steht = r.top <= 0.5;
+  return klemme(-r.top / (r.height - innerHeight));
+}
+
+// ---------- Übergang (16): Sperrbildschirm wird zum Papier ----------
+let kopie = null; // { teile: [Handy, Stationskarte, Hinweis], flieger: [{ el, von, ziel }] }
+function kopieBauen() {
+  const quelle = document.getElementById('k2Handy');
+  if (!quelle || quelle.style.opacity === '0') return null;
+  const teile = [quelle, document.getElementById('k2Station'), document.querySelector('.k2-beispiel')].filter(Boolean).map((q) => {
+    const k = q.cloneNode(true);
+    k.removeAttribute('id');
+    k.removeAttribute('aria-live');
+    k.setAttribute('aria-hidden', 'true');
+    k.classList.add('rp-kopie');
+    if (q !== quelle) { const r = q.getBoundingClientRect(); Object.assign(k.style, { position: 'absolute', left: `${r.left}px`, top: `${r.top}px`, right: 'auto', bottom: 'auto', width: `${r.width}px`, margin: 0 }); }
+    buehne.append(k);
+    return k;
+  });
+  const ziele = [eingangMarke, AUS[0].ring, AUS[1].ring];
+  const flieger = ['e1', 'e2', 'e3'].map((n, i) => {
+    const karte = quelle.querySelector(`.k2-erl.${n}`);
+    const r = karte.getBoundingClientRect();
+    const f = karte.cloneNode(true);
+    f.classList.add('rp-flieger');
+    Object.assign(f.style, { left: `${r.left}px`, top: `${r.top}px`, width: `${r.width}px`, fontSize: getComputedStyle(karte).fontSize });
+    buehne.append(f);
+    teile[0].querySelector(`.k2-erl.${n}`).style.visibility = 'hidden';
+    return { el: f, von: { x: r.left + r.width / 2, y: r.top + r.height / 2, b: r.width }, ziel: ziele[i] };
+  });
+  return { teile, flieger };
+}
+function kopieWeg() { if (!kopie) return; [...kopie.teile, ...kopie.flieger.map((f) => f.el)].forEach((e) => e.remove()); kopie = null; }
+let gelandet = [false, false, false];
+function uebergang(u) {
+  if (!steht) { kopieWeg(); buehne.classList.remove('steht'); figur.style.opacity = '0'; zeige(null); gelandet = [false, false, false]; return; }
+  if (!kopie && u < 0.1) kopie = kopieBauen();
+  // Papiergrund erst, wenn die Kopie liegt (sonst blitzt eine leere Fläche über Kapitel II)
+  buehne.classList.toggle('steht', !!kopie || u >= T.weg[1]);
+  const weg = RUHIG ? (u > 0.05 ? 1 : 0) : weich(teil(u, ...T.weg));
+  figur.style.opacity = (RUHIG ? (u > 0.05 ? 1 : 0) : weich(teil(u, ...T.plan))).toFixed(3);
+  gelandet = FLUG.map(([a, b]) => u >= b || RUHIG);
+  if (!kopie) return;
+  kopie.teile.forEach((k) => { k.style.opacity = (1 - weg).toFixed(3); k.style.visibility = weg >= 1 ? 'hidden' : ''; });
+  kopie.flieger.forEach(({ el: f, von, ziel }, i) => {
+    const e = RUHIG ? 1 : sanft(teil(u, ...FLUG[i]));
+    if (e >= 1 || (RUHIG && weg >= 1)) { f.style.visibility = 'hidden'; return; }
+    f.style.visibility = '';
+    const z = ziel.getBoundingClientRect();
+    const zx = z.left + z.width / 2, zy = z.top + z.height / 2;
+    // Bogen nach oben, schrumpft auf Büchsengrösse, verblasst erst kurz vor dem Ziel
+    const x = von.x + (zx - von.x) * e, y = von.y + (zy - von.y) * e - Math.sin(Math.PI * e) * innerHeight * 0.12;
+    const k = 1 + ((26 * figur.clientWidth) / 1000 / von.b - 1) * e;
+    f.style.transform = `translate(${(x - von.x).toFixed(1)}px, ${(y - von.y).toFixed(1)}px) scale(${k.toFixed(4)}) rotate(${(Math.sin(Math.PI * e) * (i - 1) * 6).toFixed(2)}deg)`;
+    f.style.opacity = (1 - teil(e, 0.72, 1)).toFixed(3);
+  });
 }
 function zeichne(tt) {
-  tiefe(RUHIG ? 1 : teil(tt, 0.22, 0.5));
-  const z = RUHIG ? 1 : teil(tt, 0.3, 0.52);
+  uebergang(tt);
+  tiefe(RUHIG ? 1 : teil(tt, ...T.setzen));
+  const z = RUHIG ? 1 : teil(tt, ...T.zeichnen);
   rohre.forEach((r, i) => {
     const a = r.art === 'ein' ? i * 0.08 : 0.3 + (i - 3) * 0.07;
     const f = sanft(teil(z, a, a + 0.4));
@@ -308,11 +374,12 @@ function zeichne(tt) {
   });
   basis.classList.toggle('gezeichnet', z >= 1);
 
-  const m = RUHIG ? 1 : teil(tt, 0.56, 0.88);
-  const raus = RUHIG ? 1 : teil(tt, 0.88, 0.96);
-  const aktiv = m > 0 && raus < 1;
+  const m = RUHIG ? 1 : teil(tt, ...T.meier);
+  const raus = RUHIG ? 1 : teil(tt, ...T.raus);
+  // Frau Meiers Büchse wartet am Formular-Eingang, sobald ihre Meldung dort gelandet ist
+  const aktiv = (m > 0 || gelandet[0]) && raus < 1;
   const p = meierPunkt(m);
-  const sicht = aktiv ? Math.min(1, m * 12) * (1 - raus) : 0;
+  const sicht = aktiv ? 1 - raus : 0;
   meier.setAttribute('opacity', sicht);
   fahne.setAttribute('opacity', sicht);
   meier.setAttribute('transform', `translate(${p.x.toFixed(1)} ${p.y.toFixed(1)})`);
@@ -326,7 +393,7 @@ function zeichne(tt) {
     const f = sanft(teil(raus, i * 0.15, 0.85 + i * 0.15));
     k.setAttribute('opacity', raus > 0 && f < 1 ? 1 : 0);
     if (raus > 0) setzeKapsel(k, a.rohr, f);
-    a.ring.classList.toggle('an', f >= 1);
+    a.ring.classList.toggle('an', f >= 1 || (gelandet[i + 1] && raus === 0));
     a.bspEl.setAttribute('opacity', f >= 1 ? 1 : 0);
   });
   basis.classList.toggle('meier-laeuft', aktiv);
@@ -348,8 +415,8 @@ function tick(jetzt) {
   maus.x += (mausZiel.x - maus.x) * 0.08;
   maus.y += (mausZiel.y - maus.y) * 0.08;
   const t = fortschritt();
-  if (Math.abs(t - zuletzt) > 0.0004) { zeichne(t); zuletzt = t; }
-  else if (t >= 0.5) tiefe(1);
+  if (Math.abs(t - zuletzt) > 0.0004 || (steht && !kopie && t < 0.1)) { zeichne(t); zuletzt = t; }
+  else if (t >= T.setzen[1]) tiefe(1);
   const frei = basis.classList.contains('gezeichnet') && !basis.classList.contains('meier-laeuft') && !RUHIG;
   if (frei) tLeise += dt;
   leise.forEach((b) => {
