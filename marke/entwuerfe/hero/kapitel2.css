@@ -96,6 +96,15 @@
 .rp-ausgang.leise { opacity: .8; }
 .rp-stapel { position: relative; transform-style: preserve-3d; transform-origin: 50% 60%; }
 .rp-stapel .rp-ebene + .rp-ebene { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+/* Hover auf einen Ausgang (15): Handy-Mitteilung links neben der Mündung, Ring pulsiert */
+.k2-plan { position: relative; }
+.k2-grafik .rp-ziel { cursor: pointer; }
+.k2-grafik .rp-ausgang.zeigt .rp-ring { animation: rp-ring 1.8s var(--ease-ui) infinite; }
+.rp-mitteilung { position: absolute; right: calc((1000 - 724) / 1000 * 100%); width: 19em; translate: 0 -50%; pointer-events: none; z-index: 5; }
+.rp-mitteilung .k2-erl { font-size: 1.1em; }
+.rp-mitteilung.zeigen .k2-erl { opacity: 1; translate: 0 0; scale: 1; }
+.rp-mitteilung.zeigen .k2-erl .ok { scale: 1; }
+.rp-mitteilung .sym.rp-chf { font-size: .55em; width: 3.82em; height: 3.82em; border-radius: .95em; font-weight: 700; letter-spacing: .03em; }
 .k2-grafik .rp-zeichnen { stroke-dasharray: 1; stroke-dashoffset: var(--d, 1); }
 .k2-grafik .rp-rohr-gruppe .rp-zeichnen { stroke-dashoffset: var(--d, 1); }
 .k2-panel-text h3 { margin: 0 0 12px; font-size: clamp(32px, 4vw, 60px); letter-spacing: var(--tracking-headline); }

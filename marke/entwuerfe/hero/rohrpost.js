@@ -4,7 +4,7 @@
 //   0 Blatt (Raster, Rahmen, Legende) · 1 Rohre und Büchsen · 2 Bauten (Zentrale, Ein-/Ausgänge, Titel) · 3 Fähnchen
 // Tiefe entsteht durch Abstand zwischen den Ebenen: beim Hereinscrollen liegt der Plan gekippt wie auf einem Tisch,
 // die Ebenen schweben auseinander und setzen sich ab (explodierte Ansicht); danach weichen sie der Maus verschieden
-// stark aus, ihr flacher Schatten wandert mit. Gewählt: 1, 2, 11, 13 (15 und 16 folgen).
+// stark aus, ihr flacher Schatten wandert mit. Gewählt: 1, 2, 11, 13, 15 (16 folgt).
 // Nachbesserung 02.11. nach Kritik (Claude + Codex 5/10): Scheinwerfer auf Frau Meiers Weg, Symbole in den Kammern,
 // grössere Schrift, Zeiger im Massstab, Trichter weg, eine Muffe je Rohr, mehr Abstand, stärkere Maus-Tiefe.
 // Scroll t über die .k2-plan-bahn (0 beim Hereinkommen, 1 am Ende):
@@ -170,6 +170,42 @@ AUS.forEach((a) => {
   el('circle', { cx: MUND_X, cy: a.y, r: 6.5, fill: F.tinte }, gr);
   el('text', { x: MUND_X + 24, y: a.y + 5.5, class: a.leise ? 'rp-name leise' : 'rp-name', ...dim }, L0, a.name);
   if (a.bsp) a.bspEl = el('text', { x: MUND_X + 24, y: a.y + 25, class: 'rp-bsp', opacity: 0 }, L0, a.bsp);
+});
+
+// Hover (15): Maus auf einem Ausgang zeigt die passende Handy-Mitteilung, im gleichen Stil wie der Sperrbildschirm
+// am Morgen (.k2-erl). Antwort und Termin sind die Mitteilungen aus der Szene; Offerte, Rückruf, Rechnung [A] Beispiele.
+const MITTEILUNG = {
+  Antwort: ['<span class="sym chat">●●●</span>', 'Nachrichten · 21:50', 'Antwort gesendet', '„Wir kommen morgen um 8&nbsp;Uhr.“'],
+  Termin: ['<span class="sym kal"><b>DO</b>13</span>', 'Kalender · 21:51', 'Termin eingetragen', 'Do 08:00 · Boiler'],
+  Offerte: ['<span class="sym">✎</span>', 'Offerten', 'Offerte vorbereitet', 'Badumbau · wartet auf Ihr OK'],
+  Rückruf: ['<span class="sym">☎</span>', 'Telefon', 'Rückruf eingeplant', 'Morgen 09:30 · im Kalender'],
+  Rechnung: ['<span class="sym rp-chf">CHF</span>', 'Buchhaltung', 'Rechnung verschickt', 'Nach dem Einsatz · mit QR-Code'],
+};
+const tafel = document.createElement('div');
+tafel.className = 'rp-mitteilung';
+tafel.setAttribute('aria-live', 'polite');
+basis.closest('.k2-plan').append(tafel);
+new ResizeObserver(([e]) => { tafel.style.fontSize = `${(e.contentRect.width / 1000) * 15}px`; }).observe(stapel);
+let zeigt = null;
+function zeige(a) {
+  if (zeigt === a) return;
+  zeigt?.gruppe.classList.remove('zeigt');
+  zeigt = a;
+  if (!a) { tafel.classList.remove('zeigen'); return; }
+  const [sym, titel, was, wer] = MITTEILUNG[a.name];
+  tafel.innerHTML = `<div class="k2-erl">${sym}<p class="titel">${titel}</p><p class="was">${was}</p><p class="wer">${wer}</p><span class="ok">✓</span></div>`;
+  tafel.style.top = `${(Math.min(436, Math.max(a.y, 152)) / 560) * 100}%`; // nicht über Titel und Schriftfeld
+  a.gruppe.classList.add('zeigt');
+  tafel.classList.remove('zeigen');
+  void tafel.offsetWidth; // neu einblenden, auch beim Wechsel von Ausgang zu Ausgang
+  tafel.classList.add('zeigen');
+}
+AUS.forEach((a) => {
+  a.gruppe = L2.querySelector(`.rp-ausgang[data-name="${a.name}"]`);
+  const ziel = el('rect', { x: MUND_X - 22, y: a.y - 21, width: 232, height: 42, fill: 'transparent', class: 'rp-ziel' }, L0);
+  ziel.addEventListener('pointerenter', () => basis.classList.contains('gezeichnet') && zeige(a));
+  ziel.addEventListener('pointerleave', () => zeige(null));
+  ziel.addEventListener('click', () => basis.classList.contains('gezeichnet') && zeige(zeigt === a ? null : a)); // Touch: Tippen
 });
 
 // Zentrale
