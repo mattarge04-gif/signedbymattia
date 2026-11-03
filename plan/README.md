@@ -10,7 +10,7 @@ Ausführlich: `aufgaben-bis-live.md` (Wochenplan), `CLAUDE.md` (Sitzungsabschlü
 | Hero | gebaut, Mattia „10 von 10“, Abnahme formell offen | – |
 | Wolkenflug | gebaut, „perfekt“ | – |
 | Kapitel I Website | **fertig, abgenommen 01.11.** (K1-B1 bis K1-B5 inkl. Übergang zu Kapitel II, Mattia: „perfekt, Kapitel 1 ist done“) | – |
-| **Kapitel II Automation** | Hero-Methode: alle Stationen I–V und „Morgen“ gebaut (V abgenommen 01.11.), **Grafik „Plan der Rohrpost-Zentrale“ abgenommen 02.11.** (flach, 4 Ebenen 2.5D, Scheinwerfer auf Frau Meier), **Punkt 15 Hover + Punkt 16 Sperrbildschirm wird zum Papier abgenommen 03.11.** | Abnahme „Morgen“, **Tarot-Karte II** planen, Zeitplan prüfen |
+| **Kapitel II Automation** | Hero-Methode: alle Stationen I–V und „Morgen“ gebaut (V abgenommen 01.11.), **Grafik „Plan der Rohrpost-Zentrale“ abgenommen 02.11.** (flach, 4 Ebenen 2.5D, Scheinwerfer auf Frau Meier), **Punkte 15/16 abgenommen 03.11.**, „Morgen“ abgenommen 03.11., **Tarot-Karte II „Das Rad“ abgenommen 03.11.** (Rohrpost liefert, gemalte Tarot-Vorderseite „Mühle“) | Kapitel II formell abschliessen; Tarot-Rückseite und Karten I/III/IV im gleichen Stil; Zeitplan prüfen |
 | Kapitel III Sichtbar | Drehbuch grob | nach Kapitel II |
 | Zwischenspiel, Werke, Abschluss | Drehbuch grob | Streichliste: Werke + Zwischenspiel zusammen |
 | Handy-Version | später neu | nach Desktop |

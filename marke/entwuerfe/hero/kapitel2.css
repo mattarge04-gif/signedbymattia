@@ -497,3 +497,15 @@
 .rad-anzahl { margin-left: 4px; }
 .rad-legen { padding: 10px 8px; font-size: 13px; }
 .rad-anzahl strong { font-size: 18px; }
+/* Vorderseite gemalt (Tarot „Mühle“, Stil hand-kolorierter Kupferstich, Entscheid Mattia 03.11.):
+   Bild bringt Goldrahmen, Rundfeld oben und Band unten mit; Nummer und Name liegen als Text darauf */
+.rad-lieferung { height: 560px; }
+.rad-karte { left: 20px; width: 260px; aspect-ratio: 2 / 3; }
+.rad-vorne { padding: 0; display: block; border-radius: 14px; background: var(--color-bg) url(bilder/k2b/tarot-rad.webp) center / 100% 100% no-repeat;
+  box-shadow: 0 26px 44px -22px rgb(35 27 58 / .55), 0 0 0 1px rgb(185 150 92 / .35); }
+.rad-vorne .rad-nr { position: absolute; left: 50%; top: 6.6%; translate: -50% -50%; margin: 0; font-size: 22px; color: #8C7650; }
+.rad-band { position: absolute; left: 8%; right: 8%; top: 91.6%; height: 4.4%; display: flex; align-items: center; justify-content: center; gap: .55em; }
+.rad-band .rad-name { margin: 0; font: italic 400 17px/1 var(--font-hand); letter-spacing: 0; text-transform: none; }
+.rad-band .rad-preis { margin: 0; font-size: 10.5px; font-weight: 700; letter-spacing: .06em; color: var(--color-text-muted); }
+.rad-hinten { gap: 8px; padding: 14px 14px 12px; }
+.rad-zustand { font-size: 12.5px; line-height: 1.32; }

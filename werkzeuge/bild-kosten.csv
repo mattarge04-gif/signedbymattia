@@ -54,3 +54,11 @@ datum,modell,groesse,usd,datei,prompt
 2026-11-01T21:30:53,gemini-nano-banana-2.1,1K,0.14,marke/assets/k2/ebenen/kerze-aus-v1.jpg,"Edit the attached painting. Keep exactly the same painting style, palette, framing, camera angle, the same candle, candl"
 2026-11-02T21:51:46,gemini-nano-banana-2.1,2K,0.14,marke/assets/k2/papier/pergament-v1.jpg,"Use the attached painting only as a reference for painting style and palette (soft baroque oil painting, pastel cream, r"
 2026-11-02T22:04:28,gemini-nano-banana-2.1,2K,0.14,marke/assets/k2/papier/plan-v1.jpg,Paint on the attached parchment sheet (keep its gold border and corner ornaments). Draw on it a beautiful hand-coloured 
+2026-11-03T22:22:19,gemini-3-pro-image,2K,0.14,marke/assets/k2/tarot/rad-c.jpg,"A single tarot card, front view, filling the whole image edge to edge, portrait 2:3. Painted like an 18th-century Veneti"
+2026-11-03T22:22:19,gemini-3-pro-image,2K,0.14,marke/assets/k2/tarot/rad-a.jpg,"A single tarot card, front view, filling the whole image edge to edge, portrait 2:3. Painted like an 18th-century Veneti"
+2026-11-03T22:22:56,gemini-3-pro-image,2K,0.14,marke/assets/k2/tarot/rad-b.jpg,"A single tarot card, front view, filling the whole image edge to edge, portrait 2:3. Painted like an 18th-century Veneti"
+2026-11-03T22:30:26,gemini-3-pro-image,2K,0.14,marke/assets/k2/tarot/rad-e.jpg,"A single tarot card: baroque copperplate engraving with fine ink line work and cross-hatching, hand-coloured with soft p"
+2026-11-03T22:30:27,gemini-3-pro-image,2K,0.14,marke/assets/k2/tarot/rad-d.jpg,"A single tarot card like the 1909 Rider-Waite deck: bold confident ink outlines, flat areas of colour, simple hatching f"
+2026-11-03T22:32:29,gemini-3-pro-image,2K,0.14,marke/assets/k2/tarot/rad-f.jpg,"Edit the first image (a tarot card). Keep the composition, the hand-tinted copperplate engraving style, the wheel made o"
+2026-11-03T22:34:41,gemini-3-pro-image,2K,0.14,marke/assets/k2/tarot/rad-g.jpg,"Use the reference image ONLY for the card design: the same hand-tinted copperplate engraving style, the same ornate pale"
+2026-11-03T22:34:42,gemini-3-pro-image,2K,0.14,marke/assets/k2/tarot/rad-h.jpg,"Use the reference image ONLY for the card design: the same hand-tinted copperplate engraving style, the same ornate pale"

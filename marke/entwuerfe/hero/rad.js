@@ -2,6 +2,7 @@
 // Inhalt steht in einer Bahn (.rad-bahn, 230vh) still. Ein Rohr im Stil des Plans kommt von rechts ins Papier und endet über der Karte. Am Scroll (vor- und rückwärts):
 //   0.00–0.40 goldene Büchse fährt durchs Rohr · 0.40–0.56 fällt heraus und landet · 0.56–0.64 Deckel springt
 //   0.60–0.90 Karte wächst aus der Büchse und landet leicht gekippt · ab 0.90 Hover hebt, Klick dreht
+// Vorderseite: gemalte Tarot-Karte „Mühle“ (Vertex, marke/assets/k2/tarot/rad-g.png), Nummer und Name als Text.
 // Rückseite wie im Atelier (An/Aus), dazu ein Rad: jeder Klick dreht eine Speiche weiter, Preis rollt mit.
 const RUHIG = matchMedia('(prefers-reduced-motion: reduce)').matches;
 const NS = 'http://www.w3.org/2000/svg';
@@ -47,9 +48,9 @@ const deckel = el('g', {}, buechse);
 el('path', { d: `M${B * 0.24} ${-H / 2} H${B / 2 - H / 2} A${H / 2} ${H / 2} 0 0 1 ${B / 2 - H / 2} ${H / 2} H${B * 0.24} Z`, fill: F.gold, stroke: F.goldDunkel, 'stroke-width': 1.4 }, deckel);
 buechse.style.filter = `drop-shadow(0 3px 0 ${F.schatten})`;
 
-// Ruheplatz unter der Karte (Karte: left 25, top 130, 250 × 416.7 → Mitte 150/338)
-const RUHE = { x: 222, y: 566 };
-const KARTE_MITTE = { x: 150, y: 338 };
+// Ruheplatz unter der Karte (Karte: left 20, top 130, 260 × 390 → Mitte 150/325)
+const RUHE = { x: 222, y: 530 };
+const KARTE_MITTE = { x: 150, y: 325 };
 const OEFFNUNG = { x: RUHE.x + B * 0.3, y: RUHE.y };
 
 function zeichne(p) {

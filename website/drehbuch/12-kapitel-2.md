@@ -1,6 +1,6 @@
 # Drehbuch 12: Kapitel II Automation · Die Nachtschicht
 
-Stand: 01.11.2026 · Status: **Geschichte, Ablauf und Bildverfahren abgenommen [F] (Mattia, 29.10.2026)** ·
+Stand: 03.11.2026 · Status: **Geschichte, Ablauf und Bildverfahren abgenommen [F] (Mattia, 29.10.2026)** ·
 ersetzt alle früheren Fassungen (Wasserspiele, Brunnen, Automat; in der Git-Geschichte bis Commit `4977d26`).
 Grundlage: `00-grammatik.md` (Werte), `03-bildstil.md` (Stil-Bibel), Prüfung `werkzeuge/pruefliste.md`.
 
@@ -386,3 +386,37 @@ pulsiert, Text erst nach der Fahrt (Entscheide Mattia). Bahn 400vh. Abgenommen
 
 **Vorschlag Claude [A]:** 1 + 2 + 6 + 11 + 16 (gleiche Geschichte, gemalt, Übergang wie Kapitel I). Aufwand ca. ein
 Abend, ca. USD 0.30 Vertex. Danach Tarot-Karte II.
+
+
+## Tarot-Karte II „Das Rad“ [F] (gebaut und abgenommen 03.11.2026, Mattia: „passt“)
+
+**Auftritt „Rohrpost liefert“** (Entscheid Mattia): Unter dem Plan steht der Inhalt in einer Bahn still
+(`.rad-bahn` 230vh, sticky). Ein Messingrohr im Stil des Plans kommt von rechts und endet über der Karte. Am Scroll
+(`rad.js`, vor- und rückwärts): 0–0.40 goldene Büchse fährt durchs Rohr · 0.40–0.56 fällt heraus, hüpft · 0.56–0.64
+Deckel springt · 0.60–0.90 Karte wächst aus der Büchse, federt, landet um −3° · ab 0.90 Hover hebt, Klick dreht.
+Reduzierte Bewegung: Karte liegt da.
+
+**Vorderseite gemalt** (Mattia: „mehr Tarot, mit einem Hauch unserer UI“, „nichts, was keinen Sinn macht“):
+hand-kolorierter Kupferstich, Goldrahmen wie unsere Knöpfe, Rundbogen, leeres Rundfeld oben und Band unten; „II“ und
+„Das Rad · ab CHF 500“ liegen als Text darauf. Motiv **Mühle**: Wasserrad dreht sich von selbst, Briefe schwimmen
+heran, liegen sortiert mit pinker Schleife vor der Tür, Putto schläft mit pinker Schlafmaske.
+Original `marke/assets/k2/tarot/rad-g.jpg`, Web `bilder/k2b/tarot-rad.webp`.
+Verworfen: a–c gemalt (zu wenig Tarot), d Rider-Waite flach, e/f Rad der Fortuna mit UI-Symbolen (Mattia: „sieht sehr
+KI aus“), h Spinnrad. Vertex: 9 Bilder, ca. USD 1.12.
+
+**Rückseite** wie im Atelier (An/Aus) plus **Rad**: ‹ › drehen das Rad um eine Speiche (45°), 1–5 Abläufe, Preis rollt
+(CHF 500 + 400 je weiterer). „Ins Atelier legen“ → `atelier-prototyp.html?mit=rad&ablaeufe=n` (Atelier liest
+`ablaeufe` jetzt mit).
+
+**Offen:** [?] Rückseite ebenfalls gemalt (Tarot-Rückseite im gleichen Stil). [?] Karten I, III, IV im gleichen Stil
+(rad-g als Stil-Vorlage, je ein sinnvolles Motiv). [A] Büchse liegt am Schluss fast ganz unter der Karte.
+
+**Prompts (Vertex, `werkzeuge/bild.py -m pro --format 2:3 --groesse 2K`):**
+
+- e (Stil-Grundlage, ohne Referenz): A single tarot card: baroque copperplate engraving with fine ink line work and cross-hatching, hand-coloured with soft pastel watercolour washes, like an 18th-century hand-tinted print. Composition of the classic tarot trump "Wheel of Fortune", strictly symmetrical and symbolic: a large wheel floats in the centre of a pastel sky with clouds. Instead of letters, the wheel rim carries four small engraved icons: an eye, a stack of trays, a quill, a calendar. On top of the wheel sits a little winged cherub in a pastel-blue robe wearing a pink sleep mask, calm like a sphinx. Down the left side of the wheel spirals a brass pneumatic-post tube, a small gold capsule rising up the right side. In the four corners, on small clouds, four winged cherubs in robes each hold one modern interface object, flat and crisp like a vector icon, in pink #FF9DC8: top left a mouse cursor arrow, top right a smartphone, bottom left a calendar page, bottom right a pink speech bubble with two check marks. A thin pale-gold double border line around the picture, a small EMPTY round cartouche at top centre and an EMPTY plain band along the bottom edge for a title. Absolutely no letters, no numbers, no words anywhere. Palette only pastel: sky blue #CFE3F7, lilac #D9CCF5, peach #FFD6C2, cream #FBF3EA, pale gold #E3C58A, accents pink #FF9DC8, outlines in deep ink #231B3A. Never brown, never dark backgrounds. Portrait card filling the whole image, cream card margin all around.
+- f (Bearbeitung von e, Referenz `rad-e.png` + `bilder/knopf-rahmen-rosa.webp`): Edit the first image (a tarot card). Keep the composition, the hand-tinted copperplate engraving style, the wheel made of brass pneumatic-post tubes, the cherub with the pink sleep mask and the four corner cherubs exactly as they are. Make only these subtle changes, just a hint, so it matches our website design:
+1. Replace the thin outer border with an ornate pale-gold baroque frame in the style of the second image (soft painted gilded scrollwork), slim and elegant, with rounded corners.
+2. The picture area gets a round arch at the top (like a tall arched window), the cream card margin #FBF3EA shows around it.
+3. A touch more pink #FF9DC8 as the accent colour: the rising capsule is pink, small pink glints on the gold, otherwise keep the pastel palette (sky blue, lilac, peach, cream, pale gold).
+4. Keep the round cartouche at the top and the plain band at the bottom EMPTY. No letters, no numbers, no words anywhere.
+- **g (gewählt, Referenz `rad-f.png`):** Use the reference image ONLY for the card design: the same hand-tinted copperplate engraving style, the same ornate pale-gold baroque frame with rounded corners, the round arch at the top of the picture, the empty round cartouche at the top and the empty band at the bottom, cream margin, pastel palette (sky blue, lilac, peach, cream, pale gold) with pink #FF9DC8 as the only accent. Draw a completely NEW, simple scene. Keep it calm and readable like a real tarot trump: one clear idea, few objects, every object has an obvious purpose, nothing floating without reason, no decorative icons, no random symbols, no extra figures. No letters, no numbers, no words anywhere. Scene: a baroque water mill at night under a crescent moon. A big wooden water wheel turns by itself in a little stream. One cherub in a pastel-blue robe sleeps peacefully against the mill wall, a pink sleep mask on its eyes (the only modern object). On the stream, small sealed letters float towards the wheel; on the other side a neat stack of letters tied with a pink ribbon lies ready on the doorstep. Meaning: the wheel does the work while you sleep.

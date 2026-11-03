@@ -65,7 +65,7 @@ Budgets und Kostenfreigaben bleiben in `agency-automation-os/projects/lead-engin
 
 ## Aktueller Stand und nächste Schritte
 
-Stand: 03.11.2026. Zeitplan: Vault `Zielplan.md`, Aufgabenliste `plan/aufgaben-bis-live.md`. Phase **Fundament**
+Stand: 03.11.2026 (abends). Zeitplan: Vault `Zielplan.md`, Aufgabenliste `plan/aufgaben-bis-live.md`. Phase **Fundament**
 (KW 39–42) endete am 18.10.2026. **Livegang neu 17.12.2026** (Entscheid 28.10.).
 
 **Sitzungsabschluss 28.09.:** Claude erreichte am 27.09. um 23:59 das
@@ -584,10 +584,28 @@ abgenommen** (Mattia: „pushe“).
 - [A] Rückwärtsscrollen durch den Übergang nur logisch geprüft, nicht per Mausrad. Handy-Ansicht nicht angepasst (kommt
   mit der Handy-Version neu).
 - Online auf https://vorschau.signedbymattia.ch.
-- **Beim Wiedereinstieg zuerst:** (1) Abnahme „Morgen“ einholen (seit 01.11. offen). (2) **Tarot-Karte II** planen
+- *(Wiedereinstieg überholt durch 03.11. abends)* (1) Abnahme „Morgen“ einholen (seit 01.11. offen). (2) **Tarot-Karte II** planen
   (Papier-Panel unter dem Plan; Vorlage Atelier-Tarot-Karten `website/preisrechner.md`,
   `marke/entwuerfe/atelier-prototyp.html`), Plan zeigen. (3) Zeitplan `plan/aufgaben-bis-live.md` prüfen (Kapitel II
   verschiebt ca. 1 Woche, Livegang 17.12.2026).
+
+**Sitzungsabschluss 03.11. abends [F]:** **„Morgen“ abgenommen** und **Tarot-Karte II „Das Rad“ gebaut und
+abgenommen** (Mattia: „passt“). Details, Prompts und Verworfenes: `website/drehbuch/12-kapitel-2.md`, Abschnitt
+„Tarot-Karte II“.
+
+- **Rohrpost liefert** (`marke/entwuerfe/hero/rad.js`, Stil in `kapitel2.css`): Inhalt steht in `.rad-bahn` still,
+  Büchse fährt durchs Rohr, fällt, Deckel springt, Karte wächst heraus und landet. Rückseite mit **Rad** (1–5
+  Abläufe, Preis rollt), Link ins Atelier mit `?mit=rad&ablaeufe=n` (Atelier liest das jetzt).
+- **Tarot-Stil entschieden [F]** (Mattia): hand-kolorierter Kupferstich, Goldrahmen wie unsere Knöpfe, Rundbogen,
+  Pastell + Pink; **ein klares Motiv mit Sinn**, keine Zufalls-Symbole („sieht sehr KI aus“). Karte II = Mühle
+  (`marke/assets/k2/tarot/rad-g.jpg`). Text (Nummer, Name, Preis) als HTML darüber.
+- Werkzeug: `werkzeuge/karte-bild.cjs` (Ausschnitt einer Szene per Playwright, wurde für den ersten Kartenentwurf
+  genutzt). Vertex November ca. USD 3.64 von 8.00.
+- [A] Prüfung per Standbildern und Klicktest, ohne neue Konsolenfehler; kein Mausrad-Video.
+- **Beim Wiedereinstieg zuerst:** (1) **Kapitel II als Ganzes** einmal durchscrollen lassen und formell abschliessen.
+  (2) [?] Tarot-Rückseite gemalt? Karten I, III, IV im gleichen Stil (rad-g als Stil-Vorlage, Motiv je mit Sinn;
+  Karte I im Abschluss von Kapitel I ersetzen). (3) Zeitplan `plan/aufgaben-bis-live.md` prüfen (Livegang
+  17.12.2026), dann Kapitel III.
 
 **Erledigt [F]:**
 
