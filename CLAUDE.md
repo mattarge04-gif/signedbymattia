@@ -65,7 +65,7 @@ Budgets und Kostenfreigaben bleiben in `agency-automation-os/projects/lead-engin
 
 ## Aktueller Stand und nächste Schritte
 
-Stand: 02.11.2026 (abends). Zeitplan: Vault `Zielplan.md`, Aufgabenliste `plan/aufgaben-bis-live.md`. Phase **Fundament**
+Stand: 03.11.2026. Zeitplan: Vault `Zielplan.md`, Aufgabenliste `plan/aufgaben-bis-live.md`. Phase **Fundament**
 (KW 39–42) endete am 18.10.2026. **Livegang neu 17.12.2026** (Entscheid 28.10.).
 
 **Sitzungsabschluss 28.09.:** Claude erreichte am 27.09. um 23:59 das
@@ -561,10 +561,33 @@ abgenommen** (Mattia: „pushe“).
   https://vorschau.signedbymattia.ch.
 - [?] Abnahme „Morgen“ weiterhin nicht ausdrücklich erteilt. [A] Frau Meiers Anfrage kommt über das Formular
   (Textinterview klären).
-- **Beim Wiedereinstieg zuerst:** (1) **Punkt 15**: Hover auf einen Ausgang zeigt die passende Handy-Mitteilung aus der
+- *(Wiedereinstieg überholt durch 03.11.)* **Beim Wiedereinstieg zuerst:** (1) **Punkt 15**: Hover auf einen Ausgang zeigt die passende Handy-Mitteilung aus der
   Szene. (2) **Punkt 16**: Sperrbildschirm wird zum Papier, die drei Meldungen fliegen an ihre Ausgänge im Plan.
   (3) Abnahme „Morgen“ einholen. (4) Tarot-Karte II. (5) Zeitplan `plan/aufgaben-bis-live.md` prüfen (Kapitel II
   verschiebt ca. 1 Woche).
+
+**Sitzungsabschluss 03.11. [F]:** **Grafik „Plan der Rohrpost-Zentrale“: Punkte 15 und 16 gebaut und abgenommen**
+(Mattia: „passt“ zu beiden).
+
+- **15 Hover:** Maus auf einem Ausgang zeigt die passende Handy-Mitteilung im Stil der Morgen-Meldungen (`.k2-erl`),
+  links neben der Mündung, Ring pulsiert; Tippen auf Touch. Antwort und Termin = Mitteilungen aus der Szene; Offerte,
+  Rückruf, Rechnung [A] Beispieltexte von Claude (Badumbau, Rückruf 09:30, Rechnung mit QR-Code) bis Textinterview.
+  Commit `110b405`.
+- **16 Sperrbildschirm wird zum Papier:** `.k2-plan-bahn` liegt mit `margin-top: -100vh` über dem Ende von Kapitel II
+  (Bahn 400vh, `.k2-panel` transparent); sobald sie steht, übernimmt eine Kopie des Sperrbildschirms 07:00 (Handy,
+  Stationskarte, Hinweis) deckungsgleich, Himmel verblasst zu Papier, Plan kommt gekippt herein, die drei Meldungen
+  fliegen im Bogen: „Eingeordnet: Dringend“ wird Frau Meiers Büchse am Formular-Eingang (wartet mit Fähnchen),
+  „Antwort“/„Termin“ verschwinden in ihren Ausgängen, Ring pulsiert, Texte erst nach der Fahrt (Entscheide Mattia).
+  Zeitplan `T`/`FLUG` in `rohrpost.js` (Scroll u über die stehende Bühne). Mausrad-Prüfung ohne leere Bilder und ohne
+  Konsolenfehler. Commit `a552c16`.
+- Drehbuch nachgeführt: `website/drehbuch/12-kapitel-2.md`, Abschnitt „Papier“.
+- [A] Rückwärtsscrollen durch den Übergang nur logisch geprüft, nicht per Mausrad. Handy-Ansicht nicht angepasst (kommt
+  mit der Handy-Version neu).
+- Online auf https://vorschau.signedbymattia.ch.
+- **Beim Wiedereinstieg zuerst:** (1) Abnahme „Morgen“ einholen (seit 01.11. offen). (2) **Tarot-Karte II** planen
+  (Papier-Panel unter dem Plan; Vorlage Atelier-Tarot-Karten `website/preisrechner.md`,
+  `marke/entwuerfe/atelier-prototyp.html`), Plan zeigen. (3) Zeitplan `plan/aufgaben-bis-live.md` prüfen (Kapitel II
+  verschiebt ca. 1 Woche, Livegang 17.12.2026).
 
 **Erledigt [F]:**
 

@@ -1,6 +1,6 @@
 # Plan und Stand
 
-Stand: 02.11.2026 (abends). **Kurzübersicht für den Wiedereinstieg** (Text statt Grafik, Regel 11 Tokens sparen).
+Stand: 03.11.2026. **Kurzübersicht für den Wiedereinstieg** (Text statt Grafik, Regel 11 Tokens sparen).
 Ausführlich: `aufgaben-bis-live.md` (Wochenplan), `CLAUDE.md` (Sitzungsabschlüsse, „Beim Wiedereinstieg zuerst“).
 
 ## Startseite Desktop (Livegang 17.12.2026)
@@ -10,7 +10,7 @@ Ausführlich: `aufgaben-bis-live.md` (Wochenplan), `CLAUDE.md` (Sitzungsabschlü
 | Hero | gebaut, Mattia „10 von 10“, Abnahme formell offen | – |
 | Wolkenflug | gebaut, „perfekt“ | – |
 | Kapitel I Website | **fertig, abgenommen 01.11.** (K1-B1 bis K1-B5 inkl. Übergang zu Kapitel II, Mattia: „perfekt, Kapitel 1 ist done“) | – |
-| **Kapitel II Automation** | Hero-Methode: alle Stationen I–V und „Morgen“ gebaut (V abgenommen 01.11.), **Grafik „Plan der Rohrpost-Zentrale“ abgenommen 02.11.** (flach, 4 Ebenen 2.5D, Scheinwerfer auf Frau Meier) | **Punkt 15 Hover + Punkt 16 Übergang**, Abnahme „Morgen“, Tarot-Karte II |
+| **Kapitel II Automation** | Hero-Methode: alle Stationen I–V und „Morgen“ gebaut (V abgenommen 01.11.), **Grafik „Plan der Rohrpost-Zentrale“ abgenommen 02.11.** (flach, 4 Ebenen 2.5D, Scheinwerfer auf Frau Meier), **Punkt 15 Hover + Punkt 16 Sperrbildschirm wird zum Papier abgenommen 03.11.** | Abnahme „Morgen“, **Tarot-Karte II** planen, Zeitplan prüfen |
 | Kapitel III Sichtbar | Drehbuch grob | nach Kapitel II |
 | Zwischenspiel, Werke, Abschluss | Drehbuch grob | Streichliste: Werke + Zwischenspiel zusammen |
 | Handy-Version | später neu | nach Desktop |
