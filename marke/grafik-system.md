@@ -1,6 +1,7 @@
 # Grafik-System — signedbymattia
 
-Stand: 27.09.2026 · Status: **entschieden [F]** (Interview mit echten Beispielen,
+Stand: 05.11.2026 (neu §8 Content-Betrieb LinkedIn, §5/§7 Video mit Remotion) ·
+Grundfassung 27.09.2026 · Status: **entschieden [F]** (Interview mit echten Beispielen,
 7 Fragen, Prototyp von Mattia freigegeben) · Prototyp:
 [`entwuerfe/grafik-system-v1.html`](entwuerfe/grafik-system-v1.html)
 
@@ -41,6 +42,8 @@ der Aufbau ist übernommen, nicht der Inhalt.
   das Riesen-Wort.
 - Beispiel: „Kein Template. Ein **WERK***.*“ · „Die Welt redet über KI. Ich über
   **HAND***.*“
+- Seit 05.11.2026 ist dieser Aufbau ein **Ausgangspunkt, keine feste
+  Anordnung** (§8): Komposition frei innerhalb der Markenregeln.
 
 ### Tipp-Karussell
 
@@ -123,12 +126,67 @@ jede Bewegung trägt die Aussage.
 Jede Grafik geht vor dem Posten an Mattia zur Freigabe
 (`agency-marketing/docs/MARKETING-SYSTEM.md`).
 
-## 7. Technik [A]
+## 7. Technik
 
-Arbeitshypothese aus `agency-marketing/docs/LINKEDIN-BLOG-CONTENT.md`:
+- **Grafik [F]:** HTML/CSS-Vorlage mit den Werten aus `tokens.css`, per
+  Playwright als PNG gerendert. Schrift, Wortmarke und Farben setzt immer der
+  Code, nie das Bildmodell.
+- **Video [F, 05.11.2026]:** **Remotion.** Claude schreibt die Szene als Code
+  (Szenenplan → Remotion-Komposition), der Server rendert das MP4. Keine
+  generative Video-API im Standardablauf. Remotion-Lizenz vor dem Einsatz
+  prüfen (gratis bis 3 Personen, Stand 24.09.2026).
+- **Bild-Motive [A]:** Vorschlag Gemini Nano Banana Pro über Vertex (gleicher
+  Stil und gleiches Projekt wie die Website-Bilder, `werkzeuge/bild.py`).
+  Noch nicht entschieden, eigene Kostengrenze nötig.
 
-- **Grafik:** HTML/CSS-Vorlage, per Playwright als PNG gerendert.
-- **Video:** HTML/CSS/JS-Animation, per Playwright aufgenommen, mit ffmpeg zu
-  MP4. Alternative: Remotion (Lizenz prüfen).
+Gebaut ist bisher nur die Statement-Karte mit festem Collage-Stück
+(`agency-marketing/render/grafik.mjs`).
 
-Beides ist noch nicht gebaut.
+## 8. Content-Betrieb LinkedIn [F]
+
+Aus dem Grafik-Interview mit Mattia (03./04.11.2026, Zusammenfassung in
+`agency-marketing/docs/CONTENT-AUTOMATION-OFFEN.md` §2) und dem Entscheid vom
+05.11.2026. Gilt für die automatisch vorbereiteten LinkedIn-Beiträge und geht
+§2 und §6 vor, wo sie sich widersprechen.
+
+**Plan:** ein Post pro Werktag, pro Woche 2 Text, 2 Grafik, 1 Video
+(`agency-marketing/docs/CONTENT-PLAN-2026-11-04.md`).
+
+**Grafik:**
+
+- **Plakativ und minimal:** starke Typografie mit **einem einfachen Motiv**.
+  Die Grafik soll Interesse wecken, nicht alles erklären.
+- **Wenig Text, keine feste Wortgrenze.** Die Handlungsaufforderung steht im
+  Begleittext, nicht auf der Grafik.
+- **Freie Komposition** innerhalb der Markenregeln (Farben, Schriften,
+  Fusszeile aus §3). Keine festen Positionen.
+- **Motive wechseln** und dürfen neu erzeugt werden, **im Stil der Website**
+  (`website/drehbuch/03-bildstil.md`, abgenommene Website-Bilder als
+  Vorlage). Das Met-CC0-Collage-Stück ist nicht mehr Pflicht.
+- **Frechheit 8/10.**
+
+**Themen:** Sichtbarkeit/SEO, digitale Visitenkarte, Kundengewinnung,
+Zeitersparnis durch Automation.
+
+**Fakten und Quellen:**
+
+- Keine ungeprüften Fakten. Jede Zahl braucht eine Originalquelle, die genau
+  diese Aussage deckt (Zahl, Zeitraum, Bezugsgruppe).
+- Fremde Studien nie als eigenes Ergebnis oder Versprechen formulieren.
+- Quellen mit direktem Link **unten im Begleittext**.
+
+**Sichtprüfung vor Mattias Freigabe:**
+
+- Handy-Feed-Grösse: Hauptaussage in einer Sekunde lesbar?
+- Volle Auflösung: Augen, Hände, Anatomie, Gegenstände, Spiegelungen,
+  Perspektive, Licht und Schatten stimmig. Beispiel aus dem Interview: das Auge
+  in einer Lupe muss zum Auge der Figur passen.
+- Schreibweise, Wortmarke, Kanten.
+- Sichtbare KI-Fehler werden vorher behoben oder das Motiv vereinfacht.
+
+**Video [F]:** Remotion (§7), Bewegungen aus §5. Gemalte Website-Bilder dürfen
+in 2.5D bewegt werden (Ebenen, Kamerafahrt, Zwei-Bild-Wechsel), dazu
+kinetische Schrift. Kurzfassung 6–15 s muss stumm funktionieren.
+
+[?] Offen: Bildanbieter und dessen Kostengrenze; welche abgenommenen
+Website-Bilder als Stil-Vorlagen dienen (wählt Mattia); Wochentage je Format.
